@@ -6,4 +6,6 @@
     position: relative;
     background-size: cover;
     max-width: 280px;
+    list-style-type: none;
+
 }
