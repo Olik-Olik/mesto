@@ -84,6 +84,11 @@
     </footer>
 
     <section class="popup">
+        <div class="popup__closeform-container">
+        <div class="popup__closeform">
+            <button class="popup__close" type="button" aria-label='Закрыть этот бред'></button>
+        </div>
+        </div>
         <div class="popup__container">
             <form class="popup__form" name="resave" method="GET"
                   aria-label='получения инфо и передачи данных в адресной строке'>
@@ -96,9 +101,10 @@
                            class="popup__field popup__field_job">
                 </fieldset>
                 <button class="popup__save" type="submit" aria-label='Сохранить'></button>
-                <button class="popup__close" type="button" aria-label='Закрыть этот бред'></button>
             </form>
         </div>
+
+
     </section>
 </main>
 <script src="scripts/main.js"></script>
