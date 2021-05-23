@@ -1,0 +1,24 @@
+.popup__save {
+    color: white;
+    width: 84%;
+    max-width: 358px;
+    height: 50px; /*//////высота плохо*/
+    border: none;
+    background-color: #000000;
+    border-radius: 2px;
+    background-image: url('../../../images/Submit_Button.svg');
+    object-fit: cover;
+    background-position: center;
+    cursor: pointer;
+    line-height: 22px;
+    font-size: 18px;
+    padding-top: 14px;
+    padding-bottom: 18px;
+    align-items: center;
+}
+
+.popup__save:hover {
+    opacity: 0.3;
+    cursor: pointer;
+    text-decoration: none;
+}

@@ -1,0 +1,10 @@
+.profile__button-container {
+    width: 150px;
+    height: 50px;
+}
+
+@media screen and (max-width: 320px) {
+    .profile__button-container {
+        width: 282px;
+    }
+}

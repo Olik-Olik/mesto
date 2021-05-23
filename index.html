@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Четвертый проект Кусто место" name="description">
+    <meta content="HTML, CSS" name="keywords">
+    <meta content="Ольга Санина" name="author">
+    <link href="./pages/index.css" rel="stylesheet">
+    <title>Место</title>
+</head>
+<body class="root">
+<header class="header">
+    <img alt="Место Россия" class="header__logo" src="images/Logo.svg">
+    <img alt="Линия" class="header__line" src="images/Line.jpg">
+</header>
+<main class="container">
+    <section class="profile">
+        <div class="profile__person_info">
+            <div class="profile__person_info_box">
+                <img alt="Фотка Кусто" class="profile__avatar" src="images/Image.svg">
+            </div>
+            <div class="profile__info">
+                <h1 class="profile__title">Жак-Ив Кусто</h1>
+                <button type="button" class="profile__edit-button"></button>
+                <p class="profile__subtitle">Исследователь океана</p>
+            </div>
+        </div>
+        <div class="profile__button-container">
+            <button type="button" class="profile__add-button"></button>
+        </div>
+    </section>
+
+    <section class="elements">
+        <div>
+            <div class="elements__card">
+                <img alt="Эльбрус" class="elements__image" src="images/Dombay.jpg">
+                <div class="elements__combine">
+                    <h3 class="elements__word">Домбай</h3>
+                    <button type="button" class="elements__heart" aria-label="Лайк"></button>
+                </div>
+            </div>
+        </div>
+        <div class="elements__card">
+            <img alt="Домбай" class="elements__image" src="images/Dombay.jpg">
+            <div class="elements__combine">
+                <h3 class="elements__word">Домбай</h3>
+                <button type="button" class="elements__heart" aria-label="Лайк"></button>
+            </div>
+        </div>
+        <div class="elements__card">
+            <img alt="Карачаевск" class="elements__image" src="images/Karachaevsk.jpg">
+            <div class="elements__combine">
+                <h3 class="elements__word">Карачаево-Черкесские</h3>
+                <!--<form><input img alt="Белый прямоугольник" class="elements__rectangle" src=" images/Rectangle.svg"></form>
+                    <p class="elements__word">Карачаево-Ч...</p>-->
+                <button type="button" class="elements__heart" aria-label="Лайк"></button>
+            </div>
+        </div>
+        <div class="elements__card">
+            <img alt="Эльбрус" class="elements__image" src="images/Karachaevsk.jpg">
+            <div class="elements__combine">
+                <h3 class="elements__word">Эльбрус</h3>
+                <button type="button" class="elements__heart" aria-label="Лайк"></button>
+            </div>
+        </div>
+        <div class="elements__card">
+            <img alt="Домбай" class="elements__image" src="images/Dombay.jpg">
+            <div class="elements__combine">
+                <h3 class="elements__word">Карачаево-Ч...</h3>
+                <button type="button" class="elements__heart" aria-label="Лайк"></button>
+            </div>
+        </div>
+        <div class="elements__card">
+            <img alt="Карачаевск" class="elements__image" src="images/Elbrus.jpg">
+            <div class="elements__combine">
+                <h3 class="elements__word">Карачаево-Ч...</h3>
+                <button type="button" class="elements__heart" aria-label="Лайк"></button>
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+        <p class="footer__place">© 2021 Mesto Russia</p>
+    </footer>
+
+    <section class="popup">
+        <div class="popup__container">
+            <form class="popup__form" name="resave" method="GET"
+                  aria-label='получения инфо и передачи данных в адресной строке'>
+                <h2 class="popup__page">Редактировать профиль</h2>
+                <fieldset class="popup__input-container"><!--Такая группировка облегчает работу с формами,
+                 содержащими большое число данных.-->
+                    <input type="text" name="profile" placeholder="Жак-Ив Кусто" value='Жак-Ив Кусто'
+                           class="popup__field popup__field_name">
+                    <input type="text" name="job" placeholder="Исследователь океана" value='Исследователь океана'
+                           class="popup__field popup__field_job">
+                </fieldset>
+                <button class="popup__save" type="submit" aria-label='Сохранить'></button>
+                <button class="popup__close" type="button" aria-label='Закрыть этот бред'></button>
+            </form>
+        </div>
+    </section>
+</main>
+<script src="scripts/main.js"></script>
+</body>

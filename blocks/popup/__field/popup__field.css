@@ -1,0 +1,13 @@
+.popup__field {
+    width: 100%;
+    margin-bottom: 13px; /* ровняем внутри ввода титла и субтитла*/
+    margin-top: 30px;
+    border: white;
+    text-decoration: none;
+    border-bottom: 1px solid #000000;
+    font-weight: 400;
+    font-size: 14px;
+    padding-top: 15px;
+    padding-bottom: 10px;
+    line-height: 140%;
+}

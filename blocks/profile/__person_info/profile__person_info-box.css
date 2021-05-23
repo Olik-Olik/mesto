@@ -1,0 +1,8 @@
+.profile__person_info-box {
+    width: 168px;
+    height: 127px;
+    align-content: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
