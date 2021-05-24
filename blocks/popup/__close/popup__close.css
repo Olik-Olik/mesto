@@ -1,5 +1,5 @@
 .popup__close {
-   /* position: absolute;*/
+   position: absolute;
     display: flex;
     width: 56px;
     height: 56px;

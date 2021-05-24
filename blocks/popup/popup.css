@@ -10,4 +10,6 @@
     transition: 0.5s;
     justify-content: center;
     display: none;
+    align-items: flex-start;
+
 }
