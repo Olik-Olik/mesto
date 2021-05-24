@@ -47,4 +47,4 @@
 ####*Использутся Flex для резиновости сайта
 ####*grid для работы с областями
 ####*Сайт адаприрован для размеров с помощью @media screen 320px, 768px, 1024px, 1280px.
-####ссылка на GitHub Pages- https://olik-olik.github.io/mesto-main/
+####ссылка на GitHub Pages- https://olik-olik.github.io/mesto
