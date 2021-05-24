@@ -3,9 +3,9 @@
     flex-direction: row;
     justify-content: space-between;
     display: flex;
-    padding-top: 38px;
+    padding-top: 36.25px;
     margin: 0 auto;
-    max-width: 69%;
+    max-width: 68.75%;
 }
 
 @media screen and (min-width: 321px)and (max-width: 767px) {

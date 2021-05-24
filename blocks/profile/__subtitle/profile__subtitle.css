@@ -4,15 +4,12 @@
     justify-content: flex-start;
     flex-direction: column;
     margin: 0;
-    padding-top: 22px;
+    padding-top: 16px;
     padding-bottom: 36px;
     font-weight: 400;
     font-size: 18px;
     line-height: 22px;
     color: #FFFFFF;
- /*   text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;*/
     max-width: 290px;
 }
 

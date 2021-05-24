@@ -1,28 +1,22 @@
 .elements {
     max-width: 880px;
-    padding-bottom: 67px;
     padding-top: 47px;
     margin: 0 auto;
     display: grid;
-    grid-column-gap: 20px;
-    grid-row-gap: 17px;
-    grid-template-columns:repeat(3, calc((100% - 17px - 17px) / 3));
+    grid-column-gap: 15px;
+    grid-row-gap: 15px;
+    grid-template-columns:repeat(3, calc((100% - 15px - 15px) / 3));
     align-items: center;
     align-content: center;
     justify-items: center;
 }
 
-@media screen and (min-width: 1025px) {
-    .elements {
-        gap: 20px;
-        grid-template-columns:repeat(3, calc((100% - 17px) / 3));
-    }
-}
+
 
 @media screen and (min-width: 961px) and (max-width: 1024px) {
     .elements {
         max-width: 60%;
-        grid-template-columns:repeat(2, calc((100% - 17px) / 2));
+        grid-template-columns:repeat(2, calc((100% - 15px) / 2));
         justify-content: space-between;
     }
 }
