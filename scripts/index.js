@@ -2,7 +2,7 @@ let container = document.querySelector('.container');
 
 //let heartButton = document.querySelector('.elements__heart');
 //heartButton.addEventListener('click', () =>
-//heartButton.classList.toggle('elements__heart-active'));//переключит на черное хотелось бы
+//heartButton.classList.toggle('elements__heart_active'));//переключит на черное хотелось бы
 
 //let editButton = document.querySelector('.profile__edit-button');
 //let popupClose = container.querySelector('.popup__close');

@@ -14,9 +14,21 @@
     <img alt="Место Россия" class="header__logo" src="images/Logo.svg">
   <!--  <img alt="Линия" class="header__line" src="images/Line.jpg">-->
 </header>
-<main class="container">
+<!--<main class="container">
     <section class="profile">
-        <div class="profile__person-info">
+        <div class="profile__info">
+                <img alt="Фотка Кусто" class="profile__avatar" src="images/Image.svg">
+                <h1 class="profile__title">Жак-Ив Кусто</h1>
+                 <button type="button" class="profile__edit-button"></button>
+                <p class="profile__subtitle">Исследователь океана</p>
+              </div>
+            <button type="button" class="profile__add-button"></button>
+    </section>-->
+
+
+    <main class="container">
+    <section class="profile" style="flex">
+        <div class="profile__person-info" style="grid">
             <div class="profile__person-infobox">
                 <img alt="Фотка Кусто" class="profile__avatar" src="images/Image.svg">
             </div>
@@ -30,6 +42,7 @@
             <button type="button" class="profile__add-button"></button>
         </div>
     </section>
+
 
     <section class="elements">
        <!-- <div>-->
@@ -83,9 +96,10 @@
 
     <button class="profile__edit-button"></button>
     <section class="popup">
+        <button class="popup__close" type="button" aria-label='Закрыть'></button>
         <!--<div class="popup__closeform-container">
         <div class="popup__closeform">-->
-        <button class="popup__close" type="button" aria-label='Закрыть'></button>
+
       <!--  </div>
         </div>-->
         <div class="popup__container">
