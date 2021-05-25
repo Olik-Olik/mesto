@@ -1,11 +1,9 @@
-.popup_visible {
+.popup_opened {
     display: flex;
     flex-direction: column;
- /*   align-items: center;*/
     align-content: stretch;
     align-items: center;
     justify-content: center;
-/*    margin-top: 123px;*/
     z-index: 53;
-    top:0;
+
 }

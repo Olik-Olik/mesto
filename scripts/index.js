@@ -14,14 +14,14 @@ let container = document.querySelector('.container');
 let editButton = document.querySelector('.profile__edit-button');
 let popup = container.querySelector('.popup');
 editButton.addEventListener('click',function (){
-popup.classList.add('popup_visible');})
+popup.classList.add('popup_opened');})
 
 let popupClose = container.querySelector('.popup__close');
 popupClose.addEventListener('click',function (){
-popup.classList.remove ('popup_visible');})
+popup.classList.remove ('popup_opened');})
 
 function toggleClass() {
-    popup.classList.toggle('popup_visible');
+    popup.classList.toggle('popup_opened');
 }//переключаем класс
 
 // Находим форму в DOM
@@ -49,3 +49,5 @@ function formSubmitHandler(evt) {
 // Прикрепляем обработчик к форме:
 // он будет следить за событием “submit” - «отправка»
 formElement.addEventListener('submit', formSubmitHandler);
+//editButton.addEventListener('click', openPopup);
+//popupClose.addEventListener('click', closePopup);

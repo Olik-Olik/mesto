@@ -5,6 +5,7 @@
     height: 56px;
     padding: 0;
     border: none;
+    top:220px;
     background-color: transparent;
     z-index: 50;
     background-size: contain;
@@ -12,6 +13,7 @@
     background-image: url('../../../images/Close_Icon.svg');
     color: white;
     cursor: pointer;
+    left: 846px;
 }
 
 .popup__close:hover {
@@ -22,5 +24,6 @@
 .popup__close {
  width: 36px;
  height: 36px;
+ left: 264px;
 }
 }
