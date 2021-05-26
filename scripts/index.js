@@ -1,39 +1,60 @@
-let container = document.querySelector('.container');
-
-//let heartButton = document.querySelector('.elements__heart');
-//heartButton.addEventListener('click', () =>
-//heartButton.classList.toggle('elements__heart_active'));//переключит на черное хотелось бы
-
-//let editButton = document.querySelector('.profile__edit-button');
-//let popupClose = container.querySelector('.popup__close');
-//let popup = container.querySelector('.popup');
-//editButton.addEventListener('click', toggleClass);
-//popupClose.addEventListener('click', toggleClass);
+/*
+//обьявляем переменные
+let popup = document.querySelector('.popup');
+let popupOpen = document.querySelector('.profile__edit-button');
+let popupClose = document.querySelector('.popup__close-button');
+let popUpSave = document.querySelector('.popup__save');
+let nameInput = document.querySelector('.profile__title');
+let popupName = document.getElementsByid('popup__name');
+let jobInput = document.querySelector('.profile__subtitle');
+let popupJob = document.getElementsByid('popup__job');
+let formSubmit = document.querySelector('.popup__form');*/
 
 
 let editButton = document.querySelector('.profile__edit-button');
-let popup = container.querySelector('.popup');
+let popup = document.querySelector('.popup');
 editButton.addEventListener('click',function (){
 popup.classList.add('popup_opened');})
 
-let popupClose = container.querySelector('.popup__close');
-popupClose.addEventListener('click',function (){
-popup.classList.remove ('popup_opened');})
+let nameInput = document.querySelector('.profile__title');
+let popupName = document.getElementsByid('popup__name');
+let jobInput = document.querySelector('.profile__subtitle');
+let popupJob = document.getElementsByid('popup__job');
 
-function toggleClass() {
-    popup.classList.toggle('popup_opened');
-}//переключаем класс
+      popupName.value = nameInput.textContent;
+    popupJob.value = jobInput.textContent;
 
-// Находим форму в DOM
-let formElement = container.querySelector('.popup__container')
-// Находим поля формы в DOM
-let nameInput = container.querySelector('.popup__field_name');
-let jobInput = container.querySelector('.popup__field_job');
+
+/*
+
+//теперь функции open
+/!*function editButton() {
+    popupName.value = nameInput.textContent;
+    popupJob.value = jobInput.textContent;
+    popup.classList.add('popup_opened');
+}*!/
+
+popupOpen.addEventListener('click',function (){
+/!* popupName.value = nameInput.textContent;
+ popupJob.value = jobInput.textContent; *!/
+popup.classList.add('popup_opened');})
+
+
+//удаляем=закрываем
+    popupClose.addEventListener('click',function (){
+    popup.classList.remove('popup_opened');
+})
+
+
+//функция сабмита
+// Находим форму в DOM  formSubmitHandler
+//Слушаем в submitPopup содержимое класса формы
+formElement
+let submitPopup = container.querySelector('.container')
 // Обработчик «отправки» формы, хотя пока
 // она никуда отправляться не будет
 function formSubmitHandler(evt) {
     evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
-
     // Выберите элементы, куда должны быть вставлены значения полей
     let profileTitle = container.querySelector('.profile__title');
     let profileSubtitle = container.querySelector('.profile__subtitle');
@@ -45,5 +66,7 @@ function formSubmitHandler(evt) {
 // Прикрепляем обработчик к форме:
 // он будет следить за событием “submit” - «отправка»
 formElement.addEventListener('submit', formSubmitHandler);
-//editButton.addEventListener('click', openPopup);
-//popupClose.addEventListener('click', closePopup);
+
+
+
+*/
