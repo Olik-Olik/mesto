@@ -7,8 +7,8 @@
     height: 56px;
     background-color: transparent;
     bottom: 0;
-    left: 160px;
-    top: 64px;
+    left: 230px;
+    top: 72px;
     padding: 0;
     border: none;
 }
@@ -17,15 +17,15 @@
      opacity: 0.8;
 }
 
-@media screen and (min-width: 1024px)  {
+@media screen and (min-width: 501px)  and (max-width: 1280px) {
     .popup__close {
-        width: 36px;
-        height: 36px;
+        width: 56px;
+        height: 56px;
         top: 72px;
-        left: 160px;
+        left: 230px;
     }
 }
-@media screen and (min-width: 320px) and (max-width: 380px) {
+@media screen and (min-width: 320px) and (max-width: 500px) {
     .popup__close {
         width: 36px;
         height: 36px;

@@ -33,9 +33,6 @@ let jobInput = container.querySelector('.popup__field_job');
 // она никуда отправляться не будет
 function formSubmitHandler(evt) {
     evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
-    // Получите значение полей jobInput и nameInput из свойства value
-   // jobInput.getAttribute('value:');
-   // nameInput.getAttribute('value');
 
     // Выберите элементы, куда должны быть вставлены значения полей
     let profileTitle = container.querySelector('.profile__title');
@@ -45,7 +42,6 @@ function formSubmitHandler(evt) {
     profileSubtitle.textContent = jobInput.value;
     toggleClass();
 }
-
 // Прикрепляем обработчик к форме:
 // он будет следить за событием “submit” - «отправка»
 formElement.addEventListener('submit', formSubmitHandler);
