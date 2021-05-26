@@ -37,21 +37,3 @@
 .popup__close:hover {
     cursor: pointer;
      opacity: 0.8;}
-
-/*position: absolute;
- display: flex;
- width: 56px;
- height: 56px;
- padding: 0;
- border: none;
- top:220px;
- background-color: transparent;
- z-index: 50;
- background-size: contain;
- background-repeat: no-repeat;
- background-image: url('../../../images/Close_Icon.svg');
- color: white;
- cursor: pointer;
- left: 846px;
-}*/
-
