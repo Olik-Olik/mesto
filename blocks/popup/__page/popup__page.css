@@ -3,15 +3,14 @@
     height: 23px;
     left: 461px;
     top: 195px;
- /*   margin-bottom: 54px;*/
+
     font-weight: 900;
     font-size: 24px;
     line-height: 29px;
     color: #000000;
-    /* margin-top: 34px;*/
-        margin-top: 35px;
+   margin-top: 25px;
     padding-top: 25px;
-    margin-bottom: 24px
+    margin-bottom: 25px
 }
 
 @media screen and (min-width: 320px) and (max-width: 500px) {
