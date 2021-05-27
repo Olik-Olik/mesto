@@ -21,7 +21,6 @@ let popupClose = document.querySelector('.popup__close-button');
     popup.classList.remove('popup_opened');})
 
 
-
 /*
 //теперь функции open
 /!*function editButton() {
