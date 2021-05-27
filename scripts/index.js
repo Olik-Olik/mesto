@@ -1,16 +1,7 @@
 /*
 //обьявляем переменные
-let popup = document.querySelector('.popup');
-let popupOpen = document.querySelector('.profile__edit-button');
-let popupClose = document.querySelector('.popup__close-button');
 let popUpSave = document.querySelector('.popup__save');
-let nameInput = document.querySelector('.profile__title');
-let popupName = document.getElementsByid('popup__name');
-let jobInput = document.querySelector('.profile__subtitle');
-let popupJob = document.getElementsByid('popup__job');
-let formSubmit = document.querySelector('.popup__form');*/
-
-
+*/
 let editButton = document.querySelector('.profile__edit-button');
 let popup = document.querySelector('.popup');
 editButton.addEventListener('click',function (){
@@ -21,12 +12,17 @@ let popupName = document.getElementsByid('popup__name');
 let jobInput = document.querySelector('.profile__subtitle');
 let popupJob = document.getElementsByid('popup__job');
 
-      popupName.value = nameInput.textContent;
-    popupJob.value = jobInput.textContent;
+ popupName.value = nameInput.textContent;
+ popupJob.value = jobInput.textContent;
+
+//удаляем=закрываем
+let popupClose = document.querySelector('.popup__close-button');
+    popupClose.addEventListener('click',function (){
+    popup.classList.remove('popup_opened');})
+
 
 
 /*
-
 //теперь функции open
 /!*function editButton() {
     popupName.value = nameInput.textContent;
@@ -38,13 +34,7 @@ popupOpen.addEventListener('click',function (){
 /!* popupName.value = nameInput.textContent;
  popupJob.value = jobInput.textContent; *!/
 popup.classList.add('popup_opened');})
-
-
-//удаляем=закрываем
-    popupClose.addEventListener('click',function (){
-    popup.classList.remove('popup_opened');
 })
-
 
 //функция сабмита
 // Находим форму в DOM  formSubmitHandler

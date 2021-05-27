@@ -1,4 +1,4 @@
-.popup__field {
+.popup__field { /*туточки держим стили для формы в попапе*/
     width: 100%;
     padding-top: 30px;
     border: white;
@@ -7,7 +7,7 @@
     font-weight: 400;
     font-size: 14px;
     padding-bottom: 13px;
-    line-height: 140%;
+    line-height: 17px;
     padding-left: 0;
     padding-right: 0;
 }

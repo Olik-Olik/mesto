@@ -12,7 +12,7 @@
 }
 
 .profile__edit-button:hover {
-    opacity: 0.3;
+    opacity: 0.6;/* по аналогии в фигме нет значения*/
     cursor: pointer;
 }
 

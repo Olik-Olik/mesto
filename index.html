@@ -43,7 +43,8 @@
             <button type="button" class="profile__add-button"></button></div>
     </section>
 
-
+<!--имя-блока_имя-модификатора_значение-модификатора;
+    имя-блока__имя-элемента_имя-модификатора_значение-модификатора.s-->
     <section class="elements">
         <!-- <div>-->
         <div class="elements__card">
@@ -99,9 +100,14 @@
             <button class="popup__close-button" type="button" aria-label='Закрыть'></button>
             <form class="popup__form" action="#" name="resave" method="GET" aria-label='получения инфо и передачи данных в адресной строке'>
                 <h2 class="popup__page">Редактировать профиль</h2>
-                    <input type="text" name="inputForm" class="popup__input-container" id='popup__name' placeholder="Ваше имя" value='Жак-Ив Кусто'>
-                    <input type="text" name="inputForm" class="popup__input-container" id='popup__job'  placeholder="Род занятия" value='Исследователь океана'>
-                    <button class="popup__save" type="submit" aria-label='Кнопка Сохранить'></button>
+<!--
+                 <input type="text" name="inputForm" class="popup__field_popup_name" placeholder="Ваше имя" value='Жак-Ив Кусто'>
+                    <input type="text" name="inputForm" class="popup__field_popup_job"  placeholder="Род занятия" value='Исследователь океана'>
+
+         -->
+                    <input type="text" name="inputForm" class="popup__field" id="popup__name" placeholder="Ваше имя" value='Жак-Ив Кусто'>
+                    <input type="text" name="inputForm" class="popup__field" id="popup__job"  placeholder="Род занятия" value='Исследователь океана'>
+                   <button class="popup__save" type="submit" aria-label='Кнопка Сохранить'>Сохранить</button>
             </form>
         </div>
 
