@@ -8,11 +8,6 @@ let popupJob = document.getElementById('popup__field_job');
 let nameInput = document.querySelector('.profile__title');
 let jobInput = document.querySelector('.profile__subtitle');
 
-/*editButton.addEventListener('click', function () {
-    popup.classList.add('popup_opened');
-    popupName.value = nameInput.textContent;
-    popupJob.value = jobInput.textContent;
-})*/
 function workPopup() {
     popupName.value = nameInput.textContent;
     popupJob.value = jobInput.textContent;
@@ -23,15 +18,13 @@ function closePopupAll() {
     popup.classList.remove('popup_opened');
 }
 
-/*popupClose.addEventListener('click', function () {
-    popup.classList.remove('popup_opened');
-})*/
 function submitHandler(evt) {
     evt.preventDefault();
     nameInput.textContent= popupName.value;
     jobInput.textContent = popupJob.value;
     closePopupAll();
 }
+
 editButton.addEventListener('click', workPopup);
 closePopup.addEventListener('click', closePopupAll);
 savePopup.addEventListener('submit', submitHandler);

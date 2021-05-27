@@ -14,18 +14,6 @@
     <img alt="Место Россия" class="header__logo" src="images/Logo.svg">
     <!--  <img alt="Линия" class="header__line" src="images/Line.jpg">-->
 </header>
-<!--<main class="container">
-    <section class="profile">
-        <div class="profile__info">
-                <img alt="Фотка Кусто" class="profile__avatar" src="images/Image.svg">
-                <h1 class="profile__title">Жак-Ив Кусто</h1>
-                 <button type="button" class="profile__edit-button"></button>
-                <p class="profile__subtitle">Исследователь океана</p>
-              </div>
-            <button type="button" class="profile__add-button"></button>
-    </section>-->
-
-
 <main class="container">
     <section class="profile">
         <div class="profile__person-info">
@@ -34,17 +22,16 @@
             </div>
             <div class="profile__info">
                 <div class="profile__title-edit-button">
-                <h1 class="profile__title">Жак-Ив Кусто</h1>
-                <button type="button" class="profile__edit-button"></button>
+                    <h1 class="profile__title">Жак-Ив Кусто</h1>
+                    <button type="button" class="profile__edit-button"></button>
                 </div>
-                <p class="profile__subtitle">Исследователь океана</p></div>
+                <p class="profile__subtitle">Исследователь океана</p>
+            </div>
         </div>
         <div class="profile__button-container">
-            <button type="button" class="profile__add-button"></button></div>
+            <button type="button" class="profile__add-button"></button>
+        </div>
     </section>
-
-<!--имя-блока_имя-модификатора_значение-модификатора;
-    имя-блока__имя-элемента_имя-модификатора_значение-модификатора.s-->
     <section class="elements">
         <!-- <div>-->
         <div class="elements__card">
@@ -92,22 +79,23 @@
         </div>
     </section>
 </main>
-    <footer class="footer">
-        <p class="footer__place">© 2021 Mesto Russia</p>
-    </footer>
-    <section class="popup">
-         <button class="popup__close-button" type="button" aria-label='Закрыть'></button>
-         <div class="popup__container" action="#">
-          <!--  <button class="popup__close-button" type="button" aria-label='Закрыть'></button>-->
-            <form class="popup__form" id="popup_mega_id" action="#" name="resave" method="GET" aria-label='получения инфо и передачи данных в адресной строке'>
-                <h2 class="popup__page">Редактировать профиль</h2>
-                <input type="text" name="inputForm" class="popup__field" id="popup__field_name" placeholder="Ваше имя" value='Жак-Ив Кусто'>
-                    <input type="text" name="inputForm" class="popup__field" id="popup__field_job"  placeholder="Род занятия" value='Исследователь океана'>
-                   <button class="popup__save" type="submit" aria-label='Кнопка Сохранить'>Сохранить</button>
-            </form>
-        </div>
-
-    </section>
+<footer class="footer">
+    <p class="footer__place">© 2021 Mesto Russia</p>
+</footer>
+<section class="popup">
+    <button class="popup__close-button" type="button" aria-label='Закрыть'></button>
+    <div class="popup__container" action="#">
+        <form class="popup__form" id="popup_mega_id" action="#" name="resave" method="GET"
+              aria-label='получения инфо и передачи данных в адресной строке'>
+            <h2 class="popup__page">Редактировать профиль</h2>
+            <input type="text" name="inputForm" class="popup__field" id="popup__field_name" placeholder="Ваше имя"
+                   value='Жак-Ив Кусто'>
+            <input type="text" name="inputForm" class="popup__field" id="popup__field_job" placeholder="Род занятия"
+                   value='Исследователь океана'>
+            <button class="popup__save" type="submit" aria-label='Кнопка Сохранить'>Сохранить</button>
+        </form>
+    </div>
+</section>
 <script src="scripts/index.js"></script>
 </body>
 </html>
