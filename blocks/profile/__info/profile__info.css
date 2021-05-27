@@ -3,7 +3,7 @@
     max-height: 22%;
     position: relative;
     color: white;
-    width: 100%;
+   /* width: 100%;*//*subtitle*/
     display: flex;
     justify-content: center;
     flex-direction: column;
