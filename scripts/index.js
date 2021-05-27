@@ -13,7 +13,6 @@ let jobInput = document.querySelector('.profile__subtitle');
     popupName.value = nameInput.textContent;
     popupJob.value = jobInput.textContent;
 })*/
-
 function workPopup() {
     popupName.value = nameInput.textContent;
     popupJob.value = jobInput.textContent;
