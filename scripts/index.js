@@ -20,7 +20,7 @@ function closePopupAll() {
 
 function submitHandler(evt) {
     evt.preventDefault();
-    nameInput.textContent= popupName.value;
+    nameInput.textContent = popupName.value;
     jobInput.textContent = popupJob.value;
     closePopupAll();
 }

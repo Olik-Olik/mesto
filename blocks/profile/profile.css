@@ -1,14 +1,14 @@
-.profile{
+.profile {
     width: 100%;
     padding: 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 0  auto;
+    margin: 0 auto;
     max-width: calc(100% - 200px - 200px);
 }
 
-@media screen and (min-width: 496px)and (max-width: 1081px) {
+@media screen and (min-width: 811px)and (max-width: 1081px) {
     .profile {
         align-items: center;
         flex-direction: row;
@@ -19,7 +19,8 @@
         max-width: 68.75%;
     }
 }
-@media screen and (min-width: 320px)and (max-width: 495px) {
+
+@media screen and (min-width: 320px)and (max-width: 810px) {
     .profile {
         margin: 0 auto;
         align-items: center;
