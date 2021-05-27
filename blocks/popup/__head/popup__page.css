@@ -3,11 +3,12 @@
     font-size: 24px;
     line-height: 29px;
     font-style: normal;
-    padding-top: 34px;
+   /* padding-top: 34px;*/
     margin-top: 0;
-    margin-bottom: 0;
     border: 0;
     padding-right: 41px;
+    padding-top: 25px;
+    margin-bottom: 24px;
 
 
 }
