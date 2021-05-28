@@ -13,6 +13,7 @@
     display: none;
     width: 100%;
     min-height: 100vh;
-    align-items: flex-start; /*для крестика закрытия popup_opened нельзя больше 1 аргумента*/
-    /*transition: visibility 1s, opacity 0.7s  linear;*/
+   /* align-items: flex-start;*/ /*для крестика закрытия popup_opened нельзя больше 1 аргумента*/
+    align-items: center;
+
 }
