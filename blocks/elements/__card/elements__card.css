@@ -5,5 +5,11 @@
     flex-direction: column;
     justify-content: start;
     display: flex;
-
 }
+/*
+
+.elements__card:hover {
+    display: block;
+}
+
+*/

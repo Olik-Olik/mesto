@@ -1,0 +1,16 @@
+.elements__delete-img{
+  background-image: url(../../../images/trash-icon.svg);
+  background-color: transparent;
+  border: none;
+  width: 18px;/*nnnn*/
+  height: 20px;/*nnnnnnn*/
+  position: absolute;
+  top: 18px;/*bbbbbbb*/
+  right: 15px;/*nnnnnnnnn*/
+  cursor: pointer;
+  display: none;
+}
+
+.elements__delete-img {
+  display: block;/*jjjjj*/
+}

@@ -32,13 +32,15 @@
             <button type="button" class="profile__add-button"></button>
         </div>
     </section>
+    <!--  <div class="places-list"> --><!--новый див места-->
     <section class="elements">
         <!-- <div>-->
         <div class="elements__card">
             <img alt="Эльбрус" class="elements__image" src="images/Dombay.jpg">
+          <!--  <button class="elements__delete-icon"></button>-->
             <div class="elements__combine">
-                <h2 class="elements__word">Домбай</h2>
-                <button type="button" class="elements__heart" aria-label="Лайк"></button>
+                <h2 class="elements__word">Вулкан</h2>
+                <button type="button" class="elements__like" aria-label="Лайк"></button>
             </div>
         </div>
         <!--  </div>-->
@@ -46,38 +48,39 @@
             <img alt="Домбай" class="elements__image" src="images/Dombay.jpg">
             <div class="elements__combine">
                 <h2 class="elements__word">Домбай</h2>
-                <button type="button" class="elements__heart" aria-label="Лайк"></button>
+                <button type="button" class="elements__like" aria-label="Лайк"></button>
             </div>
         </div>
         <div class="elements__card">
             <img alt="Карачаевск" class="elements__image" src="images/Karachaevsk.jpg">
             <div class="elements__combine">
                 <h2 class="elements__word">Карачаево-Черкесские горы</h2>
-                <button type="button" class="elements__heart" aria-label="Лайк"></button>
+                <button type="button" class="elements__like" aria-label="Лайк"></button>
             </div>
         </div>
         <div class="elements__card">
             <img alt="Эльбрус" class="elements__image" src="images/Karachaevsk.jpg">
             <div class="elements__combine">
                 <h2 class="elements__word">Эльбрус</h2>
-                <button type="button" class="elements__heart" aria-label="Лайк"></button>
+                <button type="button" class="elements__like" aria-label="Лайк"></button>
             </div>
         </div>
         <div class="elements__card">
             <img alt="Домбай" class="elements__image" src="images/Dombay.jpg">
             <div class="elements__combine">
                 <h2 class="elements__word">Карачаево-Черкесские горы</h2>
-                <button type="button" class="elements__heart" aria-label="Лайк"></button>
+                <button type="button" class="elements__like" aria-label="Лайк"></button>
             </div>
         </div>
         <div class="elements__card">
             <img alt="Карачаевск" class="elements__image" src="images/Elbrus.jpg">
             <div class="elements__combine">
                 <h2 class="elements__word">Карачаево-Черкесские горы</h2>
-                <button type="button" class="elements__heart" aria-label="Лайк"></button>
+                <button type="button" class="elements__like" aria-label="Лайк"></button>
             </div>
         </div>
     </section>
+    </div>
 </main>
 <footer class="footer">
     <p class="footer__place">© 2021 Mesto Russia</p>
@@ -88,14 +91,65 @@
         <form class="popup__form" id="popup-mega-id" action="#" name="resave" method="GET"
               aria-label='получения инфо и передачи данных в адресной строке'>
             <h2 class="popup__page">Редактировать профиль</h2>
-            <input type="text" name="inputForm_name" class="popup__field" id="popup-field-name" placeholder="Ваше имя"
-                   value='Жак-Ив Кусто'>
-            <input type="text" name="inputForm_job" class="popup__field" id="popup-field-job" placeholder="Род занятия"
-                   value='Исследователь океана'>
+            <label for="popup-field-name"></label><input type="text" name="inputForm_name" class="popup__field"
+                                                         id="popup-field-name" placeholder="Ваше имя"
+                                                         value='Жак-Ив Кусто'>
+            <label for="popup-field-job"></label><input type="text" name="inputForm_job" class="popup__field"
+                                                        id="popup-field-job" placeholder="Род занятия"
+                                                        value='Исследователь океана'>
             <button class="popup__save" type="submit" aria-label='Кнопка Сохранить'>Сохранить</button>
         </form>
     </div>
 </section>
+
+<section class="popup_type_new-card">
+    <button class="popup__close-button" type="button" aria-label='Закрыть'></button>
+    <div class="popup__container">
+        <form class="popup__form" id="popup-mega-card-id" action="#" name="resave" method="GET"
+              aria-label='получения инфо и передачи данных в адресной строке'>
+            <h2 class="popup__page">Новое место</h2>
+            <input type="text" name="inputForm_place_name" class="popup__field" id="popup-field-card-name"
+                   placeholder="Название места"
+                   value='Название'>
+            <input type="text" name="inputForm_place-img" class="popup__field" id="popup-field-card-img"
+                   placeholder="ССылка на картинку"
+                   value='Ссылка на картинку'>
+            <button class="popup__save" type="submit" aria-label='Кнопка Сохранить'>Сохранить</button>
+        </form>
+    </div>
+</section>
+
+<!--<section class="popup popup_type_images">
+    <button class="popup__close-button" type="button" aria-label='Закрыть'></button>
+    <div class="popup__container">
+        <form class="popup__form" id="popup-mega-images-id" action="#" name="resave" method="GET"
+              aria-label='получения инфо и передачи данных в адресной строке'>
+            <h2 class="popup__page"></h2>
+            <input type="text" name="inputForm_name" class="popup__field" id="popup-field-images-name" placeholder="Ваше имя"
+                   value='Жак-Ив Кусто'>
+            <input type="text" name="inputForm_job" class="popup__field" id="popup-field-images-job" placeholder="Род занятия"
+                   value='Исследователь океана'>
+            <button class="popup__save" type="submit" aria-label='Кнопка Сохранить'>Сохранить</button>
+        </form>
+    </div>
+</section>-->
 <script src="scripts/index.js"></script>
+
+<section class="elements">
+    <div class="elements__card"></div>
+    <template class="item__template">
+        <ul>
+        <li class="list__item">
+            <img class="elements__image" src="./images/Sea.jpg" alt="Море и пляж">
+            <img class="clone" src="./images/Edit_Button.svg" alt="Копировать">
+            <button type="button" class="elements__trash link-dark"></button>
+                    <div class="elements__inside">
+                        <button type="button" class="elements__like link-dark<!--link on opasity-->"></button>
+                        <h2 class="elements__title">Заголовок</h2>
+                    </div>
+        </li>
+        </ul>
+    </template>
+</section>
 </body>
 </html>

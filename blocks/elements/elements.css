@@ -11,6 +11,11 @@
     justify-items: center;
 }
 
+/*
+.elements:hover{
+    display: block;!*fffffffff*!
+}
+*/
 
 @media screen and (min-width: 961px) and (max-width: 1024px) {
     .elements {
