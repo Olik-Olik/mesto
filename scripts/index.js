@@ -55,7 +55,7 @@ window.addEventListener("load", function (event) {
         newElement.querySelector('.elements__title').textContent = item.name;
         newElements.append(newElement);
     })
-});
+
 
 //лайки
 
@@ -64,8 +64,7 @@ likeElement.addEventListener('click', function (evt) {
     evt.target.classList.toggle('elements__like_active');
    });
 
-
-
+});
 
 
 /*
@@ -104,10 +103,6 @@ const list = document.querySelector(".list");
 const formButton = document.querySelector(".form__submit");
 const formInput = document.querySelector(".form__input");
 
-/!*popup_type_edit,
- popup_type_new-card
- popup_type_image 
-и именно по этому классу вы будете обращаться к ним из js*!/
 
 
 // клонируем содержимое тега template
