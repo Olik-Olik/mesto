@@ -1,11 +1,9 @@
 .elements__like {
-   /* background-image: url('../../../images/Vector_heart.svg');*/
-   background-image :url(https://code.s3.yandex.net/web-code/dom/heart.svg);/*стащила из тренажера*/
+    background-image: url('../../../images/Vector_heart.svg');
+   /*background-image :url(https://code.s3.yandex.net/web-code/dom/heart.svg);*//*стащила из тренажера*/
     width: 24px;
     height: 19px;
     cursor: pointer;
-  /*  padding-right: 30px;
-    padding-bottom: 30px;*/
     border: none;
     background-repeat: no-repeat;
     background-color: transparent;
@@ -13,8 +11,8 @@
     background-position: center;
     transition: transform .3s linear;
      background-size: 100%;
-/*    position: absolute;*/
-    right: 50px;
+  /*  position: absolute;*/
+    right: 260px;
     opacity: 0.5;
 }
 

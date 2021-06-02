@@ -5,10 +5,11 @@
     width: 18px;
     height: 19px;
     position: relative;
-    top: 100px;
-    right: 100px;
+    top: 18px;
+    right: 246px;
     cursor: pointer;
-    background-position: bottom;
+    background-position: center;
+    background-size: 100%;
 }
 
 .elements__trash:hover {
