@@ -1,15 +1,14 @@
 .elements__image {
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
-    object-fit: contain;
     justify-items: center;
     position: relative;
-    background-size: cover;
-    max-width: 280px;
+    height: 282px;
+    width: 282px;
     list-style-type: none;
+    background-size: cover;
 
 }
-/*ffffffffffffff*/
 .elements__image::after {
     content: '';
     display: block;

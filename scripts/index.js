@@ -1,4 +1,5 @@
 let editButton = document.querySelector('.profile__edit-button');
+let addCard = document.querySelector('.profile__add-button');
 let popup = document.querySelector('.popup');
 let savePopup = document.querySelector('#popup-mega-id');
 let closePopup = document.querySelector('.popup__close-button');
@@ -7,7 +8,7 @@ let popupJob = document.querySelector('#popup-field-job');
 //куда это будет вставлено
 let nameInput = document.querySelector('.profile__title');
 let jobInput = document.querySelector('.profile__subtitle');
-const newElements = document.querySelector('.elements__card');
+let newElements = document.querySelector('.elements');
 //card
 /*
 let namecardInput = document.querySelector('.profile__title');
@@ -54,34 +55,18 @@ window.addEventListener("load", function (event) {
         newElement.querySelector('.elements__title').textContent = item.name;
         newElements.append(newElement);
     })
-
 });
 
+//лайки
 
-/*
-// хотим вставить в список UL много LI
-// делаем вспомогательный DocumentFragment
-const fragment = document.createDocumentFragment();
-initialCards.forEach((function (element) {
-    newElement.textContent =  newElement.textContent + newElement.src + newElement.alt ;
-}))
+let likeElement = newElements.querySelector('.elements__like');
+likeElement.addEventListener('click', function (evt) {
+    evt.target.classList.toggle('elements__like_active');
+   });
 
 
-*/
 
 
-/*
-
-fragment.appendChild(initialCards[i]); // вставить каждый LI в DocumentFragment
-}
-ul.appendChild(fragment); // вместо фрагмента вставятся элементы списка
-
-
-popup.forEach() = function () {
-    initialCards.addEventListener('click', (evt))
-    console.log();
-}
-*/
 
 /*
 // профиль
@@ -109,18 +94,9 @@ button.addEventListener('click', function (evt) {
 //динамически добавть карточку на страницу
 
 
-/*
-
-// тут хочу сделать лайки
-//вешаем обработчик клика на кнопку-сердечко переключаем на активный
-const newElement------ = document.querySelector('.elements__card')
-const likeElement = newElement----.querySelector('.elements__like');
-likeElement.addEventListener('click', function (evt) {
-evt.target.classList.toggle('elements__like_active');
- console.log(evt);});
 
 // слушатель кликов по картинке
-
+/*
 const template =document.querySelector('.item-template');//родитель / все картинки
 const templateClone = document.querySelector('.list__item').cloneNode(true);//тут картинка содержащая мусорку и img и титл и лайк
 const itemTemplate = document.querySelector(".item_template").content;
@@ -134,10 +110,6 @@ const formInput = document.querySelector(".form__input");
 и именно по этому классу вы будете обращаться к ним из js*!/
 
 
-//элемент можно клонировать, наполнить содержимым и вставить в DOM.
-const userTemplate = document.querySelector('#user').content;
-const usersOnline = document.querySelector('.users-online');
-
 // клонируем содержимое тега template
 const userElement = userTemplate.querySelector('.user').cloneNode(true);
 
@@ -146,19 +118,6 @@ userElement.querySelector('.user__avatar').src = 'tinyurl.com/v4pfzwy';
 userElement.querySelector('.user__name').textContent = 'Кусто блин';
 */
 
-// отображаем на странице
-/*
-usersOnline.append(userElement);
- <template id="user">
-    <div className="user">
-        <img className="user__avatar" alt="avatar">
-            <p className="user__name"></p>
-    </div>
-</template>
-*/
-
-//отрисовывает карточку
-//перечисляем переменные
 
 //добавление картинки
 /*function addCard() {

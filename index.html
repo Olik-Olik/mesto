@@ -23,27 +23,26 @@
             <div class="profile__info">
                 <div class="profile__title-edit-button">
                     <h1 class="profile__title">Жак-Ив Кусто</h1>
-                    <button type="button" class="profile__edit-button"></button>
+                    <button class="profile__edit-button" type="button"></button>
                 </div>
                 <p class="profile__subtitle">Исследователь океана</p>
             </div>
         </div>
         <div class="profile__button-container">
-            <button type="button" class="profile__add-button"></button>
+            <button class="profile__add-button" type="button"></button>
         </div>
     </section>
-    <!--  <div class="places-list"> --><!--новый див места-->
     <section class="elements">
         <!-- <div>-->
-        <div class="elements__card">
+        <!--<div class="elements__card">
             <img alt="Эльбрус" class="elements__image" src="images/Dombay.jpg">
-          <!--  <button class="elements__delete-icon"></button>-->
+          &lt;!&ndash;  <button class="elements__delete-icon"></button>&ndash;&gt;
             <div class="elements__combine">
                 <h2 class="elements__word">Вулкан</h2>
                 <button type="button" class="elements__like" aria-label="Лайк"></button>
             </div>
         </div>
-        <!--  </div>-->
+        &lt;!&ndash;  </div>&ndash;&gt;
         <div class="elements__card">
             <img alt="Домбай" class="elements__image" src="images/Dombay.jpg">
             <div class="elements__combine">
@@ -78,78 +77,74 @@
                 <h2 class="elements__word">Карачаево-Черкесские горы</h2>
                 <button type="button" class="elements__like" aria-label="Лайк"></button>
             </div>
-        </div>
+        </div>-->
     </section>
-    </div>
 </main>
 <footer class="footer">
     <p class="footer__place">© 2021 Mesto Russia</p>
 </footer>
 <section class="popup">
-    <button class="popup__close-button" type="button" aria-label='Закрыть'></button>
+    <button aria-label='Закрыть' class="popup__close-button" type="button"></button>
     <div class="popup__container">
-        <form class="popup__form" id="popup-mega-id" action="#" name="resave" method="GET"
-              aria-label='получения инфо и передачи данных в адресной строке'>
+        <form action="#" aria-label='получения инфо и передачи данных в адресной строке' class="popup__form" id="popup-mega-id" method="GET"
+              name="resave">
             <h2 class="popup__page">Редактировать профиль</h2>
-            <label for="popup-field-name"></label><input type="text" name="inputForm_name" class="popup__field"
-                                                         id="popup-field-name" placeholder="Ваше имя"
+            <label for="popup-field-name"></label><input class="popup__field" id="popup-field-name" name="inputForm_name"
+                                                         placeholder="Ваше имя" type="text"
                                                          value='Жак-Ив Кусто'>
-            <label for="popup-field-job"></label><input type="text" name="inputForm_job" class="popup__field"
-                                                        id="popup-field-job" placeholder="Род занятия"
+            <label for="popup-field-job"></label><input class="popup__field" id="popup-field-job" name="inputForm_job"
+                                                        placeholder="Род занятия" type="text"
                                                         value='Исследователь океана'>
-            <button class="popup__save" type="submit" aria-label='Кнопка Сохранить'>Сохранить</button>
+            <button aria-label='Кнопка Сохранить' class="popup__save" type="submit">Сохранить</button>
         </form>
     </div>
 </section>
 
 <section class="popup_type_new-card">
-    <button class="popup__close-button" type="button" aria-label='Закрыть'></button>
+    <button aria-label='Закрыть' class="popup__close-button" type="button"></button>
     <div class="popup__container">
-        <form class="popup__form" id="popup-mega-card-id" action="#" name="resave" method="GET"
-              aria-label='получения инфо и передачи данных в адресной строке'>
+        <form action="#" aria-label='получения инфо и передачи данных в адресной строке' class="popup__form" id="popup-mega-card-id" method="GET"
+              name="resave">
             <h2 class="popup__page">Новое место</h2>
-            <input type="text" name="inputForm_place_name" class="popup__field" id="popup-field-card-name"
-                   placeholder="Название места"
+            <input class="popup__field" id="popup-field-card-name" name="inputForm_place_name" placeholder="Название места"
+                   type="text"
                    value='Название'>
-            <input type="text" name="inputForm_place-img" class="popup__field" id="popup-field-card-img"
-                   placeholder="ССылка на картинку"
+            <input class="popup__field" id="popup-field-card-img" name="inputForm_place-img" placeholder="ССылка на картинку"
+                   type="text"
                    value='Ссылка на картинку'>
-            <button class="popup__save" type="submit" aria-label='Кнопка Сохранить'>Сохранить</button>
+            <button aria-label='Кнопка Сохранить' class="popup__save" type="submit">Сохранить</button>
         </form>
     </div>
 </section>
 
-<!--<section class="popup popup_type_images">
-    <button class="popup__close-button" type="button" aria-label='Закрыть'></button>
-    <div class="popup__container">
-        <form class="popup__form" id="popup-mega-images-id" action="#" name="resave" method="GET"
-              aria-label='получения инфо и передачи данных в адресной строке'>
-            <h2 class="popup__page"></h2>
-            <input type="text" name="inputForm_name" class="popup__field" id="popup-field-images-name" placeholder="Ваше имя"
-                   value='Жак-Ив Кусто'>
-            <input type="text" name="inputForm_job" class="popup__field" id="popup-field-images-job" placeholder="Род занятия"
-                   value='Исследователь океана'>
-            <button class="popup__save" type="submit" aria-label='Кнопка Сохранить'>Сохранить</button>
-        </form>
-    </div>
-</section>-->
 <script src="scripts/index.js"></script>
+<template class="item__template">
 
-<section class="elements">
-    <div class="elements__card"></div>
-    <template class="item__template">
-        <ul>
-        <li class="list__item">
-            <img class="elements__image" src="./images/Sea.jpg" alt="Море и пляж">
-            <img class="clone" src="./images/Edit_Button.svg" alt="Копировать">
-            <button type="button" class="elements__trash link-dark"></button>
-                    <div class="elements__inside">
-                        <button type="button" class="elements__like link-dark<!--link on opasity-->"></button>
-                        <h2 class="elements__title">Заголовок</h2>
-                    </div>
-        </li>
-        </ul>
-    </template>
-</section>
+    <div class="elements__card">
+        <div class="card">
+            <button class="elements__trash" type="button"></button>
+            <img alt="Домбай" class="elements__image" src="images/Dombay.jpg">
+
+            <div class="elements__combine">
+                <h2 class="elements__title">Домбай</h2>
+                <button type="button" class="elements__like link-dark" aria-label="Лайк"></button>
+            </div>
+        </div>
+    </div>
+</template>
 </body>
 </html>
+<!--
+
+<ul>
+    <li class="list__item">
+        <img alt="Море и пляж" class="elements__image" src="./images/Sea.jpg">
+        &lt;!&ndash; <img alt="Копировать" class="clone" src="./images/Edit_Button.svg">&ndash;&gt;
+        <button class="elements__trash link-dark" type="button"></button>
+        <div class="elements__inside">
+            <button class="elements__like link-dark&lt;!&ndash;link on opasity&ndash;&gt;" type="button"></button>
+            <h2 class="elements__title">Заголовок</h2>
+        </div>
+    </li>
+</ul>
+-->
