@@ -9,8 +9,10 @@ let popupJob = document.querySelector('#popup-field-job');
 let nameInput = document.querySelector('.profile__title');
 let jobInput = document.querySelector('.profile__subtitle');
 let newElements = document.querySelector('.elements'); //list
-let formInput = document.querySelector('.profile__add-button');//form__input
 
+let formInput = document.querySelector('.popup__form');//form__input-edit
+let formButton = document.querySelector('.popup__save');
+let editing = null; // изначально не задано значение
 const initialCards = [
     {
         name: 'Архыз',
@@ -40,7 +42,7 @@ const initialCards = [
 
 window.addEventListener("load", function (event) {
     console.log(initialCards);
-    var itemTemplate = document.querySelector('.item__template');
+    let itemTemplate = document.querySelector('.item__template');
 
     initialCards.forEach(function createCard(item) {
         let newElement = itemTemplate.content.cloneNode(true);
@@ -50,77 +52,106 @@ window.addEventListener("load", function (event) {
         newElements.append(newElement);
     });
 //лайки
-
-        let likeElement = newElements.querySelector('.elements__like');
-        likeElement.addEventListener('click', function (evt) {
-            evt.target.classList.toggle('elements__like_active');
-
+    let likeElement = newElements.querySelector('.elements__like');
+    likeElement.addEventListener('click', function (evt) {
+        evt.target.classList.toggle('elements__like_active');
     });
+//-------
+    //1
+    function renderItems() {
+        initialCards.forEach(renderItem);
+    }
 
-    //1 add card
+    //2
+    function renderItem(text) {
+        let htmlElement = itemTemplate.cloneNode(true);
+        htmlElement.querySelector('.elements__title').innerText = text;
+        setEventListeners(htmlElement);
+        list.appendChild(htmlElement);
+    }
 
-      function createCard(item){
-      const div = document.createElement('div');
-      div.classList.add('elements__card');
+    function handleSubmit() {
+        renderItem(formInput.value)
+    }
 
-      const span=document.createElement('span');
-      span.classList.add('elements__image');
+    function handleDelete(evt) {
+        evt.target.closest('.elements__card').remove();
+    }
 
+    function setEventListeners(element) {
+        element.querySelector('.elements__trash').addEventListener('.click', handleDelete);
+        element.querySelector('.profile__edit-button').addEventListener('.click', handleEdit);
+        element.querySelector('.duplicate').addEventListener('.click', handleDuplicate);
+    }
 
+    formButton.addEventListener('.click', HandleSubmit);
+    renderItems();
+
+    function handleDuplicate(evt) {
+        let text = evt.target.closest('.elements__card').querySelector('.elements__title').textContent;
+        renderItems(text);
+    }
+
+    function handleEdit(evt) {
+        //редактирование
+        editing = evt.target.closest('.elements__card');//это и редактируем
+
+        // копируем содержимое в инпут
+        //копируем в инпут
+        formInput.value = editing.querySelector('.elements__title').textContent;
+
+        //меняем название кнопки
+        formButton.value = "Изменить";
+
+        //вешаем нового слушателя на кнопку.
+        // Надо,чтобы менять старый список.Удаляем старого слушателя с кнопки и вешаем нового.
+        formButton.removeEventListener('.click', handleSubmit);
+        formButton.addEventListener('click', handleEditSubmit);//это теперь наша новая функция
+        resetEditMode();
+    }
+
+    function handleEditSubmit() {
+        //старый edit элемент
+        editing.querySelector('.elements__title').textContent = formInput.value;
+        resetEditMode();
+    }
+
+    function resetEditMode() {
+        //editind делаем нулем
+        editing = null;//nothing to redact
+        formInput.value = ''; //пустой текст
+        formButton.value = "Добавить как и раньше";
+        formButton.removeEventListener('click', handleSubmit);
+        formButton.addEventListener('.click', handleSubmit);//отвечает за добавление.При нажании на edit- сброс.
     }
 
 
- //2
-    function handleSubmit(){renderItem(formInput.value);}createCard();
+    function handleSubmit() {
+        renderItem(formInput.value);
+    }
 
-    newElements.querySelector('.elements__card').addEventListener()
-
-//открытие попапа
     function workPopup() {
+        //открытие попапа
         popupName.value = nameInput.textContent;
         popupJob.value = jobInput.textContent;
         popup.classList.add('popup_opened');
     }
 
-//закрываем попап
+
     function closePopupAll() {
+        //закрываем попап
         popup.classList.remove('popup_opened');
     }
 
-// сохраняем введенные значения
     function submitHandler(evt) {
+        // сохраняем введенные значения
         evt.preventDefault();
         nameInput.textContent = popupName.value;
         jobInput.textContent = popupJob.value;
         closePopupAll();
     }
 
-    /*
-
-    //модальные окна
-    const firstModal = document.querySelector('.modal_first');
-    const secondModal = document.querySelector('.modal_second');
-
-     */
-//Открытие модального окна
-    /*
-    function toggleModal() {
-        modal.classList.toggle("popup_opened");
-    }
-    ....toggleModal(modal) {
-        modal.toggle('modal_open')
-    }
-    function windowOnClick(event) {
-        if (event.target === modal) {
-            toggleModal();
-        }
-    somebutton.addEL('click', () => toggleModal(firstModal))
-    anotherbutton.addEL('click', () => toggleModal(secondModal));
-    */
-
-//вызовы
     editButton.addEventListener('click', workPopup);
     closePopup.addEventListener('click', closePopupAll);
-    savePopup.addEventListener('submit', submitHandler);})
-    formInput.addEventListener('click', handleSubmit);
-    renderItems();
+    savePopup.addEventListener('submit', submitHandler);
+})
