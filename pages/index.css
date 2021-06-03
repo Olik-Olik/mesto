@@ -11,7 +11,7 @@
 @import url(../blocks/elements/__card/elements__card.css);
 @import url(../blocks/elements/__combine/elements__combine.css);
 @import url(../blocks/elements/__trash/elements__trash.css);
-
+@import url(../blocks/elements/__trash_image/elements__trash_image.css);
 
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__place/footer__place.css);

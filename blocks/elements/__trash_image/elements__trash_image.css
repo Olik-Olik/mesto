@@ -1,0 +1,5 @@
+.elements__trash_image{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
