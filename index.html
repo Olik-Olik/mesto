@@ -84,7 +84,7 @@
     <p class="footer__place">© 2021 Mesto Russia</p>
 </footer>
 <section class="popup">
-    <button aria-label='Закрыть' class="popup__close-button" type="button"></button>
+
     <div class="popup__container">
         <form action="#" aria-label='получения инфо и передачи данных в адресной строке' class="popup__form" id="popup-mega-id" method="GET"
               name="resave">
@@ -96,6 +96,7 @@
                                                         placeholder="Род занятия" type="text"
                                                         value='Исследователь океана'>
             <button aria-label='Кнопка Сохранить' class="popup__save" type="submit">Сохранить</button>
+            <button aria-label='Закрыть' class="popup__close-button" type="button"></button>
         </form>
     </div>
 </section>
@@ -103,7 +104,8 @@
 <section class="popup__add">
     <button aria-label='Закрыть' class="popup__close-button" type="button"></button>
     <div class="popup__container">
-        <form action="#" aria-label='получения инфо и передачи данных в адресной строке' class="popup__form" id="popup-input-mega-id" method="GET"
+        <form action="#" aria-label='получения инфо и передачи данных в адресной строке' class="popup__form"
+              id="popup-input-mega-id" method="GET"
               name="resave">
             <h2 class="popup__page">Новое место</h2>
             <input class="popup__field" id="popup-field-card-name" name="popup-input-place" placeholder="Название места"
@@ -117,6 +119,7 @@
     </div>
 </section>
 <script src="scripts/index.js"></script>
+
 <template class="item__template">
     <div class="elements__card">
         <div class="elements__trash_image">

@@ -1,4 +1,4 @@
-.popup__close-button bottom: 320px;{
+.popup__close-button {
     position: relative;
     background-size: contain;
     background-repeat: no-repeat;
