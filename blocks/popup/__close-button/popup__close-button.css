@@ -1,4 +1,4 @@
-.popup__close-button {
+.popup__close-button bottom: 320px;{
     position: relative;
     background-size: contain;
     background-repeat: no-repeat;
@@ -12,7 +12,8 @@
     padding: 0;
     border: none;
     top: auto;
-    bottom: 180px;
+   /* bottom: 180px;*/
+    bottom: 320px;
 }
 
 .popup__close-button:hover {

@@ -10,8 +10,7 @@
     z-index: 15;
     background-position: center;
     transition: transform .3s linear;
-     background-size: 100%;
-  /*  position: absolute;*/
+    background-size: 100%;
     right: 260px;
     opacity: 0.5;
 }
@@ -19,7 +18,7 @@
 .elements__like:hover {
     opacity: 0.5;
     cursor: pointer;
-    /* transform: scale(1.3);*/
+ /*   transform: scale(1.03);*/
 }
 
 

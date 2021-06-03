@@ -1,4 +1,4 @@
-.popup {
+.popup__second{
     position: fixed; /*для подложки прячу попап на видимой части сверху*/
     top: 0;
     bottom: 0;
