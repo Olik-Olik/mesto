@@ -1,3 +1,4 @@
+//Переменные
 const initialCards = [
     {
         name: 'Архыз',
@@ -26,8 +27,9 @@ const initialCards = [
 ];
 let editButton = document.querySelector('.profile__edit-button');
 let popup = document.querySelector('.popup');
+let popupPlace =document.querySelector('.popup__country');
 let closePopup = document.querySelector('.popup__close-button');//попап с Кусто
-let closePopupAdd = document.querySelector('.popup__close-button-country');//папап со Страной
+let closePopupAdd = document.querySelector('.popup__close-button-country');//пoпап со Страной//2-попап
 let deleteButton = document.querySelector('.elements__trash');
 
 let popupAdd = document.querySelector('.popup-country');//2-попап
@@ -35,12 +37,13 @@ let openPopupAdd = document.querySelector('.profile__add-button');
 
 // форма и поля формы
 let savePopup = document.querySelector('#popup-mega-id');
+let saveAddPopup =document.querySelector('#popup-input-mega-id');//2-попап
 
 let popupName = document.querySelector('#popup-field-name');
 let popupJob = document.querySelector('#popup-field-job');
 
-let popupCountryform = document.querySelector('#popup-field-card-name');
-let popupLinkform = document.querySelector('#popup-field-card-img');//ссылка
+let popupCountryform = document.querySelector('#popup-field-card-name');//2-попап
+let popupLinkform = document.querySelector('#popup-field-card-img');//ссылка//2-попап
 
 
 //куда это будет вставлено
@@ -48,12 +51,17 @@ let nameInput = document.querySelector('.profile__title');
 let jobInput = document.querySelector('.profile__subtitle');
 
 //по 2-му попапу добавление карточки
-let popupLink = document.querySelector('.elements__image');
-let popupCountry = document.querySelector('.elements__word');
+let popupLink = document.querySelector('.elements__image');//2-попап
+let popupCountry = document.querySelector('.elements__word');//2-попап
 
-let newElements = document.querySelector('.elements'); //list
+let newElements = document.querySelector('.elements'); //list весь список
 let elements = document.querySelectorAll('.elements__card'); //ВСЕ СОДЕРЖИМОЕ КАРТОЧКИ
 
+//для попап image
+
+let newElementsImage = newElement.querySelector('.elements__image');
+let newElementsImageAlt = newElement.querySelector('.elements__image');
+let newElementWord =   newElement.querySelector('.elements__word');
 
 function workPopup() {
     //открытие попапа с редактированием профиля
@@ -63,25 +71,26 @@ function workPopup() {
 }
 
 function workPopupAdd() {
-    //открытие попапа с местом -не пашет
+    //открытие попапа с местом -не пашет вместе со всем
     popupCountryform.value = popupCountry.textContent;
     popupLinkform.value = popupLink.textContent;
     popupAdd.classList.add('popup_opened'); //псевдомассив  со все классами элемента.
 }
 
-
+function taskDelete(evt){
 //удаляем карточку
 elements.forEach(function (item) {
     item.addEventListener('.click', (evt)=> {
-        if (evt.target.classList.contains('elements__trash')){
+        if (evt.target.classList.contains('elements__trash')){  //кликает то по ссылке идет к//содержащий все классы элемента.узел
             item.remove();
         }
     });
 })
 
-function taskDelete(evt) {
-    evt.target.closest('.elements__card').remove();
-}
+/*function taskDelete(evt) {
+    evt.target.closest('.elements__card').remove();  //ссылкой на объект, который был инициатором события. ближайший или я
+ // куратор посоветовал так
+}*/
 
 function closePopupAll() {
     //закрываем попап
@@ -97,6 +106,14 @@ function submitHandler(evt) {
     closePopupAll();
 }
 
+function submitAddHandler(evt) {
+    // сохраняем введенные значения 2 popup
+    evt.preventDefault();
+    popupCountry.textContent = popupCountryform.value;
+    popupLink.textContent = popupLinkform.value;
+    closePopupAll();
+}
+
 //выводим карточки
 window.addEventListener("load", function (event) {
     console.log(initialCards);
@@ -108,19 +125,49 @@ window.addEventListener("load", function (event) {
         newElement.querySelector('.elements__image').alt = item.name;
         newElement.querySelector('.elements__word').textContent = item.name;
         newElements.append(newElement);
-    });
 
 //лайки
     let likeElement = newElements.querySelector('.elements__like');
     likeElement.addEventListener('click', function (evt) {
         console.log(evt);
         evt.target.classList.toggle('elements__like_active');
-
     });
+    });
+/*//долбаное закрытие 2-го попапа
+    popup.forEach((item)=>
+    {
+        item.addEventListener('click',(evt)=>
+        {
+        if(evt.target.classList.contains('popup')|| evt.target.classList.contains('popup__close-button'))
+        {
+            closePopupAdd(item)
+        }
+        })
+    })*/
+//мой вариант
+    let closePopup = document.querySelector('.popup__close-button');
+    let closeAddPopup=document.querySelector('.popup__close-button-country');
 
+    closePopup.addEventListener("click",()=> toggleClass(popup));
+    closeAddPopup.addEventListener("click",()=> toggleClass(popupPlace));
 
- // Открытие модального окна
-    /*const firstModal = document.querySelector('.popup');
+ //картинка из попапа в экран вписывается- точнее задача такая, вписать!
+    let popupMainContainerImage = document.querySelector('.popup_type_image');
+    let popupImage = document.querySelector('.popup__image');
+    let popupWord = document.querySelector('.popup__image-word');
+
+    let newElementsImage = newElement.querySelector('.elements__image');
+    let newElementsImageAlt = newElement.querySelector('.elements__image') ;
+    let newElementWord =   newElement.querySelector('.elements__word');
+
+    //новый картинка слушает когда по нему кликнут
+    newElementsImage.addEventListener('click',function (item){
+     //меняем параменты из попапа, на карточку img /alt/word
+        popupImage.src =
+    });
+/*
+    // Открытие модального окна
+   /*const firstModal = document.querySelector('.popup');
     const secondModal = document.querySelector('.popup__country');
 
     function toggleModal() {
@@ -137,13 +184,8 @@ window.addEventListener("load", function (event) {
         }
     }*/
 
-    /*function addCard(evt){
-            evt.preventDefault();
-            const
-    }*/
 
-
-
+/*
 let formInput = document.querySelector('.popup__form');//edit
 let formButton = document.querySelector('.popup__save');
 let editing ; // изначально не задаем значение
@@ -200,7 +242,7 @@ let editing ; // изначально не задаем значение
         resetEditMode();
     }
 
-    function resetEditMode() {
+    function reset() {
         //editind делаем нулем нечего редактировать
         editing = null;
         formInput.value = ''; //пустой текст
@@ -209,20 +251,23 @@ let editing ; // изначально не задаем значение
         formButton.addEventListener('.click', taskSubmit);//отвечает за добавление.При нажании на edit- сброс.
     }
 
-
+*/
     editButton.addEventListener('click', workPopup);
     openPopupAdd.addEventListener('click',workPopupAdd);
     closePopup.addEventListener('click', closePopupAll);
+    closeAddPopup.addEventListener('click', );
     savePopup.addEventListener('submit', submitHandler);
-  //  deleteButton.addEventListener('click',)
+    saveAddPopup.addEventListener('submit', submitAddHandler);
+    deleteButton.addEventListener('click',taskDelete);
+
     element.querySelector('.elements__trash').addEventListener('.click', taskDelete);
 
 //popup.addEventListener('click', windowOnClick());//модальное окно по клику open заменяем нижнего слушателя
-//closePopup.addEventListener('click',() => toggleModal);//заменяем нижнего слушателя close
+closePopup.addEventListener('click',() => toggleModal);//заменяем нижнего слушателя close
 ////////////trigger.addEventListener('click',() => toggleModal);/////
 //form.addEventListener('input', inputHandler);//на ввод форма
 //form.addEventListener('submit',addCard);//на сохранение слушатель,того,что ввели
 //savePopup.addEventListener('submit', submitHandler);
     popup.addEventListener('click', () => toggleModal(firstModal));
     popupAdd.addEventListener('click', () => toggleModal(secondModal));
-})
+})}

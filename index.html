@@ -32,7 +32,9 @@
             <button class="profile__add-button" type="button"></button>
         </div>
     </section>
+
     <section class="elements">
+
         <!-- <div>-->
         <!--<div class="elements__card">
             <img alt="Эльбрус" class="elements__image" src="images/Dombay.jpg">
@@ -43,13 +45,20 @@
             </div>
         </div>
         &lt;!&ndash;  </div>&ndash;&gt;
+
+        это в темплейте стоит______________________________________________________________________
         <div class="elements__card">
-            <img alt="Домбай" class="elements__image" src="images/Dombay.jpg">
+        <div class="elements__trash_image">
+            <button class="elements__trash" type="button"></button>
+            <img alt="Картинка" class="elements__image" src="images/Elbrus.jpg">
+        </div>
             <div class="elements__combine">
                 <h2 class="elements__word">Домбай</h2>
                 <button type="button" class="elements__like" aria-label="Лайк"></button>
             </div>
         </div>
+      ____________________________________________________________________
+
         <div class="elements__card">
             <img alt="Карачаевск" class="elements__image" src="images/Karachaevsk.jpg">
             <div class="elements__combine">
@@ -83,7 +92,7 @@
 <footer class="footer">
     <p class="footer__place">© 2021 Mesto Russia</p>
 </footer>
-<section class="popup">
+<section class="popup popup_type_edit">
     <button class="popup__close-button" aria-label='Закрыть всплывающее окошко'  type="button"></button>
     <div class="popup__container">
         <form class="popup__form" id="popup-mega-id" action="#" aria-label='получения инфо и передачи данных'  method="GET"
@@ -99,7 +108,7 @@
         </form>
     </div>
 </section>
-<section class="popup__country">
+<section class="popup__country popup_type_new-card">
     <button aria-label='Закрыть всплывающее окошко' class="popup__close-button-country" type="button"></button>
     <div class="popup__container">
         <form  class="popup__form" id="popup-input-mega-id" action="#" aria-label='получения инфо и передачи данных в адресной строке'  method="GET"

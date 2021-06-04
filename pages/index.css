@@ -47,6 +47,11 @@
 @import url(../blocks/popup/__form/popup__form.css);
 @import url(../blocks/popup/__image/popup__image.css);
 @import url(../blocks/popup/__container/popup__container-image.css);
+@import url(../blocks/popup_type_new-card/popup_type_new-card.css);
+
+@import url(../blocks/popup_type_image/popup_type_image.css);
+@import url(../blocks/popup_type_new-card/popup_type_new-card.css);
+@import url(../blocks/popup/__image/popup__image-word.css);
 
 
 

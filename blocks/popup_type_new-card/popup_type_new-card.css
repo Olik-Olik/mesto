@@ -1,4 +1,4 @@
-.popup-new-place {
+.popup_type_new-card {
     position: fixed; /*для подложки прячу попап на видимой части сверху*/
     top: 0;
     bottom: 0;
