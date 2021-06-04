@@ -57,6 +57,8 @@ let popupCountry = document.querySelector('.elements__word');//2-попап
 let newElements = document.querySelector('.elements'); //list весь список
 let elements = document.querySelectorAll('.elements__card'); //ВСЕ СОДЕРЖИМОЕ КАРТОЧКИ
 
+//картинка попап
+let popupMainContainerImage = document.querySelector('.popup_type_image');
 
 function workPopup() {
     //открытие попапа с редактированием профиля
@@ -121,37 +123,28 @@ window.addEventListener("load", function (event) {
             evt.currentTarget.classList.toggle('elements__like_active');
         });
 
+        //let popupImage = document.querySelector('.popup__image');
+      //  let popupWord = document.querySelector('.popup__image-word');
+        let newElementImage = newElement.querySelector('.elements__image');
+        //let newElementWord = newElement.querySelector('.elements__word');
+
+        //новый картинка слушает когда по нему кликнут
+        newElementImage.addEventListener('click', function (item) {
+            //меняем параметры из попапа, на карточку img /word
+            popupMainContainerImage.classList.add('popup_opened');
+
+        });
+
+        /*  newElement.querySelector('.elements__trash').addEventListener('.click', function (evt) {
+              evt.target.closest('.elements__card').remove();
+          });*/
+
         newElements.append(newElement);
     });
-});
-/*
-    function taskDelete(evt) {
-        newElement.querySelector('.elements__trash').addEventListener('.click', (evt))
-        evt.target.closest('.elements__card').remove();
-    }
 
     //картинка из попапа в экран вписывается- точнее задача такая, вписать!
 
-    let popupMainContainerImage = document.querySelector('.popup_type_image');
-    let popupImage = document.querySelector('.popup__image');
-    let popupWord = document.querySelector('.popup__image-word');
-    //alt
-
-    let newElementImage = newElement.querySelector('.elements__image');
-    let newElementsImageAlt = newElement.querySelector('.elements__image');
-    let newElementWord = newElement.querySelector('.elements__word');
-
-    //новый картинка слушает когда по нему кликнут
-    newElementsImage.addEventListener('click', function (item) {
-        //меняем параменты из попапа, на карточку img /word
-        popupImage = newElementImage;
-        popupWord = newElementWord;
-        togglePopup(popupMainContainerImage);//делаем видимым
-    });
-
-    return newElements;
-*/
-
+});
 
 // Открытие модального окна
 /*const firstModal = document.querySelector('.popup');
