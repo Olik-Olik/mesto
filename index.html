@@ -84,54 +84,50 @@
     <p class="footer__place">© 2021 Mesto Russia</p>
 </footer>
 <section class="popup">
-
+    <button class="popup__close-button" aria-label='Закрыть всплывающее окошко'  type="button"></button>
     <div class="popup__container">
-        <form action="#" aria-label='получения инфо и передачи данных в адресной строке' class="popup__form" id="popup-mega-id" method="GET"
+        <form class="popup__form" id="popup-mega-id" action="#" aria-label='получения инфо и передачи данных'  method="GET"
               name="resave">
             <h2 class="popup__page">Редактировать профиль</h2>
-            <label for="popup-field-name"></label><input class="popup__field" id="popup-field-name" name="inputForm_name"
+             <input class="popup__field" id="popup-field-name" name="inputForm_name"
                                                          placeholder="Ваше имя" type="text"
                                                          value='Жак-Ив Кусто'>
-            <label for="popup-field-job"></label><input class="popup__field" id="popup-field-job" name="inputForm_job"
+            <input class="popup__field" id="popup-field-job" name="inputForm_job"
                                                         placeholder="Род занятия" type="text"
                                                         value='Исследователь океана'>
-            <button aria-label='Кнопка Сохранить' class="popup__save" type="submit">Сохранить</button>
-            <button aria-label='Закрыть' class="popup__close-button" type="button"></button>
+            <button aria-label='Кнопка Сохранить' class="popup__save " type="submit">Сохранить</button>
         </form>
     </div>
 </section>
-
-<section class="popup__add">
-    <button aria-label='Закрыть' class="popup__close-button" type="button"></button>
+<section class="popup__country">
+    <button aria-label='Закрыть всплывающее окошко' class="popup__close-button-country" type="button"></button>
     <div class="popup__container">
-        <form action="#" aria-label='получения инфо и передачи данных в адресной строке' class="popup__form"
-              id="popup-input-mega-id" method="GET"
+        <form  class="popup__form" id="popup-input-mega-id" action="#" aria-label='получения инфо и передачи данных в адресной строке'  method="GET"
               name="resave">
             <h2 class="popup__page">Новое место</h2>
             <input class="popup__field" id="popup-field-card-name" name="popup-input-place" placeholder="Название места"
-                   type="text"
-                   value='Название'>
+                   type="text" value='Название'>
             <input class="popup__field" id="popup-field-card-img" name="popup-input-img" placeholder="Ссылка на картинку"
-                   type="text"
-                   value='Ссылка на картинку'>
+                   type="text" value='Ссылка на картинку'>
             <button aria-label='Кнопка Сохранить' class="popup__save" type="submit">Сохранить</button>
+
         </form>
     </div>
 </section>
+
 <script src="scripts/index.js"></script>
 
 <template class="item__template">
     <div class="elements__card">
         <div class="elements__trash_image">
             <button class="elements__trash" type="button"></button>
-            <img alt="Домбай" class="elements__image" src="images/Dombay.jpg">
+            <img alt="Картинка" class="elements__image" src="images/Elbrus.jpg">
         </div>
             <div class="elements__combine">
-                <h2 class="elements__title">Домбай</h2>
-                <button type="button" class="elements__like link-dark" aria-label="Лайк"></button>
+                <h2 class="elements__word">Домбай</h2>
+                <button type="button" class="elements__like" aria-label="Лайк"></button>
             </div>
         </div>
-  <!--  </div>-->
 </template>
 </body>
 </html>

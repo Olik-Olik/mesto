@@ -1,4 +1,4 @@
-.popup__close-button {
+.popup__close-button-country{
     position: relative;
     background-size: contain;
     background-repeat: no-repeat;
@@ -15,27 +15,17 @@
 
 }
 
-.popup__close-button:hover {
+.popup__close-button-country:hover {
     cursor: pointer;
     opacity: 0.8;
 }
 
 
 @media screen and (min-width: 501px)  and (max-width: 1280px) {
-    .popup__close-button {
-      /*  width: 56px;
-        height: 56px;*/
-       /* top: 72px;
-        left: 230px;*/
+    .popup__close-button-country {
+        /*  width: 56px;
+          height: 56px;*/
+        /* top: 72px;
+         left: 230px;*/
     }
 }
-
-@media screen and (min-width: 320px) and (max-width: 500px) {
-    .popup__close-button {
-        width: 36px;
-        height: 36px;
-       /* top: 72px;*/
-        left: 120px;
-    }
-}
-

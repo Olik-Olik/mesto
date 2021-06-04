@@ -26,39 +26,70 @@ const initialCards = [
 ];
 let editButton = document.querySelector('.profile__edit-button');
 let popup = document.querySelector('.popup');
-let closePopup = document.querySelector('.popup__close-button');
-let popupAdd = document.querySelector('.popup-add');
+let closePopup = document.querySelector('.popup__close-button');//попап с Кусто
+let closePopupAdd = document.querySelector('.popup__close-button-country');//папап со Страной
+let deleteButton = document.querySelector('.elements__trash');
+
+let popupAdd = document.querySelector('.popup-country');//2-попап
 let openPopupAdd = document.querySelector('.profile__add-button');
+
 // форма и поля формы
 let savePopup = document.querySelector('#popup-mega-id');
-let popupImg = document.querySelector('#popup-input-img');//ссылка
+
 let popupName = document.querySelector('#popup-field-name');
 let popupJob = document.querySelector('#popup-field-job');
+
+let popupCountryform = document.querySelector('#popup-field-card-name');
+let popupLinkform = document.querySelector('#popup-field-card-img');//ссылка
+
+
 //куда это будет вставлено
 let nameInput = document.querySelector('.profile__title');
 let jobInput = document.querySelector('.profile__subtitle');
+
+//по 2-му попапу добавление карточки
+let popupLink = document.querySelector('.elements__image');
+let popupCountry = document.querySelector('.elements__word');
 
 let newElements = document.querySelector('.elements'); //list
 let elements = document.querySelectorAll('.elements__card'); //ВСЕ СОДЕРЖИМОЕ КАРТОЧКИ
 
 //let formInput = document.querySelector('.popup__form');//form__input-edit
 //let formButton = document.querySelector('.popup__save');
-//let editing = null; // изначально не задано значение
+//let editing ; // изначально не задано значение
 
 function workPopup() {
-    //открытие попапа
+    //открытие попапа с редактированием профиля
     popupName.value = nameInput.textContent;
     popupJob.value = jobInput.textContent;
     popup.classList.add('popup_opened');
 }
 
 function workPopupAdd() {
+    //открытие попапа с местом -не пашет
+    popupCountryform.value = popupCountry.textContent;
+    popupLinkform.value = popupLink.textContent;
+    popupAdd.classList.add('popup_opened'); //псевдомассив  со все классами элемента.
+}
 
+
+//удаляем карточку
+elements.forEach(function (item) {
+    item.addEventListener('.click', (evt)=> {
+        if (evt.target.classList.contains('elements__trash')){
+            item.remove();
+        }
+    });
+})
+
+function handleDelete(evt) {
+    evt.target.closest('.elements__card').remove();
 }
 
 function closePopupAll() {
     //закрываем попап
     popup.classList.remove('popup_opened');
+
 }
 
 function submitHandler(evt) {
@@ -69,6 +100,7 @@ function submitHandler(evt) {
     closePopupAll();
 }
 
+//выводим карточки
 window.addEventListener("load", function (event) {
     console.log(initialCards);
     let itemTemplate = document.querySelector('.item__template');
@@ -77,34 +109,36 @@ window.addEventListener("load", function (event) {
         let newElement = itemTemplate.content.cloneNode(true);
         newElement.querySelector('.elements__image').src = item.link;
         newElement.querySelector('.elements__image').alt = item.name;
-        newElement.querySelector('.elements__title').textContent = item.name;
+        newElement.querySelector('.elements__word').textContent = item.name;
         newElements.append(newElement);
     });
 
 //лайки
     let likeElement = newElements.querySelector('.elements__like');
     likeElement.addEventListener('click', function (evt) {
+        console.log(evt);
         evt.target.classList.toggle('elements__like_active');
-    });
-    //удаляем карточку
-    elements.forEach(function (item) {
-        item.addEventListener('.click', (evt) = function (item) {
-            evt.target.classList.contains('elements__trash')
-            item.remove();
-        })
-    })
 
-    // Открытие модального окна
+    });
+//удаление карты из ДОМ внутри функции обработчика события удаления-клик по корзине
+
+ // Открытие модального окна
+    /*const firstModal = document.querySelector('.popup');
+    const secondModal = document.querySelector('.popup__country');
+
     function toggleModal() {
-        popup.classList.toggle("popup_opened");
+        modal.classList.toggle("popup_opened");
+    }
+     ...toggleModal(modal) {
+        modal.toggle('modal_open')
     }
 
     function windowOnClick(evt) {
-        if (evt.target === popup) {
+        if (evt.target === modal) {
             //ссылкой на объект, который был инициатором события.
             toggleModal();
         }
-    }
+    }*/
 
     /*function addCard(evt){
             evt.preventDefault();
@@ -128,9 +162,7 @@ window.addEventListener("load", function (event) {
         renderItem(formInput.value)
     }
 
-    function handleDelete(evt) {
-        evt.target.closest('.elements__card').remove();
-    }
+
 
     function setEventListeners(element) {
         element.querySelector('.elements__trash').addEventListener('.click', handleDelete);
@@ -185,8 +217,11 @@ window.addEventListener("load", function (event) {
     */
 
     editButton.addEventListener('click', workPopup);
+    openPopupAdd.addEventListener('click',workPopupAdd);
     closePopup.addEventListener('click', closePopupAll);
     savePopup.addEventListener('submit', submitHandler);
+  //  deleteButton.addEventListener('click',)
+    element.querySelector('.elements__trash').addEventListener('.click', handleDelete);
 
 //popup.addEventListener('click', windowOnClick());//модальное окно по клику open заменяем нижнего слушателя
 //closePopup.addEventListener('click',() => toggleModal);//заменяем нижнего слушателя close
@@ -194,4 +229,6 @@ window.addEventListener("load", function (event) {
 //form.addEventListener('input', inputHandler);//на ввод форма
 //form.addEventListener('submit',addCard);//на сохранение слушатель,того,что ввели
 //savePopup.addEventListener('submit', submitHandler);
+    popup.addEventListener('click', () => toggleModal(firstModal));
+    popupAdd.addEventListener('click', () => toggleModal(secondModal));
 })
