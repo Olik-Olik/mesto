@@ -27,7 +27,7 @@ const initialCards = [
 ];
 let editButton = document.querySelector('.profile__edit-button');
 let popup = document.querySelector('.popup');
-let popupPlace =document.querySelector('.popup__country');
+let popupPlace = document.querySelector('.popup__country');
 let closePopup = document.querySelector('.popup__close-button');//попап с Кусто
 let closePopupAdd = document.querySelector('.popup__close-button-country');//пoпап со Страной//2-попап
 let deleteButton = document.querySelector('.elements__trash');
@@ -37,7 +37,7 @@ let openPopupAdd = document.querySelector('.profile__add-button');
 
 // форма и поля формы
 let savePopup = document.querySelector('#popup-mega-id');
-let saveAddPopup =document.querySelector('#popup-input-mega-id');//2-попап
+let saveAddPopup = document.querySelector('#popup-input-mega-id');//2-попап
 
 let popupName = document.querySelector('#popup-field-name');
 let popupJob = document.querySelector('#popup-field-job');
@@ -57,11 +57,6 @@ let popupCountry = document.querySelector('.elements__word');//2-попап
 let newElements = document.querySelector('.elements'); //list весь список
 let elements = document.querySelectorAll('.elements__card'); //ВСЕ СОДЕРЖИМОЕ КАРТОЧКИ
 
-//для попап image
-
-let newElementsImage = newElement.querySelector('.elements__image');
-let newElementsImageAlt = newElement.querySelector('.elements__image');
-let newElementWord =   newElement.querySelector('.elements__word');
 
 function workPopup() {
     //открытие попапа с редактированием профиля
@@ -77,6 +72,7 @@ function workPopupAdd() {
     popupAdd.classList.add('popup_opened'); //псевдомассив  со все классами элемента.
 }
 
+/*
 function taskDelete(evt){
 //удаляем карточку
 elements.forEach(function (item) {
@@ -85,12 +81,7 @@ elements.forEach(function (item) {
             item.remove();
         }
     });
-})
-
-/*function taskDelete(evt) {
-    evt.target.closest('.elements__card').remove();  //ссылкой на объект, который был инициатором события. ближайший или я
- // куратор посоветовал так
-}*/
+})*/
 
 function closePopupAll() {
     //закрываем попап
@@ -124,150 +115,79 @@ window.addEventListener("load", function (event) {
         newElement.querySelector('.elements__image').src = item.link;
         newElement.querySelector('.elements__image').alt = item.name;
         newElement.querySelector('.elements__word').textContent = item.name;
+
+        let likeElement = newElement.querySelector('.elements__like');
+        likeElement.addEventListener('click', function (evt) {
+            evt.currentTarget.classList.toggle('elements__like_active');
+        });
+
         newElements.append(newElement);
-
-//лайки
-    let likeElement = newElements.querySelector('.elements__like');
-    likeElement.addEventListener('click', function (evt) {
-        console.log(evt);
-        evt.target.classList.toggle('elements__like_active');
     });
-    });
-/*//долбаное закрытие 2-го попапа
-    popup.forEach((item)=>
-    {
-        item.addEventListener('click',(evt)=>
-        {
-        if(evt.target.classList.contains('popup')|| evt.target.classList.contains('popup__close-button'))
-        {
-            closePopupAdd(item)
-        }
-        })
-    })*/
-//мой вариант
-    let closePopup = document.querySelector('.popup__close-button');
-    let closeAddPopup=document.querySelector('.popup__close-button-country');
+});
+/*
+    function taskDelete(evt) {
+        newElement.querySelector('.elements__trash').addEventListener('.click', (evt))
+        evt.target.closest('.elements__card').remove();
+    }
 
-    closePopup.addEventListener("click",()=> toggleClass(popup));
-    closeAddPopup.addEventListener("click",()=> toggleClass(popupPlace));
+    //картинка из попапа в экран вписывается- точнее задача такая, вписать!
 
- //картинка из попапа в экран вписывается- точнее задача такая, вписать!
     let popupMainContainerImage = document.querySelector('.popup_type_image');
     let popupImage = document.querySelector('.popup__image');
     let popupWord = document.querySelector('.popup__image-word');
+    //alt
 
-    let newElementsImage = newElement.querySelector('.elements__image');
-    let newElementsImageAlt = newElement.querySelector('.elements__image') ;
-    let newElementWord =   newElement.querySelector('.elements__word');
+    let newElementImage = newElement.querySelector('.elements__image');
+    let newElementsImageAlt = newElement.querySelector('.elements__image');
+    let newElementWord = newElement.querySelector('.elements__word');
 
     //новый картинка слушает когда по нему кликнут
-    newElementsImage.addEventListener('click',function (item){
-     //меняем параменты из попапа, на карточку img /alt/word
-        popupImage.src =
+    newElementsImage.addEventListener('click', function (item) {
+        //меняем параменты из попапа, на карточку img /word
+        popupImage = newElementImage;
+        popupWord = newElementWord;
+        togglePopup(popupMainContainerImage);//делаем видимым
     });
-/*
-    // Открытие модального окна
-   /*const firstModal = document.querySelector('.popup');
-    const secondModal = document.querySelector('.popup__country');
 
-    function toggleModal() {
-        modal.classList.toggle("popup_opened");
-    }
-     ...toggleModal(modal) {
-        modal.toggle('modal_open')
-    }
-
-    function windowOnClick(evt) {
-        if (evt.target === modal) {
-            //ссылкой на объект, который был инициатором события.
-            toggleModal();
-        }
-    }*/
-
-
-/*
-let formInput = document.querySelector('.popup__form');//edit
-let formButton = document.querySelector('.popup__save');
-let editing ; // изначально не задаем значение
-
-    function newItems() {
-        initialCards.forEach(newItem);
-    }
-
-    function newItem(text) {
-        let country = itemTemplate.cloneNode(true);
-        country.querySelector('.elements__word').innerText = text;
-        setEventListeners(country);
-        list.appendChild(country);
-    }
-
-    function taskSubmit() {
-        newItem(formInput.value)
-    }
-
-    function setEventListeners(element) {
-        element.querySelector('.elements__trash').addEventListener('.click', taskDelete);
-        element.querySelector('.profile__edit-button').addEventListener('.click', taskEdit);
-        element.querySelector('.duplicate').addEventListener('.click', taskDuplicate);
-    }
-
-    formButton.addEventListener('.click', HandleSubmit);
-    newItems();
-
-    function taskDuplicate(evt) {
-        let text = evt.target.closest('.elements__card').querySelector('.elements__word').textContent;
-       newItems(text);
-    }
-
-    function taskEdit(evt) {
-        //редактирование
-        editing = evt.target.closest('.elements__card');//это и редактируем
-        // копируем содержимое в инпут
-        //копируем в инпут
-        formInput.value = editing.querySelector('.elements__word').textContent;
-
-        //меняем название кнопки
-        formButton.value = "Изменить";
-
-        //вешаем нового слушателя на кнопку.
-        // Надо,чтобы менять старый список.Удаляем старого слушателя с кнопки и вешаем нового.
-        formButton.removeEventListener('.click', taskSubmit);
-        formButton.addEventListener('click', taskEditSubmit);//это теперь наша новая функция
-        resetEditMode();
-    }
-
-    function taskEditSubmit() {
-        //старый edit элемент
-        editing.querySelector('.elements__word').textContent = formInput.value;
-        resetEditMode();
-    }
-
-    function reset() {
-        //editind делаем нулем нечего редактировать
-        editing = null;
-        formInput.value = ''; //пустой текст
-        formButton.value = "Добавить как и раньше";
-        formButton.removeEventListener('click', taskSubmit);
-        formButton.addEventListener('.click', taskSubmit);//отвечает за добавление.При нажании на edit- сброс.
-    }
-
+    return newElements;
 */
-    editButton.addEventListener('click', workPopup);
-    openPopupAdd.addEventListener('click',workPopupAdd);
-    closePopup.addEventListener('click', closePopupAll);
-    closeAddPopup.addEventListener('click', );
-    savePopup.addEventListener('submit', submitHandler);
-    saveAddPopup.addEventListener('submit', submitAddHandler);
-    deleteButton.addEventListener('click',taskDelete);
 
-    element.querySelector('.elements__trash').addEventListener('.click', taskDelete);
 
-//popup.addEventListener('click', windowOnClick());//модальное окно по клику open заменяем нижнего слушателя
-closePopup.addEventListener('click',() => toggleModal);//заменяем нижнего слушателя close
+// Открытие модального окна
+/*const firstModal = document.querySelector('.popup');
+ const secondModal = document.querySelector('.popup__country');
+
+ function toggleModal() {
+     modal.classList.toggle("popup_opened");
+ }
+  ...toggleModal(modal) {
+     modal.toggle('modal_open')
+ }
+
+ function windowOnClick(evt) {
+     if (evt.target === modal) {
+         //ссылкой на объект, который был инициатором события.
+         toggleModal();
+     }
+ }*/
+
+editButton.addEventListener('click', workPopup);
+openPopupAdd.addEventListener('click', workPopupAdd);
+closePopup.addEventListener('click', closePopupAll);
+//  closeAddPopup.addEventListener('click', );
+//   savePopup.addEventListener('submit', submitHandler);
+//  saveAddPopup.addEventListener('submit', submitAddHandler);
+//  deleteButton.addEventListener('click', taskDelete);
+
+// element.querySelector('.elements__trash').addEventListener('.click', taskDelete);
+
+//   popup.addEventListener('click', windowOnClick());//модальное окно по клику open заменяем нижнего слушателя
+//closePopup.addEventListener('click',() => toggleModal);//заменяем нижнего слушателя close
 ////////////trigger.addEventListener('click',() => toggleModal);/////
-//form.addEventListener('input', inputHandler);//на ввод форма
-//form.addEventListener('submit',addCard);//на сохранение слушатель,того,что ввели
-//savePopup.addEventListener('submit', submitHandler);
-    popup.addEventListener('click', () => toggleModal(firstModal));
-    popupAdd.addEventListener('click', () => toggleModal(secondModal));
-})}
+//    form.addEventListener('input', inputHandler);//на ввод форма
+//   form.addEventListener('submit', addCard);//на сохранение слушатель,того,что ввели
+//  savePopup.addEventListener('submit', submitHandler);
+
+/*
+popup.addEventListener('click', () => toggleModal(firstModal));
+popupAdd.addEventListener('click', () => toggleModal(secondModal));*/
