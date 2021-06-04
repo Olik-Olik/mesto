@@ -54,9 +54,6 @@ let popupCountry = document.querySelector('.elements__word');
 let newElements = document.querySelector('.elements'); //list
 let elements = document.querySelectorAll('.elements__card'); //ВСЕ СОДЕРЖИМОЕ КАРТОЧКИ
 
-//let formInput = document.querySelector('.popup__form');//form__input-edit
-//let formButton = document.querySelector('.popup__save');
-//let editing ; // изначально не задано значение
 
 function workPopup() {
     //открытие попапа с редактированием профиля
@@ -82,7 +79,7 @@ elements.forEach(function (item) {
     });
 })
 
-function handleDelete(evt) {
+function taskDelete(evt) {
     evt.target.closest('.elements__card').remove();
 }
 
@@ -120,7 +117,7 @@ window.addEventListener("load", function (event) {
         evt.target.classList.toggle('elements__like_active');
 
     });
-//удаление карты из ДОМ внутри функции обработчика события удаления-клик по корзине
+
 
  // Открытие модального окна
     /*const firstModal = document.querySelector('.popup');
@@ -146,58 +143,60 @@ window.addEventListener("load", function (event) {
     }*/
 
 
-    /*
-    function renderItems() {
-        initialCards.forEach(renderItem);
+
+let formInput = document.querySelector('.popup__form');//edit
+let formButton = document.querySelector('.popup__save');
+let editing ; // изначально не задаем значение
+
+    function newItems() {
+        initialCards.forEach(newItem);
     }
 
-    function renderItem(text) {
-        let htmlElement = itemTemplate.cloneNode(true);
-        htmlElement.querySelector('.elements__title').innerText = text;
-        setEventListeners(htmlElement);
-        list.appendChild(htmlElement);
+    function newItem(text) {
+        let country = itemTemplate.cloneNode(true);
+        country.querySelector('.elements__word').innerText = text;
+        setEventListeners(country);
+        list.appendChild(country);
     }
 
-    function handleSubmit() {
-        renderItem(formInput.value)
+    function taskSubmit() {
+        newItem(formInput.value)
     }
-
-
 
     function setEventListeners(element) {
-        element.querySelector('.elements__trash').addEventListener('.click', handleDelete);
-        element.querySelector('.profile__edit-button').addEventListener('.click', handleEdit);
-        element.querySelector('.duplicate').addEventListener('.click', handleDuplicate);
+        element.querySelector('.elements__trash').addEventListener('.click', taskDelete);
+        element.querySelector('.profile__edit-button').addEventListener('.click', taskEdit);
+        element.querySelector('.duplicate').addEventListener('.click', taskDuplicate);
     }
 
     formButton.addEventListener('.click', HandleSubmit);
-    renderItems();
+    newItems();
 
-    function handleDuplicate(evt) {
-        let text = evt.target.closest('.elements__card').querySelector('.elements__title').textContent;
-        renderItems(text);
+    function taskDuplicate(evt) {
+        let text = evt.target.closest('.elements__card').querySelector('.elements__word').textContent;
+       newItems(text);
     }
 
-    function handleEdit(evt) {
+    function taskEdit(evt) {
         //редактирование
         editing = evt.target.closest('.elements__card');//это и редактируем
         // копируем содержимое в инпут
         //копируем в инпут
-        formInput.value = editing.querySelector('.elements__title').textContent;
+        formInput.value = editing.querySelector('.elements__word').textContent;
 
         //меняем название кнопки
         formButton.value = "Изменить";
 
         //вешаем нового слушателя на кнопку.
         // Надо,чтобы менять старый список.Удаляем старого слушателя с кнопки и вешаем нового.
-        formButton.removeEventListener('.click', handleSubmit);
-        formButton.addEventListener('click', handleEditSubmit);//это теперь наша новая функция
+        formButton.removeEventListener('.click', taskSubmit);
+        formButton.addEventListener('click', taskEditSubmit);//это теперь наша новая функция
         resetEditMode();
     }
 
-    function handleEditSubmit() {
+    function taskEditSubmit() {
         //старый edit элемент
-        editing.querySelector('.elements__title').textContent = formInput.value;
+        editing.querySelector('.elements__word').textContent = formInput.value;
         resetEditMode();
     }
 
@@ -206,22 +205,17 @@ window.addEventListener("load", function (event) {
         editing = null;
         formInput.value = ''; //пустой текст
         formButton.value = "Добавить как и раньше";
-        formButton.removeEventListener('click', handleSubmit);
-        formButton.addEventListener('.click', handleSubmit);//отвечает за добавление.При нажании на edit- сброс.
+        formButton.removeEventListener('click', taskSubmit);
+        formButton.addEventListener('.click', taskSubmit);//отвечает за добавление.При нажании на edit- сброс.
     }
 
-
-    function handleSubmit() {
-        renderItem(formInput.value);
-    }
-    */
 
     editButton.addEventListener('click', workPopup);
     openPopupAdd.addEventListener('click',workPopupAdd);
     closePopup.addEventListener('click', closePopupAll);
     savePopup.addEventListener('submit', submitHandler);
   //  deleteButton.addEventListener('click',)
-    element.querySelector('.elements__trash').addEventListener('.click', handleDelete);
+    element.querySelector('.elements__trash').addEventListener('.click', taskDelete);
 
 //popup.addEventListener('click', windowOnClick());//модальное окно по клику open заменяем нижнего слушателя
 //closePopup.addEventListener('click',() => toggleModal);//заменяем нижнего слушателя close
