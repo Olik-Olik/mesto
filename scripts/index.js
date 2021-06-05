@@ -46,7 +46,6 @@ let popupJob = document.querySelector('#popup-field-job');
 let popupCountryform = document.querySelector('#popup-field-card-name');//2-попап
 let popupLinkform = document.querySelector('#popup-field-card-img');//ссылка//2-попап
 
-
 //куда это будет вставлено
 let nameInput = document.querySelector('.profile__title');
 let jobInput = document.querySelector('.profile__subtitle');
@@ -60,23 +59,10 @@ let popupMainContainerImage = document.querySelector('.popup_type_image');
 
 let imagePopupCloseButton = document.querySelector('.popup__close-button-image')
 
-
-/*
-function taskDelete(evt){
-//удаляем карточку
-elements.forEach(function (item) {
-    item.addEventListener('.click', (evt)=> {
-        if (evt.target.classList.contains('elements__trash')){  //кликает то по ссылке идет к//содержащий все классы элемента.узел
-            item.remove();
-        }
-    });
-})*/
-
 function closePopupAll(evt) {
     //закрываем попап
     evt.target.closest('section').classList.remove('popup_opened');
 
-//    popupMainContainerImage.classList.remove('popup_opened')
 }
 
 function submitHandler(evt) {
@@ -84,23 +70,11 @@ function submitHandler(evt) {
     evt.preventDefault();
     nameInput.textContent = popupName.value;
     jobInput.textContent = popupJob.value;
-    closePopupAll();
+    closePopupAll(evt);
 }
 
-function submitAddHandler(evt) {
-    // сохраняем введенные значения 2 popup
-    evt.preventDefault();
-    popupCountry.textContent = popupCountryform.value;
-    popupLink.textContent = popupLinkform.value;
-    closePopupAll();
-}
-imagePopupCloseButton.addEventListener('click',closePopupAll);
-
-//выводим карточки
-window.addEventListener("load", function (event) {
-    console.log(initialCards);
+function renderAllCards() {
     let itemTemplate = document.querySelector('.item__template');
-
     initialCards.forEach(function createCard(item) {
         let newElement = itemTemplate.content.cloneNode(true);
         newElement.querySelector('.elements__image').src = item.link;
@@ -123,13 +97,33 @@ window.addEventListener("load", function (event) {
             popupWord.textContent = evt.currentTarget.closest("form").querySelector('.elements__word').textContent;
         });
 
-        /*  newElement.querySelector('.elements__trash').addEventListener('.click', function (evt) {
-              evt.target.closest('.elements__card').remove();
-          });*/
+         newElement.querySelector('.elements__trash').addEventListener('.click', function (evt) {
+              evt.target.closest('form').remove();
+             // renderAllCards();
+          });
 
         newElements.append(newElement);
     });
+}
 
+/*
+function taskDelete(evt){
+//удаляем карточку
+elements.forEach(function (item) {
+    item.addEventListener('.click', (evt)=> {
+        if (evt.target.classList.contains('elements__trash')){  //кликает то по ссылке идет к//содержащий все классы элемента.узел
+            item.remove();
+        }
+    });
+})*/
+
+imagePopupCloseButton.addEventListener('click', closePopupAll);
+
+//выводим карточки
+window.addEventListener("load", function (event) {
+    console.log(initialCards);
+    let itemTemplate = document.querySelector('.item__template');
+    renderAllCards(itemTemplate);
 });
 
 //по 2-му попапу добавление карточки
@@ -145,47 +139,30 @@ function workPopup() {
 
 function workPopupAdd() {
     //открытие попапа с местом -не пашет вместе со всем
-   // popupCountryform.value = popupCountry.textContent;
-   // popupLinkform.value = popupLink.src;
     popupAdd.classList.add('popup_opened'); //псевдомассив  со все классами элемента.
 }
 
 
-// Открытие модального окна
-/*const firstModal = document.querySelector('.popup');
- const secondModal = document.querySelector('.popup__country');
+function submitAddHandler(evt) {
+    // сохраняем введенные значения 2 popup
+    evt.preventDefault();
+    let newArrayElement = {
+        name: popupCountryform.value,
+        link: popupLinkform.value
+    };
 
- function toggleModal() {
-     modal.classList.toggle("popup_opened");
- }
-  ...toggleModal(modal) {
-     modal.toggle('modal_open')
- }
+    initialCards.unshift(newArrayElement);
+    let elementsSection = document.querySelector('.elements');
+    elementsSection.innerHTML = '';
+    renderAllCards();
+    closePopupAll(evt);
+}
 
- function windowOnClick(evt) {
-     if (evt.target === modal) {
-         //ссылкой на объект, который был инициатором события.
-         toggleModal();
-     }
- }*/
 
 editButton.addEventListener('click', workPopup);
 openPopupAdd.addEventListener('click', workPopupAdd);
 closePopup.addEventListener('click', closePopupAll);
-//  closeAddPopup.addEventListener('click', );
 savePopup.addEventListener('submit', submitHandler);
 saveAddPopup.addEventListener('submit', submitAddHandler);
-//  deleteButton.addEventListener('click', taskDelete);
+//deleteButton.addEventListener('click', taskDelete);
 
-// element.querySelector('.elements__trash').addEventListener('.click', taskDelete);
-
-//   popup.addEventListener('click', windowOnClick());//модальное окно по клику open заменяем нижнего слушателя
-//closePopup.addEventListener('click',() => toggleModal);//заменяем нижнего слушателя close
-////////////trigger.addEventListener('click',() => toggleModal);/////
-//    form.addEventListener('input', inputHandler);//на ввод форма
-//   form.addEventListener('submit', addCard);//на сохранение слушатель,того,что ввели
-//  savePopup.addEventListener('submit', submitHandler);
-
-/*
-popup.addEventListener('click', () => toggleModal(firstModal));
-popupAdd.addEventListener('click', () => toggleModal(secondModal));*/
