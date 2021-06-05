@@ -32,7 +32,8 @@ let closePopup = document.querySelector('.popup__close-button');//попап с 
 let closePopupAdd = document.querySelector('.popup__close-button-image');//пoпап со Страной//2-попап
 let deleteButton = document.querySelector('.elements__trash');
 
-let popupAdd = document.querySelector('.popup-country');//2-попап
+let popupAdd = document.querySelector('.popup__country');//2-попап
+//открытие 2-го попапа
 let openPopupAdd = document.querySelector('.profile__add-button');
 
 // форма и поля формы
@@ -50,9 +51,6 @@ let popupLinkform = document.querySelector('#popup-field-card-img');//ссылк
 let nameInput = document.querySelector('.profile__title');
 let jobInput = document.querySelector('.profile__subtitle');
 
-//по 2-му попапу добавление карточки
-let popupLink = document.querySelector('.elements__image');//2-попап
-let popupCountry = document.querySelector('.elements__word');//2-попап
 
 let newElements = document.querySelector('.elements'); //list весь список
 let elements = document.querySelectorAll('.elements__card'); //ВСЕ СОДЕРЖИМОЕ КАРТОЧКИ
@@ -62,19 +60,6 @@ let popupMainContainerImage = document.querySelector('.popup_type_image');
 
 let imagePopupCloseButton = document.querySelector('.popup__close-button-image')
 
-function workPopup() {
-    //открытие попапа с редактированием профиля
-    popupName.value = nameInput.textContent;
-    popupJob.value = jobInput.textContent;
-    popup.classList.add('popup_opened');
-}
-
-function workPopupAdd() {
-    //открытие попапа с местом -не пашет вместе со всем
-    popupCountryform.value = popupCountry.textContent;
-    popupLinkform.value = popupLink.textContent;
-    popupAdd.classList.add('popup_opened'); //псевдомассив  со все классами элемента.
-}
 
 /*
 function taskDelete(evt){
@@ -145,9 +130,26 @@ window.addEventListener("load", function (event) {
         newElements.append(newElement);
     });
 
-    //картинка из попапа в экран вписывается- точнее задача такая, вписать!
-
 });
+
+//по 2-му попапу добавление карточки
+const popupLink = document.querySelector('.elements__image');//2-попап
+const popupCountry = document.querySelector('.elements__word');//2-попап
+
+function workPopup() {
+    //открытие попапа с редактированием профиля
+    popupName.value = nameInput.textContent;
+    popupJob.value = jobInput.textContent;
+    popup.classList.add('popup_opened');
+}
+
+function workPopupAdd() {
+    //открытие попапа с местом -не пашет вместе со всем
+   // popupCountryform.value = popupCountry.textContent;
+   // popupLinkform.value = popupLink.src;
+    popupAdd.classList.add('popup_opened'); //псевдомассив  со все классами элемента.
+}
+
 
 // Открытие модального окна
 /*const firstModal = document.querySelector('.popup');
@@ -171,8 +173,8 @@ editButton.addEventListener('click', workPopup);
 openPopupAdd.addEventListener('click', workPopupAdd);
 closePopup.addEventListener('click', closePopupAll);
 //  closeAddPopup.addEventListener('click', );
-   savePopup.addEventListener('submit', submitHandler);
-//  saveAddPopup.addEventListener('submit', submitAddHandler);
+savePopup.addEventListener('submit', submitHandler);
+saveAddPopup.addEventListener('submit', submitAddHandler);
 //  deleteButton.addEventListener('click', taskDelete);
 
 // element.querySelector('.elements__trash').addEventListener('.click', taskDelete);
