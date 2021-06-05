@@ -28,8 +28,12 @@ const initialCards = [
 let editButton = document.querySelector('.profile__edit-button');
 let popup = document.querySelector('.popup');
 let popupPlace = document.querySelector('.popup__country');
-let closePopup = popupPlace.querySelector('.popup__close-button');//попап с Кусто
-//let closePopupAdd = document.querySelector('.popup__close-button-image');//пoпап со Страной//2-попап
+let closePopup = popupPlace.querySelector('.popup__close-button');//место
+
+let popupChangePlace = document.querySelector('.popup_type_edit');
+let closePopupAdd = popupChangePlace.querySelector('.popup__close-button');//Кусто
+
+
 let deleteButton = document.querySelector('.elements__trash');
 
 let popupAdd = document.querySelector('.popup__country');//2-попап
@@ -57,7 +61,6 @@ let elements = document.querySelectorAll('.elements__card'); //ВСЕ СОДЕР
 //картинка попап
 let popupMainContainerImage = document.querySelector('.popup_type_image');
 
-let imagePopupCloseButton = document.querySelector('.popup__close-button-image')
 
 function closePopupAll(evt) {
     //закрываем попап
@@ -96,16 +99,16 @@ function renderAllCards() {
             popupWord.textContent = evt.currentTarget.closest("form").querySelector('.elements__word').textContent;
         });
 
-         newElement.querySelector('.elements__trash').addEventListener('click', function (evt) {
-              evt.currentTarget.closest('form').remove();
-             // renderAllCards();
-          });
+        newElement.querySelector('.elements__trash').addEventListener('click', function (evt) {
+            evt.currentTarget.closest('form').remove();
+            // renderAllCards();
+        });
 
         newElements.append(newElement);
     });
 }
 
-imagePopupCloseButton.addEventListener('click', closePopupAll);
+//imagePopupCloseButton.addEventListener('click', closePopupAll);
 
 //выводим карточки
 window.addEventListener("load", function (event) {
@@ -149,7 +152,7 @@ function submitAddHandler(evt) {
 editButton.addEventListener('click', workPopup);
 openPopupAdd.addEventListener('click', workPopupAdd);
 closePopup.addEventListener('click', closePopupAll);
-//closePopupAdd.addEventListener('click',closePopupAll);
+closePopupAdd.addEventListener('click', closePopupAll);
 savePopup.addEventListener('submit', submitHandler);
 saveAddPopup.addEventListener('submit', submitAddHandler);
 

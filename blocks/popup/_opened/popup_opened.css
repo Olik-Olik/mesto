@@ -2,5 +2,6 @@
     display: flex;
     align-items: center;
     visibility: visible;
+    transition: visibility 1s , opacity 0.5s linear;
    /* opacity: 1;*/
 }
