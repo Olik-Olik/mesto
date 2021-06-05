@@ -36,7 +36,7 @@ let closePopupAdd = popupChangePlace.querySelector('.popup__close-button');//К�
 let imagePopup = document.querySelector('.popup_type_image');
 let imagePopupCloseButton = imagePopup.querySelector('.popup__close-button-image');//картинка
 
-let deleteButton = document.querySelector('.elements__trash');
+//let deleteButton = document.querySelector('.elements__trash');
 
 let popupAdd = document.querySelector('.popup__country');//2-попап
 //открытие 2-го попапа
@@ -58,7 +58,7 @@ let jobInput = document.querySelector('.profile__subtitle');
 
 
 let newElements = document.querySelector('.elements'); //list весь список
-let elements = document.querySelectorAll('.elements__card'); //ВСЕ СОДЕРЖИМОЕ КАРТОЧКИ
+//let elements = document.querySelectorAll('.elements__card'); //ВСЕ СОДЕРЖИМОЕ КАРТОЧКИ
 
 //картинка попап
 let popupMainContainerImage = document.querySelector('.popup_type_image');
@@ -114,14 +114,13 @@ function renderAllCards() {
 
 //выводим карточки
 window.addEventListener("load", function (event) {
-    console.log(initialCards);
-    let itemTemplate = document.querySelector('.item__template');
-    renderAllCards(itemTemplate);
+   // console.log(initialCards);
+    renderAllCards();
 });
 
 //по 2-му попапу добавление карточки
-const popupLink = document.querySelector('.elements__image');//2-попап
-const popupCountry = document.querySelector('.elements__word');//2-попап
+//const popupLink = document.querySelector('.elements__image');//2-попап
+//const popupCountry = document.querySelector('.elements__word');//2-попап
 
 function workPopup() {
     //открытие попапа с редактированием профиля
