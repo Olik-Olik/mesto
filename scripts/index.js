@@ -29,7 +29,7 @@ let editButton = document.querySelector('.profile__edit-button');
 let popup = document.querySelector('.popup');
 let popupPlace = document.querySelector('.popup__country');
 let closePopup = document.querySelector('.popup__close-button');//попап с Кусто
-let closePopupAdd = document.querySelector('.popup__close-button-country');//пoпап со Страной//2-попап
+let closePopupAdd = document.querySelector('.popup__close-button-image');//пoпап со Страной//2-попап
 let deleteButton = document.querySelector('.elements__trash');
 
 let popupAdd = document.querySelector('.popup-country');//2-попап
@@ -60,6 +60,8 @@ let elements = document.querySelectorAll('.elements__card'); //ВСЕ СОДЕР
 //картинка попап
 let popupMainContainerImage = document.querySelector('.popup_type_image');
 
+let imagePopupCloseButton = document.querySelector('.popup__close-button-image')
+
 function workPopup() {
     //открытие попапа с редактированием профиля
     popupName.value = nameInput.textContent;
@@ -85,10 +87,11 @@ elements.forEach(function (item) {
     });
 })*/
 
-function closePopupAll() {
+function closePopupAll(evt) {
     //закрываем попап
-    popup.classList.remove('popup_opened');
+    evt.target.closest('section').classList.remove('popup_opened');
 
+//    popupMainContainerImage.classList.remove('popup_opened')
 }
 
 function submitHandler(evt) {
@@ -106,6 +109,7 @@ function submitAddHandler(evt) {
     popupLink.textContent = popupLinkform.value;
     closePopupAll();
 }
+imagePopupCloseButton.addEventListener('click',closePopupAll);
 
 //выводим карточки
 window.addEventListener("load", function (event) {
@@ -124,15 +128,13 @@ window.addEventListener("load", function (event) {
         });
 
         //let popupImage = document.querySelector('.popup__image');
-      //  let popupWord = document.querySelector('.popup__image-word');
+        let popupWord = document.querySelector('.popup__image-word');
         let newElementImage = newElement.querySelector('.elements__image');
         //let newElementWord = newElement.querySelector('.elements__word');
-
         //новый картинка слушает когда по нему кликнут
         newElementImage.addEventListener('click', function (item) {
             //меняем параметры из попапа, на карточку img /word
             popupMainContainerImage.classList.add('popup_opened');
-
         });
 
         /*  newElement.querySelector('.elements__trash').addEventListener('.click', function (evt) {
