@@ -93,17 +93,18 @@
     <p class="footer__place">© 2021 Mesto Russia</p>
 </footer>
 <section class="popup popup_type_edit">
-    <button class="popup__close-button" aria-label='Закрыть всплывающее окошко'  type="button"></button>
+    <button aria-label='Закрыть всплывающее окошко' class="popup__close-button" type="button"></button>
     <div class="popup__container">
-        <form class="popup__form" id="popup-mega-id" action="#" aria-label='получения инфо и передачи данных'  method="GET"
+        <form action="#" aria-label='получения инфо и передачи данных' class="popup__form" id="popup-mega-id"
+              method="GET"
               name="resave">
             <h2 class="popup__page">Редактировать профиль</h2>
-             <input class="popup__field" id="popup-field-name" name="inputForm_name"
-                                                         placeholder="Ваше имя" type="text"
-                                                         value='Жак-Ив Кусто'>
+            <input class="popup__field" id="popup-field-name" name="inputForm_name"
+                   placeholder="Ваше имя" type="text"
+                   value='Жак-Ив Кусто'>
             <input class="popup__field" id="popup-field-job" name="inputForm_job"
-                                                        placeholder="Род занятия" type="text"
-                                                        value='Исследователь океана'>
+                   placeholder="Род занятия" type="text"
+                   value='Исследователь океана'>
             <button aria-label='Кнопка Сохранить' class="popup__save " type="submit">Сохранить</button>
         </form>
     </div>
@@ -111,12 +112,14 @@
 <section class="popup__country popup_type_new-card">
     <button aria-label='Закрыть всплывающее окошко' class="popup__close-button-place" type="button"></button>
     <div class="popup__container">
-        <form  class="popup__form" id="popup-input-mega-id" action="#" aria-label='получения инфо и передачи данных в адресной строке'  method="GET"
+        <form action="#" aria-label='получения инфо и передачи данных в адресной строке' class="popup__form"
+              id="popup-input-mega-id" method="GET"
               name="resave">
             <h2 class="popup__page">Новое место</h2>
             <input class="popup__field" id="popup-field-card-name" name="popup-input-place" placeholder="Название места"
                    type="text" value='Название'>
-            <input class="popup__field" id="popup-field-card-img" name="popup-input-img" placeholder="Ссылка на картинку"
+            <input class="popup__field" id="popup-field-card-img" name="popup-input-img"
+                   placeholder="Ссылка на картинку"
                    type="text" value='Ссылка на картинку'>
             <button aria-label='Кнопка Сохранить' class="popup__save" type="submit">Сохранить</button>
 
@@ -124,10 +127,14 @@
     </div>
 </section>
 <section class="popup popup_type_image">
-    <button class="popup__close-button-image" type="button" aria-label='Закрыть всплывающее окошко'></button>
-    <div class="popup__container-image">
-    <img src="" alt="" class="popup__image">
+    <div class="popup__combine-image">
+        <button aria-label='Закрыть всплывающее окошко' class="popup__close-button-image" type="button"></button>
+        <div class="popup__combine-word">
+        <div class="popup__container-image">
+        </div>
+        <img alt="Картинка " class="popup__image" src="images/Elbrus.jpg">
         <h2 class="popup__image-word"></h2>
+    </div>
     </div>
 </section>
 
@@ -138,11 +145,11 @@
             <button class="elements__trash" type="button"></button>
             <img alt="Картинка" class="elements__image" src="images/Elbrus.jpg">
         </div>
-            <div class="elements__combine">
-                <h2 class="elements__word">Домбай</h2>
-                <button type="button" class="elements__like" aria-label="Лайк"></button>
-            </div>
+        <div class="elements__combine">
+            <h2 class="elements__word">Домбай</h2>
+            <button aria-label="Лайк" class="elements__like" type="button"></button>
         </div>
+    </div>
 </template>
 </body>
 </html>

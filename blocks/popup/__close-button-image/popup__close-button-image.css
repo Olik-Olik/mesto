@@ -9,9 +9,9 @@
     /*top: 72px;*/
     padding: 0;
     border: none;
-    top: auto;
-    bottom: 410px;
-    left: 940px;
+
+    left: 50px;
+    top: 5px;
 }
 
 .popup__close-button-image:hover {

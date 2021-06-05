@@ -127,14 +127,15 @@ window.addEventListener("load", function (event) {
             evt.currentTarget.classList.toggle('elements__like_active');
         });
 
-        //let popupImage = document.querySelector('.popup__image');
+        let popupImage = document.querySelector('.popup__image');
         let popupWord = document.querySelector('.popup__image-word');
         let newElementImage = newElement.querySelector('.elements__image');
-        //let newElementWord = newElement.querySelector('.elements__word');
         //новый картинка слушает когда по нему кликнут
-        newElementImage.addEventListener('click', function (item) {
+        newElementImage.addEventListener('click', function (evt) {
             //меняем параметры из попапа, на карточку img /word
             popupMainContainerImage.classList.add('popup_opened');
+            popupImage.src = evt.currentTarget.src;
+            popupWord.textContent = evt.currentTarget.closest("section").querySelector('.elements__word').textContent;
         });
 
         /*  newElement.querySelector('.elements__trash').addEventListener('.click', function (evt) {
@@ -170,7 +171,7 @@ editButton.addEventListener('click', workPopup);
 openPopupAdd.addEventListener('click', workPopupAdd);
 closePopup.addEventListener('click', closePopupAll);
 //  closeAddPopup.addEventListener('click', );
-//   savePopup.addEventListener('submit', submitHandler);
+   savePopup.addEventListener('submit', submitHandler);
 //  saveAddPopup.addEventListener('submit', submitAddHandler);
 //  deleteButton.addEventListener('click', taskDelete);
 
