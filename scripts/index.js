@@ -135,7 +135,7 @@ window.addEventListener("load", function (event) {
             //меняем параметры из попапа, на карточку img /word
             popupMainContainerImage.classList.add('popup_opened');
             popupImage.src = evt.currentTarget.src;
-            popupWord.textContent = evt.currentTarget.closest("section").querySelector('.elements__word').textContent;
+            popupWord.textContent = evt.currentTarget.closest("form").querySelector('.elements__word').textContent;
         });
 
         /*  newElement.querySelector('.elements__trash').addEventListener('.click', function (evt) {
