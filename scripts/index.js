@@ -28,8 +28,8 @@ const initialCards = [
 let editButton = document.querySelector('.profile__edit-button');
 let popup = document.querySelector('.popup');
 let popupPlace = document.querySelector('.popup__country');
-let closePopup = document.querySelector('.popup__close-button');//попап с Кусто
-let closePopupAdd = document.querySelector('.popup__close-button-image');//пoпап со Страной//2-попап
+let closePopup = popupPlace.querySelector('.popup__close-button');//попап с Кусто
+//let closePopupAdd = document.querySelector('.popup__close-button-image');//пoпап со Страной//2-попап
 let deleteButton = document.querySelector('.elements__trash');
 
 let popupAdd = document.querySelector('.popup__country');//2-попап
@@ -62,7 +62,6 @@ let imagePopupCloseButton = document.querySelector('.popup__close-button-image')
 function closePopupAll(evt) {
     //закрываем попап
     evt.target.closest('section').classList.remove('popup_opened');
-
 }
 
 function submitHandler(evt) {
@@ -97,25 +96,14 @@ function renderAllCards() {
             popupWord.textContent = evt.currentTarget.closest("form").querySelector('.elements__word').textContent;
         });
 
-         newElement.querySelector('.elements__trash').addEventListener('.click', function (evt) {
-              evt.target.closest('form').remove();
+         newElement.querySelector('.elements__trash').addEventListener('click', function (evt) {
+              evt.currentTarget.closest('form').remove();
              // renderAllCards();
           });
 
         newElements.append(newElement);
     });
 }
-
-/*
-function taskDelete(evt){
-//удаляем карточку
-elements.forEach(function (item) {
-    item.addEventListener('.click', (evt)=> {
-        if (evt.target.classList.contains('elements__trash')){  //кликает то по ссылке идет к//содержащий все классы элемента.узел
-            item.remove();
-        }
-    });
-})*/
 
 imagePopupCloseButton.addEventListener('click', closePopupAll);
 
@@ -138,8 +126,8 @@ function workPopup() {
 }
 
 function workPopupAdd() {
-    //открытие попапа с местом -не пашет вместе со всем
-    popupAdd.classList.add('popup_opened'); //псевдомассив  со все классами элемента.
+    //открытие попапа с местом
+    popupAdd.classList.add('popup_opened');
 }
 
 
@@ -150,7 +138,6 @@ function submitAddHandler(evt) {
         name: popupCountryform.value,
         link: popupLinkform.value
     };
-
     initialCards.unshift(newArrayElement);
     let elementsSection = document.querySelector('.elements');
     elementsSection.innerHTML = '';
@@ -162,7 +149,8 @@ function submitAddHandler(evt) {
 editButton.addEventListener('click', workPopup);
 openPopupAdd.addEventListener('click', workPopupAdd);
 closePopup.addEventListener('click', closePopupAll);
+//closePopupAdd.addEventListener('click',closePopupAll);
 savePopup.addEventListener('submit', submitHandler);
 saveAddPopup.addEventListener('submit', submitAddHandler);
-//deleteButton.addEventListener('click', taskDelete);
+
 

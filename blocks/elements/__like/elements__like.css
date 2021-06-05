@@ -1,7 +1,7 @@
 .elements__like {
     background-image: url('../../../images/Vector_heart.svg');
    /*background-image :url(https://code.s3.yandex.net/web-code/dom/heart.svg);*//*стащила из тренажера*/
-    width: 24px;
+    width: 22px;
     height: 19px;
     cursor: pointer;
     border: none;
@@ -9,10 +9,12 @@
     background-color: transparent;
     z-index: 15;
     background-position: center;
-    transition: transform .3s linear;
+    transition: transform 1s linear;
     background-size: 100%;
     right: 260px;
     opacity: 0.5;
+    margin-right: 20px;
+    padding-left: 7px;
 }
 
 .elements__like:hover {
