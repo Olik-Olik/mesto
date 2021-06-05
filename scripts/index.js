@@ -36,8 +36,6 @@ let closePopupAdd = popupChangePlace.querySelector('.popup__close-button');//К�
 let imagePopup = document.querySelector('.popup_type_image');
 let imagePopupCloseButton = imagePopup.querySelector('.popup__close-button-image');//картинка
 
-//let deleteButton = document.querySelector('.elements__trash');
-
 let popupAdd = document.querySelector('.popup__country');//2-попап
 //открытие 2-го попапа
 let openPopupAdd = document.querySelector('.profile__add-button');
@@ -103,24 +101,17 @@ function renderAllCards() {
 
         newElement.querySelector('.elements__trash').addEventListener('click', function (evt) {
             evt.currentTarget.closest('form').remove();
-            // renderAllCards();
         });
 
         newElements.append(newElement);
     });
 }
 
-
-
 //выводим карточки
 window.addEventListener("load", function (event) {
-   // console.log(initialCards);
     renderAllCards();
 });
 
-//по 2-му попапу добавление карточки
-//const popupLink = document.querySelector('.elements__image');//2-попап
-//const popupCountry = document.querySelector('.elements__word');//2-попап
 
 function workPopup() {
     //открытие попапа с редактированием профиля
@@ -148,7 +139,6 @@ function submitAddHandler(evt) {
     renderAllCards();
     closePopupAll(evt);
 }
-
 
 editButton.addEventListener('click', workPopup);
 openPopupAdd.addEventListener('click', workPopupAdd);
