@@ -33,6 +33,8 @@ let closePopup = popupPlace.querySelector('.popup__close-button');//место
 let popupChangePlace = document.querySelector('.popup_type_edit');
 let closePopupAdd = popupChangePlace.querySelector('.popup__close-button');//Кусто
 
+let imagePopup = document.querySelector('.popup_type_image');
+let imagePopupCloseButton = imagePopup.querySelector('.popup__close-button-image');//картинка
 
 let deleteButton = document.querySelector('.elements__trash');
 
@@ -108,7 +110,7 @@ function renderAllCards() {
     });
 }
 
-//imagePopupCloseButton.addEventListener('click', closePopupAll);
+
 
 //выводим карточки
 window.addEventListener("load", function (event) {
@@ -155,5 +157,5 @@ closePopup.addEventListener('click', closePopupAll);
 closePopupAdd.addEventListener('click', closePopupAll);
 savePopup.addEventListener('submit', submitHandler);
 saveAddPopup.addEventListener('submit', submitAddHandler);
-
+imagePopupCloseButton.addEventListener('click', closePopupAll);
 
