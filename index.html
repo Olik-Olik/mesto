@@ -46,12 +46,10 @@
               method="GET"
               name="resave">
             <h2 class="popup__page">Редактировать профиль</h2>
-            <input class="popup__field" id="popup-field-name" name="inputForm_name"
-                   placeholder="Ваше имя" type="text"
-                   value='Жак-Ив Кусто'>
-            <input class="popup__field" id="popup-field-job" name="inputForm_job"
+            <input class="popup__field" id="popup-field-name" name="inputForm_name" placeholder="Ваше имя" type="text" value='Жак-Ив Кусто' required>
+            <input class="popup__field" id="popup-field-job" name="inputForm_job "
                    placeholder="Род занятия" type="text"
-                   value='Исследователь океана'>
+                   value='Исследователь океана' required>
             <button aria-label='Кнопка Сохранить' class="popup__save " type="submit">Сохранить</button>
         </form>
     </div>
@@ -64,10 +62,10 @@
               name="resave">
             <h2 class="popup__page">Новое место</h2>
             <input class="popup__field" id="popup-field-card-name" name="popup-input-place" placeholder="Название"
-                   type="text" value=''>
+                   type="text" value='' required>
             <input class="popup__field" id="popup-field-card-img" name="popup-input-img"
                    placeholder="Ссылка на картинку"
-                   type="text" value=''>
+                   type="url" value='' required>
             <button aria-label='Кнопка Сохранить' class="popup__save" type="submit">Сохранить</button>
 
         </form>
