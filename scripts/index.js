@@ -27,7 +27,7 @@ const initialCards = [
 ];
 let editButton = document.querySelector('.profile__edit-button');
 let popup = document.querySelector('.popup');
-let popupPlace = document.querySelector('.popup__country');
+let popupPlace = document.querySelector('.popup_country');
 let closePopup = popupPlace.querySelector('.popup__close-button');//место
 
 let popupChangePlace = document.querySelector('.popup_type_edit');
@@ -36,7 +36,7 @@ let closePopupAdd = popupChangePlace.querySelector('.popup__close-button');//К�
 let imagePopup = document.querySelector('.popup_type_image');
 let imagePopupCloseButton = imagePopup.querySelector('.popup__close-button-image');//картинка
 
-let popupAdd = document.querySelector('.popup__country');//2-попап
+let popupAdd = document.querySelector('.popup_country');//2-попап
 //открытие 2-го попапа
 let openPopupAdd = document.querySelector('.profile__add-button');
 
