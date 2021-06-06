@@ -36,9 +36,9 @@ let closePopupChangeProfile = popupChangeProfile.querySelector('.popup__close-bu
 let imagePopup = document.querySelector('.popup_type_image');
 let imagePopupCloseButton = imagePopup.querySelector('.popup__close-button-image');//картинка
 
-let popupAdd = document.querySelector('.popup_country');//2-попап
+//let popupAdd = document.querySelector('.popup_country');//2-попап
 //открытие 2-го попапа
-let openPopupAdd = document.querySelector('.profile__add-button');
+let openpopupPlace = document.querySelector('.profile__add-button');
 
 // форма и поля формы
 let savePopup = document.querySelector('#popup-mega-id');
@@ -120,9 +120,9 @@ function workPopup() {
     popup.classList.add('popup_opened');
 }
 
-function workPopupAdd() {
+function workpopupPlace() {
     //открытие попапа с местом
-    popupAdd.classList.add('popup_opened');
+    popupPlace.classList.add('popup_opened');
 }
 
 
@@ -141,7 +141,7 @@ function submitAddHandler(evt) {
 }
 
 editButton.addEventListener('click', workPopup);
-openPopupAdd.addEventListener('click', workPopupAdd);
+openpopupPlace.addEventListener('click', workpopupPlace);
 closePopupPlace.addEventListener('click', closePopupAll);
 closePopupChangeProfile.addEventListener('click', closePopupAll);
 savePopup.addEventListener('submit', submitHandler);
