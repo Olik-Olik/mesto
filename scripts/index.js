@@ -28,10 +28,10 @@ const initialCards = [
 let editButton = document.querySelector('.profile__edit-button');
 let popup = document.querySelector('.popup');
 let popupPlace = document.querySelector('.popup_country');
-let closePopup = popupPlace.querySelector('.popup__close-button');//место
+let closePopupPlace = popupPlace.querySelector('.popup__close-button');//место
 
-let popupChangePlace = document.querySelector('.popup_type_edit');
-let closePopupAdd = popupChangePlace.querySelector('.popup__close-button');//Кусто
+let popupChangeProfile = document.querySelector('.popup_type_edit');
+let closePopupChangeProfile = popupChangeProfile.querySelector('.popup__close-button');//Кусто
 
 let imagePopup = document.querySelector('.popup_type_image');
 let imagePopupCloseButton = imagePopup.querySelector('.popup__close-button-image');//картинка
@@ -76,21 +76,21 @@ function submitHandler(evt) {
 }
 
 function renderAllCards() {
-    let itemTemplate = document.querySelector('.item__template');
+    const itemTemplate = document.querySelector('.item__template');
     initialCards.forEach(function createCard(item) {
-        let newElement = itemTemplate.content.cloneNode(true);
+        const newElement = itemTemplate.content.cloneNode(true);
         newElement.querySelector('.elements__image').src = item.link;
         newElement.querySelector('.elements__image').alt = item.name;
         newElement.querySelector('.elements__word').textContent = item.name;
 
-        let likeElement = newElement.querySelector('.elements__like');
+        const likeElement = newElement.querySelector('.elements__like');
         likeElement.addEventListener('click', function (evt) {
             evt.currentTarget.classList.toggle('elements__like_active');
         });
 
-        let popupImage = document.querySelector('.popup__image');
-        let popupWord = document.querySelector('.popup__image-word');
-        let newElementImage = newElement.querySelector('.elements__image');
+        const popupImage = document.querySelector('.popup__image');
+        const popupWord = document.querySelector('.popup__image-word');
+        const newElementImage = newElement.querySelector('.elements__image');
         //новый картинка слушает когда по нему кликнут
         newElementImage.addEventListener('click', function (evt) {
             //меняем параметры из попапа, на карточку img /word
@@ -129,7 +129,7 @@ function workPopupAdd() {
 function submitAddHandler(evt) {
     // сохраняем введенные значения 2 popup
     evt.preventDefault();
-    let newArrayElement = {
+    const newArrayElement = {
         name: popupCountryform.value,
         link: popupLinkform.value
     };
@@ -142,8 +142,8 @@ function submitAddHandler(evt) {
 
 editButton.addEventListener('click', workPopup);
 openPopupAdd.addEventListener('click', workPopupAdd);
-closePopup.addEventListener('click', closePopupAll);
-closePopupAdd.addEventListener('click', closePopupAll);
+closePopupPlace.addEventListener('click', closePopupAll);
+closePopupChangeProfile.addEventListener('click', closePopupAll);
 savePopup.addEventListener('submit', submitHandler);
 saveAddPopup.addEventListener('submit', submitAddHandler);
 imagePopupCloseButton.addEventListener('click', closePopupAll);
