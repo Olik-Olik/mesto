@@ -195,6 +195,7 @@ function submitAddHandler(evt) {
  //    let elementsSection = document.querySelector('.elements');
    // elementsSection.innerHTML = '';
    // renderCard();
+    saveAddPopup.reset();
     closePopupAll(evt);
 
 
