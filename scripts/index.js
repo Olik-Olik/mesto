@@ -36,7 +36,6 @@ let closePopupChangeProfile = popupChangeProfile.querySelector('.popup__close-bu
 let popupMainContainerImage = document.querySelector('.popup_type_image');
 let imagePopupCloseButton = popupMainContainerImage.querySelector('.popup__close-button-image');//картинка
 
-//let popupAdd = document.querySelector('.popup_country');//2-попап
 //открытие 2-го попапа
 let openPopupPlaceButton = document.querySelector('.profile__add-button');
 
@@ -59,7 +58,6 @@ let newElements = document.querySelector('.elements'); //list весь спис�
 //let elements = document.querySelectorAll('.elements__card'); //ВСЕ СОДЕРЖИМОЕ КАРТОЧКИ
 let elementsSection = document.querySelector('.elements');
 
-//let popupMainContainerImage = document.querySelector('.popup_type_image');
 function closePopupAll(evt) {
     //закрываем попап
     evt.target.closest('section').classList.remove('popup_opened');
@@ -73,41 +71,6 @@ function submitHandlerProfile(evt) {
     closePopupAll(evt);
 }
 
-/*
-
-function createCard(evt){
-const itemTemplate = document.querySelector('.item-template');
-initialCards.forEach(function createCard(item) {
-    const newElement = itemTemplate.content.cloneNode(true);
-    newElement.querySelector('.elements__image').src = item.link;
-    newElement.querySelector('.elements__image').alt = item.name;
-    newElement.querySelector('.elements__word').textContent = item.name;
-
-    const likeElement = newElement.querySelector('.elements__like');
-    likeElement.addEventListener('click', function (evt) {
-        evt.currentTarget.classList.toggle('elements__like_active');
-    });
-
-    const popupImage = document.querySelector('.popup__image');
-    const popupWord = document.querySelector('.popup__image-word');
-    const popupAlt = document.querySelector('.popup__image')
-    const newElementImage = newElement.querySelector('.elements__image');
-
-    //новый картинка слушает когда по нему кликнут
-    newElementImage.addEventListener('click', function (evt) {
-        //меняем параметры из попапа, на карточку img /word
-        popupMainContainerImage.classList.add('popup_opened');
-        popupImage.src = evt.currentTarget.src;
-        popupAlt.alt = evt.currentTarget.alt;
-
-        popupWord.textContent = evt.currentTarget.closest("#template-id").querySelector('.elements__word').textContent;
-    });
-
-    newElement.querySelector('.elements__trash').addEventListener('click', function (evt) {
-        evt.currentTarget.closest('#template-id').remove();
-    });
-});
-*/
 function handleImageView(evt) {//обработчик события
     //меняем параметры из попапа, на карточку img /word
     popupMainContainerImage.classList.add('popup_opened');
@@ -146,8 +109,6 @@ function createCard(item) { //create
     return newElement;
 }
 
-
-//const itemTemplate = document.querySelector('.item-template');
 function renderAllCards() {
     initialCards.forEach(function (item) {
         const newCard = createCard(item);
@@ -189,15 +150,9 @@ function submitAddHandler(evt) {
         link: popupLinkform.value
     };
     const newCard = createCard(newArrayElement);
-    //  newElements.unshift(popupCountryform.value,popupLinkform.value);
     newElements.prepend(newCard);
-
- //    let elementsSection = document.querySelector('.elements');
-   // elementsSection.innerHTML = '';
-   // renderCard();
     saveAddPopup.reset();
     closePopupAll(evt);
-
 
 }
 
