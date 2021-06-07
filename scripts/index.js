@@ -65,7 +65,7 @@ function closePopupAll(evt) {
     evt.target.closest('section').classList.remove('popup_opened');
 }
 
-function submitHandler(evt) {
+function submitHandlerProfile(evt) {
     // сохраняем введенные значения
     evt.preventDefault();
     name.textContent = popupName.value;
@@ -181,18 +181,22 @@ function workpopupPlace() {
 
 
 function submitAddHandler(evt) {
+
     // сохраняем введенные значения 2 popup
     evt.preventDefault();
     const newArrayElement = {
         name: popupCountryform.value,
         link: popupLinkform.value
     };
-    //   initialCards.unshift(popupCountryform.value,popupLinkform.value);
-    initialCards.unshift(newArrayElement);
-//    let elementsSection = document.querySelector('.elements');
-    elementsSection.innerHTML = '';
-    renderCard();
+    const newCard = createCard(newArrayElement);
+    //  newElements.unshift(popupCountryform.value,popupLinkform.value);
+    newElements.prepend(newCard);
+
+ //    let elementsSection = document.querySelector('.elements');
+   // elementsSection.innerHTML = '';
+   // renderCard();
     closePopupAll(evt);
+
 
 }
 
@@ -200,7 +204,7 @@ editButton.addEventListener('click', workPopup);
 openPopupPlaceButton.addEventListener('click', workpopupPlace);
 closePopupPlace.addEventListener('click', closePopupAll);
 closePopupChangeProfile.addEventListener('click', closePopupAll);
-savePopupProfile.addEventListener('submit', submitHandler);
+savePopupProfile.addEventListener('submit', submitHandlerProfile);
 saveAddPopup.addEventListener('submit', submitAddHandler);
 imagePopupCloseButton.addEventListener('click', closePopupAll);
 
