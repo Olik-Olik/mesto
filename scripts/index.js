@@ -25,8 +25,8 @@ const initialCards = [
         link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
     }
 ];
-let editButton = document.querySelector('.profile__edit-button');
-let popup = document.querySelector('.popup');
+const editButton = document.querySelector('.profile__edit-button');
+let popup = document.querySelector('.popup_type_edit');// По классу .popup найдется первый попап в разметке. Если разметка поменяется, то найдется не тот попап, который нужен. Для попапа нужно задать модификатор и проводить поиск по нему.
 let popupPlace = document.querySelector('.popup_country');
 let closePopupPlace = popupPlace.querySelector('.popup__close-button');//место
 
@@ -57,8 +57,8 @@ let job = document.querySelector('.profile__subtitle');
 
 let newElements = document.querySelector('.elements'); //list весь список
 //let elements = document.querySelectorAll('.elements__card'); //ВСЕ СОДЕРЖИМОЕ КАРТОЧКИ
+let elementsSection = document.querySelector('.elements');
 
-//картинка попап
 //let popupMainContainerImage = document.querySelector('.popup_type_image');
 
 
@@ -76,7 +76,7 @@ function submitHandler(evt) {
 }
 
 function renderAllCards() {
-    const itemTemplate = document.querySelector('.item__template');
+    const itemTemplate = document.querySelector('.item-template');
     initialCards.forEach(function createCard(item) {
         const newElement = itemTemplate.content.cloneNode(true);
         newElement.querySelector('.elements__image').src = item.link;
@@ -133,11 +133,14 @@ function submitAddHandler(evt) {
         name: popupCountryform.value,
         link: popupLinkform.value
     };
+ //   initialCards.unshift(popupCountryform.value,popupLinkform.value);
+
     initialCards.unshift(newArrayElement);
-    let elementsSection = document.querySelector('.elements');
+//    let elementsSection = document.querySelector('.elements');
     elementsSection.innerHTML = '';
     renderAllCards();
     closePopupAll(evt);
+
 }
 
 editButton.addEventListener('click', workPopup);
