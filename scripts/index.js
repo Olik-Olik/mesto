@@ -71,9 +71,13 @@ function submitHandlerProfile(evt) {
     closePopupAll(evt);
 }
 
+function popupOpenAll(popup){
+    popup.classList.add('popup_opened')
+}
+
 function handleImageView(evt) {//обработчик события
     //меняем параметры из попапа, на карточку img /word
-    popupMainContainerImage.classList.add('popup_opened');
+    popupOpenAll(popupMainContainerImage);
     popupImage.src = evt.currentTarget.src;
     popupAlt.alt = evt.currentTarget.alt;
     popupWord.textContent = evt.currentTarget.closest("#template-id").querySelector('.elements__word').textContent;
@@ -132,12 +136,12 @@ function workPopup() {
     //открытие попапа с редактированием профиля
     popupName.value = name.textContent;
     popupJob.value = job.textContent;
-    popup.classList.add('popup_opened');
+    popupOpenAll(popup);
 }
 
 function workpopupPlace() {
     //открытие попапа с местом
-    popupPlace.classList.add('popup_opened');
+    popupOpenAll(popupPlace);
 }
 
 
