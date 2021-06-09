@@ -43,13 +43,12 @@ const openPopupPlaceButton = document.querySelector('.profile__add-button');
 const savePopupProfile = document.querySelector('#popup-mega-id');
 const saveAddPopup = document.querySelector('#popup-input-mega-id');//2-попап
 
-//1
 const popupName = document.querySelector('#popup-field-name');
 const popupJob = document.querySelector('#popup-field-job');
-//1
+
 const popupCountryform = document.querySelector('#popup-field-card-name');//2-попап
 const popupLinkform = document.querySelector('#popup-field-card-img');//ссылка//2-попап
-//куда это будет вставлено 1
+//куда это будет вставлено
 const nameprofileElement = document.querySelector('.profile__title');
 const jobprofileElement = document.querySelector('.profile__subtitle');
 
@@ -59,10 +58,10 @@ const elements = document.querySelectorAll('.elements__card'); //ВСЕ СОДЕ
 const elementsSection = document.querySelector('.elements');
 
 //делаем глобальными  из onLoad
-
 const popupImage = document.querySelector('.popup__image');
 const popupWord = document.querySelector('.popup__image-word');
 
+//const  itemTemplate = document.querySelector('.item-template');
 
 function closePopupAll(evt) {
     //закрываем попап -1
@@ -103,14 +102,13 @@ function createCard(item) { //create
     newElement.querySelector('.elements__image').src = item.link;
     newElement.querySelector('.elements__image').alt = item.name;
     newElement.querySelector('.elements__word').textContent = item.name;
-    // newElement.querySelector('.elements__image').addEventListener('.click', handleImageView)
 
     const likeElement = newElement.querySelector('.elements__like');
     likeElement.addEventListener('click', handleLikeClick);
 
     const newElementImage = newElement.querySelector('.elements__image');
 
-    //новый картинка слушает когда по нему кликнут
+    //новая картинка слушает когда по нему кликнут
     newElementImage.addEventListener('click', handleImageView);//обработчик события
 
     newElement.querySelector('.elements__trash').addEventListener('click', handleCardRemove);
@@ -124,16 +122,9 @@ function renderAllCards() {
     });
 }
 
-//let itemTemplate = null;
-//let popupImage = null;
-//let popupWord = null;
-
-/*const popupWord = document.querySelector('.popup__image-word');
-const popupImage = document.querySelector('.popup__image');*/
 //вызывается при загрузке
 function onLoad() {
     itemTemplate = document.querySelector('.item-template');
-  //  popupImage = document.querySelector('.popup__image');
     renderAllCards();
 }
 
