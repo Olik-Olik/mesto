@@ -55,13 +55,13 @@ const jobprofileElement = document.querySelector('.profile__subtitle');
 
 const newElements = document.querySelector('.elements'); //list весь список
 const elements = document.querySelectorAll('.elements__card'); //ВСЕ СОДЕРЖИМОЕ КАРТОЧКИ
-const elementsSection = document.querySelector('.elements');
+//const elementsSection = document.querySelector('.elements');
 
 //делаем глобальными  из onLoad
 const popupImage = document.querySelector('.popup__image');
 const popupWord = document.querySelector('.popup__image-word');
-
 //const  itemTemplate = document.querySelector('.item-template');
+
 
 function closePopupAll(evt) {
     //закрываем попап -1
@@ -80,7 +80,6 @@ function submitHandlerProfile(evt) {
     closePopupAll(evt);
 }
 
-
 function handleImageView(evt) {//обработчик события
     //меняем параметры из попапа, на карточку img /word
     popupOpenAll(popupMainContainerImage);
@@ -96,6 +95,20 @@ function handleLikeClick(evt) {
 function handleCardRemove(evt) {
     evt.currentTarget.closest('#template-id').remove();
 }
+function renderAllCards() {
+    initialCards.forEach(function (item) {
+        const newCard = createCard(item);
+        newElements.append(newCard);
+        //кладем в ДОМ
+    });
+}
+
+//вызывается при загрузке
+function onLoad() {
+    itemTemplate = document.querySelector('.item-template');
+    renderAllCards();
+}
+window.addEventListener("load", onLoad);
 
 function createCard(item) { //create
     const newElement = itemTemplate.content.cloneNode(true);
@@ -115,20 +128,9 @@ function createCard(item) { //create
     return newElement;
 }
 
-function renderAllCards() {
-    initialCards.forEach(function (item) {
-        const newCard = createCard(item);
-        newElements.append(newCard); //кладем в ДОМ
-    });
-}
 
-//вызывается при загрузке
-function onLoad() {
-    itemTemplate = document.querySelector('.item-template');
-    renderAllCards();
-}
 
-window.addEventListener("load", onLoad);
+
 
 function workPopup() {
     //открытие попапа с редактированием профиля
