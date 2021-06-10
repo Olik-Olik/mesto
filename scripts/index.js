@@ -101,11 +101,6 @@ function renderAllCards() {
     });
 }
 
-//вызывается при загрузке
-function onLoad() {
-    renderAllCards();
-}
-
 function createCard(item) { //create
     const newElement = itemTemplate.content.cloneNode(true);
     newElement.querySelector('.elements__image').src = item.link;
@@ -158,6 +153,6 @@ closePopupChangeProfile.addEventListener('click', closePopupAll);
 savePopupProfile.addEventListener('submit', submitHandlerProfile);
 saveAddPopup.addEventListener('submit', submitAddHandler);
 imagePopupCloseButton.addEventListener('click', closePopupAll);
-window.addEventListener("load", onLoad);
+window.addEventListener("load", renderAllCards);
 
 
