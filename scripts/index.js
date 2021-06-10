@@ -25,8 +25,8 @@ const initialCards = [
         link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
     }
 ];
+
 const editButton = document.querySelector('.profile__edit-button');
-//    let popup = document.querySelector('.popup_type_edit');
 const popupPlace = document.querySelector('.popup_country');
 const closePopupPlace = popupPlace.querySelector('.popup__close-button');//место-1
 
@@ -49,18 +49,15 @@ const popupJob = document.querySelector('#popup-field-job');
 const popupCountryform = document.querySelector('#popup-field-card-name');//2-попап
 const popupLinkform = document.querySelector('#popup-field-card-img');//ссылка//2-попап
 //куда это будет вставлено
-const nameprofileElement = document.querySelector('.profile__title');
-const jobprofileElement = document.querySelector('.profile__subtitle');
-
+const nameProfileElement = document.querySelector('.profile__title');
+const jobProfileElement = document.querySelector('.profile__subtitle');
 
 const newElements = document.querySelector('.elements'); //list весь список
-const elements = document.querySelectorAll('.elements__card'); //ВСЕ СОДЕРЖИМОЕ КАРТОЧКИ
-//const elementsSection = document.querySelector('.elements');
 
 //делаем глобальными  из onLoad
 const popupImage = document.querySelector('.popup__image');
 const popupWord = document.querySelector('.popup__image-word');
-//const  itemTemplate = document.querySelector('.item-template');
+const itemTemplate = document.querySelector('.item-template');
 
 
 function closePopupAll(evt) {
@@ -75,8 +72,8 @@ function popupOpenAll(evt) {
 function submitHandlerProfile(evt) {
     // сохраняем введенные значения
     evt.preventDefault();
-    nameprofileElement.textContent = popupName.value;
-    jobprofileElement.textContent = popupJob.value;
+    nameProfileElement.textContent = popupName.value;
+    jobProfileElement.textContent = popupJob.value;
     closePopupAll(evt);
 }
 
@@ -95,6 +92,7 @@ function handleLikeClick(evt) {
 function handleCardRemove(evt) {
     evt.currentTarget.closest('#template-id').remove();
 }
+
 function renderAllCards() {
     initialCards.forEach(function (item) {
         const newCard = createCard(item);
@@ -105,10 +103,8 @@ function renderAllCards() {
 
 //вызывается при загрузке
 function onLoad() {
-    itemTemplate = document.querySelector('.item-template');
     renderAllCards();
 }
-window.addEventListener("load", onLoad);
 
 function createCard(item) { //create
     const newElement = itemTemplate.content.cloneNode(true);
@@ -128,14 +124,10 @@ function createCard(item) { //create
     return newElement;
 }
 
-
-
-
-
 function workPopup() {
     //открытие попапа с редактированием профиля
-    popupName.value = nameprofileElement.textContent;
-    popupJob.value = jobprofileElement.textContent;
+    popupName.value = nameProfileElement.textContent;
+    popupJob.value = jobProfileElement.textContent;
     popupOpenAll(popupChangeProfile);
 }
 
@@ -143,7 +135,6 @@ function workpopupPlace() {
     //открытие попапа с местом
     popupOpenAll(popupPlace);
 }
-
 
 function submitAddHandler(evt) {
 
@@ -167,5 +158,6 @@ closePopupChangeProfile.addEventListener('click', closePopupAll);
 savePopupProfile.addEventListener('submit', submitHandlerProfile);
 saveAddPopup.addEventListener('submit', submitAddHandler);
 imagePopupCloseButton.addEventListener('click', closePopupAll);
+window.addEventListener("load", onLoad);
 
 
