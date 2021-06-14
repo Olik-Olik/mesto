@@ -42,38 +42,79 @@
 <section class="popup_type_edit popup">
     <button aria-label='Закрыть всплывающее окошко' class="popup__close-button" type="button"></button>
     <div class="popup__container">
-        <form action="#" aria-label='получения инфо и передачи данных' class="popup__form" id="popup-mega-id"
-              method="GET"
-              name="resaveProfile">
+        <!-- стандартные сообщения об ошибке не нужны-->
+        <form   class="popup__form"
+                novalidate
+                name="resaveProfile"
+                action="#"
+                aria-label='получения инфо и передачи данных'
+                id="popup-mega-id"
+                method="GET">
             <h2 class="popup__page">Редактировать профиль</h2>
-            <input class="popup__field" id="popup-field-name" name="inputForm_name" placeholder="Ваше имя" type="text" value='Жак-Ив Кусто' required>
-            <input class="popup__field" id="popup-field-job" name="inputForm_job "
-                   placeholder="Род занятия" type="text"
-                   value='Исследователь океана' required>
-            <button aria-label='Кнопка Сохранить' class="popup__save " type="submit">Сохранить</button>
+            <input class="popup__field"
+                   id="popup-field-name"
+                   name="inputForm_name"
+                   placeholder="Ваше имя"
+                   type="text" value='Жак-Ив Кусто' required
+                   minlength="2" maxlength="40">
+            <span class = "mistakes" id = "popup-field-name-mistakes"></span>
+            <input class="popup__field"
+                   id="popup-field-job"
+                   name="inputForm_job"
+                   placeholder="Род занятия"
+                   type="text"
+                   value='Исследователь океана' required
+                   minlength="2" maxlength="200">
+            <span class = "mistakes"
+                  id = "popup-field-job-mistakes"></span>
+            <button aria-label='Кнопка Сохранить'
+                    class="popup__save"
+                    type="submit">Сохранить</button>
         </form>
     </div>
 </section>
 <section class="popup popup_country">
-    <button aria-label='Закрыть всплывающее окошко' class="popup__close-button" type="button"></button>
+    <button aria-label='Закрыть всплывающее окошко'
+            class="popup__close-button"
+            type="button"></button>
     <div class="popup__container">
-        <form action="#" aria-label='получения инфо и передачи данных в адресной строке' class="popup__form"
-              id="popup-input-mega-id" method="GET"
-              name="resaveCountry">
+        <!-- стандартные сообщения об ошибке не нужны-->
+        <form   class="popup__form"
+                novalidate
+                name="resaveCountry"
+                action="#"
+                aria-label='получения инфо и передачи данных в адресной строке'
+                id="popup-input-mega-id"
+                method="GET">
             <h2 class="popup__page">Новое место</h2>
-            <input class="popup__field" id="popup-field-card-name" name="popup-input-place" placeholder="Название"
-                   type="text" value='' required>
-            <input class="popup__field" id="popup-field-card-img" name="popup-input-img"
+            <input class="popup__field"
+                   id="popup-field-card-name"
+                   name="popup-input-place"
+                   placeholder="Название"
+                   type="text" value='' required
+                   minlength="2" maxlength="200">
+            <span class = "mistakes"
+                  id = "popup-field-card-name-mistakes"></span>
+            <input class="popup__field"
+                   id="popup-field-card-img"
+                   name="popup-input-img"
                    placeholder="Ссылка на картинку"
-                   type="url" value='' required>
-            <button aria-label='Кнопка Сохранить' class="popup__save" type="submit">Сохранить</button>
+                   type="url" value='' required
+                   minlength="2">
+                   <span class = "mistakes"
+                   id = "popup-field-card-img-mistakes"></span>
+                   <button aria-label='Кнопка Сохранить'
+                    class="popup__save"
+                    type="submit">Сохранить</button>
 
         </form>
     </div>
 </section>
 <section class="popup popup_type_image">
     <div class="popup__combine-image">
-        <button aria-label='Закрыть всплывающее окошко' class="popup__close-button-image" type="button"></button>
+        <button class="popup__close-button-image"
+                aria-label='Закрыть всплывающее окошко'
+                type="button"></button>
         <div class="popup__combine-word">
             <div class="popup__container-image">
             </div>
@@ -85,16 +126,21 @@
 <template class="item-template">
     <div class="elements__card" id="template-id" >
         <div class="elements__trash-image">
-            <button class="elements__trash" type="button"></button>
+            <button class="elements__trash"
+                    aria-label='Удаление элемента'
+                    type="button"></button>
             <img alt="Картинка" class="elements__image" src="images/Elbrus.jpg">
         </div>
         <div class="elements__combine">
             <h2 class="elements__word">Домбай</h2>
-            <button aria-label="Лайк" class="elements__like" type="button"></button>
+            <button  class="elements__like"
+                     aria-label='Лайк'
+                     type="button"></button>
         </div>
     </div>
 </template>
 <script src="scripts/index.js"></script>
+<script src="scripts/validate.js"></script>
 </body>
 </html>
 

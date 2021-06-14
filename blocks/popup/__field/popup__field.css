@@ -11,13 +11,19 @@
     padding-left: 0;
     padding-right: 0;
 }
-/* super!!!!
+
 .popup__field:invalid {
-    border: 2px dashed red;
+    border: 1px solid red;  /* красная рамка для некорректных данных */
 }
 
 .popup__field:invalid:required {
-    background-image: linear-gradient( pink, lightgreen);
+    background-image: linear-gradient( yellow,red,lightgreen);/*красоты ради*/
 }
-*/
+
+/*
+.popup__field:valid {
+    border: 1px solid green;
+.popup__field:invalid {
+    border: 1px  dashed red;
+}*/
 
