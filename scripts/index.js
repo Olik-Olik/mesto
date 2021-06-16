@@ -60,10 +60,10 @@ const popupWord = document.querySelector('.popup__image-word');
 const itemTemplate = document.querySelector('.item-template');
 
 //6 спринт добавляю
-const trigger =document.querySelector('.profile__add-button');
+/*const trigger =document.querySelector('.profile__add-button');
 const closeButton =document.querySelector('.popup__close-button');
 const modal = document.querySelector('.popup');
-const addButton =document.querySelector('.popup__save');
+const addButton =document.querySelector('.popup__save');*/
 
 
 function closePopupAll(evt) {
