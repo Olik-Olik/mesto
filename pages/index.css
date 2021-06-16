@@ -60,6 +60,9 @@
 @import url(../blocks/popup/__combine-image/popup__combine-image.css);
 @import url(../blocks/popup/__combine-word/popup__combine-word.css);
 
+@import url(../blocks/form/__input/form__input.css);
+@import url(../blocks/form/__input/_error/form__input_error.css);
+@import url(../blocks/form/__input/_error-active/form__input_error-active.css);
 
 
 

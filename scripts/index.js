@@ -59,11 +59,7 @@ const popupImage = document.querySelector('.popup__image');
 const popupWord = document.querySelector('.popup__image-word');
 const itemTemplate = document.querySelector('.item-template');
 
-//6 спринт добавляю
-/*const trigger =document.querySelector('.profile__add-button');
-const closeButton =document.querySelector('.popup__close-button');
-const modal = document.querySelector('.popup');
-const addButton =document.querySelector('.popup__save');*/
+
 
 
 function closePopupAll(evt) {
@@ -90,6 +86,25 @@ function handleImageView(evt) {//обработчик события
     popupImage.alt = evt.currentTarget.alt;
     popupWord.textContent = evt.currentTarget.closest("#template-id").querySelector('.elements__word').textContent;
 }
+/*
+//закрытие вне элемента
+const popup = document.querySelector('.popup');
+document.onclick = function (evt){
+    if (!evt.target.classList.contains('popup')){
+        closePopupAll();
+    }
+};*/
+
+// закрытие по esc
+document.addEventListener('keydown', function(evt) {
+    if (evt.code === 'Escape'|| evt.key === 'Escape') {
+        //если нажата то закрываем
+        evt.preventDefault();//прекращение всплытия
+        closePopupAll();
+    }
+});
+
+
 
 function handleLikeClick(evt) {
     evt.currentTarget.classList.toggle('elements__like_active');
@@ -116,15 +131,7 @@ function createCard(item) { //create
     newElement.querySelector('.elements__image').alt = item.name;
     newElement.querySelector('.elements__word').textContent = item.name;
 
-    //6sprint
-   /* if (newElement.value.length === 0 ){
-     addButton.setAttribute('disabled');
-     addButton.classList.add('input__btn_disabled');
-    }
-    else {
-        addButton.removeAttribute('disabled');
-        addButton.classList.remove('input__btn_disabled');
-    }*/
+
     const likeElement = newElement.querySelector('.elements__like');
     likeElement.addEventListener('click', handleLikeClick);
 
