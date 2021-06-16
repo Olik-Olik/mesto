@@ -1,79 +1,50 @@
-//«Редактировать профиль»
-function enableValidation() {
-    // Вынесем все необходимые элементы формы в константы
-    const form = document.querySelector('.popup__form[name=resaveProfile]');
 
-    form.addEventListener('submit', submitHandlerProfile(evt));// Слушатель события submit
-    form.addEventListener('input', handleFormProfileInput(evt));// Слушатель события input
+   // const form = document.querySelector('.popup__form[name="resaveCountry"]');
+   // const error = form.querySelector('.mistakes-input');
+    const input = form.querySelector('.popup__field');
 
-    //  const formInput = formProfile.querySelector('.form__input');
-    // const formError = formProfile.querySelector(`.${formInput.id}-error`);
-}
+    function enableValidation()
+    { const form = document.querySelector('.popup__form[name="resaveCountry"]');
+      form.addEventListener('submit',submitAddHandler);//2-ой попап на add submitHandlerPlaceForm
+      form.addEventListener('input',workpopupPlace)}//2-ой попап на input
 
-function submitHandlerProfile(evt) {
-    // evt.preventDefault(); // Отменим стандартное поведение
 
-    const form = evt.currentTarget();
-    const valid = form.checkValidity();
-    if (valid) {
-        alert('Все отлично форма валидна');
-        form.reset();
-    } else {
-        alert('Меняй свою невалидную форму');
+    // Функция добавляет класс с ошибкой текст ошибки 2-ой параметр
+          const showInputError = (input, errorMessage) => {
+           input.classList.add('form__input_type_error');
+          // Заменим содержимое span с ошибкой на переданный параметр
+         error.textContent = errorMessage;
+         error.classList.add('form__input-error_active');
     }
-    // Выведем в консоль значение свойства validity.valid поля ввода, на котором слушаем событие
-    console.log(evt.target.validity.valid);
-}
+    //удаляет класс с ошибкой
+        const hideInputError = (input) => {
+        input.classList.remove('form__input_type_error')}
+        //  делает ошибку видимой когда в поле ввода добавят некорректный текст
+        error.classList.remove('popup__field-error_active');//form__input-error_active?
+        //  Очистить свойство textContent элемента error.
+        error.textContent = '';
+   // }
 
-function handleFormProfileInput(evt) {
-    // Вынесем все необходимые элементы формы в константы
-    const inputProfile = evt.target;//ссылка на объект, который был инициатором события.
-    const formProfile = evt.currentTarget;//элемент, в котором в данный момент обрабатывается событие на что повесиои
-    textForUserError(inputProfile);//текст ошибки
-}
+    // Функция, которая проверяет валидность поля submitAddHandler
+    function submitHandlerPlaceForm(evt) {
+        evt.preventDefault(); // Отменим стандартное поведение отдает управление этому коду
+        const form = evt.currentTarget();//текущий эл-т in форму получаем .Валидна ли форма
+        const isValid = () => {
+        if (!formInput.validity.valid) {
+            form.reset();
+            // Если поле не проходит валидацию, покажем ошибку
+            showInputError(input);
+        } else {
+            // Если проходит, скроем
+            hideInputError(input);
+        }}
+    };
 
-function textForUserError(inputProfile) {
-    const validity = inputProfile.validity;
-    inputProfile.setCustomValidity('');//обнулись
-    const min = inputProfile.getAttribute('minlength');
-    const max = inputProfile.getAttribute('maxlength')
+    form.addEventListener('submit', function (evt) {
+        // Отменим стандартное поведение по сабмиту
+        evt.preventDefault();
+    });
 
-    if (validity.valueMissing) {
-        inputProfile.setCustomValidity('Вы пропустили это поле')
-    }
-    if (validity.rangeOverflow) {
-        inputProfile.setCustomValidity('Значение превосходит атрибут max')
-    }
-    if (validity.rangeUnderflow) {
-        inputProfile.setCustomValidity('Значение меньше атрибута min')
-    }
-    if (validity.typeMismatch) {
-        inputProfile.setCustomValidity('Значение не соответствует атрибуту type не ссылка')
-    }
-
-}
-
-function mistakesField(input) {
-    const span = document.querySelector(`.${span.id}-error`);
-    //const formError = formProfile.querySelector(`.${formInput.id}-error`);
-    span.textContent = input.validitionMessage;
-}
-
-
-enableValidation();
-
-
-/*    {
-    formSelector: '.popup__form',
-    inputSelector: '.popup__input',
-    submitButtonSelector: '.popup__button',
-    inactiveButtonClass: 'popup__button_disabled',
-    inputErrorClass: 'popup__input_type_error',
-    errorClass: 'popup__error_visible'
-});*/
-
-//   if (evt.target.classList.contains('.popup_opened')){closePopupAll(popup)}
-
-
-
+    // Вызовем функцию isValid на каждый ввод символа
+    input.addEventListener('input', isValid);
 

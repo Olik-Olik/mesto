@@ -59,6 +59,12 @@ const popupImage = document.querySelector('.popup__image');
 const popupWord = document.querySelector('.popup__image-word');
 const itemTemplate = document.querySelector('.item-template');
 
+//6 спринт добавляю
+const trigger =document.querySelector('.profile__add-button');
+const closeButton =document.querySelector('.popup__close-button');
+const modal = document.querySelector('.popup');
+const addButton =document.querySelector('.popup__save');
+
 
 function closePopupAll(evt) {
     //закрываем попап -1
@@ -98,6 +104,9 @@ function renderAllCards() {
         const newCard = createCard(item);
         newElements.append(newCard);
         //кладем в ДОМ
+        //6 sprint
+        //addButton.setAttribute('disabled');
+       // addButton.classList.add('input__btn_disabled');
     });
 }
 
@@ -107,6 +116,15 @@ function createCard(item) { //create
     newElement.querySelector('.elements__image').alt = item.name;
     newElement.querySelector('.elements__word').textContent = item.name;
 
+    //6sprint
+   /* if (newElement.value.length === 0 ){
+     addButton.setAttribute('disabled');
+     addButton.classList.add('input__btn_disabled');
+    }
+    else {
+        addButton.removeAttribute('disabled');
+        addButton.classList.remove('input__btn_disabled');
+    }*/
     const likeElement = newElement.querySelector('.elements__like');
     likeElement.addEventListener('click', handleLikeClick);
 
@@ -117,6 +135,7 @@ function createCard(item) { //create
 
     newElement.querySelector('.elements__trash').addEventListener('click', handleCardRemove);
     return newElement;
+
 }
 
 function workPopup() {
@@ -143,8 +162,10 @@ function submitAddHandler(evt) {
     newElements.prepend(newCard);
     saveAddPopup.reset();
     closePopupAll(evt);
-
 }
+
+
+
 
 editButton.addEventListener('click', workPopup);
 openPopupPlaceButton.addEventListener('click', workpopupPlace);
