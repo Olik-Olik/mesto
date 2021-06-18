@@ -19,10 +19,10 @@
 
 //Вот стартовый код
 const enableValidation = ({formSelector, ...rest}) => {
-    const formList = Array.from(document.querySelectorAll(formSelector));
-    formList.forEach((formElement) => {
+    const formItems = Array.from(document.querySelectorAll(formSelector));
+    formItems.forEach((formElement) => {
         formElement.addEventListener('submit', (evt) => {
-            //evt.preventDefault();
+            evt.preventDefault();
         });
         setEventListeners(formElement, rest);
     })
@@ -63,12 +63,11 @@ const hideInputError = (inputElement, inputElementConfig) => {
 const checkInputValidity = (inputElement, inputElementConfig) => {
     if (!inputElement.validity.valid) {
         if(inputElement.value.length === 0){
-            showInputError(inputElement, inputElementConfig, inputElementConfig.message);
+            showInputError(inputElement, inputElementConfig, emptyFieldErrorMsg);
         }else {
-            errText = handleInvalidInputProfile(inputElement);
+            const errText = handleInvalidInput(inputElement, inputElementConfig.message);
             showInputError(inputElement, inputElementConfig, errText);
         }
-
     } else {
         hideInputError(inputElement, inputElementConfig);
     }

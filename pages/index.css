@@ -53,6 +53,7 @@
 @import url(../blocks/popup/__image/popup__image.css);
 @import url(../blocks/popup/__container-image/popup__container-image.css);
 @import url(../blocks/popup/_type/_new-card/popup_type_new-card.css);
+@import url(../blocks/popup/__label/popup__label.css);
 
 @import url(../blocks/popup/_type/_image/popup_type_image.css);
 @import url(../blocks/popup/_type/_new-card/popup_type_new-card.css);

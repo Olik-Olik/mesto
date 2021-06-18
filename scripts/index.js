@@ -186,7 +186,7 @@ saveAddPopup.addEventListener('submit', submitAddHandler);
 imagePopupCloseButton.addEventListener('click', closePopupAll);
 window.addEventListener("load", renderAllCards);
 
-
+const emptyFieldErrorMsg = "   Вы пропустили это поле.";
 
 //для валидации файл конфиг указываем класс кнопок инпутов форм
 const configs = [
@@ -194,14 +194,14 @@ const configs = [
         formSelector: '.popup__form[name="resaveProfile"]',
         inputElement: '.popup__field',
         submitButton: '.popup__save',
-        message:"Вы пропустили это поле.",
+        message:      emptyFieldErrorMsg,
         popupIsValid:'popup__button_valid',
         popupIsInvalid:'popup__button_invalid'
     },
     {   formSelector: '.popup__form[name="resaveCountry"]',
         inputElement: '.popup__field',
         submitButton: '.popup__save',
-        message:"Введите адрес сайта.",
+        message:      "Введите адрес сайта.",
         popupIsValid:'popup__button_valid',
        // urladress: '.popup__input_url',
         popupIsInvalid:'popup__button_invalid',
