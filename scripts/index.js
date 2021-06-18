@@ -205,14 +205,17 @@ const configs = [
         popupIsValid:'popup__button_valid',
        // urladress: '.popup__input_url',
         popupIsInvalid:'popup__button_invalid',
-
-
-        /*inputSelector: '.popup__input',
-        submitButtonSelector: '.popup__button',
-        inactiveButtonClass: 'popup__button_disabled',
-        inputErrorClass: 'popup__input_type_error',
-        errorClass: 'popup__error_visible'*/
     }
 ]
+
+//ищем все оверлеи=блокеры  навешиваем листенер на онклик
+const blockerList = Array.from(document.querySelectorAll('.blocker'));
+blockerList.forEach((blocker) => {
+    blocker.addEventListener('click', (evt) => {
+        closePopupAll(evt);
+    });
+})
+
+
 configs.forEach(config=>enableValidation(config));
 
