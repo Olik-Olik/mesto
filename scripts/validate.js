@@ -28,8 +28,6 @@ const enableValidation = ({formSelector, ...rest}) => {
     })
 };
 
-
-
 const setEventListeners = (formElement, formConfig) => {
     const inputList = Array.from(formElement.querySelectorAll(formConfig.inputElement));
     const buttonElement = formElement.querySelector(formConfig.submitButton);// сохранения
@@ -42,8 +40,6 @@ const setEventListeners = (formElement, formConfig) => {
         });
     });
 };
-
-
 
 const showInputError = (inputElement, inputElementConfig, errorMessage) => {
     const errorElement = document.querySelector(`#${inputElement.id}-error`); //#popup-field-name-error
@@ -73,8 +69,6 @@ const checkInputValidity = (inputElement, inputElementConfig) => {
     }
 };
 
-
-
 //проверяет наличие невалидного поля и сигнализирует, можно ли разблокировать кнопку сабмита
 const hasInvalidInput = (inputList) => {
     // удовлетворяет ли какой-либо элемент  условию
@@ -83,8 +77,6 @@ const hasInvalidInput = (inputList) => {
         return !inputElement.validity.valid;
     })
 };
-
-
 
 function toggleButtonState(inputList, buttonElement){
     if (hasInvalidInput(inputList)){
