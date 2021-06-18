@@ -22,7 +22,7 @@ const enableValidation = ({formSelector, ...rest}) => {
     const formList = Array.from(document.querySelectorAll(formSelector));
     formList.forEach((formElement) => {
         formElement.addEventListener('submit', (evt) => {
-            evt.preventDefault();
+            //evt.preventDefault();
         });
         setEventListeners(formElement, rest);
     })
@@ -62,7 +62,13 @@ const hideInputError = (inputElement, inputElementConfig) => {
 
 const checkInputValidity = (inputElement, inputElementConfig) => {
     if (!inputElement.validity.valid) {
-        showInputError(inputElement, inputElementConfig, inputElementConfig.message);
+        if(inputElement.value.length === 0){
+            showInputError(inputElement, inputElementConfig, inputElementConfig.message);
+        }else {
+            errText = handleInvalidInputProfile(inputElement);
+            showInputError(inputElement, inputElementConfig, errText);
+        }
+
     } else {
         hideInputError(inputElement, inputElementConfig);
     }
