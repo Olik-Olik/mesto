@@ -1,8 +1,8 @@
-/*
-.popup__field_job:invalid {
-    border: 2px dashed red;
-}
 
+.popup__field_job:invalid {
+    border: 1px solid red;
+}
+/*
 .popup__field_job:invalid:required {
     background-image: linear-gradient( palevioletred, lightgreen);
 

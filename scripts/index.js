@@ -60,8 +60,6 @@ const popupWord = document.querySelector('.popup__image-word');
 const itemTemplate = document.querySelector('.item-template');
 
 
-
-
 function closePopupAll(evt) {
     //закрываем попап -1
     evt.target.closest('section').classList.remove('popup_opened');
@@ -93,7 +91,7 @@ document.onclick = function (evt){
     if (!evt.target.classList.contains('popup')){
         closePopupAll();
     }
-};*/
+};
 
 // закрытие по esc
 document.addEventListener('keydown', function(evt) {
@@ -103,8 +101,7 @@ document.addEventListener('keydown', function(evt) {
         closePopupAll();
     }
 });
-
-
+*/
 
 function handleLikeClick(evt) {
     evt.currentTarget.classList.toggle('elements__like_active');
@@ -142,8 +139,17 @@ function createCard(item) { //create
 
     newElement.querySelector('.elements__trash').addEventListener('click', handleCardRemove);
     return newElement;
-
 }
+/*//открытие модального окна
+function openModal(newElement,name,link){
+    newElement.querySelector('.elements__image');
+ addEventListener('click',openModal)=>
+    newElement.src = link;
+    newElement.alt = name;
+    newElement.textContent = name;
+}
+openModal();*/
+
 
 function workPopup() {
     //открытие попапа с редактированием профиля
@@ -158,7 +164,6 @@ function workpopupPlace() {
 }
 
 function submitAddHandler(evt) {
-
     // сохраняем введенные значения 2 popup
     evt.preventDefault();
     const newArrayElement = {
@@ -172,8 +177,6 @@ function submitAddHandler(evt) {
 }
 
 
-
-
 editButton.addEventListener('click', workPopup);
 openPopupPlaceButton.addEventListener('click', workpopupPlace);
 closePopupPlace.addEventListener('click', closePopupAll);
@@ -183,4 +186,33 @@ saveAddPopup.addEventListener('submit', submitAddHandler);
 imagePopupCloseButton.addEventListener('click', closePopupAll);
 window.addEventListener("load", renderAllCards);
 
+
+
+//для валидации файл конфиг указываем класс кнопок инпутов форм
+const configs = [
+    {
+        formSelector: '.popup__form[name="resaveProfile"]',
+        inputElement: '.popup__field',
+        submitButton: '.popup__save',
+        message:"Вы пропустили это поле.",
+        popupIsValid:'popup__button_valid',
+        popupIsInvalid:'popup__button_invalid'
+    },
+    {   formSelector: '.popup__form[name="resaveCountry"]',
+        inputElement: '.popup__field',
+        submitButton: '.popup__save',
+        message:"Введите адрес сайта.",
+        popupIsValid:'popup__button_valid',
+       // urladress: '.popup__input_url',
+        popupIsInvalid:'popup__button_invalid',
+
+
+        /*inputSelector: '.popup__input',
+        submitButtonSelector: '.popup__button',
+        inactiveButtonClass: 'popup__button_disabled',
+        inputErrorClass: 'popup__input_type_error',
+        errorClass: 'popup__error_visible'*/
+    }
+]
+configs.forEach(config=>enableValidation(config));
 

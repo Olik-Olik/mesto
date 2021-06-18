@@ -43,38 +43,45 @@
     <button aria-label='Закрыть всплывающее окошко' class="popup__close-button" type="button"></button>
     <div class="popup__container">
         <!-- стандартные сообщения об ошибке не нужны-->
-        <form   class="popup__form"
-                novalidate
-                name="resaveProfile"
-                action="#"
-                aria-label='получения инфо и передачи данных'
-                id="popup-mega-id"
-                method="GET">
-            <h2 class="popup__page">Редактировать профиль</h2>
-            <input class="popup__field form__input"
-                   id="popup-field-name"
-                   name="inputForm_name"
-                   placeholder="Ваше имя"
-                   type="text" value='Жак-Ив Кусто' required
-                   minlength="2" maxlength="40">
-            <span class = "form__input-error" id = "popup-field-name-error"></span>
-            <input class="popup__field form__input"
-                   id="popup-field-job"
-                   name="inputForm_job"
-                   placeholder="Род занятия"
-                   type="text"
-                   value='Исследователь океана' required
-                   minlength="2" maxlength="200">
-            <!--элемент ошибки с полем, которое ей соответствует.
-             Надёжный способ — добавить атрибут id полю ввода и задать уникальный класс тегу span .
-             Далее искать по этим значениям.-->
-            <span class = "form__input-error"
-                  id = "popup-field-job-mistakes"></span>
+        <form action="#"
+              aria-label='получения инфо и передачи данных'
+              class="popup__form"
+              id="popup-mega-id"
+              method="GET"
+              name="resaveProfile"
+              novalidate>
+            <label class="popup__label">
+                <h2 class="popup__page">Редактировать профиль</h2>
+                <input class="popup__field form__input"
+                       id="popup-field-name"
+                       maxlength="40"
+                       minlength="2"
+                       name="inputForm_name"
+                       placeholder="Ваше имя"
+                       required
+                       type="text"
+                       value='Жак-Ив Кусто'>
+                <span class="form__input-error" id="popup-field-name-error"></span>
+            </label>
+            <label class="popup__label">
+                <input class="popup__field form__input"
+                       id="popup-field-job"
+                       minlength="2"
+                       maxlength="200"
+                       name="inputForm_job"
+                       placeholder="Род занятия"
+                       required
+                       type="text"
+                       value='Исследователь океана'>
+                <span class="form__input-error"
+                      id="popup-field-job-error"></span>
+            </label>
             <button aria-label='Кнопка Сохранить'
                     class="popup__save"
 
-                    type="submit">Сохранить</button>
-            <!--    disabled-->
+                    type="submit">Сохранить
+            </button>
+
         </form>
     </div>
 </section>
@@ -84,47 +91,50 @@
             type="button"></button>
     <div class="popup__container">
         <!-- стандартные сообщения об ошибке не нужны-->
-        <form   class="popup__form"
-                novalidate
-                name="resaveCountry"
-                action="#"
-                aria-label='получения инфо и передачи данных в адресной строке'
-                id="popup-input-mega-id"
-                method="GET">
-            <h2 class="popup__page">Новое место</h2>
-            <input class="popup__field popup__input_name form__input"
-                   id="popup-field-card-name"
-                   name="popup-input-place"
-                   placeholder="Название"
-                   type="text"
-                   value=''
-                   required
-                   minlength="2"
-                   maxlength="30">
-            <span class = "form__input-error"
-                  id = "popup-field-card-name-mistakes"></span>
-       <input class="popup__field popup__input_url form__input"
-                   id="popup-field-card-img"
-                   name="popup-input-img"
-                   placeholder="Ссылка на картинку"
-                   type="url"
-                   value=''
-                   required
-                   minlength="2">
-                   <span class = "form__input-error url-input-error"
-                   id = "popup-field-card-img-mistakes">Необходимо заполнить данное поле</span>
-                   <button aria-label='Кнопка Сохранить'
+        <form action="#"
+              aria-label='получения инфо и передачи данных в адресной строке'
+              class="popup__form"
+              id="popup-input-mega-id"
+              method="GET"
+              name="resaveCountry"
+              novalidate>
+            <label class="popup__label">
+                <h2 class="popup__page">Новое место</h2>
+                <input class="popup__field popup__input_name form__input"
+                       id="popup-field-card-name"
+                       maxlength="30"
+                       minlength="2"
+                       name="popup-input-place"
+                       placeholder="Название"
+                       required
+                       type="text"
+                       value=''>
+                <span class="form__input-error"
+                      id="popup-field-card-name-error"></span>
+            </label>
+            <label class="popup__label"><input class="popup__field popup__input_url form__input"
+                                               id="popup-field-card-img"
+                                               minlength="2"
+                                               name="popup-input-img"
+                                               placeholder="Ссылка на картинку"
+                                               required
+                                               type="url"
+                                               value=''>
+                <span class="form__input-error url-input-error"
+                      id="popup-field-card-img-error"></span>
+            </label>
+            <button aria-label='Кнопка Сохранить'
                     class="popup__save"
-
-                    type="submit">Сохранить</button>
+                    type="submit">Сохранить
+            </button>
             <!-- disabled-->
         </form>
     </div>
 </section>
 <section class="popup popup_type_image">
     <div class="popup__combine-image">
-        <button class="popup__close-button-image"
-                aria-label='Закрыть всплывающее окошко'
+        <button aria-label='Закрыть всплывающее окошко'
+                class="popup__close-button-image"
                 type="button"></button>
         <div class="popup__combine-word">
             <div class="popup__container-image">
@@ -135,23 +145,25 @@
     </div>
 </section>
 <template class="item-template">
-    <div class="elements__card" id="template-id" >
+    <div class="elements__card" id="template-id">
         <div class="elements__trash-image">
-            <button class="elements__trash"
-                    aria-label='Удаление элемента'
+            <button aria-label='Удаление элемента'
+                    class="elements__trash"
                     type="button"></button>
             <img alt="Картинка" class="elements__image" src="images/Elbrus.jpg">
         </div>
         <div class="elements__combine">
             <h2 class="elements__word">Домбай</h2>
-            <button  class="elements__like"
-                     aria-label='Лайк'
-                     type="button"></button>
+            <button aria-label='Лайк'
+                    class="elements__like"
+                    type="button"></button>
         </div>
     </div>
 </template>
-<script src="scripts/index.js"></script>
 <script src="scripts/validate.js"></script>
+<script src="scripts/index.js"></script>
+
+<!--<script src="scripts/try.js" defer></script>-->
 </body>
 </html>
 
