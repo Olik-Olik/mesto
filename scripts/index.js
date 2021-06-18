@@ -65,6 +65,13 @@ function closePopupAll(evt) {
     evt.target.closest('section').classList.remove('popup_opened');
 }
 
+function closePopupEsc() {
+    const popupList = document.querySelectorAll('.popup_opened');
+    popupList.forEach((pop) => {
+        pop.classList.remove('popup_opened');
+    })
+}
+
 function popupOpenAll(evt) {
     evt.classList.add('popup_opened')
 }
@@ -84,24 +91,15 @@ function handleImageView(evt) {//обработчик события
     popupImage.alt = evt.currentTarget.alt;
     popupWord.textContent = evt.currentTarget.closest("#template-id").querySelector('.elements__word').textContent;
 }
-/*
-//закрытие вне элемента
-const popup = document.querySelector('.popup');
-document.onclick = function (evt){
-    if (!evt.target.classList.contains('popup')){
-        closePopupAll();
-    }
-};
+
 
 // закрытие по esc
 document.addEventListener('keydown', function(evt) {
-    if (evt.code === 'Escape'|| evt.key === 'Escape') {
-        //если нажата то закрываем
-        evt.preventDefault();//прекращение всплытия
-        closePopupAll();
+    if (evt.code === '27' || evt.key === 'Escape') {
+        closePopupEsc();
     }
 });
-*/
+
 
 function handleLikeClick(evt) {
     evt.currentTarget.classList.toggle('elements__like_active');
@@ -116,9 +114,6 @@ function renderAllCards() {
         const newCard = createCard(item);
         newElements.append(newCard);
         //кладем в ДОМ
-        //6 sprint
-        //addButton.setAttribute('disabled');
-       // addButton.classList.add('input__btn_disabled');
     });
 }
 
@@ -140,16 +135,6 @@ function createCard(item) { //create
     newElement.querySelector('.elements__trash').addEventListener('click', handleCardRemove);
     return newElement;
 }
-/*//открытие модального окна
-function openModal(newElement,name,link){
-    newElement.querySelector('.elements__image');
- addEventListener('click',openModal)=>
-    newElement.src = link;
-    newElement.alt = name;
-    newElement.textContent = name;
-}
-openModal();*/
-
 
 function workPopup() {
     //открытие попапа с редактированием профиля
@@ -203,7 +188,6 @@ const configs = [
         submitButton: '.popup__save',
         message:      "Введите адрес сайта.",
         popupIsValid:'popup__button_valid',
-       // urladress: '.popup__input_url',
         popupIsInvalid:'popup__button_invalid',
     }
 ]
@@ -216,6 +200,4 @@ blockerList.forEach((blocker) => {
     });
 })
 
-
 configs.forEach(config=>enableValidation(config));
-

@@ -1,22 +1,3 @@
-// Вынесем все необходимые элементы формы в константы
-//const formElement = document.querySelector('.form');
-//const formInput = formElement.querySelector('.popup__field');
-
-/*const enableValidation = () => {
-    const formList = Array.from(document.querySelectorAll('.form'));
-    formList.forEach((formElement) => {
-        formElement.addEventListener('submit', function (evt) {
-            evt.preventDefault();
-        });
-        const fieldsetList = Array.from(formElement.querySelectorAll('.form__set'));//Присвойте
-        // ей массив из всех элементов с классом form__set внутри текущей формы — formElement.
-        //Обойдите этот массив методом forEach. Для каждого филдсета элемента вызовите функцию setEventListeners и передайте ей аргументом нужный fieldset
-        fieldsetList.forEach((fieldSet) => {
-            setEventListeners(form,rest);
-        });
-    });
-};*/
-
 //Вот стартовый код
 const enableValidation = ({formSelector, ...rest}) => {
     const formItems = Array.from(document.querySelectorAll(formSelector));
@@ -44,12 +25,11 @@ const setEventListeners = (formElement, formConfig) => {
 const showInputError = (inputElement, inputElementConfig, errorMessage) => {
     const errorElement = document.querySelector(`#${inputElement.id}-error`); //#popup-field-name-error
     inputElement.classList.add('form__input_error');
-//    const span=document.querySelector('.form__input-error);
     errorElement.textContent = errorMessage;
     errorElement.classList.add('form__input-error_active');
 };
 
-const hideInputError = (inputElement, inputElementConfig) => {
+const hideInputError = (inputElement) => {
     const errorElement = document.querySelector(`#${inputElement.id}-error`);
     inputElement.classList.remove('form__input_error');
     errorElement.classList.remove('form__input-error_active');
@@ -65,7 +45,7 @@ const checkInputValidity = (inputElement, inputElementConfig) => {
             showInputError(inputElement, inputElementConfig, errText);
         }
     } else {
-        hideInputError(inputElement, inputElementConfig);
+        hideInputError(inputElement);
     }
 };
 

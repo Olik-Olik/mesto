@@ -1,9 +1,3 @@
-function submitHandleProfile(evt) {
-    //evt.preventDefault() не нужен. Обраьлока по умолчанию
-    const formProfileInput = evt.currentTarget;
-    const isValid = formProfile.checkValidity();
-}
-
 function handleInvalidInput(inputElement, typeErrorMsg){
     const proverka = inputElement.validity;
     const length = inputElement.value.length;
