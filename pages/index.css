@@ -61,7 +61,7 @@
 @import url(../blocks/popup/__combine-image/popup__combine-image.css);
 @import url(../blocks/popup/__combine-word/popup__combine-word.css);
 
-@import url(../blocks/form/__input-error/form__input-error.css);
+@import url(../blocks/popup/__input-error/popup__input-error.css);
 @import url(../blocks/form/__input/_error-active/form__input_error-active.css);
 
 @import url(../blocks/button/_inactive/button_inactive.css);
