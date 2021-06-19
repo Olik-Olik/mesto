@@ -1,4 +1,6 @@
 //Переменные
+const keyCodeEsc = '27';
+
 const initialCards = [
     {
         name: 'Архыз',
@@ -28,78 +30,71 @@ const initialCards = [
 
 const editButton = document.querySelector('.profile__edit-button');
 const popupPlace = document.querySelector('.popup_country');
-const closePopupPlace = popupPlace.querySelector('.popup__close-button');//место-1
+const closePopupPlaceButton = popupPlace.querySelector('.popup__close-button');//место-1
 
 const popupChangeProfile = document.querySelector('.popup_type_edit');
-const closePopupChangeProfile = popupChangeProfile.querySelector('.popup__close-button');//Кусто-2
+const closePopupChangeProfileButton = popupChangeProfile.querySelector('.popup__close-button');//Кусто-2
 
-const popupMainContainerImage = document.querySelector('.popup_type_image');
-const imagePopupCloseButton = popupMainContainerImage.querySelector('.popup__close-button-image');//картинка-3
+const popupImage = document.querySelector('.popup_type_image');
+const imagePopupCloseButton = popupImage.querySelector('.popup__close-button-image');//картинка-3
 
 //открытие 2-го попапа
 const openPopupPlaceButton = document.querySelector('.profile__add-button');
 
 // форма и поля формы
-const savePopupProfile = document.querySelector('#popup-mega-id');
-const saveAddPopup = document.querySelector('#popup-input-mega-id');//2-попап
+const formEditProfile = document.querySelector('#popup-mega-id');
+const formAddCard = document.querySelector('#popup-input-mega-id');//2-попап
 
-const popupName = document.querySelector('#popup-field-name');
-const popupJob = document.querySelector('#popup-field-job');
+const inputUserName = document.querySelector('#popup-field-name');
+const inputUserJob = document.querySelector('#popup-field-job');
 
-const popupCountryform = document.querySelector('#popup-field-card-name');//2-попап
-const popupLinkform = document.querySelector('#popup-field-card-img');//ссылка//2-попап
+const inputCardName = document.querySelector('#popup-field-card-name');//2-попап
+const inputCardLink = document.querySelector('#popup-field-card-img');//ссылка//2-попап
 //куда это будет вставлено
 const nameProfileElement = document.querySelector('.profile__title');
 const jobProfileElement = document.querySelector('.profile__subtitle');
 
-const newElements = document.querySelector('.elements'); //list весь список
+const cardsList = document.querySelector('.elements'); //list весь список
 
 //делаем глобальными  из onLoad
-const popupImage = document.querySelector('.popup__image');
-const popupWord = document.querySelector('.popup__image-word');
+const zoomedImage = document.querySelector('.popup__image');
+const imageDescription = document.querySelector('.popup__image-word');
 const itemTemplate = document.querySelector('.item-template');
 
 
-function closePopupAll(evt) {
+function eventKeyDownListener(evt) {
+    if (evt.code === keyCodeEsc || evt.key === 'Escape') {
+        closePopup(evt);
+    }
+}
+
+function closePopup(evt) {
+    popupToClose = evt.target.closest('section');
     //закрываем попап -1
-    evt.target.closest('section').classList.remove('popup_opened');
+    popupToClose.removeEventListener('keydown', eventKeyDownListener);
+    popupToClose.classList.remove('popup_opened');
 }
 
-function closePopupEsc() {
-    const popupList = document.querySelectorAll('.popup_opened');
-    popupList.forEach((pop) => {
-        pop.classList.remove('popup_opened');
-    })
-}
-
-function popupOpenAll(evt) {
+function popupOpen(evt) {
+    evt.addEventListener('keydown', eventKeyDownListener);
     evt.classList.add('popup_opened')
 }
 
 function submitHandlerProfile(evt) {
     // сохраняем введенные значения
     evt.preventDefault();
-    nameProfileElement.textContent = popupName.value;
-    jobProfileElement.textContent = popupJob.value;
-    closePopupAll(evt);
+    nameProfileElement.textContent = inputUserName.value;
+    jobProfileElement.textContent = inputUserJob.value;
+    closePopup(evt);
 }
 
 function handleImageView(evt) {//обработчик события
     //меняем параметры из попапа, на карточку img /word
-    popupOpenAll(popupMainContainerImage);
-    popupImage.src = evt.currentTarget.src;
-    popupImage.alt = evt.currentTarget.alt;
-    popupWord.textContent = evt.currentTarget.closest("#template-id").querySelector('.elements__word').textContent;
+    popupOpen(zoomedImage);
+    zoomedImage.src = evt.currentTarget.src;
+    zoomedImage.alt = evt.currentTarget.alt;
+    imageDescription.textContent = evt.currentTarget.closest("#template-id").querySelector('.elements__word').textContent;
 }
-
-
-// закрытие по esc
-document.addEventListener('keydown', function(evt) {
-    if (evt.code === '27' || evt.key === 'Escape') {
-        closePopupEsc();
-    }
-});
-
 
 function handleLikeClick(evt) {
     evt.currentTarget.classList.toggle('elements__like_active');
@@ -112,22 +107,20 @@ function handleCardRemove(evt) {
 function renderAllCards() {
     initialCards.forEach(function (item) {
         const newCard = createCard(item);
-        newElements.append(newCard);
+        cardsList.append(newCard);
         //кладем в ДОМ
     });
 }
 
 function createCard(item) { //create
     const newElement = itemTemplate.content.cloneNode(true);
-    newElement.querySelector('.elements__image').src = item.link;
-    newElement.querySelector('.elements__image').alt = item.name;
+    const newElementImage = newElement.querySelector('.elements__image');
+    newElementImage.src = item.link;
+    newElementImage.alt = item.name;
     newElement.querySelector('.elements__word').textContent = item.name;
-
 
     const likeElement = newElement.querySelector('.elements__like');
     likeElement.addEventListener('click', handleLikeClick);
-
-    const newElementImage = newElement.querySelector('.elements__image');
 
     //новая картинка слушает когда по нему кликнут
     newElementImage.addEventListener('click', handleImageView);//обработчик события
@@ -136,39 +129,39 @@ function createCard(item) { //create
     return newElement;
 }
 
-function workPopup() {
+function openEditProfilePopup() {
     //открытие попапа с редактированием профиля
-    popupName.value = nameProfileElement.textContent;
-    popupJob.value = jobProfileElement.textContent;
-    popupOpenAll(popupChangeProfile);
+    inputUserName.value = nameProfileElement.textContent;
+    inputUserJob.value = jobProfileElement.textContent;
+    popupOpen(popupChangeProfile);
 }
 
-function workpopupPlace() {
+function openAddCardPopup() {
     //открытие попапа с местом
-    popupOpenAll(popupPlace);
+    popupOpen(popupPlace);
 }
 
-function submitAddHandler(evt) {
+function submitAddCardPopup(evt) {
     // сохраняем введенные значения 2 popup
     evt.preventDefault();
     const newArrayElement = {
-        name: popupCountryform.value,
-        link: popupLinkform.value
+        name: inputCardName.value,
+        link: inputCardLink.value
     };
     const newCard = createCard(newArrayElement);
-    newElements.prepend(newCard);
-    saveAddPopup.reset();
-    closePopupAll(evt);
+    cardsList.prepend(newCard);
+    formAddCard.reset();
+    closePopup(evt);
 }
 
 
-editButton.addEventListener('click', workPopup);
-openPopupPlaceButton.addEventListener('click', workpopupPlace);
-closePopupPlace.addEventListener('click', closePopupAll);
-closePopupChangeProfile.addEventListener('click', closePopupAll);
-savePopupProfile.addEventListener('submit', submitHandlerProfile);
-saveAddPopup.addEventListener('submit', submitAddHandler);
-imagePopupCloseButton.addEventListener('click', closePopupAll);
+editButton.addEventListener('click', openEditProfilePopup);
+openPopupPlaceButton.addEventListener('click', openAddCardPopup);
+closePopupPlaceButton.addEventListener('click', closePopup);
+closePopupChangeProfileButton.addEventListener('click', closePopup);
+formEditProfile.addEventListener('submit', submitHandlerProfile);
+formAddCard.addEventListener('submit', submitAddCardPopup);
+imagePopupCloseButton.addEventListener('click', closePopup);
 window.addEventListener("load", renderAllCards);
 
 const emptyFieldErrorMsg = "   Вы пропустили это поле.";
@@ -180,15 +173,19 @@ const configs = [
         inputElement: '.popup__field',
         submitButton: '.popup__save',
         message:      emptyFieldErrorMsg,
-        popupIsValid:'popup__button_valid',
-        popupIsInvalid:'popup__button_invalid'
+        popupIsValid: 'popup__button_valid',
+        popupIsInvalid: 'popup__button_invalid',
+        formInputErrorClass: 'form__input_error',
+        formInputErrorActive: 'form__input-error_active'
     },
     {   formSelector: '.popup__form[name="resaveCountry"]',
         inputElement: '.popup__field',
         submitButton: '.popup__save',
         message:      "Введите адрес сайта.",
-        popupIsValid:'popup__button_valid',
-        popupIsInvalid:'popup__button_invalid',
+        popupIsValid: 'popup__button_valid',
+        popupIsInvalid: 'popup__button_invalid',
+        formInputErrorClass: 'form__input_error',
+        formInputErrorActive: 'form__input-error_active'
     }
 ]
 
@@ -196,7 +193,7 @@ const configs = [
 const blockerList = Array.from(document.querySelectorAll('.blocker'));
 blockerList.forEach((blocker) => {
     blocker.addEventListener('click', (evt) => {
-        closePopupAll(evt);
+        closePopup(evt);
     });
 })
 

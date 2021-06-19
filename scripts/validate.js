@@ -24,15 +24,15 @@ const setEventListeners = (formElement, formConfig) => {
 
 const showInputError = (inputElement, inputElementConfig, errorMessage) => {
     const errorElement = document.querySelector(`#${inputElement.id}-error`); //#popup-field-name-error
-    inputElement.classList.add('form__input_error');
+    inputElement.classList.add(inputElementConfig.formInputErrorClass);
     errorElement.textContent = errorMessage;
-    errorElement.classList.add('form__input-error_active');
+    errorElement.classList.add(inputElementConfig.formInputErrorActive);
 };
 
-const hideInputError = (inputElement) => {
+const hideInputError = (inputElement, inputElementConfig) => {
     const errorElement = document.querySelector(`#${inputElement.id}-error`);
-    inputElement.classList.remove('form__input_error');
-    errorElement.classList.remove('form__input-error_active');
+    inputElement.classList.remove(inputElementConfig.formInputErrorClass);
+    errorElement.classList.remove(inputElementConfig.formInputErrorActive);
     errorElement.textContent = '';
 };
 
@@ -45,7 +45,7 @@ const checkInputValidity = (inputElement, inputElementConfig) => {
             showInputError(inputElement, inputElementConfig, errText);
         }
     } else {
-        hideInputError(inputElement);
+        hideInputError(inputElement, inputElementConfig);
     }
 };
 
@@ -70,3 +70,20 @@ function toggleButtonState(inputList, buttonElement){
         buttonElement.disabled = false;
     }
 }
+
+function handleInvalidInput(inputElement, typeErrorMsg){
+    const validity = inputElement.validity;
+    const length = inputElement.value.length;
+    if (validity.tooShort){
+        const min =inputElement.getAttribute('minlength');
+        return(`Минимальное количество символов: ${min}. Длина текста сейчас: ${length} символ.`);
+    } else if (validity.tooLong){
+        const max =inputElement.getAttribute('maxlength');
+        return(`Максимальное количество символов: ${max}. Длина текста сейчас: ${length} символ.`);
+    } else if (validity.typeMismatch) {
+        return typeErrorMsg;
+    }
+
+    return('Неправильные данные!');
+}
+
