@@ -61,21 +61,26 @@ const zoomedImage = document.querySelector('.popup__image');
 const imageDescription = document.querySelector('.popup__image-word');
 const itemTemplate = document.querySelector('.item-template');
 
+function closePopupEsc() {
+    const popupToClose = document.querySelector('.popup_opened');
+    popupToClose.classList.remove('popup_opened');
+}
+
 function eventKeyDownListener(evt) {
     if (evt.code === keyCodeEsc || evt.key === 'Escape') {
-        closePopup(evt);
+        closePopupEsc();
     }
 }
 
 function closePopup(evt) {
-    popupToClose = evt.target.closest('section');
+    const popupToClose = evt.target.closest('section');
     //закрываем попап -1
-    popupToClose.removeEventListener('keydown', eventKeyDownListener);
+    document.removeEventListener('keydown', eventKeyDownListener);
     popupToClose.classList.remove('popup_opened');
 }
 
 function popupOpen(evt) {
-    //evt.addEventListener('keydown', eventKeyDownListener);
+    document.addEventListener('keydown', eventKeyDownListener);
     evt.classList.add('popup_opened')
 }
 
