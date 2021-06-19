@@ -58,16 +58,24 @@ const hasInvalidInput = (inputList) => {
     })
 };
 
+function disableButton(buttonElement){
+    buttonElement.classList.add('button_inactive');
+    buttonElement.disabled = true;
+}
+
+function enableButton(buttonElement){
+    buttonElement.classList.remove('button_inactive');
+    buttonElement.disabled = false;
+}
+
 function toggleButtonState(inputList, buttonElement){
     if (hasInvalidInput(inputList)){
         // сделай кнопку неактивной
-        buttonElement.classList.add('button_inactive');
-        buttonElement.disabled = true;
+        disableButton(buttonElement);
     } else
     {
         // иначе сделай кнопку активной
-        buttonElement.classList.remove('button_inactive');
-        buttonElement.disabled = false;
+        enableButton(buttonElement);
     }
 }
 

@@ -30,6 +30,7 @@ const initialCards = [
 
 const editButton = document.querySelector('.profile__edit-button');
 const popupPlace = document.querySelector('.popup_country');
+const submitPopupPlaceButton = popupPlace.querySelector('.popup__save');
 const closePopupPlaceButton = popupPlace.querySelector('.popup__close-button');//место-1
 
 const popupChangeProfile = document.querySelector('.popup_type_edit');
@@ -81,7 +82,7 @@ function closePopup(evt) {
 
 function popupOpen(evt) {
     document.addEventListener('keydown', eventKeyDownListener);
-    evt.classList.add('popup_opened')
+    evt.classList.add('popup_opened');
 }
 
 function submitHandlerProfile(evt) {
@@ -142,6 +143,11 @@ function openEditProfilePopup() {
 
 function openAddCardPopup() {
     //открытие попапа с местом
+    const inputList = popupPlace.querySelectorAll('.popup__field');
+    inputList.forEach((inputElement) => {
+        inputElement.value = '';
+    })
+    disableButton(submitPopupPlaceButton);
     popupOpen(popupPlace);
 }
 
