@@ -61,7 +61,6 @@ const zoomedImage = document.querySelector('.popup__image');
 const imageDescription = document.querySelector('.popup__image-word');
 const itemTemplate = document.querySelector('.item-template');
 
-
 function eventKeyDownListener(evt) {
     if (evt.code === keyCodeEsc || evt.key === 'Escape') {
         closePopup(evt);
@@ -76,7 +75,7 @@ function closePopup(evt) {
 }
 
 function popupOpen(evt) {
-    evt.addEventListener('keydown', eventKeyDownListener);
+    //evt.addEventListener('keydown', eventKeyDownListener);
     evt.classList.add('popup_opened')
 }
 
@@ -90,7 +89,7 @@ function submitHandlerProfile(evt) {
 
 function handleImageView(evt) {//обработчик события
     //меняем параметры из попапа, на карточку img /word
-    popupOpen(zoomedImage);
+    popupOpen(popupImage);
     zoomedImage.src = evt.currentTarget.src;
     zoomedImage.alt = evt.currentTarget.alt;
     imageDescription.textContent = evt.currentTarget.closest("#template-id").querySelector('.elements__word').textContent;
