@@ -192,7 +192,7 @@ const configs = [
     }
 ]
 
-//ищем все оверлеи=блокеры  навешиваем листенер на онклик
+//ищем все оверлеи=блокеры,  навешиваем листенер на онклик
 const blockerList = Array.from(document.querySelectorAll('.blocker'));
 blockerList.forEach((blocker) => {
     blocker.addEventListener('click', (evt) => {
