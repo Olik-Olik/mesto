@@ -32,6 +32,7 @@ const editButton = document.querySelector('.profile__edit-button');
 const popupPlace = document.querySelector('.popup_country');
 const submitPopupPlaceButton = popupPlace.querySelector('.popup__save');
 const closePopupPlaceButton = popupPlace.querySelector('.popup__close-button');//место-1
+const inputListpopupPlace = popupPlace.querySelectorAll('.popup__field');
 
 const popupChangeProfile = document.querySelector('.popup_type_edit');
 const closePopupChangeProfileButton = popupChangeProfile.querySelector('.popup__close-button');//Кусто-2
@@ -80,7 +81,7 @@ function closePopup(evt) {
     popupToClose.classList.remove('popup_opened');
 }
 
-function popupOpen(evt) {
+function openPopup(evt) {
     document.addEventListener('keydown', eventKeyDownListener);
     evt.classList.add('popup_opened');
 }
@@ -95,7 +96,7 @@ function submitHandlerProfile(evt) {
 
 function handleImageView(evt) {//обработчик события
     //меняем параметры из попапа, на карточку img /word
-    popupOpen(popupImage);
+    openPopup(popupImage);
     zoomedImage.src = evt.currentTarget.src;
     zoomedImage.alt = evt.currentTarget.alt;
     imageDescription.textContent = evt.currentTarget.closest("#template-id").querySelector('.elements__word').textContent;
@@ -138,17 +139,16 @@ function openEditProfilePopup() {
     //открытие попапа с редактированием профиля
     inputUserName.value = nameProfileElement.textContent;
     inputUserJob.value = jobProfileElement.textContent;
-    popupOpen(popupChangeProfile);
+    openPopup(popupChangeProfile);
 }
 
 function openAddCardPopup() {
     //открытие попапа с местом
-    const inputList = popupPlace.querySelectorAll('.popup__field');
-    inputList.forEach((inputElement) => {
+    inputListpopupPlace.forEach((inputElement) => {
         inputElement.value = '';
     })
     disableButton(submitPopupPlaceButton);
-    popupOpen(popupPlace);
+    openPopup(popupPlace);
 }
 
 function submitAddCardPopup(evt) {
