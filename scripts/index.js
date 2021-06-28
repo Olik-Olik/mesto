@@ -47,18 +47,19 @@ function submitHandlerProfile(evt) {
 }
 
 
-function handleImageView(evt) {//обработчик события
+/*function handleImageView(evt) {//обработчик события
     //меняем параметры из попапа, на карточку img /word
     openPopup(popupImage);
     zoomedImage.src = evt.currentTarget.src;
     zoomedImage.alt = evt.currentTarget.alt;
     imageDescription.textContent = evt.currentTarget.closest("#template-id").querySelector('.elements__word').textContent;
-}
+}*/
 
 function openEditProfilePopup() {
     //открытие попапа с редактированием профиля
     inputUserName.value = nameProfileElement.textContent;
     inputUserJob.value = jobProfileElement.textContent;
+    formValidatorProfile._inputListValidate();
     openPopup(popupChangeProfile);
 }
 
@@ -68,6 +69,7 @@ function openAddCardPopup() {
         inputElement.value = '';
     })
     //disableButton(submitPopupPlaceButton); //подумать позднее
+    formValidatorCard._inputListValidate();
     openPopup(popupPlace);
 }
 

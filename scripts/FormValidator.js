@@ -10,13 +10,18 @@ class FormValidator {
     }
 
     _setEventListeners = (formElement, formConfig) => {
-        const inputList = Array.from(formElement.querySelectorAll(formConfig.inputElement));
-        const buttonElement = formElement.querySelector(formConfig.submitButton);// сохранения
-        this._toggleButtonState(inputList, buttonElement);// в кнопку всовываем инпуты и кнопку
-        inputList.forEach((inputElement) => {
+        this.formConfig = formConfig;
+        this.inputList = Array.from(formElement.querySelectorAll(formConfig.inputElement));
+        this.buttonElement = formElement.querySelector(formConfig.submitButton);// сохранения
+        this._toggleButtonState(this.inputList, this.buttonElement);
+        this._inputListValidate();
+    }
+    // в кнопку всовываем инпуты и кнопку
+    _inputListValidate =()=>{
+        this.inputList.forEach((inputElement) => {
             inputElement.addEventListener('input', () => {
-                this._checkInputValidity(inputElement, formConfig);
-                this._toggleButtonState(inputList, buttonElement);
+                this._checkInputValidity(inputElement, this.formConfig);
+                this._toggleButtonState(this.inputList, this.buttonElement);
             });
         });
     };
