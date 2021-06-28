@@ -3,7 +3,7 @@
 import { keyCodeEsc, editButton,popupPlace,submitPopupPlaceButton,closePopupPlaceButton,inputListpopupPlace,
     popupChangeProfile,closePopupChangeProfileButton,imagePopupCloseButton,openPopupPlaceButton,formEditProfile,
     formAddCard,inputUserName,inputUserJob,inputCardName,inputCardLink,nameProfileElement,jobProfileElement,
-    cardsList,zoomedImage,imageDescription,itemTemplate,initialCards } from '../variables/constants.js';
+    cardsList,zoomedImage,imageDescription,itemTemplate,initialCards} from '../variables/constants.js';
 
 import  {Card}  from './Card.js'
 import {FormValidator} from './FormValidator.js';
@@ -45,13 +45,13 @@ function submitHandlerProfile(evt) {
 }
 
 
-/*function handleImageView(evt) {//обработчик события
+function handleImageView(evt) {//обработчик события
     //меняем параметры из попапа, на карточку img /word
     openPopup(popupImage);
     zoomedImage.src = evt.currentTarget.src;
     zoomedImage.alt = evt.currentTarget.alt;
     imageDescription.textContent = evt.currentTarget.closest("#template-id").querySelector('.elements__word').textContent;
-}*/
+}
 
     function openEditProfilePopup() {
         //открытие попапа с редактированием профиля
@@ -115,6 +115,7 @@ function renderAllCards() {
 });*/
 const formValidatorProfile= new FormValidator(configs[0]);
 const formValidatorCard = new FormValidator(configs[1]);
+export {openPopup};
 
 
 

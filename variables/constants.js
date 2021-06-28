@@ -67,4 +67,4 @@ const itemTemplate = document.querySelector('.item-template');
 export{keyCodeEsc, editButton,popupPlace,submitPopupPlaceButton,closePopupPlaceButton,inputListpopupPlace,
     popupChangeProfile,closePopupChangeProfileButton,imagePopupCloseButton,openPopupPlaceButton,formEditProfile,
     formAddCard,inputUserName,inputUserJob,inputCardName,inputCardLink,nameProfileElement,jobProfileElement,
-    cardsList,zoomedImage,imageDescription,itemTemplate,initialCards};
+    cardsList,zoomedImage,imageDescription,itemTemplate,initialCards,popupImage};
