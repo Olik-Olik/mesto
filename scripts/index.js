@@ -14,9 +14,8 @@ function closePopupEsc() {
     const popupToClose = document.querySelector('.popup_opened');
     popupToClose.classList.remove('popup_opened');
 }
-function handleCardRemove(evt) {
-    evt.currentTarget.closest('#template-id').remove();
-}
+
+
 function eventKeyDownListener(evt) {
     if (evt.code === keyCodeEsc || evt.key === 'Escape') {
         closePopupEsc();
@@ -100,6 +99,7 @@ function renderAllCards() {
     formAddCard.addEventListener('submit', submitAddCardPopup);
     imagePopupCloseButton.addEventListener('click', closePopup);
     window.addEventListener("load", renderAllCards);
+
 
 
 //ищем все оверлеи=блокеры,  навешиваем листенер на онклик

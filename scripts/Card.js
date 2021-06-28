@@ -20,6 +20,12 @@ _createCard(item) {
     newElement.querySelector('.elements__trash').addEventListener('click', this._handleCardRemove);
     return newElement;
 }
+
+   _handleCardRemove(evt) {
+        evt.currentTarget.closest('#template-id').remove();
+    }
+
+
     _handleLikeClick(evt) {
         evt.currentTarget.classList.toggle('elements__like_active');
     }
