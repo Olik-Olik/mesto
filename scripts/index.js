@@ -6,7 +6,7 @@ import { keyCodeEsc, editButton,popupPlace,submitPopupPlaceButton,closePopupPlac
     cardsList,zoomedImage,imageDescription,itemTemplate,initialCards } from '../variables/constants.js';
 
 import  {Card}  from './Card.js'
-//import {FormValidator} from '../FormValidator.js';
+import {FormValidator} from './FormValidator.js';
 import {configs} from '../variables/configs.js';
 
 
@@ -65,7 +65,7 @@ function submitHandlerProfile(evt) {
         inputListpopupPlace.forEach((inputElement) => {
             inputElement.value = '';
         })
-        disableButton(submitPopupPlaceButton);
+       // disableButton(submitPopupPlaceButton); подумать позднее
         openPopup(popupPlace);
     }
 
@@ -90,7 +90,6 @@ function renderAllCards() {
         //кладем в ДОМ
     });
 }
-
     editButton.addEventListener('click', openEditProfilePopup);
     openPopupPlaceButton.addEventListener('click', openAddCardPopup);
     closePopupPlaceButton.addEventListener('click', closePopup);
@@ -110,5 +109,25 @@ function renderAllCards() {
         });
     });
 
-    configs.forEach(config => enableValidation(config));
+
+
+ //валидация
+/*
+const enableValidation = ({formSelector, ...rest}) => {
+    const formItems = Array.from(document.querySelectorAll(formSelector));
+    formItems.forEach((formElement) => {
+        formElement.addEventListener('submit', (evt) => {
+            evt.preventDefault();
+        });
+        setEventListeners(formElement, rest);
+    })
+}
+*/
+
+
+configs.forEach(config =>{
+     new FormValidator(config);
+});
+
+/*  configs.forEach(config => enableValidation(config));*/
 

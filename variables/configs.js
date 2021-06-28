@@ -1,8 +1,8 @@
-const emptyFieldErrorMsg = "   Вы пропустили это поле.";
+ const emptyFieldErrorMsg = "   Вы пропустили это поле.";
 
 //для валидации файл конфиг указываем класс кнопок инпутов форм
-export const configs = [
-    {
+ const configs = [
+    {   //settings
         formSelector: '.popup__form[name="resaveProfile"]',
         inputElement: '.popup__field',
         submitButton: '.popup__save',
@@ -10,7 +10,8 @@ export const configs = [
         popupIsValid: 'popup__button_valid',
         popupIsInvalid: 'popup__button_invalid',
         formInputErrorClass: 'form__input_error',
-        formInputErrorActive: 'form__input-error_active'
+        formInputErrorActive: 'form__input-error_active',
+        disableSubmitButton: false
     },
     {   formSelector: '.popup__form[name="resaveCountry"]',
         inputElement: '.popup__field',
@@ -19,6 +20,8 @@ export const configs = [
         popupIsValid: 'popup__button_valid',
         popupIsInvalid: 'popup__button_invalid',
         formInputErrorClass: 'form__input_error',
-        formInputErrorActive: 'form__input-error_active'
+        formInputErrorActive: 'form__input-error_active',
+        disableSubmitButton: true
     }
-]
+];
+export {configs,emptyFieldErrorMsg};
