@@ -110,24 +110,11 @@ function renderAllCards() {
     });
 
 
-
- //валидация
-/*
-const enableValidation = ({formSelector, ...rest}) => {
-    const formItems = Array.from(document.querySelectorAll(formSelector));
-    formItems.forEach((formElement) => {
-        formElement.addEventListener('submit', (evt) => {
-            evt.preventDefault();
-        });
-        setEventListeners(formElement, rest);
-    })
-}
-*/
-
-
-configs.forEach(config =>{
+/*configs.forEach(config =>{
      new FormValidator(config);
-});
+});*/
+const formValidatorProfile= new FormValidator(configs[0]);
+const formValidatorCard = new FormValidator(configs[1]);
 
-/*  configs.forEach(config => enableValidation(config));*/
+
 

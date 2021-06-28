@@ -1,17 +1,6 @@
 import {configs, emptyFieldErrorMsg} from '../variables/configs.js';
 
 // сделать массив обьекта ключей FormElement из formConfig
-// id="popup-mega-id" имя
-//id="popup-field-name"
-//id="popup-field-name-error
-// id="popup-field-job" работа
-//id="popup-field-job-error"
-
-//  id="popup-field-card-name карточка название
-// id="popup-field-card-name-error"
-
-// id="popup-field-card-img" карточка url
-//id="popup-field-card-img-error"
 
 // для каждой формы новый объект класса .
 class FormValidator {
@@ -21,9 +10,15 @@ class FormValidator {
     }
 
     _setEventListeners = (formElement, formConfig) => {
-        const inputList = Array.from(formElement.querySelectorAll(formConfig.inputElement));  //FormElement- массив обьекта ключей
+        const inputList = Array.from(formElement.querySelectorAll(formConfig.inputElement));
         const buttonElement = formElement.querySelector(formConfig.submitButton);// сохранения
         this._toggleButtonState(inputList, buttonElement);// в кнопку всовываем инпуты и кнопку
+        inputList.forEach((inputElement) => {
+            inputElement.addEventListener('input', () => {
+                this._checkInputValidity(inputElement, formConfig);
+                this._toggleButtonState(inputList, buttonElement);
+            });
+        });
     };
 
     _enableValidation = (settings) => {
@@ -102,7 +97,7 @@ class FormValidator {
             if (inputElement.value.length === 0) {
                 this._showInputError(inputElement, inputElementConfig, emptyFieldErrorMsg);
             } else {
-                const errText = handleInvalidInput(inputElement, inputElementConfig.message);
+                const errText = this._handleInvalidInput(inputElement, inputElementConfig.message);
                 this._showInputError(inputElement, inputElementConfig, errText);
             }
         } else {
