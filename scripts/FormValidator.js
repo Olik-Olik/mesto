@@ -14,15 +14,23 @@ class FormValidator {
         this.inputList = Array.from(formElement.querySelectorAll(formConfig.inputElement));
         this.buttonElement = formElement.querySelector(formConfig.submitButton);// сохранения
         this._toggleButtonState(this.inputList, this.buttonElement);
-        this._inputListValidate();
-    }
-    // в кнопку всовываем инпуты и кнопку
-    _inputListValidate =()=>{
         this.inputList.forEach((inputElement) => {
             inputElement.addEventListener('input', () => {
                 this._checkInputValidity(inputElement, this.formConfig);
                 this._toggleButtonState(this.inputList, this.buttonElement);
             });
+        });
+    }
+    _hideInputErrorAll = () => {
+        this.inputList.forEach((inputElement) => {
+            this._hideInputError(inputElement, inputElementConfig);
+        });
+    }
+    // в кнопку всовываем инпуты и кнопку
+    _inputListValidate = () => {
+        this.inputList.forEach((inputElement) => {
+            this._checkInputValidity(inputElement, this.formConfig);
+            this._toggleButtonState(this.inputList, this.buttonElement);
         });
     };
 
@@ -30,6 +38,7 @@ class FormValidator {
         const formItem = document.querySelector(settings.formSelector);
         formItem.addEventListener('submit', (evt) => {
             evt.preventDefault();
+
         });
         this._setEventListeners(formItem, settings);
     }
@@ -60,7 +69,9 @@ class FormValidator {
         })
     };
 
+
     _handleInvalidInput(inputElement, typeErrorMsg) {
+
         const validity = inputElement.validity;
         const length = inputElement.value.length;
         if (validity.tooShort) {

@@ -1,15 +1,17 @@
-//Переменные перенесены в constants.js
+//Переменные перенесены в constants.js zoomedImage, imageDescription, itemTemplate, submitPopupPlaceButton,
 
 import {
-    keyCodeEsc, editButton, popupPlace, submitPopupPlaceButton, closePopupPlaceButton, inputListpopupPlace,
+    keyCodeEsc, editButton, popupPlace, closePopupPlaceButton, inputListpopupPlace,
     popupChangeProfile, closePopupChangeProfileButton, imagePopupCloseButton, openPopupPlaceButton, formEditProfile,
     formAddCard, inputUserName, inputUserJob, inputCardName, inputCardLink, nameProfileElement, jobProfileElement,
-    cardsList, zoomedImage, imageDescription, itemTemplate, initialCards
+    cardsList, initialCards
 } from '../variables/constants.js';
 
 import {Card} from './Card.js'
 import {FormValidator} from './FormValidator.js';
 import {configs} from '../variables/configs.js';
+
+window.onbeforeunload = function(){return false;};
 
 
 function closePopupEsc() {
@@ -61,6 +63,7 @@ function openEditProfilePopup() {
     inputUserJob.value = jobProfileElement.textContent;
     formValidatorProfile._inputListValidate();
     openPopup(popupChangeProfile);
+
 }
 
 function openAddCardPopup() {
@@ -69,7 +72,8 @@ function openAddCardPopup() {
         inputElement.value = '';
     })
     //disableButton(submitPopupPlaceButton); //подумать позднее
-    formValidatorCard._inputListValidate();
+   formValidatorCard._inputListValidate();
+    formValidatorCard._hideInputErrorAll();
     openPopup(popupPlace);
 }
 
@@ -124,6 +128,8 @@ blockerList.forEach((blocker) => {
 const formValidatorProfile = new FormValidator(configs[0]);
 const formValidatorCard = new FormValidator(configs[1]);
 export {openPopup};
+
+//document.addEventListener('readystatechange',()=>console.log(document.readyState));
 
 
 
