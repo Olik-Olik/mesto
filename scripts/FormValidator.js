@@ -23,7 +23,7 @@ class FormValidator {
     }
     _hideInputErrorAll = () => {
         this.inputList.forEach((inputElement) => {
-            this._hideInputError(inputElement, inputElementConfig);
+            this._hideInputError(inputElement, this.formConfig);
         });
     }
     // в кнопку всовываем инпуты и кнопку
