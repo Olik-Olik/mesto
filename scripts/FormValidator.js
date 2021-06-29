@@ -1,7 +1,6 @@
 import {configs, emptyFieldErrorMsg} from '../variables/configs.js';
 
 // сделать массив обьекта ключей FormElement из formConfig
-
 // для каждой формы новый объект класса .
 class FormValidator {
     constructor(settings) {
@@ -58,7 +57,6 @@ class FormValidator {
         errorElement.textContent = '';
     };
 
-
 //проверяет наличие невалидного поля и сигнализирует, можно ли разблокировать кнопку сабмита
 
     _hasInvalidInput = (inputList) => {
@@ -68,7 +66,6 @@ class FormValidator {
             return !inputElement.validity.valid;
         })
     };
-
 
     _handleInvalidInput(inputElement, typeErrorMsg) {
 

@@ -49,14 +49,6 @@ function submitHandlerProfile(evt) {
 }
 
 
-/*function handleImageView(evt) {//обработчик события
-    //меняем параметры из попапа, на карточку img /word
-    openPopup(popupImage);
-    zoomedImage.src = evt.currentTarget.src;
-    zoomedImage.alt = evt.currentTarget.alt;
-    imageDescription.textContent = evt.currentTarget.closest("#template-id").querySelector('.elements__word').textContent;
-}*/
-
 function openEditProfilePopup() {
     //открытие попапа с редактированием профиля
     inputUserName.value = nameProfileElement.textContent;
@@ -121,15 +113,6 @@ blockerList.forEach((blocker) => {
     });
 });
 
-
-/*configs.forEach(config =>{
-     new FormValidator(config);
-});*/
 const formValidatorProfile = new FormValidator(configs[0]);
 const formValidatorCard = new FormValidator(configs[1]);
 export {openPopup};
-
-//document.addEventListener('readystatechange',()=>console.log(document.readyState));
-
-
-
