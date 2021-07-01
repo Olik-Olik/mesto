@@ -25,18 +25,18 @@ function eventKeyDownListener(evt) {
         closePopupEsc();
     }
 }
-
-function closePopup(evt) {
-    const popupToClose = evt.target.closest('section');
+//Функция открытия также как и функция закрытия должны принимать попап в качестве аргумента
+function closePopup(popup) {
+    const popupToClose = popup.target.closest('section');
     //закрываем попап -1
     document.removeEventListener('keydown', eventKeyDownListener);
     popupToClose.classList.remove('popup_opened');
 }
 
-
-function openPopup(evt) {
+//Функция открытия также как и функция закрытия должны принимать попап в качестве аргумента
+function openPopup(popup) {
     document.addEventListener('keydown', eventKeyDownListener);
-    evt.classList.add('popup_opened');
+    popup.classList.add('popup_opened');
 }
 
 
@@ -61,14 +61,15 @@ function openEditProfilePopup() {
 function openAddCardPopup() {
     //открытие попапа с местом
     inputListpopupPlace.forEach((inputElement) => {
-        inputElement.value = '';
+       // inputElement.value = '';
+        inputElement.form.reset();
     })
     //disableButton(submitPopupPlaceButton); //подумать позднее
    formValidatorCard._inputListValidate();
     formValidatorCard._hideInputErrorAll();
     openPopup(popupPlace);
 }
-
+/*
 //последняя итерация -кладем в ДОМ 1.5
 function renderAllCards() {
     initialCards.forEach(function (item) {
@@ -77,7 +78,22 @@ function renderAllCards() {
         cardsList.append(newCard);
         //кладем в ДОМ
     });
+}*/
+
+function renderAllCards() {
+//При создании карточки передайте ей два аргумента — объект с данными и селектор template-элемента
+    initialCards.forEach((item) => {
+        // Создадим экземпляр карточки
+        const card = new Card(item, '.item-template');
+        // Создаём карточку
+        const newElement = card._createCard(item);
+        //и возвращаем наружу
+        cardsList.append(newElement);
+        // Добавляем в DOM
+      //  document.querySelector('.elements').append(newElement);
+    });
 }
+
 
 function submitAddCardPopup(evt) {
     // сохраняем введенные значения 2 popup
@@ -89,7 +105,7 @@ function submitAddCardPopup(evt) {
     };
     const card = new Card();
     const newCard = card._createCard(newArrayElement);
-    cardsList.prepend(newCard);
+    cardsList.append(newCard);
     formAddCard.reset();
     closePopup(evt);
 }
@@ -113,6 +129,29 @@ blockerList.forEach((blocker) => {
     });
 });
 
+//Закрытие по оверлею и по крестику, необходимо преобразовать такими обработчиками:
+   /* cardFormModalWindow.addEventListener('click', (evt) => {
+        if (evt.target.classList.contains('popup') || evt.target.classList.contains('popup__close')) {
+            closeModalWindow(cardFormModalWindow);
+        }
+    });*/
+//cardFormModalWindow – модальное окно
+//evt.target.classList.contains('popup')  – проверяет клик по оверлею,
+ //evt.target.classList.contains('popup__close') – проверяет клик по крестику
+
+
+
 const formValidatorProfile = new FormValidator(configs[0]);
 const formValidatorCard = new FormValidator(configs[1]);
 export {openPopup};
+
+
+
+
+
+
+
+
+
+
+
