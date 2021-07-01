@@ -11,7 +11,7 @@ import {Card} from './Card.js'
 import {FormValidator} from './FormValidator.js';
 import {configs} from '../variables/configs.js';
 
-window.onbeforeunload = function(){return false;};
+//window.onbeforeunload = function(){return false;};
 
 
 function closePopupEsc() {
@@ -25,18 +25,19 @@ function eventKeyDownListener(evt) {
         closePopupEsc();
     }
 }
+
+
+function openPopup(popup) {
+    document.addEventListener('keydown', eventKeyDownListener);
+    popup.classList.add('popup_opened');
+}
+
 //Функция открытия также как и функция закрытия должны принимать попап в качестве аргумента
 function closePopup(popup) {
     const popupToClose = popup.target.closest('section');
     //закрываем попап -1
     document.removeEventListener('keydown', eventKeyDownListener);
     popupToClose.classList.remove('popup_opened');
-}
-
-//Функция открытия также как и функция закрытия должны принимать попап в качестве аргумента
-function openPopup(popup) {
-    document.addEventListener('keydown', eventKeyDownListener);
-    popup.classList.add('popup_opened');
 }
 
 
@@ -65,7 +66,7 @@ function openAddCardPopup() {
         inputElement.form.reset();
     })
     //disableButton(submitPopupPlaceButton); //подумать позднее
-   formValidatorCard._inputListValidate();
+    formValidatorCard._inputListValidate();
     formValidatorCard._hideInputErrorAll();
     openPopup(popupPlace);
 }
@@ -90,7 +91,7 @@ function renderAllCards() {
         //и возвращаем наружу
         cardsList.append(newElement);
         // Добавляем в DOM
-      //  document.querySelector('.elements').append(newElement);
+        document.querySelector('.elements').append(newElement);
     });
 }
 
@@ -110,6 +111,17 @@ function submitAddCardPopup(evt) {
     closePopup(evt);
 }
 
+//Первый — массив полей, второй — кнопка «Далее».
+function toggleButtonState(inputList,buttonElement){
+    if (hasInvalidInput(inputList)){
+        // сделай кнопку неактивной
+        buttonElement.classList.add('button_inactive');
+    } else
+    {
+        // иначе сделай кнопку активной
+        buttonElement.classList.remove('button_inactive');
+    }
+}
 
 editButton.addEventListener('click', openEditProfilePopup);
 openPopupPlaceButton.addEventListener('click', openAddCardPopup);
@@ -139,10 +151,9 @@ blockerList.forEach((blocker) => {
 //evt.target.classList.contains('popup')  – проверяет клик по оверлею,
  //evt.target.classList.contains('popup__close') – проверяет клик по крестику
 
-
-
+//
 const formValidatorProfile = new FormValidator(configs[0]);
-const formValidatorCard = new FormValidator(configs[1]);
+const formValidatorCard = new FormValidator(configs[0]);
 export {openPopup};
 
 

@@ -1,4 +1,4 @@
-import {configs, emptyFieldErrorMsg} from '../variables/configs.js';
+//import {configs, emptyFieldErrorMsg} from '../variables/configs.js';
 
 // сделать массив обьекта ключей FormElement из formConfig
 // для каждой формы новый объект класса .
@@ -7,7 +7,7 @@ class FormValidator {
         this._settings = settings;
         this._enableValidation(settings);
     }
-
+//масштабируемость не было учтено
     _setEventListeners = (formElement, formConfig) => {
         this.formConfig = formConfig;
         this.inputList = Array.from(formElement.querySelectorAll(formConfig.inputElement));
@@ -26,13 +26,14 @@ class FormValidator {
         });
     }
     // в кнопку всовываем инпуты и кнопку
+
     _inputListValidate = () => {
         this.inputList.forEach((inputElement) => {
             this._checkInputValidity(inputElement, this.formConfig);
             this._toggleButtonState(this.inputList, this.buttonElement);
         });
     };
-
+//мое
     _enableValidation = (settings) => {
         const formItem = document.querySelector(settings.formSelector);
         formItem.addEventListener('submit', (evt) => {
@@ -41,17 +42,33 @@ class FormValidator {
         });
         this._setEventListeners(formItem, settings);
     }
+ /*//тренажер
+    _enableValidation()
+    {
+        const formItem = document.querySelectorAll(this._settings.formSelector);
+        formItem.forEach((formElement) => {
+            formElement.addEventListener('submit', (evt) => {
+                evt.preventDefault();
+            });
+            const fieldsetList = Array.from(formElement.querySelectorAll('.popup__form'));//Присвойте ей массив
+            //из всех элементов с классом popup__form внутри текущей формы — formElement.
+            //Обойдите этот массив методом forEach. Для каждого  элемента вызовите
+            //функцию setEventListeners и передайте ей аргументом нужный fieldset
+            fieldsetList.forEach((fieldSet) => {
+                this._setEventListeners(fieldSet);
+            });
+        });
+    };*/
 
-    _showInputError = (inputElement, inputElementConfig, errorMessage) => {
-        const errorElement = document.querySelector(`#${inputElement.id}-error`); //#popup-field-name-error
-        inputElement.classList.add(inputElementConfig.formInputErrorClass);
-        errorElement.textContent = errorMessage;
-        errorElement.classList.add(inputElementConfig.formInputErrorActive);
-    };
-
+  _showError = (inputElement, inputElementConfig, errorMessage) => {
+      const errorElement = document.querySelector(`.${inputElement.id}-error`); //#popup-field-name-error
+             inputElement.classList.add(inputElementConfig.formInputErrorClass);
+            errorElement.textContent = errorMessage;
+            errorElement.classList.add(inputElementConfig.formInputErrorActive);
+        };
 
     _hideInputError = (inputElement, inputElementConfig) => {
-        const errorElement = document.querySelector(`#${inputElement.id}-error`);
+       const errorElement = document.querySelector(`#${inputElement.id}-error`);
         inputElement.classList.remove(inputElementConfig.formInputErrorClass);
         errorElement.classList.remove(inputElementConfig.formInputErrorActive);
         errorElement.textContent = '';
@@ -60,12 +77,23 @@ class FormValidator {
 //проверяет наличие невалидного поля и сигнализирует, можно ли разблокировать кнопку сабмита
 
     _hasInvalidInput = (inputList) => {
-        // удовлетворяет ли какой-либо элемент  условию
+        // удовлетворяет ли какой-либо элемент  условию проверка массива
         return inputList.some((inputElement) => {
             //  не валидно, колбэк вернёт true Обход массива прекратится и вся функция вернёт true
             return !inputElement.validity.valid;
         })
     };
+
+   /* _hasInvalidInput = (inputList) => {
+        if (!formInput.validity.valid) {
+            _showError(formInput, formInput.validationMessage);
+        } else {
+            _hideInputError(formInput);
+        }
+    };
+*/
+
+
 
     _handleInvalidInput(inputElement, typeErrorMsg) {
 
@@ -108,10 +136,10 @@ class FormValidator {
     _checkInputValidity = (inputElement, inputElementConfig) => {
         if (!inputElement.validity.valid) {
             if (inputElement.value.length === 0) {
-                this._showInputError(inputElement, inputElementConfig, emptyFieldErrorMsg);
+                this._showError(inputElement, inputElementConfig, emptyFieldErrorMsg[0]);
             } else {
-                const errText = this._handleInvalidInput(inputElement, inputElementConfig.message);
-                this._showInputError(inputElement, inputElementConfig, errText);
+                const errText = this._handleInvalidInput(inputElement, emptyFieldErrorMsg[1]);
+                this._showError(inputElement, inputElementConfig, errText);
             }
         } else {
             this._hideInputError(inputElement, inputElementConfig);

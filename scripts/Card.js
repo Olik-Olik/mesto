@@ -4,7 +4,8 @@ import {
     zoomedImage,
     imageDescription,
     initialCards,
-    cardsList
+    cardsList,
+
 } from '../variables/constants.js';
 import {openPopup} from '../scripts/index.js'
 
@@ -21,8 +22,8 @@ export class Card {
     _getTemplate()
     // вернуть разметку
     {
-        let newElement;
-        newElement = document
+
+      const  newElement = document
             //найдёт template-элемент с классом item-template,
             //извлечёт его содержимое,
             .querySelector(this._itemTemplate)
