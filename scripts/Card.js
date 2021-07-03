@@ -4,100 +4,144 @@ import {
     zoomedImage,
     imageDescription,
     initialCards,
-    cardsList,
+    cardsList, imagePopupCloseButton,
 
 } from '../variables/constants.js';
-import {openPopup} from '../scripts/index.js'
+import {openPopup} from '../scripts/index.js';
 
 //логики публикации элемента
 export class Card {
-    constructor(item,itemTemplate) {
+    constructor(item, itemTemplate) {
         this._item = item;
-        this._name = item.name;
-        this._link = item.link;
+        //  this._name = item.name;
+        // this._link = item.link;
         this._itemTemplate = itemTemplate;
-    }
+//при клике на карточку
+        _openPopup()
+        {
+            popupImage.crs = this._image;
+            popupElement.classList.add(popup_is - opened);
+        }
 
-    // забираем разметку из HTML и клонируем элемент
-    _getTemplate()
-    // вернуть разметку
-    {
+        //при клике на крестик
+        _handleClosePopup()
+        {
+            popupImage.crs = '';
+            popupElement.classList.remove(popup_is - opened);
+        }
 
-      const  newElement = document
-            //найдёт template-элемент с классом item-template,
-            //извлечёт его содержимое,
-            .querySelector(this._itemTemplate)
-            .content
-            //в содержимом найдёт элемент с классом elements__card,
-            .querySelector('.elements__card')
-            //клонирует его,
-            .cloneNode(true);
-        //вернёт клонированный элемент DOM-элемент карточки
-        return newElement;
-    }
+//все обработчики в одном месте карточке  иконке закрытия, которая хранится в переменной imagePopupCloseButton
+        _setEventListeners()
+        {
+            this._newElement().addEventListener('click', () => {
+                // откройте попап
+                this._openPopup();
+            });
+            imagePopupCloseButton.addEventListener('click', () => {
+                // закройте попап
+                this._closePopup();
+            });
+        }
+        // забираем разметку из HTML и клонируем элемент // вернуть разметку
+        _getTemplate()
+        {
+            itemTemplate.content.cloneNode(true);
+            const newElement = document
+                //найдёт template-элемент с классом item-template,
+                //извлечёт его содержимое,
+                .querySelector(this._itemTemplate)
+                .content
+                //в содержимом найдёт элемент с классом elements__card,
+                .querySelector('.elements__card')
+                //клонирует его,
+                .cloneNode(true);
+            //вернёт клонированный элемент DOM-элемент карточки
+            return newElement;
+        }
 
-    _createCard() {
-        // Запишем разметку в приватное поле _newElement.
-        // Так у других элементов появится доступ к ней.
-        this._newElement = this._getTemplate();
+        _createCard()
+        {
+            // Запишем разметку в приватное поле _newElement.
+            // Так у других элементов появится доступ к ней.
+            this._newElement = this._getTemplate;
+            // Добавим данные
 
-        // Добавим данные
-        /*  this._newElement.querySelector('.elements__image').src = this._item.link;
-          this._newElement.querySelector('.elements__word').alt = this._item.name;
-          this._newElement.querySelector('.elements__word').textContent = this._item.name;
-          return this._newElement;
-      }*/
-        const newElementImage = this._newElement.querySelector('.elements__image');
-        newElementImage.src = this._item.link; //не определяет при сабмите карточки
-        newElementImage.alt = this._item.name;
-        this._newElement.querySelector('.elements__word').textContent = this._item.name;
-// Вернём элемент наружу
-        return this._newElement;
-    }
+            this._newElement.src = this._item.link;
+            this._newElement.alt = this._item.name;
+            this._newElement.querySelector('.elements__word').textContent = this._item.name;
+            return this._newElement;
+        }
 
-    /*
-        // Добавляем в DOM
-        // document.querySelector('.card-list__items').append(newElement);});
+            function _setEventListeners()
+        {
+            this._likeElement = newElement.querySelector('.elements__like');
+            this._likeElement.addEventListener('click',()=>
+            {
+                this._handleLikeClick();
+            });
 
-        /* this._newElement = itemTemplate.content.cloneNode(true);
-         const newElementImage = this._newElement.querySelector('.elements__image');
-         newElementImage.src = item.link;
-         newElementImage.alt = item.name;
-         this._newElement.querySelector('.elements__word').textContent = item.name;
+            newElementImage.addEventListener('click', this._handleImageView);//обработчик события
 
-         const likeElement = this._newElement.querySelector('.elements__like');
-         likeElement.addEventListener('click', this._handleLikeClick);
+            newElement.querySelector('.elements__trash').addEventListener('click',()=>
+            {
+                this._handleCardRemove();
+            });
+            return newElement;
 
-         //новая картинка слушает когда по ней кликнут
-         newElementImage.addEventListener('click', this._handleImageView);//обработчик события
-         this._newElement.querySelector('.elements__trash').addEventListener('click', this._handleCardRemove);
-         return this._newElement;*/
-    //  }
+        _handleCardRemove(evt)
+        {
+            evt.currentTarget.closest('#template-id').remove();
+        }
 
-//все обработчики:  превью картинки.
-    //_setEventListeners(evt) {
-    //все обработчики:  удаления
 
-    _handleCardRemove(evt) {
-        //новая картинка слушает когда по ней кликнут
-        this.newElementImage.addEventListener('click', this._handleImageView);//обработчик события
-        this._newElement.querySelector('.elements__trash').addEventListener('click', this._handleCardRemove);
-        evt.currentTarget.closest('#template-id').remove();
-    }
+        handleLikeClick(evt)
+        {
+            evt.currentTarget.classList.toggle('elements__like_active');
+        }
 
-    //все обработчики:  лайка
-    _handleLikeClick(evt) {
-        const likeElement = this._newElement.querySelector('.elements__like');
-        likeElement.addEventListener('click', this._handleLikeClick);
-        evt.currentTarget.classList.toggle('elements__like_active');
-    }
-
-    //все обработчики:  превью картинки
-    _handleImageView(evt) {//обработчик события
-        //меняем параметры из попапа, на карточку img /word
-        openPopup(popupImage);
-        zoomedImage.src = evt.currentTarget.src;
-        zoomedImage.alt = evt.currentTarget.alt;
-        imageDescription.textContent = evt.currentTarget.closest("#template-id").querySelector('.elements__word').textContent;
+        handleImageView(evt)
+        {//обработчик события
+            //меняем параметры из попапа, на карточку img /word
+            openPopup(popupImage);
+            zoomedImage.src = evt.currentTarget.src;
+            zoomedImage.alt = evt.currentTarget.alt;
+            imageDescription.textContent = evt.currentTarget.closest("#template-id").querySelector('.elements__word').textContent;
+        }
     }
 }
+}
+
+       /* _handleLikeClick(evt)
+        {
+            const likeElement = this._newElement.querySelector('.elements__like');
+            likeElement.addEventListener('click', this._handleLikeClick);
+            evt.target.classList.toggle('elements__like_active');
+        }
+
+
+        _handleCardRemove(evt)
+        {
+            //новая картинка слушает когда по ней кликнут
+            // this.newElementImage.addEventListener('click', this._handleImageView);//обработчик события
+            // this._newElement.querySelector('.elements__trash').addEventListener('click', this._handleCardRemove);
+            evt.currentTarget.closest('#template-id').remove();
+        }
+
+        //все обработчики:  лайка
+        _handleLikeClick(evt)
+        {
+            const likeElement = this._newElement.querySelector('.elements__like');
+            likeElement.addEventListener('click', this._handleLikeClick);
+            evt.currentTarget.classList.toggle('elements__like_active');
+        }
+
+        _handleImageView(evt)
+        {//обработчик события
+            //меняем параметры из попапа, на карточку img /word
+            openPopup(popupImage);
+            zoomedImage.src = evt.currentTarget.src;
+            zoomedImage.alt = evt.currentTarget.alt;
+            imageDescription.textContent = evt.currentTarget.closest("#template-id").querySelector('.elements__word').textContent;
+        }*/
+
+

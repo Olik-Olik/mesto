@@ -48,13 +48,15 @@ function submitHandlerProfile(evt) {
     jobProfileElement.textContent = inputUserJob.value;
     closePopup(evt);
 }
-
+/*
+const editProfileValidator = new FormValidator(configs, editProfileForm);
+editProfileValidator.enableValidation();// включаем экземпляр валидатора*/
 
 function openEditProfilePopup() {
     //открытие попапа с редактированием профиля
     inputUserName.value = nameProfileElement.textContent;
     inputUserJob.value = jobProfileElement.textContent;
-    formValidatorProfile._inputListValidate();
+    //formValidatorProfile._inputListValidate();//убрать отсюда
     openPopup(popupChangeProfile);
 
 }
@@ -62,12 +64,12 @@ function openEditProfilePopup() {
 function openAddCardPopup() {
     //открытие попапа с местом
     inputListpopupPlace.forEach((inputElement) => {
-       // inputElement.value = '';
-        inputElement.form.reset();
+        inputElement.value = '';
+       // inputElement.form.reset();
     })
     //disableButton(submitPopupPlaceButton); //подумать позднее
-    formValidatorCard._inputListValidate();
-    formValidatorCard._hideInputErrorAll();
+    //formValidatorCard._inputListValidate();//убрать отсюда
+   // formValidatorCard._hideInputErrorAll();
     openPopup(popupPlace);
 }
 /*
@@ -82,7 +84,7 @@ function renderAllCards() {
 }*/
 
 function renderAllCards() {
-//При создании карточки передайте ей два аргумента — объект с данными и селектор template-элемента
+//При создании карточки передаем ей два аргумента — объект с данными и селектор template-элемента замечание из ревью
     initialCards.forEach((item) => {
         // Создадим экземпляр карточки
         const card = new Card(item, '.item-template');
@@ -95,33 +97,22 @@ function renderAllCards() {
     });
 }
 
-
 function submitAddCardPopup(evt) {
     // сохраняем введенные значения 2 popup
     evt.preventDefault();
-    const newArrayElement =
+    const inputElement =
         {
         name: inputCardName.value,
         link: inputCardLink.value
     };
     const card = new Card();
-    const newCard = card._createCard(newArrayElement);
+    const newCard = card._createCard(inputElement);
     cardsList.append(newCard);
     formAddCard.reset();
     closePopup(evt);
 }
 
-//Первый — массив полей, второй — кнопка «Далее».
-function toggleButtonState(inputList,buttonElement){
-    if (hasInvalidInput(inputList)){
-        // сделай кнопку неактивной
-        buttonElement.classList.add('button_inactive');
-    } else
-    {
-        // иначе сделай кнопку активной
-        buttonElement.classList.remove('button_inactive');
-    }
-}
+
 
 editButton.addEventListener('click', openEditProfilePopup);
 openPopupPlaceButton.addEventListener('click', openAddCardPopup);
@@ -151,7 +142,7 @@ blockerList.forEach((blocker) => {
 //evt.target.classList.contains('popup')  – проверяет клик по оверлею,
  //evt.target.classList.contains('popup__close') – проверяет клик по крестику
 
-//
+
 const formValidatorProfile = new FormValidator(configs[0]);
 const formValidatorCard = new FormValidator(configs[0]);
 export {openPopup};
