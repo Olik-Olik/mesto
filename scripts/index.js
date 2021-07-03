@@ -84,9 +84,9 @@ function renderAllCards() {
 //При создании карточки передаем ей два аргумента — объект с данными и селектор template-элемента замечание из ревью
     initialCards.forEach((item) => {
         // Создадим экземпляр карточки
-        const card = new Card(item, '.item-template');
+        const card = new Card(item);
         // Создаём карточку
-        const newElement = card.createCard(item);
+        const newElement = card.createCard();
         //и возвращаем наружу
         cardsList.append(newElement);
         // Добавляем в DOM
@@ -102,9 +102,9 @@ function submitAddCardPopup(evt) {
         name: inputCardName.value,
         link: inputCardLink.value
     };
-    const card = new Card();
-    const newCard = card.createCard(inputElement);
-    cardsList.append(newCard);
+    const card = new Card(inputElement);
+    const newCard = card.createCard();
+    cardsList.prepend(newCard);
     formAddCard.reset();
     closePopup(evt);
 }
