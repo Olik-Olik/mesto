@@ -76,22 +76,22 @@ class FormValidator {
 
 //проверяет наличие невалидного поля и сигнализирует, можно ли разблокировать кнопку сабмита
 
-    _hasInvalidInput = (inputList) => {
+   /* _hasInvalidInput = (inputList) => {
         // удовлетворяет ли какой-либо элемент  условию проверка массива
         return inputList.some((inputElement) => {
             //  не валидно, колбэк вернёт true Обход массива прекратится и вся функция вернёт true
             return !inputElement.validity.valid;
         })
     };
-
-   /* _hasInvalidInput = (inputList) => {
+*/
+    _hasInvalidInput = (inputList) => {
         if (!formInput.validity.valid) {
             _showError(formInput, formInput.validationMessage);
         } else {
             _hideInputError(formInput);
         }
     };
-*/
+
 
 
 

@@ -13,7 +13,6 @@ import {configs} from '../variables/configs.js';
 
 //window.onbeforeunload = function(){return false;};
 
-
 function closePopupEsc() {
     const popupToClose = document.querySelector('.popup_opened');
     popupToClose.classList.remove('popup_opened');
@@ -48,9 +47,7 @@ function submitHandlerProfile(evt) {
     jobProfileElement.textContent = inputUserJob.value;
     closePopup(evt);
 }
-/*
-const editProfileValidator = new FormValidator(configs, editProfileForm);
-editProfileValidator.enableValidation();// включаем экземпляр валидатора*/
+
 
 function openEditProfilePopup() {
     //открытие попапа с редактированием профиля
@@ -64,8 +61,8 @@ function openEditProfilePopup() {
 function openAddCardPopup() {
     //открытие попапа с местом
     inputListpopupPlace.forEach((inputElement) => {
-        inputElement.value = '';
-       // inputElement.form.reset();
+       // inputElement.value = '';
+        inputElement.form.reset();
     })
     //disableButton(submitPopupPlaceButton); //подумать позднее
     //formValidatorCard._inputListValidate();//убрать отсюда
@@ -77,7 +74,7 @@ function openAddCardPopup() {
 function renderAllCards() {
     initialCards.forEach(function (item) {
         const card = new Card();
-        const newCard = card._createCard(item);
+        const newCard = card.createCard(item);
         cardsList.append(newCard);
         //кладем в ДОМ
     });
@@ -89,7 +86,7 @@ function renderAllCards() {
         // Создадим экземпляр карточки
         const card = new Card(item, '.item-template');
         // Создаём карточку
-        const newElement = card._createCard(item);
+        const newElement = card.createCard(item);
         //и возвращаем наружу
         cardsList.append(newElement);
         // Добавляем в DOM
@@ -106,7 +103,7 @@ function submitAddCardPopup(evt) {
         link: inputCardLink.value
     };
     const card = new Card();
-    const newCard = card._createCard(inputElement);
+    const newCard = card.createCard(inputElement);
     cardsList.append(newCard);
     formAddCard.reset();
     closePopup(evt);
@@ -132,19 +129,10 @@ blockerList.forEach((blocker) => {
     });
 });
 
-//Закрытие по оверлею и по крестику, необходимо преобразовать такими обработчиками:
-   /* cardFormModalWindow.addEventListener('click', (evt) => {
-        if (evt.target.classList.contains('popup') || evt.target.classList.contains('popup__close')) {
-            closeModalWindow(cardFormModalWindow);
-        }
-    });*/
-//cardFormModalWindow – модальное окно
-//evt.target.classList.contains('popup')  – проверяет клик по оверлею,
- //evt.target.classList.contains('popup__close') – проверяет клик по крестику
 
 
-const formValidatorProfile = new FormValidator(configs[0]);
-const formValidatorCard = new FormValidator(configs[0]);
+//const formValidatorProfile = new FormValidator(configs[0]);
+//const formValidatorCard = new FormValidator(configs[0]);
 export {openPopup};
 
 
