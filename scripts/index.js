@@ -60,12 +60,7 @@ function openEditProfilePopup() {
 }
 
 function openAddCardPopup() {
-    //открытие попапа с местом
-    inputListpopupPlace.forEach((inputElement) => {
-       // inputElement.value = '';
-        inputElement.form.reset();
-    })
-    //disableButton(submitPopupPlaceButton); //подумать позднее
+    formAddCard.reset();
     formValidatorCard.inputListValidate();
     formValidatorCard.hideInputErrorAll();
     openPopup(popupPlace);

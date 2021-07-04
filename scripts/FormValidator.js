@@ -1,4 +1,3 @@
-import {emptyFieldErrorMsg} from '../variables/configs.js';
 
 // сделать массив обьекта ключей FormElement из formConfig
 // для каждой формы новый объект класса .
@@ -40,10 +39,10 @@ class FormValidator {
         this._setEventListeners(this._formElement, this._settings);
     }
 
-  _showError = (inputElement, inputElementConfig, errorMessage) => {
+  _showError = (inputElement, inputElementConfig) => {
       const errorElement = document.querySelector(`#${inputElement.id}-error`); //#popup-field-name-error
              inputElement.classList.add(inputElementConfig.formInputErrorClass);
-            errorElement.textContent = errorMessage;
+            errorElement.textContent = inputElement.validationMessage;
             errorElement.classList.add(inputElementConfig.formInputErrorActive);
         };
 
@@ -65,22 +64,6 @@ class FormValidator {
     };
 
 
-    _handleInvalidInput(inputElement, typeErrorMsg) {
-
-        const validity = inputElement.validity;
-        const length = inputElement.value.length;
-        if (validity.tooShort) {
-            const min = inputElement.getAttribute('minlength');
-            return (`Минимальное количество символов: ${min}. Длина текста сейчас: ${length} символ.`);
-        } else if (validity.tooLong) {
-            const max = inputElement.getAttribute('maxlength');
-            return (`Максимальное количество символов: ${max}. Длина текста сейчас: ${length} символ.`);
-        } else if (validity.typeMismatch) {
-            return typeErrorMsg;
-        }
-
-        return ('Неправильные данные!');
-    }
 
 //методы класса
     _disableButton(buttonElement) {
@@ -104,13 +87,10 @@ class FormValidator {
     }
 
     _checkInputValidity = (inputElement, inputElementConfig) => {
+
         if (!inputElement.validity.valid) {
-            if (inputElement.value.length === 0) {
-                this._showError(inputElement, inputElementConfig, emptyFieldErrorMsg[0]);
-            } else {
-                const errText = this._handleInvalidInput(inputElement, emptyFieldErrorMsg[1]);
-                this._showError(inputElement, inputElementConfig, errText);
-            }
+            this._showError(inputElement, inputElementConfig);
+
         } else {
             this._hideInputError(inputElement, inputElementConfig);
         }
