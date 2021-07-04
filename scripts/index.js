@@ -4,7 +4,8 @@ import {
     keyCodeEsc, editButton, popupPlace, closePopupPlaceButton, inputListpopupPlace,
     popupChangeProfile, closePopupChangeProfileButton, imagePopupCloseButton, openPopupPlaceButton, formEditProfile,
     formAddCard, inputUserName, inputUserJob, inputCardName, inputCardLink, nameProfileElement, jobProfileElement,
-    cardsList, initialCards
+    cardsList, initialCards,
+
 } from '../variables/constants.js';
 
 import {Card} from './Card.js'
@@ -53,7 +54,7 @@ function openEditProfilePopup() {
     //открытие попапа с редактированием профиля
     inputUserName.value = nameProfileElement.textContent;
     inputUserJob.value = jobProfileElement.textContent;
-    //formValidatorProfile._inputListValidate();//убрать отсюда
+    formValidatorProfile.inputListValidate();//убрать отсюда
     openPopup(popupChangeProfile);
 
 }
@@ -65,20 +66,11 @@ function openAddCardPopup() {
         inputElement.form.reset();
     })
     //disableButton(submitPopupPlaceButton); //подумать позднее
-    //formValidatorCard._inputListValidate();//убрать отсюда
-   // formValidatorCard._hideInputErrorAll();
+    formValidatorCard.inputListValidate();
+    formValidatorCard.hideInputErrorAll();
     openPopup(popupPlace);
 }
-/*
-//последняя итерация -кладем в ДОМ 1.5
-function renderAllCards() {
-    initialCards.forEach(function (item) {
-        const card = new Card();
-        const newCard = card.createCard(item);
-        cardsList.append(newCard);
-        //кладем в ДОМ
-    });
-}*/
+
 
 function renderAllCards() {
 //При создании карточки передаем ей два аргумента — объект с данными и селектор template-элемента замечание из ревью
@@ -128,11 +120,13 @@ blockerList.forEach((blocker) => {
         closePopup(evt);
     });
 });
+const formElementProfile =document.querySelector('.popup__form[name="resaveProfile"]');
+const formValidatorProfile = new FormValidator(configs, formElementProfile);
+formValidatorProfile.enableValidation();
 
-
-
-//const formValidatorProfile = new FormValidator(configs[0]);
-//const formValidatorCard = new FormValidator(configs[0]);
+const formElementCard =document.querySelector('.popup__form[name="resaveCountry"]');
+const formValidatorCard = new FormValidator(configs, formElementCard);
+formValidatorCard.enableValidation();
 export {openPopup};
 
 
