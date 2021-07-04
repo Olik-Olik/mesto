@@ -32,6 +32,7 @@ const submitPopupPlaceButton = popupPlace.querySelector('.popup__save');
 const closePopupPlaceButton = popupPlace.querySelector('.popup__close-button');//место-1
 const inputListpopupPlace = popupPlace.querySelectorAll('.popup__field');
 
+
 const popupChangeProfile = document.querySelector('.popup_type_edit');
 const closePopupChangeProfileButton = popupChangeProfile.querySelector('.popup__close-button');//Кусто-2
 

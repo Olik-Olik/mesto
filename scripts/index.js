@@ -4,7 +4,7 @@ import {
     keyCodeEsc, editButton, popupPlace, closePopupPlaceButton, inputListpopupPlace,
     popupChangeProfile, closePopupChangeProfileButton, imagePopupCloseButton, openPopupPlaceButton, formEditProfile,
     formAddCard, inputUserName, inputUserJob, inputCardName, inputCardLink, nameProfileElement, jobProfileElement,
-    cardsList, initialCards,
+    cardsList, initialCards, popupImage,
 
 } from '../variables/constants.js';
 
@@ -12,7 +12,6 @@ import {Card} from './Card.js'
 import {FormValidator} from './FormValidator.js';
 import {configs} from '../variables/configs.js';
 
-//window.onbeforeunload = function(){return false;};
 
 function closePopupEsc() {
     const popupToClose = document.querySelector('.popup_opened');
@@ -32,15 +31,6 @@ function openPopup(popup) {
     popup.classList.add('popup_opened');
 }
 
-//Функция открытия также как и функция закрытия должны принимать попап в качестве аргумента
-function closePopup(popup) {
-    const popupToClose = popup.target.closest('section');
-    //закрываем попап -1
-    document.removeEventListener('keydown', eventKeyDownListener);
-    popupToClose.classList.remove('popup_opened');
-}
-
-
 function submitHandlerProfile(evt) {
     // сохраняем введенные значения
     evt.preventDefault();
@@ -56,7 +46,6 @@ function openEditProfilePopup() {
     inputUserJob.value = jobProfileElement.textContent;
     formValidatorProfile.inputListValidate();//убрать отсюда
     openPopup(popupChangeProfile);
-
 }
 
 function openAddCardPopup() {
@@ -100,21 +89,36 @@ function submitAddCardPopup(evt) {
 
 editButton.addEventListener('click', openEditProfilePopup);
 openPopupPlaceButton.addEventListener('click', openAddCardPopup);
-closePopupPlaceButton.addEventListener('click', closePopup);
-closePopupChangeProfileButton.addEventListener('click', closePopup);
 formEditProfile.addEventListener('submit', submitHandlerProfile);
 formAddCard.addEventListener('submit', submitAddCardPopup);
-imagePopupCloseButton.addEventListener('click', closePopup);
 window.addEventListener("load", renderAllCards);
 
 
-//ищем все оверлеи=блокеры,  навешиваем листенер на онклик
-const blockerList = Array.from(document.querySelectorAll('.blocker'));
-blockerList.forEach((blocker) => {
-    blocker.addEventListener('click', (evt) => {
-        closePopup(evt);
-    });
+//Функция открытия также как и функция закрытия должны принимать попап в качестве аргумента
+function closePopup(popup) {
+
+    document.removeEventListener('keydown', eventKeyDownListener);
+    popup.classList.remove('popup_opened');
+}
+
+popupImage.addEventListener('click',(evt) =>{
+    if (evt.target.classList.contains('popup') || evt.target.classList.contains('popup__close-button-image')) {
+        closePopup(popupImage);
+    }
 });
+
+popupChangeProfile.addEventListener('click',(evt)=>{
+    if (evt.target.classList.contains('popup') || evt.target.classList.contains('popup__close-button')) {
+        closePopup(popupChangeProfile);
+    }
+});
+
+    popupPlace.addEventListener('click',(evt)=>{
+        if (evt.target.classList.contains('popup') || evt.target.classList.contains('popup__close-button')) {
+            closePopup(popupPlace);
+        }
+    });
+
 const formElementProfile =document.querySelector('.popup__form[name="resaveProfile"]');
 const formValidatorProfile = new FormValidator(configs, formElementProfile);
 formValidatorProfile.enableValidation();
