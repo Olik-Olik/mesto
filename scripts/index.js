@@ -36,7 +36,7 @@ function submitHandlerProfile(evt) {
     evt.preventDefault();
     nameProfileElement.textContent = inputUserName.value;
     jobProfileElement.textContent = inputUserJob.value;
-    closePopup(evt);
+    closePopup(popupChangeProfile);
 }
 
 
@@ -44,7 +44,7 @@ function openEditProfilePopup() {
     //открытие попапа с редактированием профиля
     inputUserName.value = nameProfileElement.textContent;
     inputUserJob.value = jobProfileElement.textContent;
-    formValidatorProfile.inputListValidate();//убрать отсюда
+    formValidatorProfile.inputListValidate();
     openPopup(popupChangeProfile);
 }
 
@@ -57,16 +57,17 @@ function openAddCardPopup() {
 
 
 function renderAllCards() {
-//При создании карточки передаем ей два аргумента — объект с данными и селектор template-элемента замечание из ревью
-    initialCards.forEach((item) => {
+    const elements = document.querySelector('.elements');
+    initialCards.forEach((item) =>
+    {
         // Создадим экземпляр карточки
-        const card = new Card(item);
+        const card = new Card(item, '.item-template' );
         // Создаём карточку
         const newElement = card.createCard();
         //и возвращаем наружу
         cardsList.append(newElement);
         // Добавляем в DOM
-        document.querySelector('.elements').append(newElement);
+        elements.append(newElement);
     });
 }
 
@@ -78,13 +79,12 @@ function submitAddCardPopup(evt) {
         name: inputCardName.value,
         link: inputCardLink.value
     };
-    const card = new Card(inputElement);
+    const card = new Card(inputElement,'.item-template');
     const newCard = card.createCard();
     cardsList.prepend(newCard);
     formAddCard.reset();
-    closePopup(evt);
+    closePopup(popupPlace);
 }
-
 
 
 editButton.addEventListener('click', openEditProfilePopup);
@@ -94,7 +94,7 @@ formAddCard.addEventListener('submit', submitAddCardPopup);
 window.addEventListener("load", renderAllCards);
 
 
-//Функция открытия также как и функция закрытия должны принимать попап в качестве аргумента
+
 function closePopup(popup) {
 
     document.removeEventListener('keydown', eventKeyDownListener);

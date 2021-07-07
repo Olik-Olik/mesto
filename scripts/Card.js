@@ -3,32 +3,26 @@ import {
     popupImage,
     zoomedImage,
     imageDescription,
-    initialCards,
-    cardsList, imagePopupCloseButton,
-
 } from '../variables/constants.js';
 import {openPopup} from '../scripts/index.js';
 
 //логики публикации элемента
 export class Card {
-    constructor(item) {
+    constructor(item, cardSelector) {
         this._item = item;
+        this._cardSelector = cardSelector;
     }
-
     // забираем разметку из HTML и клонируем элемент // вернуть разметку
     _getTemplate() {
-        const cardElement =
-            //найдёт template-элемент с классом item-template,
-            //извлечёт его содержимое,
-            itemTemplate
+        const cardElement = document
+                .querySelector(this._cardSelector)
                 .content
-                //в содержимом найдёт элемент с классом elements__card,
                 .querySelector('.elements__card')
-                //клонирует его,
                 .cloneNode(true);
-        //вернёт клонированный элемент DOM-элемент карточки
         return cardElement;
     }
+
+
 
     createCard() {
         // Запишем разметку в приватное поле _newElement.

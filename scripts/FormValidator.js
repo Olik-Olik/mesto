@@ -6,7 +6,7 @@ class FormValidator {
         this._settings = settings;
         this._formElement = formElement;
     }
-//масштабируемость не было учтено
+
     _setEventListeners = () => {
         this.inputList = Array.from(this._formElement.querySelectorAll(this._settings.inputElement));
         this._buttonElement = this._formElement.querySelector(this._settings.submitButton);// сохранения
