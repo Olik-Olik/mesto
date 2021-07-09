@@ -3,7 +3,7 @@ import {
     popupImage,
     zoomedImage,
     imageDescription,
-} from '../utils/constants.js';
+} from '../../utils/constants.js';
 import {openPopup} from '../pages';
 
 
@@ -21,8 +21,6 @@ export  class Card {
                 .cloneNode(true);
         return cardElement;
     }
-
-
 
     createCard() {
         // Запишем разметку в приватное поле _newElement.
@@ -64,4 +62,4 @@ export  class Card {
         evt.currentTarget.closest('#template-id').remove();
     }
 }
-
+//export {Card}

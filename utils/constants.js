@@ -57,13 +57,24 @@ const jobProfileElement = document.querySelector('.profile__subtitle');
 
 const cardsList = document.querySelector('.elements'); //list весь список
 
-
 //делаем глобальными  из onLoad
 const zoomedImage = document.querySelector('.popup__image');
 const imageDescription = document.querySelector('.popup__image-word');
 const itemTemplate = document.querySelector('.item-template');
 
+//для валидации файл конфиг указываем класс кнопок инпутов форм
+const configs =
+    {   //settings
+        formSelector: '.popup__form',
+        inputElement: '.popup__field',
+        submitButton: '.popup__save',
+        popupIsValid: 'popup__button_valid',
+        popupIsInvalid: 'popup__button_invalid',
+        formInputErrorClass: 'form__input_error',
+        formInputErrorActive: 'form__input-error_active',
+    };
 
+export {configs};
 
 export{keyCodeEsc, editButton,popupPlace,submitPopupPlaceButton,closePopupPlaceButton,inputListpopupPlace,
     popupChangeProfile,closePopupChangeProfileButton,imagePopupCloseButton,openPopupPlaceButton,formEditProfile,
