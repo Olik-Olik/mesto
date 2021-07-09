@@ -1,3 +1,4 @@
+/*
 //Переменные перенесены в constants.js zoomedImage, imageDescription, itemTemplate, submitPopupPlaceButton,
 
 import {
@@ -6,12 +7,12 @@ import {
     formAddCard, inputUserName, inputUserJob, inputCardName, inputCardLink, nameProfileElement, jobProfileElement,
     cardsList, initialCards, popupImage,
 
-} from '../variables/constants.js';
+} from '../utils/constants.js';
 
-import {Card} from './Card.js'
-import {FormValidator} from './FormValidator.js';
-import {configs} from '../variables/configs.js';
-
+import {Card} from '../scripts/Card.js'
+import {FormValidator} from '../scripts/FormValidator.js';
+import {configs} from '../utils/configs.js';
+import {renderAllCards} from '../utils/utils.js'
 
 function closePopupEsc() {
     const popupToClose = document.querySelector('.popup_opened');
@@ -76,9 +77,9 @@ function submitAddCardPopup(evt) {
     evt.preventDefault();
     const inputElement =
         {
-        name: inputCardName.value,
-        link: inputCardLink.value
-    };
+            name: inputCardName.value,
+            link: inputCardLink.value
+        };
     const card = new Card(inputElement,'.item-template');
     const newCard = card.createCard();
     cardsList.prepend(newCard);
@@ -113,11 +114,11 @@ popupChangeProfile.addEventListener('click',(evt)=>{
     }
 });
 
-    popupPlace.addEventListener('click',(evt)=>{
-        if (evt.target.classList.contains('popup') || evt.target.classList.contains('popup__close-button')) {
-            closePopup(popupPlace);
-        }
-    });
+popupPlace.addEventListener('click',(evt)=>{
+    if (evt.target.classList.contains('popup') || evt.target.classList.contains('popup__close-button')) {
+        closePopup(popupPlace);
+    }
+});
 
 const formElementProfile =document.querySelector('.popup__form[name="resaveProfile"]');
 const formValidatorProfile = new FormValidator(configs, formElementProfile);
@@ -138,3 +139,4 @@ export {openPopup};
 
 
 
+*/

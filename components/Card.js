@@ -3,11 +3,11 @@ import {
     popupImage,
     zoomedImage,
     imageDescription,
-} from '../variables/constants.js';
-import {openPopup} from '../scripts/index.js';
+} from '../utils/constants.js';
+import {openPopup} from '../pages';
 
-//логики публикации элемента
-export class Card {
+
+export  class Card {
     constructor(item, cardSelector) {
         this._item = item;
         this._cardSelector = cardSelector;
