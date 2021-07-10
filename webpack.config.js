@@ -4,7 +4,10 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin'); // подключили плагин
 
-    module.exports = {
+// подключите к проекту mini-css-extract-plugin
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+
+module.exports = {
       //  entry: { main: './src/index.js' },
         entry: {main: './src/pages/index.js'},
         output: {
@@ -36,6 +39,22 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin'); // подклю�
                     test: /\.(png|svg|jpg|gif|woff(2)?|eot|ttf|otf)$/,
                     type: 'asset/resource'
                 },
+                {
+                    // применять это правило только к CSS-файлам
+                    test: /\.css$/,
+                    // при обработке этих файлов нужно использовать
+                    // MiniCssExtractPlugin.loader и css-loader
+                    use: [MiniCssExtractPlugin.loader, {
+                        loader: 'css-loader',
+                        options: { importLoaders: 1 }
+                        //Если вы используете директиву @import в css-файлах,
+                        // после подключения postcss-loader, нужно изменить то, как подключается css-loader
+                    },
+                        // Добавьте postcss-loader
+                        'postcss-loader'
+                    ]
+                }
+
             ]
         },
        // который будет каждый раз при сборке проекта удалять содержимое папки dist.
@@ -44,6 +63,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin'); // подклю�
                 template: './src/index.html' // путь к файлу index.html
             }),
             new CleanWebpackPlugin(), // использовали плагин
+            new MiniCssExtractPlugin(), // подключение плагина для объединения файлов
         ] // добавьте массив
     };
 

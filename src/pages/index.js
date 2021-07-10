@@ -20,6 +20,7 @@ import {
     configs,
 } from '../../utils/constants.js';
 
+import './index.css';
 import {Card} from '../components/Card.js';
 import {FormValidator} from '../components/FormValidator.js';
 //сначала вебпак-потом рефакторинг -на буд
