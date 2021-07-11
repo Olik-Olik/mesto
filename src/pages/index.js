@@ -1,9 +1,9 @@
-
+//взаимодействие между классами проекта и инициализируем их
 import {
     keyCodeEsc,
     editButton,
     popupPlace,
-    closePopupPlaceButton, inputListpopupPlace,closePopupChangeProfileButton, imagePopupCloseButton,
+   // closePopupPlaceButton, inputListpopupPlace,closePopupChangeProfileButton, imagePopupCloseButton,
     popupChangeProfile,
     openPopupPlaceButton,
     formEditProfile,
@@ -15,7 +15,7 @@ import {
     nameProfileElement,
     jobProfileElement,
     cardsList,
-    initialCards,
+ //   initialCards,
     popupImage,
     configs,
 } from '../../utils/constants.js';
@@ -23,8 +23,8 @@ import {
 import './index.css';
 import {Card} from '../components/Card.js';
 import {FormValidator} from '../components/FormValidator.js';
-//сначала вебпак-потом рефакторинг -на буд
-//import {Section} from '../components/Section.js';
+import {renderAllCards} from '/utils/utils.js'
+import {Section} from '../components/Section.js';
 //import {PopupWithForm} from '../components/PopupWithForm.js';
 //import {PopupWithImage} from '../components/PopupWithImage.js';
 //import {UserInfo} from '../components/UserInfo.js';
@@ -36,13 +36,11 @@ function closePopupEsc() {
     popupToClose.classList.remove('popup_opened');
 }
 
-
 function eventKeyDownListener(evt) {
     if (evt.code === keyCodeEsc || evt.key === 'Escape') {
         closePopupEsc();
     }
 }
-
 
 function openPopup(popup) {
     document.addEventListener('keydown', eventKeyDownListener);
@@ -73,7 +71,7 @@ function openAddCardPopup() {
     openPopup(popupPlace);
 }
 
-
+/*
 function renderAllCards() {
     const elements = document.querySelector('.elements');
     initialCards.forEach((item) =>
@@ -88,6 +86,17 @@ function renderAllCards() {
         elements.append(newElement);
     });
 }
+*/
+
+const cardList = new Section({
+    data: initialCards,
+    renderer:(cardItem)=>{
+        const card = new Card(inputElement,'.item-template');
+        const newCard = card.createCard();
+        cardsList.addItem(newCard);
+    }
+})
+
 
 function submitAddCardPopup(evt) {
     // сохраняем введенные значения 2 popup
@@ -104,13 +113,11 @@ function submitAddCardPopup(evt) {
     closePopup(popupPlace);
 }
 
-
 editButton.addEventListener('click', openEditProfilePopup);
 openPopupPlaceButton.addEventListener('click', openAddCardPopup);
 formEditProfile.addEventListener('submit', submitHandlerProfile);
 formAddCard.addEventListener('submit', submitAddCardPopup);
 window.addEventListener("load", renderAllCards);
-
 
 
 function closePopup(popup) {

@@ -7,7 +7,7 @@ import {
 import {openPopup} from '../pages';
 
 
-export  class Card {
+export default class Card {
     constructor(item, cardSelector) {
         this._item = item;
         this._cardSelector = cardSelector;
@@ -62,4 +62,3 @@ export  class Card {
         evt.currentTarget.closest('#template-id').remove();
     }
 }
-//export {Card}

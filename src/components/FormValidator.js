@@ -1,7 +1,7 @@
 
 // сделать массив обьекта ключей FormElement из formConfig
 // для каждой формы новый объект класса .
-class FormValidator {
+export class FormValidator {
     constructor(settings, formElement) {
         this._settings = settings;
         this._formElement = formElement;
@@ -98,4 +98,4 @@ class FormValidator {
 
 }
 
-export {FormValidator};
+//export  {FormValidator};

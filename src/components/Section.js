@@ -1,47 +1,40 @@
+//items = messageList — это массив данных  для перебора, которые нужно добавить на страницу
 
-//класс Section, который отвечает за отрисовку элементов на странице. Этот класс:
-//    Первым параметром конструктора принимает объект с двумя свойствами:
-//    items : это массив данных,
-//    которые нужно добавить на страницу при инициализации класса.
-// renderedItems — это функция, которая отвечает за создание
-//и отрисовку данных на странице.
-//    Второй параметр конструктора — селектор контейнера,
-//    в который нужно добавлять созданные элементы.
-//    Содержит публичный метод, который отвечает за отрисовку
-//всех элементов. Отрисовка каждого отдельного элемента должна
-//осуществляться функцией renderer.
-//    Содержит публичный метод addItem,
-//    который принимает DOM-элемент и добавляет его в контейнер.
-//    У класса Section нет своей разметки.
-//    Он получает разметку через функцию-колбэк и вставляет её в контейнер.
-/*
+//renderer — это функция, которая отвечает за создание и отрисовку элементов разметки на странице
 
-import {Card} from "./Card.js";
+//Второй параметр конструктора — containerSelector, в который нужно добавлять созданные элементы
 
-    export default class Section {
-    constructor({ data }, containerSelector) {
-        this._renderedItems = data;
+//Содержит публичный метод, который отвечает за отрисовку всех элементов renderer
+//принимает element
+//вставляет методом append
+
+//публичный метод addItem добавляет DOM-элемент в контейнер
+// перебирает массив данных
+
+//import {cardsList, initialCards} from "../utils/constants";
+import {Card} from "./Card";
+import {rendererItems} from "/utils/utils.js";
+
+//вставляет элемент в разметку class Section
+
+export default class Section {
+    constructor(data, containerSelector)
+    {
+        this._items = data.items;
+        this._renderer = data.renderer;
         this._container = document.querySelector(containerSelector);
+        this.renderItems();
     }
-   // setItem — принимает параметр element
-  //  и вставляет его в контейнер методом append. логика отрисовки элемента
-    setItem(element) {
+
+    addItem(element) {
         this._container.append(element);
     }
- //   renderItems — перебирает массив данных _initialArray.
-  //  Вызывает для каждого элемента массива метод setItem.публичный
-        //items : это массив данных
 
-        renderItems() {
-        this._renderedItems.forEach((item) => {
-            const card = item.isOwner
-                ? new Card(item, '.card-template_type_user')
-                : new DefaultCard(item, '.card-template_type_default');
-
-            const cardElement = card.generateCard();
-
-            this.setItem(cardElement);
+    renderItems() {
+        this._items.forEach(item => {
+            const renderedElement = this._renderer(item);
+            this.addItem(renderedElement);
         });
     }
 }
-*/
+
