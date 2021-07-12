@@ -31,21 +31,21 @@ import {Section} from '../components/Section.js';
 
 
 
-function closePopupEsc() {
+/*function closePopupEsc() {
     const popupToClose = document.querySelector('.popup_opened');
     popupToClose.classList.remove('popup_opened');
-}
-
+}*/
+/*
 function eventKeyDownListener(evt) {
     if (evt.code === keyCodeEsc || evt.key === 'Escape') {
         closePopupEsc();
     }
-}
-
+}*/
+/*
 function openPopup(popup) {
     document.addEventListener('keydown', eventKeyDownListener);
     popup.classList.add('popup_opened');
-}
+}*/
 
 function submitHandlerProfile(evt) {
     // сохраняем введенные значения
@@ -119,12 +119,12 @@ formEditProfile.addEventListener('submit', submitHandlerProfile);
 formAddCard.addEventListener('submit', submitAddCardPopup);
 window.addEventListener("load", renderAllCards);
 
-
+/*
 function closePopup(popup) {
 
     document.removeEventListener('keydown', eventKeyDownListener);
     popup.classList.remove('popup_opened');
-}
+}*/
 
 popupImage.addEventListener('click',(evt) =>{
     if (evt.target.classList.contains('popup') || evt.target.classList.contains('popup__close-button-image')) {
