@@ -1,6 +1,6 @@
-import {keyCodeEsc, popupImage} from "../../utils/constants";
+import {keyCodeEsc,} from "../../utils/constants";
 
-class Popup {
+export class Popup {
     constructor(popupSelector) {
         this._popup = document.querySelector(popupSelector);
         this._popupSelector = popupSelector;

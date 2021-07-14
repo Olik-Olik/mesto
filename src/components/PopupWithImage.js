@@ -1,3 +1,22 @@
-class PopupWithImage extends Popup {
+import { popupImage} from "../../utils/constants";
 
-}
+class PopupWithImage extends Popup {
+    constructor(popupSelector) {
+     super(popupSelector);
+    }
+
+        open()
+        {
+
+            super.open();
+        }
+
+    }
+
+
+
+
+
+
+
+

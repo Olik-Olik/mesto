@@ -1,9 +1,7 @@
 //взаимодействие между классами проекта и инициализируем их
 import {
-    keyCodeEsc,
     editButton,
     popupPlace,
-   // closePopupPlaceButton, inputListpopupPlace,closePopupChangeProfileButton, imagePopupCloseButton,
     popupChangeProfile,
     openPopupPlaceButton,
     formEditProfile,
@@ -15,7 +13,7 @@ import {
     nameProfileElement,
     jobProfileElement,
     cardsList,
- //   initialCards,
+    initialCards,
     popupImage,
     configs,
 } from '../../utils/constants.js';
@@ -25,11 +23,9 @@ import {Card} from '../components/Card.js';
 import {FormValidator} from '../components/FormValidator.js';
 import {renderAllCards} from '/utils/utils.js'
 import {Section} from '../components/Section.js';
-//import {PopupWithForm} from '../components/PopupWithForm.js';
-//import {PopupWithImage} from '../components/PopupWithImage.js';
-//import {UserInfo} from '../components/UserInfo.js';
-
-
+import {PopupWithForm} from '../components/PopupWithForm.js';
+import {PopupWithImage} from '../components/PopupWithImage.js';
+import {UserInfo} from '../components/UserInfo.js';
 
 /*function closePopupEsc() {
     const popupToClose = document.querySelector('.popup_opened');
@@ -55,22 +51,21 @@ function submitHandlerProfile(evt) {
     closePopup(popupChangeProfile);
 }
 
-
-function openEditProfilePopup() {
+/*function openEditProfilePopup() {
     //открытие попапа с редактированием профиля
     inputUserName.value = nameProfileElement.textContent;
     inputUserJob.value = jobProfileElement.textContent;
     formValidatorProfile.inputListValidate();
     openPopup(popupChangeProfile);
-}
-
+}*/
+/*
 function openAddCardPopup() {
     formAddCard.reset();
     formValidatorCard.inputListValidate();
     formValidatorCard.hideInputErrorAll();
     openPopup(popupPlace);
 }
-
+*/
 /*
 function renderAllCards() {
     const elements = document.querySelector('.elements');
@@ -87,7 +82,7 @@ function renderAllCards() {
     });
 }
 */
-
+//карточки
 const cardList = new Section({
     data: initialCards,
     renderer:(cardItem)=>{
@@ -97,7 +92,7 @@ const cardList = new Section({
     }
 })
 
-
+//сохраняем карту
 function submitAddCardPopup(evt) {
     // сохраняем введенные значения 2 popup
     evt.preventDefault();
@@ -121,11 +116,10 @@ window.addEventListener("load", renderAllCards);
 
 /*
 function closePopup(popup) {
-
     document.removeEventListener('keydown', eventKeyDownListener);
     popup.classList.remove('popup_opened');
 }*/
-
+//картинка попап
 popupImage.addEventListener('click',(evt) =>{
     if (evt.target.classList.contains('popup') || evt.target.classList.contains('popup__close-button-image')) {
         closePopup(popupImage);
@@ -144,6 +138,11 @@ popupChangeProfile.addEventListener('click',(evt)=>{
         }
     });
 
+
+openPopupPlaceButton.addEventListener('click',()=>{
+    popupPlace.open();
+});
+
 const formElementProfile =document.querySelector('.popup__form[name="resaveProfile"]');
 const formValidatorProfile = new FormValidator(configs, formElementProfile);
 formValidatorProfile.enableValidation();
@@ -151,7 +150,7 @@ formValidatorProfile.enableValidation();
 const formElementCard =document.querySelector('.popup__form[name="resaveCountry"]');
 const formValidatorCard = new FormValidator(configs, formElementCard);
 formValidatorCard.enableValidation();
-export {openPopup};
+
 
 
 
