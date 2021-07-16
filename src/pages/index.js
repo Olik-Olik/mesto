@@ -15,7 +15,7 @@ import {
     cardsList,
     initialCards,
     popupImage,
-    configs,
+    configs, zoomedImage, imageDescription,
 } from '../../utils/constants.js';
 
 import './index.css';
@@ -37,6 +37,7 @@ function eventKeyDownListener(evt) {
         closePopupEsc();
     }
 }*/
+
 /*
 function openPopup(popup) {
     document.addEventListener('keydown', eventKeyDownListener);
@@ -83,10 +84,12 @@ function renderAllCards() {
 }
 */
 //карточки
+
+
 const cardList = new Section({
     data: initialCards,
-    renderer:(cardItem)=>{
-        const card = new Card(inputElement,'.item-template');
+    renderer: (cardItem) => {
+        const card = new Card(inputElement, '.item-template');
         const newCard = card.createCard();
         cardsList.addItem(newCard);
     }
@@ -98,10 +101,10 @@ function submitAddCardPopup(evt) {
     evt.preventDefault();
     const inputElement =
         {
-        name: inputCardName.value,
-        link: inputCardLink.value
-    };
-    const card = new Card(inputElement,'.item-template');
+            name: inputCardName.value,
+            link: inputCardLink.value
+        };
+    const card = new Card(inputElement, '.item-template', handleCardClick);
     const newCard = card.createCard();
     cardsList.prepend(newCard);
     formAddCard.reset();
@@ -120,45 +123,46 @@ function closePopup(popup) {
     popup.classList.remove('popup_opened');
 }*/
 //картинка попап
-popupImage.addEventListener('click',(evt) =>{
+const popupImage = new PopupWithImage(popupOnOff.свойство);
+
+popupImage.addEventListener('click', (evt) => {
     if (evt.target.classList.contains('popup') || evt.target.classList.contains('popup__close-button-image')) {
         closePopup(popupImage);
     }
 });
 
-popupChangeProfile.addEventListener('click',(evt)=>{
+popupChangeProfile.addEventListener('click', (evt) => {
     if (evt.target.classList.contains('popup') || evt.target.classList.contains('popup__close-button')) {
         closePopup(popupChangeProfile);
     }
 });
 
-    popupPlace.addEventListener('click',(evt)=>{
-        if (evt.target.classList.contains('popup') || evt.target.classList.contains('popup__close-button')) {
-            closePopup(popupPlace);
-        }
-    });
+popupPlace.addEventListener('click', (evt) => {
+    if (evt.target.classList.contains('popup') || evt.target.classList.contains('popup__close-button')) {
+        closePopup(popupPlace);
+    }
+});
 
 
-openPopupPlaceButton.addEventListener('click',()=>{
+openPopupPlaceButton.addEventListener('click', () => {
     popupPlace.open();
 });
 
-const formElementProfile =document.querySelector('.popup__form[name="resaveProfile"]');
+const formElementProfile = document.querySelector('.popup__form[name="resaveProfile"]');
 const formValidatorProfile = new FormValidator(configs, formElementProfile);
 formValidatorProfile.enableValidation();
 
-const formElementCard =document.querySelector('.popup__form[name="resaveCountry"]');
+const formElementCard = document.querySelector('.popup__form[name="resaveCountry"]');
 const formValidatorCard = new FormValidator(configs, formElementCard);
 formValidatorCard.enableValidation();
 
-
-
-
-
-
-
-
-
-
-
+//обработчик события распахивания карточки
+//меняем параметры из попапа, на карточку img /word
+handleCardClick(evt)
+{
+    openPopup(popupImage);
+    zoomedImage.src = evt.currentTarget.src;
+    zoomedImage.alt = evt.currentTarget.alt;
+    imageDescription.textContent = evt.currentTarget.closest("#template-id").querySelector('.elements__word').textContent;
+}
 

@@ -1,11 +1,6 @@
-
-//import {cardsList, initialCards} from "../utils/constants";
-import {Card} from "./Card";
-import {rendererItems} from "/utils/utils.js";
-
 //вставляет элемент в разметку class Section
 
-export default class Section {
+export  class Section {
     constructor(data, containerSelector)
     {
         this._items = data.items;

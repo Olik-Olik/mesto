@@ -1,13 +1,8 @@
-import {FormValidator} from "./FormValidator";
+
 import {
-    configs,
-    inputUserJob,
-    inputUserName,
     jobProfileElement,
     nameProfileElement,
-    popupChangeProfile
 } from "../../utils/constants";
-
 
 class UserInfo {
     constructor(userInfo) {
