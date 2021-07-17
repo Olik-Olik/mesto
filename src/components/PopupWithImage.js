@@ -14,5 +14,13 @@ export class PopupWithImage extends Popup {
         //inputElement.closest("#template-id").querySelector('.elements__word').textContent;
         super.open();
     }
+
+/*
+    close() {
+        super.close();
+    }
+*/
+
 }
+
 

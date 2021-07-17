@@ -1,9 +1,15 @@
-import {keyCodeEsc,} from "../../utils/constants";
+import {
+    closePopupChangeProfileButton,
+    closePopupPlaceButton,
+    imagePopupCloseButton,
+    keyCodeEsc,
+} from "../../utils/constants";
 
 export class Popup {
     constructor(popupSelector) {
         this._popup = document.querySelector(popupSelector);
         this._popupSelector = popupSelector;
+        this._popupCloseButton = this._popup.querySelector('.popup__close-button-image');
     }
 
     open() {
@@ -16,20 +22,29 @@ export class Popup {
         this._popup.classList.remove('popup_opened');
     }
 
+
+    // closePopupPlaceButton
+    // closePopupChangeProfileButton
+    // imagePopupCloseButton
+    // closePopupPlaceButton.addEventListener('click', (evt) => {
+    // if (evt.target.classList.contains('popup') || evt.target.classList.contains('popup__close-button-image'))
+
+
     _handleEscClose() {
         const popupToClose = document.querySelector('.popup_opened');
         popupToClose.classList.remove('popup_opened');
     }
 
     setEventListeners() {
-        this._popup.addEventListener('click', this._handleCloseButton);
+        this._popupCloseButton.addEventListener('click', (evt) => {this._handleCloseButton(evt)});
     }
 
-    _handleCloseButton(evt)
-    {if (evt.target.classList.contains('popup') || evt.target.classList.contains('popup__close-button-image')) {
-    this.close();
-}
-}
+    _handleCloseButton(evt) {
+        if (evt.target.classList.contains('popup') || evt.target.classList.contains('popup__close-button-image')) {
+            this.close();
+        }
+    }
+
     _eventKeyDownListener(evt) {
         if (evt.code === keyCodeEsc || evt.key === 'Escape') {
             this._handleEscClose();
