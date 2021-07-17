@@ -1,7 +1,4 @@
 import {
-    closePopupChangeProfileButton,
-    closePopupPlaceButton,
-    imagePopupCloseButton,
     keyCodeEsc,
 } from "../../utils/constants";
 
@@ -13,30 +10,22 @@ export class Popup {
     }
 
     open() {
-        document.addEventListener('keydown', this._eventKeyDownListener);
+        document.addEventListener('keydown', (evt) => {this._eventKeyDownListener(evt)});
         this._popup.classList.add('popup_opened');
     }
 
     close() {
-        document.removeEventListener('keydown', this._eventKeyDownListener);
+        document.removeEventListener('keydown', (evt) => {this._eventKeyDownListener(evt)});
         this._popup.classList.remove('popup_opened');
     }
 
-
-    // closePopupPlaceButton
-    // closePopupChangeProfileButton
-    // imagePopupCloseButton
-    // closePopupPlaceButton.addEventListener('click', (evt) => {
-    // if (evt.target.classList.contains('popup') || evt.target.classList.contains('popup__close-button-image'))
-
-
     _handleEscClose() {
-        const popupToClose = document.querySelector('.popup_opened');
-        popupToClose.classList.remove('popup_opened');
+        this.close();
     }
 
     setEventListeners() {
         this._popupCloseButton.addEventListener('click', (evt) => {this._handleCloseButton(evt)});
+        this._popup.addEventListener('click', (evt) => {this._handleCloseButton(evt)});
     }
 
     _handleCloseButton(evt) {
