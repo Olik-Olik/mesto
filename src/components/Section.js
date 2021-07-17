@@ -6,17 +6,17 @@ export  class Section {
         this._items = data.items;
         this._renderer = data.renderer;
         this._container = document.querySelector(containerSelector);
-        this.renderItems();
+//        this.renderItems();
     }
 
     addItem(element) {
-        this._container.append(element);
+        this._container.prepend(element);
     }
 
     renderItems() {
-        this._items.forEach(item => {
+        this._items.forEach((item) => {
             const renderedElement = this._renderer(item);
-            this.addItem(renderedElement);
+            this._container.append(renderedElement);
         });
     }
 }

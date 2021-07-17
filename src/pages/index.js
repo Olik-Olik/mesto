@@ -12,7 +12,6 @@ import {
     inputCardLink,
     nameProfileElement,
     jobProfileElement,
-    cardsList,
     initialCards,
     popupImage,
     configs, zoomedImage, imageDescription,
@@ -26,6 +25,106 @@ import {Section} from '../components/Section.js';
 import {PopupWithForm} from '../components/PopupWithForm.js';
 import {PopupWithImage} from '../components/PopupWithImage.js';
 import {UserInfo} from '../components/UserInfo.js';
+
+
+//профиль
+function handleSubmitProfile(formValues) {
+    nameProfileElement.textContent = formValues['inputForm_name'];
+    jobProfileElement.textContent = formValues['inputForm_job'];
+}
+
+
+//обработчик события распахивания карточки
+//меняем параметры из попапа, на карточку img /word
+/*
+handleCardClick(evt)
+{
+    openPopup(popupImage);
+    zoomedImage.src = evt.currentTarget.src;
+    zoomedImage.alt = evt.currentTarget.alt;
+    imageDescription.textContent = evt.currentTarget.closest("#template-id").querySelector('.elements__word').textContent;
+
+}
+*/
+
+function handleCardClick(evt){
+    const data = {
+        'name': evt.currentTarget.alt,
+        'link': evt.currentTarget.src
+    }
+    const popupBigImage = new PopupWithImage('.popup_type_image', data);
+    popupBigImage.open();
+}
+
+
+const cardsList = new Section({
+    items: initialCards,
+    renderer: cardRenderer}, '.elements');
+
+function cardRenderer(cardItem){
+    const card = new Card(cardItem,'.item-template', handleCardClick);
+    const newCard = card.createCard();
+    cardsList.addItem(newCard);
+}
+
+cardsList.renderItems();
+
+//карточка из input
+function handleSubmitCard(formValues) {
+    const inputElement =
+        {
+            name: formValues['popup-input-place'],
+            link: formValues['popup-input-img']
+        };
+    cardRenderer(inputElement);
+}
+
+editButton.addEventListener('click', openEditProfilePopup);
+openPopupPlaceButton.addEventListener('click', openAddCardPopup);
+formEditProfile.addEventListener('submit', submitHandlerProfile);
+formAddCard.addEventListener('submit', submitAddCardPopup);
+window.addEventListener("load", renderAllCards);
+
+/*
+popupProfile.setEventListeners();
+popupAddCard._setEventListeners();
+popupBigImage.setEventListeners();
+*/
+/*card._setEventListeners();*/
+
+/*
+popupImage.addEventListener('click', (evt) => {
+    if (evt.target.classList.contains('popup') || evt.target.classList.contains('popup__close-button-image')) {
+        closePopup(popupImage);
+    }
+});
+*/
+/*
+
+popupChangeProfile.addEventListener('click', (evt) => {
+    if (evt.target.classList.contains('popup') || evt.target.classList.contains('popup__close-button')) {
+        closePopup(popupChangeProfile);
+    }
+});
+
+popupPlace.addEventListener('click', (evt) => {
+    if (evt.target.classList.contains('popup') || evt.target.classList.contains('popup__close-button')) {
+        closePopup(popupPlace);
+    }
+});
+
+openPopupPlaceButton.addEventListener('click', () => {
+    popupPlace.open();
+});
+*/
+
+const formElementProfile = document.querySelector('.popup__form[name="resaveProfile"]');
+const formValidatorProfile = new FormValidator(configs, formElementProfile);
+formValidatorProfile.enableValidation();
+
+const formElementCard = document.querySelector('.popup__form[name="resaveCountry"]');
+const formValidatorCard = new FormValidator(configs, formElementCard);
+formValidatorCard.enableValidation();
 
 /*function closePopupEsc() {
     const popupToClose = document.querySelector('.popup_opened');
@@ -53,13 +152,6 @@ function submitHandlerProfile(evt) {
     closePopup(popupChangeProfile);
 }
 */
-//профиль
-function handleSubmitProfile(formValues) {
-    nameProfileElement.textContent = formValues['inputForm_name'];
-    jobProfileElement.textContent = formValues['inputForm_job'];
-}
-const popupProfile = new PopupWithForm('.popup_type_edit',handleSubmitProfile);
-
 /*function openEditProfilePopup() {
     //открытие попапа с редактированием профиля
     inputUserName.value = nameProfileElement.textContent;
@@ -94,28 +186,6 @@ function renderAllCards() {
 //карточки
 
 
-const cardList = new Section({
-    data: initialCards,
-    renderer: (cardItem) => {
-        const card = new Card(inputElement, '.item-template');
-        const newCard = card.createCard();
-        cardsList.addItem(newCard);
-    }
-})
-//карточка из input
-function handleSubmitCard(formValues) {
-    const inputElement =
-        {
-            name: formValues['popup-input-place'],
-            link: formValues['popup-input-img']
-        };
-    const card = new Card(inputElement, '.item-template', handleCardClick);
-    const newCard = card.createCard();
-    cardsList.prepend(newCard);
-}
-const popupAddCard = new Card(inputElement, '.item-template', handleSubmitCard);
-
-
 //сохраняем карту
 /*
 function submitAddCardPopup(evt) {
@@ -134,61 +204,9 @@ function submitAddCardPopup(evt) {
 }
 */
 
-
-
-
-editButton.addEventListener('click', openEditProfilePopup);
-openPopupPlaceButton.addEventListener('click', openAddCardPopup);
-formEditProfile.addEventListener('submit', submitHandlerProfile);
-formAddCard.addEventListener('submit', submitAddCardPopup);
-window.addEventListener("load", renderAllCards);
-
 /*
 function closePopup(popup) {
     document.removeEventListener('keydown', eventKeyDownListener);
     popup.classList.remove('popup_opened');
 }*/
-//картинка попап
-const popupImage = new PopupWithImage(popupOnOff.свойство);
-
-popupImage.addEventListener('click', (evt) => {
-    if (evt.target.classList.contains('popup') || evt.target.classList.contains('popup__close-button-image')) {
-        closePopup(popupImage);
-    }
-});
-
-popupChangeProfile.addEventListener('click', (evt) => {
-    if (evt.target.classList.contains('popup') || evt.target.classList.contains('popup__close-button')) {
-        closePopup(popupChangeProfile);
-    }
-});
-
-popupPlace.addEventListener('click', (evt) => {
-    if (evt.target.classList.contains('popup') || evt.target.classList.contains('popup__close-button')) {
-        closePopup(popupPlace);
-    }
-});
-
-
-openPopupPlaceButton.addEventListener('click', () => {
-    popupPlace.open();
-});
-
-const formElementProfile = document.querySelector('.popup__form[name="resaveProfile"]');
-const formValidatorProfile = new FormValidator(configs, formElementProfile);
-formValidatorProfile.enableValidation();
-
-const formElementCard = document.querySelector('.popup__form[name="resaveCountry"]');
-const formValidatorCard = new FormValidator(configs, formElementCard);
-formValidatorCard.enableValidation();
-
-//обработчик события распахивания карточки
-//меняем параметры из попапа, на карточку img /word
-handleCardClick(evt)
-{
-    openPopup(popupImage);
-    zoomedImage.src = evt.currentTarget.src;
-    zoomedImage.alt = evt.currentTarget.alt;
-    imageDescription.textContent = evt.currentTarget.closest("#template-id").querySelector('.elements__word').textContent;
-}
 

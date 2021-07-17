@@ -55,7 +55,7 @@ const inputCardLink = document.querySelector('#popup-field-card-img');//ссыл
 const nameProfileElement = document.querySelector('.profile__title');
 const jobProfileElement = document.querySelector('.profile__subtitle');
 
-const cardsList = document.querySelector('.elements'); //list весь список
+//const cardsList = document.querySelector('.elements'); //list весь список
 
 //делаем глобальными  из onLoad
 const zoomedImage = document.querySelector('.popup__image');
@@ -79,4 +79,4 @@ export {configs};
 export{keyCodeEsc, editButton,popupPlace,submitPopupPlaceButton,closePopupPlaceButton,inputListpopupPlace,
     popupChangeProfile,closePopupChangeProfileButton,imagePopupCloseButton,openPopupPlaceButton,formEditProfile,
     formAddCard,inputUserName,inputUserJob,inputCardName,inputCardLink,nameProfileElement,jobProfileElement,
-    cardsList,zoomedImage,imageDescription,itemTemplate,initialCards,popupImage};
+    zoomedImage,imageDescription,itemTemplate,initialCards,popupImage};
