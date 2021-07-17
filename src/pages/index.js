@@ -44,6 +44,7 @@ function openPopup(popup) {
     popup.classList.add('popup_opened');
 }*/
 
+/*
 function submitHandlerProfile(evt) {
     // сохраняем введенные значения
     evt.preventDefault();
@@ -51,6 +52,13 @@ function submitHandlerProfile(evt) {
     jobProfileElement.textContent = inputUserJob.value;
     closePopup(popupChangeProfile);
 }
+*/
+//профиль
+function handleSubmitProfile(formValues) {
+    nameProfileElement.textContent = formValues['inputForm_name'];
+    jobProfileElement.textContent = formValues['inputForm_job'];
+}
+const popupProfile = new PopupWithForm('.popup_type_edit',handleSubmitProfile);
 
 /*function openEditProfilePopup() {
     //открытие попапа с редактированием профиля
@@ -94,8 +102,22 @@ const cardList = new Section({
         cardsList.addItem(newCard);
     }
 })
+//карточка из input
+function handleSubmitCard(formValues) {
+    const inputElement =
+        {
+            name: formValues['popup-input-place'],
+            link: formValues['popup-input-img']
+        };
+    const card = new Card(inputElement, '.item-template', handleCardClick);
+    const newCard = card.createCard();
+    cardsList.prepend(newCard);
+}
+const popupAddCard = new Card(inputElement, '.item-template', handleSubmitCard);
+
 
 //сохраняем карту
+/*
 function submitAddCardPopup(evt) {
     // сохраняем введенные значения 2 popup
     evt.preventDefault();
@@ -110,6 +132,10 @@ function submitAddCardPopup(evt) {
     formAddCard.reset();
     closePopup(popupPlace);
 }
+*/
+
+
+
 
 editButton.addEventListener('click', openEditProfilePopup);
 openPopupPlaceButton.addEventListener('click', openAddCardPopup);
