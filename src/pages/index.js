@@ -55,8 +55,6 @@ function handleCardClick(evt) {
     const popupBigImage = new PopupWithImage('.popup_type_image', data);
     popupBigImage.setEventListeners();
     popupBigImage.open();
-
-
 }
     /*popupImage.addEventListener('click', (evt) => {
         if (evt.target.classList.contains('popup') || evt.target.classList.contains('popup__close-button-image')) {
@@ -65,15 +63,17 @@ function handleCardClick(evt) {
         }
     });
 */
-const cardsList = new Section({
-    items: initialCards,
-    renderer: cardRenderer}, '.elements');
 
 function cardRenderer(cardItem){
     const card = new Card(cardItem,'.item-template', handleCardClick);
     const newCard = card.createCard();
-    cardsList.addItem(newCard);
+    return newCard;
 }
+
+const cardsList = new Section({
+    items: initialCards,
+    renderer: cardRenderer}, '.elements');
+
 
 cardsList.renderItems();
 
@@ -84,7 +84,7 @@ function handleSubmitCard(formValues) {
             name: formValues['popup-input-place'],
             link: formValues['popup-input-img']
         };
-    cardRenderer(inputElement);
+    cardsList.addItem(cardRenderer(inputElement));
 }
 
 
@@ -154,22 +154,25 @@ function submitHandlerProfile(evt) {
     closePopup(popupChangeProfile);
 }
 */
+
+const popupEditProfile = new PopupWithForm('.popup_type_edit', handleSubmitProfile);
+popupEditProfile.setEventListeners();
+
 function openEditProfilePopup() {
     //открытие попапа с редактированием профиля
     inputUserName.value = nameProfileElement.textContent;
     inputUserJob.value = jobProfileElement.textContent;
     formValidatorProfile.inputListValidate();
-    const popupEditProfile = new PopupWithForm('.popup_type_edit', handleSubmitProfile);
-    popupEditProfile.setEventListeners();
     popupEditProfile.open();
 }
+
+const popupAddCard = new PopupWithForm('.popup_country', handleSubmitCard);
+popupAddCard.setEventListeners();
 
 function openAddCardPopup() {
     formAddCard.reset();
     formValidatorCard.inputListValidate();
     formValidatorCard.hideInputErrorAll();
-    const popupAddCard = new PopupWithForm('.popup_country', handleSubmitCard);
-    popupAddCard.setEventListeners();
     popupAddCard.open();
 }
 
