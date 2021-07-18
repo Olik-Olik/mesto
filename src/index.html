@@ -8,6 +8,10 @@
     <meta content="Ольга Санина" name="author">
     <!--<link href="pages/index.css" rel="stylesheet">-->
     <title>Место</title>
+    <link rel="icon" href="http://localhost:8080/" type="image/x-icon">
+  <!--  <link rel="shortcut icon" href="https://yoursite.ru/favicon.png" type="image/x-icon">-->
+
+  <!--  href="https://olik-olik.github.io/mesto/favicon.png"-->
 </head>
 <body class="root">
 <header class="header">
@@ -138,7 +142,7 @@
         <div class="popup__combine-word">
             <div class="popup__container-image">
             </div>
-            <img alt="Картинка " class="popup__image" src="images/Elbrus.jpg">
+            <img alt="Картинка " class="popup__image"  src="<%=require('./images/Elbrus.jpg')%>">
             <h2 class="popup__image-word"></h2>
         </div>
     </div>
@@ -149,7 +153,7 @@
             <button aria-label='Удаление элемента'
                     class="elements__trash"
                     type="button"></button>
-            <img alt="Картинка" class="elements__image" src="images/Elbrus.jpg">
+            <img alt="Картинка" class="elements__image" src="<%=require('./images/Elbrus.jpg')%>">
         </div>
         <div class="elements__combine">
             <h2 class="elements__word">Домбай</h2>
