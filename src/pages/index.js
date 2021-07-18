@@ -160,6 +160,7 @@ function openEditProfilePopup() {
     inputUserJob.value = jobProfileElement.textContent;
     formValidatorProfile.inputListValidate();
     const popupEditProfile = new PopupWithForm('.popup_type_edit', handleSubmitProfile);
+    popupEditProfile.setEventListeners();
     popupEditProfile.open();
 }
 
@@ -168,6 +169,7 @@ function openAddCardPopup() {
     formValidatorCard.inputListValidate();
     formValidatorCard.hideInputErrorAll();
     const popupAddCard = new PopupWithForm('.popup_country', handleSubmitCard);
+    popupAddCard.setEventListeners();
     popupAddCard.open();
 }
 

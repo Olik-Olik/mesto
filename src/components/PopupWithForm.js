@@ -9,11 +9,11 @@ export class PopupWithForm extends Popup {
         this._callbackFormSubmit = callbackFormSubmit;
     }
 
-     //собирает данные всех полей
+    //собирает данные всех полей
     _getInputValues() {
-        this._inputList = this._popupForm.querySelector('.popup__field');//input class html
+        this._inputList = Array.from(this._popupForm.querySelectorAll('.popup__field'));//input class html
         this._inputValues = {}//пустой изначально
-        this._inputList.forEach(input => {
+        this._inputList.forEach((input) => {
             this._inputValues[input.name] = input.value;//по всем 4 инпутам и заносим в пустой
         });
         return this._inputValues;
@@ -23,8 +23,11 @@ export class PopupWithForm extends Popup {
         //переопределяем в конструкторе главное не потерять контент
         this._popupForm.addEventListener(
             'submit',
-            (evt)=>{evt.preventDefault();
-            this._callbackFormSubmit(this._getInputValues());});
+            (evt) => {
+                evt.preventDefault();
+                this._callbackFormSubmit(this._getInputValues());
+                this.close();
+            });
         //перезапись метода
         super.setEventListeners();
     }
