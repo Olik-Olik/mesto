@@ -25,7 +25,6 @@ export class PopupWithForm extends Popup {
             'submit',
             (evt)=>{evt.preventDefault();
             this._callbackFormSubmit(this._getInputValues());});
-this.close();
         //перезапись метода
         super.setEventListeners();
     }

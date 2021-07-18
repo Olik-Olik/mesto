@@ -101,9 +101,6 @@ popupBigImage.setEventListeners();
 */
 /*card._setEventListeners();*/
 
-
-
-
 /*
 
 popupChangeProfile.addEventListener('click', (evt) => {
@@ -157,23 +154,24 @@ function submitHandlerProfile(evt) {
     closePopup(popupChangeProfile);
 }
 */
-/*function openEditProfilePopup() {
+function openEditProfilePopup() {
     //открытие попапа с редактированием профиля
     inputUserName.value = nameProfileElement.textContent;
     inputUserJob.value = jobProfileElement.textContent;
     formValidatorProfile.inputListValidate();
-    openPopup(popupChangeProfile);
-}*/
+    const popupEditProfile = new PopupWithForm('.popup_type_edit', handleSubmitProfile);
+    popupEditProfile.open();
+}
 
 function openAddCardPopup() {
     formAddCard.reset();
     formValidatorCard.inputListValidate();
     formValidatorCard.hideInputErrorAll();
-    const popupAddCard = new PopupWithForm('.popup_country',handleSubmitCard);
+    const popupAddCard = new PopupWithForm('.popup_country', handleSubmitCard);
     popupAddCard.open();
 }
 
-//editButton.addEventListener('click', openEditProfilePopup);
+editButton.addEventListener('click', openEditProfilePopup);
 openPopupPlaceButton.addEventListener('click', openAddCardPopup);
 
 

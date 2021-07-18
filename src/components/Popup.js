@@ -6,7 +6,7 @@ export class Popup {
     constructor(popupSelector) {
         this._popup = document.querySelector(popupSelector);
         this._popupSelector = popupSelector;
-        this._popupCloseButton = this._popup.querySelector('.popup__close-button-image');
+        this._popupCloseButton = this._popup.querySelector('.popup__close-button');
     }
 
     open() {
@@ -29,7 +29,7 @@ export class Popup {
     }
 
     _handleCloseButton(evt) {
-        if (evt.target.classList.contains('popup') || evt.target.classList.contains('popup__close-button-image')) {
+        if (evt.target.classList.contains('popup') || evt.target.classList.contains('popup__close-button')) {
             this.close();
         }
     }
