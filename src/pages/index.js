@@ -87,9 +87,8 @@ function handleSubmitCard(formValues) {
     cardRenderer(inputElement);
 }
 
+
 /*
-editButton.addEventListener('click', openEditProfilePopup);
-openPopupPlaceButton.addEventListener('click', openAddCardPopup);
 formEditProfile.addEventListener('submit', submitHandlerProfile);
 formAddCard.addEventListener('submit', submitAddCardPopup);
 window.addEventListener("load", renderAllCards);
@@ -165,14 +164,19 @@ function submitHandlerProfile(evt) {
     formValidatorProfile.inputListValidate();
     openPopup(popupChangeProfile);
 }*/
-/*
+
 function openAddCardPopup() {
     formAddCard.reset();
     formValidatorCard.inputListValidate();
     formValidatorCard.hideInputErrorAll();
-    openPopup(popupPlace);
+    const popupAddCard = new PopupWithForm('.popup_country',handleSubmitCard);
+    popupAddCard.open();
 }
-*/
+
+//editButton.addEventListener('click', openEditProfilePopup);
+openPopupPlaceButton.addEventListener('click', openAddCardPopup);
+
+
 /*
 function renderAllCards() {
     const elements = document.querySelector('.elements');
