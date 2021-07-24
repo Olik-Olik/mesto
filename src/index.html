@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-   <link rel="icon" type="image/png" href="http://localhost:8080/favicon.png">
+    <link href="http://localhost:8080/favicon.png" rel="icon" type="image/png">
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="Четвертый проект Кусто место" name="description">
@@ -17,7 +17,7 @@
     <section class="profile">
         <div class="profile__person-info">
             <div class="profile__person-infobox">
-                <img alt="Фотка Кусто" class="profile__avatar" src="<%=require('./images/Image.svg')%>" >
+                <img alt="Фотка Кусто" class="profile__avatar" src="<%=require('./images/Image.svg')%>">
             </div>
             <div class="profile__info">
                 <div class="profile__title-edit-button">
@@ -32,7 +32,7 @@
         </div>
     </section>
 
-<section class="elements">
+    <section class="elements">
 
     </section>
 </main>
@@ -51,7 +51,7 @@
               name="resaveProfile"
               novalidate>
 
-                <h2 class="popup__page">Редактировать профиль</h2>
+            <h2 class="popup__page">Редактировать профиль</h2>
             <label class="popup__label">
                 <input class="popup__field"
                        id="popup-field-name"
@@ -67,8 +67,8 @@
             <label class="popup__label">
                 <input class="popup__field"
                        id="popup-field-job"
-                       minlength="2"
                        maxlength="200"
+                       minlength="2"
                        name="inputForm_job"
                        placeholder="Род занятия"
                        required
@@ -88,6 +88,7 @@
     <button aria-label='Закрыть всплывающее окошко'
             class="popup__close-button"
             type="button"></button>
+
     <div class="popup__container">
         <form action="#"
               aria-label='получения инфо и передачи данных в адресной строке'
@@ -129,17 +130,21 @@
     </div>
 </section>
 <section class="popup popup_type_image">
-    <button aria-label='Закрыть всплывающее окошко'
-            class="popup__close-button"
-            type="button"></button>
     <div class="popup__combine-image">
+        <div style="alignment: right">
+            <button aria-label='Закрыть всплывающее окошко'
+                    class="popup__close-button popup__close-button-no-rel"
+                    type="button"></button>
+        </div>
         <div class="popup__combine-word">
             <div class="popup__container-image">
             </div>
-            <img alt="Картинка " class="popup__image"  src="<%=require('./images/Elbrus.jpg')%>">
+            <img alt="Картинка " class="popup__image" src="<%=require('./images/Elbrus.jpg')%>">
+
             <h2 class="popup__image-word"></h2>
         </div>
     </div>
+
 </section>
 <template class="item-template">
     <div class="elements__card" id="template-id">
