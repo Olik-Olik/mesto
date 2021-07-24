@@ -7,7 +7,7 @@ export class PopupWithImage extends Popup {
         this._data = data;
     }
 
-    open(){
+    open() {
         zoomedImage.src = this._data.link;
         zoomedImage.alt = this._data.name;
         imageDescription.textContent = this._data.name;

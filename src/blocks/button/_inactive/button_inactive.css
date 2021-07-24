@@ -1,4 +1,4 @@
-.button_inactive{
+.button_inactive {
     cursor: not-allowed;
     pointer-events: none;
     color: #c0c0c0;

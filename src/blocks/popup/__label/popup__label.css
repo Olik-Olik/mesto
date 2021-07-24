@@ -1,4 +1,4 @@
-.popup__label{
+.popup__label {
     font-style: normal;
     font-weight: normal;
     font-size: 12px;
@@ -7,11 +7,12 @@
     width: 100%;
     cursor: pointer;
     max-width: 358px;
-  /* //height: 94px;*/
+    /* //height: 94px;*/
 }
 
 @media screen and (min-width: 320px) and (max-width: 500px) {
-    .popup__label{
-    font-size: 7px;
-    line-height: 10px;
-}}
+    .popup__label {
+        font-size: 7px;
+        line-height: 10px;
+    }
+}

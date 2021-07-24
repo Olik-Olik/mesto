@@ -1,8 +1,7 @@
 //вставляет элемент в разметку class Section
 
-export  class Section {
-    constructor(data, containerSelector)
-    {
+export class Section {
+    constructor(data, containerSelector) {
         this._items = data.items;
         this._renderer = data.renderer;
         this._container = document.querySelector(containerSelector);

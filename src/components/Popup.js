@@ -1,6 +1,4 @@
-import {
-    keyCodeEsc,
-} from "../../utils/constants";
+import {keyCodeEsc,} from "../../utils/constants";
 
 export class Popup {
     constructor(popupSelector) {
@@ -10,19 +8,27 @@ export class Popup {
     }
 
     open() {
-        document.addEventListener('keydown', (evt) => {this._eventKeyDownListener(evt)});
+        document.addEventListener('keydown', (evt) => {
+            this._eventKeyDownListener(evt)
+        });
         this._popup.classList.add('popup_opened');
     }
 
     close() {
-        document.removeEventListener('keydown', (evt) => {this._eventKeyDownListener(evt)});
+        document.removeEventListener('keydown', (evt) => {
+            this._eventKeyDownListener(evt)
+        });
         this._popup.classList.remove('popup_opened');
     }
 
 
     setEventListeners() {
-        this._popupCloseButton.addEventListener('click', (evt) => {this._handleCloseButton(evt)});
-        this._popup.addEventListener('click', (evt) => {this._handleCloseButton(evt)});
+        this._popupCloseButton.addEventListener('click', (evt) => {
+            this._handleCloseButton(evt)
+        });
+        this._popup.addEventListener('click', (evt) => {
+            this._handleCloseButton(evt)
+        });
     }
 
     _handleCloseButton(evt) {

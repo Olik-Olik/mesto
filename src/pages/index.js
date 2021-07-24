@@ -1,12 +1,12 @@
 //взаимодействие между классами проекта и инициализируем их
 import {
-    editButton,
-    openPopupPlaceButton,
-    formAddCard,
-    inputUserName,
-    inputUserJob,
-    initialCards,
     configs,
+    editButton,
+    formAddCard,
+    initialCards,
+    inputUserJob,
+    inputUserName,
+    openPopupPlaceButton,
 } from '../../utils/constants.js';
 
 import './index.css';
@@ -31,15 +31,16 @@ function handleCardClick(evt) {
 }
 
 
-function cardRenderer(cardItem){
-    const card = new Card(cardItem,'.item-template', handleCardClick);
+function cardRenderer(cardItem) {
+    const card = new Card(cardItem, '.item-template', handleCardClick);
     const newCard = card.createCard();
     return newCard;
 }
 
 const cardsList = new Section({
     items: initialCards,
-    renderer: cardRenderer}, '.elements');
+    renderer: cardRenderer
+}, '.elements');
 
 
 cardsList.renderItems();
@@ -67,12 +68,12 @@ formValidatorCard.enableValidation();
 const popupEditProfile = new PopupWithForm('.popup_type_edit', handleSubmitProfile);
 popupEditProfile.setEventListeners();
 
-const profileUserInfo = new UserInfo('.profile__title','.profile__subtitle');
+const profileUserInfo = new UserInfo('.profile__title', '.profile__subtitle');
 
 
 function openEditProfilePopup() {
     //открытие попапа с редактированием профиля
-   const userInfo = profileUserInfo.getUserInfo();
+    const userInfo = profileUserInfo.getUserInfo();
 
     inputUserName.value = userInfo.name;
     inputUserJob.value = userInfo.about;
@@ -82,10 +83,11 @@ function openEditProfilePopup() {
 }
 
 function handleSubmitProfile(formValues) {
-  const userInfo = { 'name': formValues['inputForm_name'],
-                     'about':formValues['inputForm_job']
-  }
-      profileUserInfo.setUserInfo(userInfo);
+    const userInfo = {
+        'name': formValues['inputForm_name'],
+        'about': formValues['inputForm_job']
+    }
+    profileUserInfo.setUserInfo(userInfo);
 }
 
 const popupAddCard = new PopupWithForm('.popup_country', handleSubmitCard);
