@@ -1,29 +1,20 @@
 
-import {
-    jobProfileElement,
-    nameProfileElement,
-} from "../../utils/constants";
+export class UserInfo {
+    constructor(profileNameSelector, profileJobSelector) {
+        this._profileNameElement = document.querySelector(profileNameSelector);
+        this._jobProfileElement = document.querySelector(profileJobSelector);
+     }
 
-class UserInfo {
-    constructor(userInfo) {
-        this._name = userInfo.name;
-        this._about = userInfo.about;
-    }
-//  setUserInfo();
 
     getUserInfo()// возвращает объект с данными пользователя
     {
-    return{'name':this._name,
-           'about':this._about};
+        return{'name': this._profileNameElement.textContent ,
+               'about': this._jobProfileElement.textContent };
     }
 
     setUserInfo(userInfo) {
-        this._name = userInfo.name;
-        this._about = userInfo.about;
-
-        nameProfileElement.textContent = this._name;
-        jobProfileElement.textContent = this._about;
+        this._profileNameElement.textContent = userInfo.name;
+        this._jobProfileElement.textContent = userInfo.about;
     }
-
 
 }

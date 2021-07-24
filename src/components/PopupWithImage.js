@@ -11,16 +11,7 @@ export class PopupWithImage extends Popup {
         zoomedImage.src = this._data.link;
         zoomedImage.alt = this._data.name;
         imageDescription.textContent = this._data.name;
-        //inputElement.closest("#template-id").querySelector('.elements__word').textContent;
         super.open();
     }
-
-/*
-    close() {
-        super.close();
-    }
-*/
-
 }
-
 
