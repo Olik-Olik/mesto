@@ -5,8 +5,6 @@ import {
     formAddCard,
     inputUserName,
     inputUserJob,
-    nameProfileElement,
-    jobProfileElement,
     initialCards,
     configs,
 } from '../../utils/constants.js';
@@ -89,7 +87,6 @@ function handleSubmitProfile(formValues) {
   }
       profileUserInfo.setUserInfo(userInfo);
 }
-
 
 const popupAddCard = new PopupWithForm('.popup_country', handleSubmitCard);
 popupAddCard.setEventListeners();

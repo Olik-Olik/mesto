@@ -6,7 +6,6 @@ export  class Section {
         this._items = data.items;
         this._renderer = data.renderer;
         this._container = document.querySelector(containerSelector);
-//        this.renderItems();
     }
 
     addItem(element) {

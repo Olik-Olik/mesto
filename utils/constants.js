@@ -27,27 +27,16 @@ const
     ];
 const keyCodeEsc = '27';
 const editButton = document.querySelector('.profile__edit-button');
-const popupPlace = document.querySelector('.popup_country');
-
-const popupChangeProfile = document.querySelector('.popup_type_edit');
-
-const popupImage = document.querySelector('.popup_type_image');
-
 
 //открытие 2-го попапа
 const openPopupPlaceButton = document.querySelector('.profile__add-button');
 
-// форма и поля формы
-const formEditProfile = document.querySelector('#popup-mega-id');
 const formAddCard = document.querySelector('#popup-input-mega-id');//2-попап
 
 const inputUserName = document.querySelector('#popup-field-name');
 const inputUserJob = document.querySelector('#popup-field-job');
 
-const inputCardName = document.querySelector('#popup-field-card-name');//2-попап
-const inputCardLink = document.querySelector('#popup-field-card-img');//ссылка//2-попап
 //куда это будет вставлено
-
 
 //делаем глобальными  из onLoad
 const zoomedImage = document.querySelector('.popup__image');
@@ -67,7 +56,7 @@ const configs =
 
 export {configs};
 
-export{keyCodeEsc, editButton,popupPlace,
-    popupChangeProfile,openPopupPlaceButton,formEditProfile,
-    formAddCard,inputUserName,inputUserJob,inputCardName,inputCardLink,
-    zoomedImage,imageDescription,initialCards,popupImage};
+export{keyCodeEsc, editButton,
+    openPopupPlaceButton,
+    formAddCard,inputUserName,inputUserJob,
+    zoomedImage,imageDescription,initialCards};

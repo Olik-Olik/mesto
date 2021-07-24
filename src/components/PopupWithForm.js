@@ -1,6 +1,4 @@
 import {Popup} from "./Popup";
-import {inputCardLink, inputCardName,} from "../../utils/constants";
-import {Card} from "./Card";
 
 export class PopupWithForm extends Popup {
     constructor(popupSelector, callbackFormSubmit) {
