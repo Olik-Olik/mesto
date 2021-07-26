@@ -1,0 +1,17 @@
+.profile__foto-edit-button {
+    width: 47px;
+    height: 47px;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.8);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: url(../../../images/Vector.svg);
+    border:none;
+}
+.profile__foto-edit-button:hover {
+    opacity: 0.6; /* по аналогии в фигме нет значения*/
+    cursor: pointer;
+}

@@ -53,7 +53,6 @@ export class FormValidator {
     };
 
 //проверяет наличие невалидного поля и сигнализирует, можно ли разблокировать кнопку сабмита
-
     _hasInvalidInput = (inputList) => {
         // удовлетворяет ли какой-либо элемент  условию проверка массива
         return inputList.some((inputElement) => {

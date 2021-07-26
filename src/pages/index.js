@@ -1,4 +1,5 @@
-//взаимодействие между классами проекта и инициализируем их
+
+
 import {
     configs,
     editButton,
@@ -6,17 +7,15 @@ import {
     initialCards,
     inputUserJob,
     inputUserName,
-    openPopupPlaceButton,
+    openPopupPlaceButton
 } from '../../utils/constants.js';
 
 import './index.css';
 import {Card} from '../components/Card.js';
 import {FormValidator} from '../components/FormValidator.js';
-
 import {Section} from '../components/Section.js';
 import {PopupWithForm} from '../components/PopupWithForm.js';
 import {PopupWithImage} from '../components/PopupWithImage.js';
-
 import {UserInfo} from '../components/UserInfo.js';
 
 
@@ -42,15 +41,23 @@ const cardsList = new Section({
     renderer: cardRenderer
 }, '.elements');
 
+/*const cardListAvatar = new Section({}) куда сохранять? -на сервер сразу*/
 
 cardsList.renderItems();
-
 //карточка из input
 function handleSubmitCard(formValues) {
     const inputElement =
         {
             name: formValues['popup-input-place'],
             link: formValues['popup-input-img']
+        };
+    cardsList.addItem(cardRenderer(inputElement));
+}
+// новая аватарка
+function handleSubmitAvatar(formValuesAvatar) {
+    const inputElement =
+        {
+            link: formValuesAvatar['popup-input-img']
         };
     cardsList.addItem(cardRenderer(inputElement));
 }
@@ -68,6 +75,10 @@ formValidatorCard.enableValidation();
 const popupEditProfile = new PopupWithForm('.popup_type_edit', handleSubmitProfile);
 popupEditProfile.setEventListeners();
 
+//редактирование аватара - новый экземпляр класса PopupWithForm
+const popupEditAvatarProfile = new PopupWithForm('.popup_type_edit', handleSubmitProfile);
+popupEditProfile.setEventListeners();
+
 const profileUserInfo = new UserInfo('.profile__title', '.profile__subtitle');
 
 
@@ -81,6 +92,19 @@ function openEditProfilePopup() {
     formValidatorProfile.inputListValidate();
     popupEditProfile.open();
 }
+const profileUserFoto = new PopupWithForm('.popup_delete-confirm', handleSubmitAvatar);
+popupAddCard.setEventListeners();
+
+function openEditFotoProfilePopup() {
+    //открытие попапа с редактированием фотки профиля
+    const userFoto = profileUserFoto.getUserInfoFoto();
+
+    inputUserFoto.value = userInfo.image;
+
+    formValidatorProfile.inputListValidate();
+    popupEditFotoProfile.open();
+}
+
 
 function handleSubmitProfile(formValues) {
     const userInfo = {
@@ -101,5 +125,6 @@ function openAddCardPopup() {
 }
 
 editButton.addEventListener('click', openEditProfilePopup);
+editFotoButton.addEventListener('click', openEditFotoProfilePopup);
 openPopupPlaceButton.addEventListener('click', openAddCardPopup);
 

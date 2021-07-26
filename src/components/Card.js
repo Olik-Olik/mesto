@@ -1,10 +1,11 @@
+
 export class Card {
     constructor(item, cardSelector, handleCardClick) {
         this._item = item;
         this._cardSelector = cardSelector;
         this._handleCardClick = handleCardClick;
     }
-
+//все evt должны работать снаружи класса
     // забираем разметку из HTML и клонируем элемент // вернуть разметку
     _getTemplate() {
         const cardElement = document
@@ -14,6 +15,7 @@ export class Card {
             .cloneNode(true);
         return cardElement;
     }
+
 
     createCard() {
         // Запишем разметку в приватное поле _newElement.
@@ -46,3 +48,9 @@ export class Card {
         evt.currentTarget.closest('#template-id').remove();
     }
 }
+//для 9 работы
+// переделать все карточки
+//созидаем карточку
+
+
+

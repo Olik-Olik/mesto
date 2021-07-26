@@ -1,4 +1,4 @@
-//вставляет элемент в разметку class Section
+//вставляет элемент в разметку
 
 export class Section {
     constructor(data, containerSelector) {

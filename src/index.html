@@ -18,6 +18,10 @@
         <div class="profile__person-info">
             <div class="profile__person-infobox">
                 <img alt="Фотка Кусто" class="profile__avatar" src="<%=require('./images/Image.svg')%>">
+ <!--делаю кнопку с карандашиком  поверх фотки opacity hover -->
+                <div class="profile__button-container">
+                    <button class="profile__foto-edit-button" type="button"></button>
+                </div>
             </div>
             <div class="profile__info">
                 <div class="profile__title-edit-button">
@@ -42,7 +46,6 @@
 <section class="popup popup_type_edit">
     <button aria-label='Закрыть всплывающее окошко' class="popup__close-button" type="button"></button>
     <div class="popup__container">
-        <!-- стандартные сообщения об ошибке не нужны-->
         <form action="#"
               aria-label='получения инфо и передачи данных'
               class="popup__form"
@@ -50,7 +53,6 @@
               method="GET"
               name="resaveProfile"
               novalidate>
-
             <h2 class="popup__page">Редактировать профиль</h2>
             <label class="popup__label">
                 <input class="popup__field"
@@ -88,7 +90,6 @@
     <button aria-label='Закрыть всплывающее окошко'
             class="popup__close-button"
             type="button"></button>
-
     <div class="popup__container">
         <form action="#"
               aria-label='получения инфо и передачи данных в адресной строке'
@@ -125,7 +126,6 @@
                     class="popup__save"
                     type="submit">Создать
             </button>
-            <!-- disabled-->
         </form>
     </div>
 </section>
@@ -146,22 +146,47 @@
     </div>
 
 </section>
+<!--новый попап подтверждение удаления-->
+<section class="popup popup_delete-confirm">
+    <button aria-label='Закрыть всплывающее окошко'
+            class="popup__close-button"
+            type="button">
+    </button>
+    <div class="popup__container">
+        <form action="#"
+              aria-label='Вы уверены, что хотите удалить карточку?'
+              class="popup__form"
+              id="popup-delete-card"
+              name="deleteConfirmCard"
+              novalidate>
+            <label class="popup__label">
+                <h2 class="popup__page">Вы уверены?</h2>
+            </label>
+            <button aria-label='Подтверждение удаления элемента'
+                    class="elements__trash"
+                    type="submit">Да
+            </button>
+        </form>
+    </div>
+</section>
 <template class="item-template">
     <div class="elements__card" id="template-id">
         <div class="elements__trash-image">
             <button aria-label='Удаление элемента'
                     class="elements__trash"
-                    type="button"></button>
+                    type="button">
+            </button>
+
             <img alt="Картинка" class="elements__image" src="<%=require('./images/Elbrus.jpg')%>">
         </div>
         <div class="elements__combine">
             <h2 class="elements__word">Домбай</h2>
             <button aria-label='Лайк'
                     class="elements__like"
-                    type="button"></button>
+                    type="button">
+            </button>
         </div>
     </div>
-
 </template>
 </body>
 </html>
