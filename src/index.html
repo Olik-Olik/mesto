@@ -18,7 +18,7 @@
         <div class="profile__person-info">
             <div class="profile__person-infobox">
                 <img alt="Фотка Кусто" class="profile__avatar" src="<%=require('./images/Image.svg')%>">
- <!--делаю кнопку с карандашиком  поверх фотки opacity hover -->
+                <!--делаю кнопку с карандашиком  поверх фотки opacity hover -->
                 <div class="profile__avatar-edit-container">
                     <button class="profile__foto-edit-button" type="button"></button>
                 </div>
@@ -35,10 +35,36 @@
             <button class="profile__add-button" type="button"></button>
         </div>
     </section>
-
-    <section class="elements">
-
+    <section class="popup popup_type_edit-avatar">
+        <button aria-label='Закрыть всплывающее окошко' class="popup__close-button" type="button"></button>
+        <div class="popup__container">
+            <form action="#"
+                  aria-label='смена аватарки'
+                  class="popup__form"
+                  id="popup-mega-id-avatar"
+                  method="GET"
+                  name="resaveProfileAvatar"
+                  novalidate>
+                <h2 class="popup__page">Обновить аватар</h2>
+                <label class="popup__label">
+                    <input class="popup__field"
+                           id="popup-field-card-img-avatar"
+                           name="popup-input-img-avatar"
+                           placeholder="Ссылка на новую аватарку"
+                           required
+                           type="url"/>
+                    <span class="popup__input-error"
+                          id="popup-field-card-img-error-avatar"></span>
+                </label>
+                <button aria-label='Кнопка сохраняем аватарку'
+                        class="popup__save"
+                        type="submit">Сохранение...
+                </button>
+            </form>
+        </div>
     </section>
+            <section class="elements">
+            </section>
 </main>
 <footer class="footer">
     <p class="footer__place">© 2021 Mesto Russia</p>
@@ -144,7 +170,6 @@
             <h2 class="popup__image-word"></h2>
         </div>
     </div>
-
 </section>
 <!--новый попап подтверждение удаления-->
 <section class="popup popup_delete-confirm">
@@ -152,7 +177,7 @@
             class="popup__close-button"
             type="button">
     </button>
-    <div class="popup__container">
+    <div class="popup__container-delete-confirm">
         <form action="#"
               aria-label='Вы уверены, что хотите удалить карточку?'
               class="popup__form"
@@ -164,7 +189,7 @@
             </label>
             <button aria-label='Подтверждение удаления элемента'
                     class="elements__trash"
-                    type="submit">Да
+                    type="button">Да
             </button>
         </form>
     </div>

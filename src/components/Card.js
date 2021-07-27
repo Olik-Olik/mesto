@@ -38,14 +38,19 @@ export class Card {
         newElementImage.addEventListener('click', this._handleCardClick);
 
         newElement.querySelector('.elements__trash').addEventListener('click', this._handleCardRemove);
+      /*  newElement.querySelector('.elements__trash').addEventListener('click', '.popup_delete-confirm');*/
     }
 
+    /* _likeCount(){
+
+     }*/
     _handleLikeClick(evt) {
         evt.target.classList.toggle('elements__like_active');
     }
 
     _handleCardRemove(evt) {
         evt.currentTarget.closest('#template-id').remove();
+        /*evt.currentTarget.closest('.popup_delete-confirm');*/
     }
 }
 //для 9 работы

@@ -1,3 +1,4 @@
+/*
 export class Api {
     constructor({...arr}) {
         this._address = arr._address;
@@ -11,12 +12,6 @@ _checkResponce(response){
 getMovies(){
 }
 
-}
-const api = new Api(config);
-
-const config = {
-    address: 'https://mesto.nomoreparties.co/v1/cohort-26',
-    token: 'b12ac09d-a522-46ec-9026-b6918737b3ea'
 }
 
 const editFotoButton = document.querySelector('.profile__foto-edit-button');
@@ -40,7 +35,7 @@ getInitialCards()
         }))}
 
 
-/* return InitialCards;
+/!* return InitialCards;
 
 const data = getInitCards
 .then((response) =>{
@@ -56,18 +51,6 @@ console.log(data);
 
 Promise.all([api.getUserInfo(),
               api.getInitialCards()])
+*!/
 */
-
-
-
-
-
-
-
-
-
-
-
-
-
 

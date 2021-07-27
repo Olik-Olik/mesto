@@ -28,7 +28,7 @@ const
 const keyCodeEsc = '27';
 const editButton = document.querySelector('.profile__edit-button');
 
-const editFotoButton = document.querySelector('.popup__foto-edit-button');
+const editFotoButton = document.querySelector('.profile__foto-edit-button');
 
 //открытие 2-го попапа
 const openPopupPlaceButton = document.querySelector('.profile__add-button');
@@ -61,4 +61,4 @@ export {configs};
 export{keyCodeEsc, editButton,
     openPopupPlaceButton,
     formAddCard,inputUserName,inputUserJob,
-    zoomedImage,imageDescription,initialCards};
+    zoomedImage,imageDescription,initialCards,editFotoButton};

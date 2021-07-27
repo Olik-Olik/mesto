@@ -1,4 +1,14 @@
+import {Api} from "../components/Api";
 
+/*
+const api = new Api(config);
+
+const config = {
+    address: 'https://mesto.nomoreparties.co/v1/cohort-26',
+    token: 'b12ac09d-a522-46ec-9026-b6918737b3ea'
+}
+api.getUserInfo().then(data => {userInfo.setInfo(data);})
+*/
 
 import {
     configs,
@@ -7,7 +17,8 @@ import {
     initialCards,
     inputUserJob,
     inputUserName,
-    openPopupPlaceButton
+    openPopupPlaceButton,
+    editFotoButton,
 } from '../../utils/constants.js';
 
 import './index.css';
@@ -54,7 +65,7 @@ function handleSubmitCard(formValues) {
         };
     cardsList.addItem(cardRenderer(inputElement));
 }
-// новая аватарка
+// новая аватарка куда ее  положить
 function handleSubmitAvatar(formValuesAvatar) {
     const inputElement =
         {
@@ -82,6 +93,7 @@ popupEditProfile.setEventListeners();
 
 const profileUserInfo = new UserInfo('.profile__title', '.profile__subtitle');
 
+const popupConfirmDelete = new PopupWithForm('.popup_delete-confirm', this._handleCardRemove);
 
 function openEditProfilePopup() {
     //открытие попапа с редактированием профиля
@@ -93,17 +105,15 @@ function openEditProfilePopup() {
     formValidatorProfile.inputListValidate();
     popupEditProfile.open();
 }
-const profileUserFoto = new PopupWithForm('.popup_delete-confirm', handleSubmitAvatar);
-popupAddCard.setEventListeners();
+const popupEditUserFoto = new PopupWithForm('.popup_type_edit-avatar', handleSubmitAvatar);
 
 function openEditFotoProfilePopup() {
     //открытие попапа с редактированием фотки профиля
-    const userFoto = profileUserFoto.getUserInfoFoto();
-
-    inputUserFoto.value = userInfo.image;
+   /* const userFoto = popupEditUserFoto.getUserInfoFoto();*/
+   /* inputUserFoto.value = userInfo.image;*/
 
     formValidatorProfile.inputListValidate();
-    popupEditFotoProfile.open();
+    popupEditUserFoto.open();
 }
 
 
@@ -126,6 +136,6 @@ function openAddCardPopup() {
 }
 
 editButton.addEventListener('click', openEditProfilePopup);
-editFotoButton.addEventListener('click', openEditFotoProfilePopup);
+editFotoButton.addEventListener('click', openEditFotoProfilePopup);//bind?
 openPopupPlaceButton.addEventListener('click', openAddCardPopup);
 

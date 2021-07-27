@@ -28,12 +28,13 @@
 @import url(../blocks/profile/__title-edit-button/profile__title-edit-button.css);
 @import url(../blocks/profile/__foto-edit-button/profile__foto-edit-button.css);
 @import url(../blocks/profile/__avatar-edit-container/profile__avatar-edit-container.css);
+@import url(../blocks/popup/__container-delete-confirm/popup__container-delete-confirm.css);
 
 @import url(../blocks/profile/__subtitle/profile__subtitle.css);
 @import url(../blocks/profile/__title/profile__title.css);
 @import url(../blocks/profile/__person-info/profile__person-info.css);
 @import url(../blocks/profile/__person-infobox/profile__person-infobox.css);
-
+/*@import url(../blocks/popup/_type/_popup_type_edit-avata);*/
 @import url(../blocks/profile/__info/profile__info.css);
 
 @import url(../blocks/popup/__close-button-image/popup__close-button-image.css);
