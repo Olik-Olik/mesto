@@ -50,7 +50,7 @@ export class Card {
 
     _handleCardRemove(evt) {
         evt.currentTarget.closest('#template-id').remove();
-        /*evt.currentTarget.closest('.popup_delete-confirm');*/
+
     }
 }
 //для 9 работы

@@ -93,7 +93,7 @@ popupEditProfile.setEventListeners();
 
 const profileUserInfo = new UserInfo('.profile__title', '.profile__subtitle');
 
-const popupConfirmDelete = new PopupWithForm('.popup_delete-confirm', this._handleCardRemove);
+/*const popupConfirmDelete = new PopupWithForm('.popup_delete-confirm', this._handleCardRemove);*/
 
 function openEditProfilePopup() {
     //открытие попапа с редактированием профиля
