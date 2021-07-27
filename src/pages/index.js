@@ -19,6 +19,7 @@ import {PopupWithImage} from '../components/PopupWithImage.js';
 import {UserInfo} from '../components/UserInfo.js';
 
 
+
 function handleCardClick(evt) {
     const data = {
         'name': evt.currentTarget.alt,

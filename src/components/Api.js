@@ -8,6 +8,8 @@ export class Api {
 _checkResponce(response){
     return res.ok ? res.json() : Promise.reject();
 }
+getMovies(){
+}
 
 }
 const api = new Api(config);
@@ -36,6 +38,7 @@ getInitialCards()
             if (response.ok) return response.json();
             else return Promise.reject('Произошла ошибка', response.status);
         }))}
+
 
 /* return InitialCards;
 
