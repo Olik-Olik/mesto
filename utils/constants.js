@@ -1,3 +1,5 @@
+import {PopupWithForm} from "../src/components/PopupWithForm";
+
 const
     initialCards = [
         {
@@ -44,6 +46,8 @@ const inputUserJob = document.querySelector('#popup-field-job');
 const zoomedImage = document.querySelector('.popup__image');
 const imageDescription = document.querySelector('.popup__image-word');
 
+
+
 //для валидации файл конфиг указываем класс кнопок инпутов форм
 const configs =
     {   //settings
@@ -61,4 +65,5 @@ export {configs};
 export{keyCodeEsc, editButton,
     openPopupPlaceButton,
     formAddCard,inputUserName,inputUserJob,
-    zoomedImage,imageDescription,initialCards,editFotoButton};
+    zoomedImage,imageDescription,initialCards,editFotoButton,
+  };

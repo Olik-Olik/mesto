@@ -20,6 +20,7 @@
                 <img alt="Фотка Кусто" class="profile__avatar" src="<%=require('./images/Image.svg')%>">
                 <!--делаю кнопку с карандашиком  поверх фотки opacity hover -->
                 <div class="profile__avatar-edit-container">
+
                     <button class="profile__foto-edit-button" type="button"></button>
                 </div>
             </div>
@@ -34,9 +35,12 @@
         <div class="profile__button-container">
             <button class="profile__add-button" type="button"></button>
         </div>
-    </section>
-    <section class="popup popup_type_edit-avatar">
-        <button aria-label='Закрыть всплывающее окошко' class="popup__close-button" type="button"></button>
+
+    <div class="popup  popup_type_edit-avatar  ">
+
+        <button aria-label='Закрыть всплывающее окошко'
+                class="popup__close-button popup_opened"
+                type="button"></button>
         <div class="popup__container">
             <form action="#"
                   aria-label='смена аватарки'
@@ -52,16 +56,19 @@
                            name="popup-input-img-avatar"
                            placeholder="Ссылка на новую аватарку"
                            required
-                           type="url"/>
-                    <span class="popup__input-error"
-                          id="popup-field-card-img-error-avatar"></span>
+                           type="url"
+                           value=''/>
+                    <span class="popup__input-error" id="popup-field-name-error-avatar"></span>
+
                 </label>
+
                 <button aria-label='Кнопка сохраняем аватарку'
                         class="popup__save"
                         type="submit">Сохранение...
                 </button>
             </form>
         </div>
+    </div>
     </section>
             <section class="elements">
             </section>
@@ -188,9 +195,11 @@
                 <h2 class="popup__page">Вы уверены?</h2>
             </label>
             <button aria-label='Подтверждение удаления элемента'
-                    class="elements__trash"
-                    type="button">Да
+                    class="popup__save"
+                    type="submit">Да
             </button>
+
+
         </form>
     </div>
 </section>

@@ -1,10 +1,14 @@
+import {PopupWithForm} from "./PopupWithForm";
 
 export class Card {
     constructor(item, cardSelector, handleCardClick) {
         this._item = item;
         this._cardSelector = cardSelector;
         this._handleCardClick = handleCardClick;
+        this._popupConfirmDelete = new PopupWithForm('.popup_delete-confirm', this._handleConfirmDelete);
     }
+
+
 //все evt должны работать снаружи класса
     // забираем разметку из HTML и клонируем элемент // вернуть разметку
     _getTemplate() {
@@ -34,12 +38,14 @@ export class Card {
     _setEventListeners(newElement, newElementImage) {
         this._likeElement = newElement.querySelector('.elements__like');
         this._likeElement.addEventListener('click', this._handleLikeClick);
-
         newElementImage.addEventListener('click', this._handleCardClick);
 
-        newElement.querySelector('.elements__trash').addEventListener('click', this._handleCardRemove);
-      /*  newElement.querySelector('.elements__trash').addEventListener('click', '.popup_delete-confirm');*/
-    }
+        newElement.querySelector('.elements__trash').addEventListener('click',
+            (evt) => {this._handleCardRemove(evt)});
+        /*  newElement.querySelector('.elements__trash').addEventListener('click', '.popup_delete-confirm');*/
+    }/**/
+
+
 
     /* _likeCount(){
 
@@ -47,10 +53,14 @@ export class Card {
     _handleLikeClick(evt) {
         evt.target.classList.toggle('elements__like_active');
     }
-
+//проверяет желание удалить
     _handleCardRemove(evt) {
-        evt.currentTarget.closest('#template-id').remove();
-
+        this._evt = evt;
+        this._popupConfirmDelete.open() ;
+    }
+//удаляет
+    _handleConfirmDelete(evt){
+         this._evt.currentTarget.closest('#template-id').remove();
     }
 }
 //для 9 работы

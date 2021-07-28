@@ -17,5 +17,14 @@ export class UserInfo {
         this._profileNameElement.textContent = userInfo.name;
         this._jobProfileElement.textContent = userInfo.about;
     }
+}
 
+export class UserInfoAvatar {
+    constructor(avatarSelector) {
+        this._profileAvatar = document.querySelector(avatarSelector);
+    }
+
+    setUserInfoAvatar(userInfoAvatar) {
+        this._profileAvatar.src = userInfoAvatar.img;
+    }
 }

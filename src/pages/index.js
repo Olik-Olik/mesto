@@ -19,6 +19,7 @@ import {
     inputUserName,
     openPopupPlaceButton,
     editFotoButton,
+
 } from '../../utils/constants.js';
 
 import './index.css';
@@ -27,7 +28,7 @@ import {FormValidator} from '../components/FormValidator.js';
 import {Section} from '../components/Section.js';
 import {PopupWithForm} from '../components/PopupWithForm.js';
 import {PopupWithImage} from '../components/PopupWithImage.js';
-import {UserInfo} from '../components/UserInfo.js';
+import {UserInfo,UserInfoAvatar} from '../components/UserInfo.js';
 
 
 
@@ -40,7 +41,6 @@ function handleCardClick(evt) {
     popupBigImage.setEventListeners();
     popupBigImage.open();
 }
-
 
 function cardRenderer(cardItem) {
     const card = new Card(cardItem, '.item-template', handleCardClick);
@@ -88,20 +88,20 @@ const popupEditProfile = new PopupWithForm('.popup_type_edit', handleSubmitProfi
 popupEditProfile.setEventListeners();
 
 //редактирование аватара - новый экземпляр класса PopupWithForm
-const popupEditAvatarProfile = new PopupWithForm('.popup_type_edit', handleSubmitProfile);
-popupEditProfile.setEventListeners();
+const popupEditAvatarProfile = new PopupWithForm('.popup_type_edit-avatar', handleSubmitAvatarProfile);
+popupEditAvatarProfile.setEventListeners();
 
 const profileUserInfo = new UserInfo('.profile__title', '.profile__subtitle');
 
-/*const popupConfirmDelete = new PopupWithForm('.popup_delete-confirm', this._handleCardRemove);*/
+/*const popupConfirmDelete = new PopupWithForm('.popup_delete-confirm',);*/
+
+
 
 function openEditProfilePopup() {
     //открытие попапа с редактированием профиля
     const userInfo = profileUserInfo.getUserInfo();
-
     inputUserName.value = userInfo.name;
     inputUserJob.value = userInfo.about;
-
     formValidatorProfile.inputListValidate();
     popupEditProfile.open();
 }
@@ -109,20 +109,28 @@ const popupEditUserFoto = new PopupWithForm('.popup_type_edit-avatar', handleSub
 
 function openEditFotoProfilePopup() {
     //открытие попапа с редактированием фотки профиля
-   /* const userFoto = popupEditUserFoto.getUserInfoFoto();*/
-   /* inputUserFoto.value = userInfo.image;*/
+
 
     formValidatorProfile.inputListValidate();
+    formValidatorCard.inputListValidate();
+    formValidatorCard.hideInputErrorAll();
     popupEditUserFoto.open();
 }
 
-
+//сохраняем
 function handleSubmitProfile(formValues) {
     const userInfo = {
         'name': formValues['inputForm_name'],
         'about': formValues['inputForm_job']
     }
     profileUserInfo.setUserInfo(userInfo);
+}
+//сохраняем аватар
+function handleSubmitAvatarProfile(formValues) {
+    const userInfoAvatar = {
+        'img': formValues['popup-input-img-avatar']
+    }
+    popupEditAvatarProfile.setUserInfoAvatar(userInfoAvatar);
 }
 
 const popupAddCard = new PopupWithForm('.popup_country', handleSubmitCard);
@@ -136,6 +144,7 @@ function openAddCardPopup() {
 }
 
 editButton.addEventListener('click', openEditProfilePopup);
-editFotoButton.addEventListener('click', openEditFotoProfilePopup);//bind?
+editFotoButton.addEventListener('click', openEditFotoProfilePopup);
 openPopupPlaceButton.addEventListener('click', openAddCardPopup);
+/*popupConfirmDelete.addEventListener('click',openPopupConfirmDelete);*/
 
