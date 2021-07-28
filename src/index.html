@@ -36,42 +36,39 @@
             <button class="profile__add-button" type="button"></button>
         </div>
 
-    <div class="popup  popup_type_edit-avatar  ">
-
-        <button aria-label='Закрыть всплывающее окошко'
-                class="popup__close-button popup_opened"
-                type="button"></button>
-        <div class="popup__container">
-            <form action="#"
-                  aria-label='смена аватарки'
-                  class="popup__form"
-                  id="popup-mega-id-avatar"
-                  method="GET"
-                  name="resaveProfileAvatar"
-                  novalidate>
-                <h2 class="popup__page">Обновить аватар</h2>
-                <label class="popup__label">
-                    <input class="popup__field"
-                           id="popup-field-card-img-avatar"
-                           name="popup-input-img-avatar"
-                           placeholder="Ссылка на новую аватарку"
-                           required
-                           type="url"
-                           value=''/>
-                    <span class="popup__input-error" id="popup-field-name-error-avatar"></span>
-
-                </label>
-
-                <button aria-label='Кнопка сохраняем аватарку'
-                        class="popup__save"
-                        type="submit">Сохранение...
-                </button>
-            </form>
+        <div class="popup  popup_type_edit-avatar  ">
+            <button aria-label='Закрыть всплывающее окошко'
+                    class="popup__close-button popup_opened"
+                    type="button"></button>
+            <div class="popup__container">
+                <form action="#"
+                      aria-label='смена аватарки'
+                      class="popup__form"
+                      id="popup-mega-id-avatar"
+                      method="GET"
+                      name="resaveProfileAvatar"
+                      novalidate>
+                    <h2 class="popup__page">Обновить аватар</h2>
+                    <label class="popup__label">
+                        <input class="popup__field"
+                               id="popup-field-card-img-avatar"
+                               name="popup-input-img-avatar"
+                               placeholder="Ссылка на новую аватарку"
+                               required
+                               type="url"
+                               value=''/>
+                        <span class="popup__input-error" id="popup-field-name-error-avatar"></span>
+                    </label>
+                    <button aria-label='Кнопка сохраняем аватарку'
+                            class="popup__save"
+                            type="submit">Сохранение...
+                    </button>
+                </form>
+            </div>
         </div>
-    </div>
     </section>
-            <section class="elements">
-            </section>
+    <section class="elements">
+    </section>
 </main>
 <footer class="footer">
     <p class="footer__place">© 2021 Mesto Russia</p>
@@ -179,11 +176,8 @@
     </div>
 </section>
 <!--новый попап подтверждение удаления-->
-<section class="popup popup_delete-confirm">
-    <button aria-label='Закрыть всплывающее окошко'
-            class="popup__close-button"
-            type="button">
-    </button>
+<section class="popup popup_delete-confirm  popup_type_edit">
+
     <div class="popup__container-delete-confirm">
         <form action="#"
               aria-label='Вы уверены, что хотите удалить карточку?'
@@ -198,7 +192,10 @@
                     class="popup__save"
                     type="submit">Да
             </button>
-
+            <button aria-label='Закрыть всплывающее окошко'
+                    class="popup__close-button "
+                    type="button">
+            </button>
 
         </form>
     </div>

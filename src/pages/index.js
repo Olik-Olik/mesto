@@ -1,14 +1,3 @@
-import {Api} from "../components/Api";
-
-/*
-const api = new Api(config);
-
-const config = {
-    address: 'https://mesto.nomoreparties.co/v1/cohort-26',
-    token: 'b12ac09d-a522-46ec-9026-b6918737b3ea'
-}
-api.getUserInfo().then(data => {userInfo.setInfo(data);})
-*/
 
 import {
     configs,
@@ -18,7 +7,7 @@ import {
     inputUserJob,
     inputUserName,
     openPopupPlaceButton,
-    editFotoButton,
+    editAvatarButton,anyAvatar,
 
 } from '../../utils/constants.js';
 
@@ -53,7 +42,6 @@ const cardsList = new Section({
     renderer: cardRenderer
 }, '.elements');
 
-/*const cardListAvatar = new Section({}) куда сохранять? -на сервер сразу*/
 
 cardsList.renderItems();
 //карточка из input
@@ -71,19 +59,26 @@ function handleSubmitAvatar(formValuesAvatar) {
         {
             link: formValuesAvatar['popup-input-img']
         };
-    cardsList.addItem(cardRenderer(inputElement));
+    anyAvatar.addItem(cardRenderer(inputElement));
 }
 
-
+//валидация для профиля
 const formElementProfile = document.querySelector('.popup__form[name="resaveProfile"]');
 const formValidatorProfile = new FormValidator(configs, formElementProfile);
 formValidatorProfile.enableValidation();
 
+//валидация для аватарчика
+const formElementAvatar = document.querySelector('.popup__form[name="resaveProfileAvatar"]');
+const formValidatorAvatar = new FormValidator(configs, formElementAvatar);
+formValidatorAvatar.enableValidation();
+
+
+//валидация для карточек
 const formElementCard = document.querySelector('.popup__form[name="resaveCountry"]');
 const formValidatorCard = new FormValidator(configs, formElementCard);
 formValidatorCard.enableValidation();
 
-
+//эл-т  профиля
 const popupEditProfile = new PopupWithForm('.popup_type_edit', handleSubmitProfile);
 popupEditProfile.setEventListeners();
 
@@ -91,31 +86,47 @@ popupEditProfile.setEventListeners();
 const popupEditAvatarProfile = new PopupWithForm('.popup_type_edit-avatar', handleSubmitAvatarProfile);
 popupEditAvatarProfile.setEventListeners();
 
+//аватар const editUserAvatar = new UserAvatar('.popup_type_edit-avatar');
+
+
+
 const profileUserInfo = new UserInfo('.profile__title', '.profile__subtitle');
 
-/*const popupConfirmDelete = new PopupWithForm('.popup_delete-confirm',);*/
+const popupConfirmDelete = new PopupWithForm('.popup_delete-confirm',)
 
+import {Api} from "../components/Api";
 
-
+//открытие попапа с редактированием профиля
 function openEditProfilePopup() {
-    //открытие попапа с редактированием профиля
     const userInfo = profileUserInfo.getUserInfo();
     inputUserName.value = userInfo.name;
     inputUserJob.value = userInfo.about;
     formValidatorProfile.inputListValidate();
     popupEditProfile.open();
 }
-const popupEditUserFoto = new PopupWithForm('.popup_type_edit-avatar', handleSubmitAvatar);
-
-function openEditFotoProfilePopup() {
-    //открытие попапа с редактированием фотки профиля
-
-
-    formValidatorProfile.inputListValidate();
-    formValidatorCard.inputListValidate();
-    formValidatorCard.hideInputErrorAll();
-    popupEditUserFoto.open();
+//новый аватарчик
+const popupEditAvatar = new PopupWithForm('.popup_type_edit-avatar', handleSubmitAvatar);
+//открытие кнопки c попапа с редактированием фотки аватарки
+function openEditAvatarPopup() {
+        editAvatarButton.addEventListener('click', () => {
+        popupEditAvatar.open();
+       formValidatorAvatar.enableValidation();
+       /* formValidatorAvatar.inputListValidate();
+        formValidatorAvatar.hideInputErrorAll();*/
+    })
 }
+
+// надо через api // api.openEditAvatarPopup()
+
+
+//добавляем лайки api
+function handleLikeCount(newElementImage, data){
+    const res = newElementImage.isLikedCard() ? api.notLikedCard(data._id) : api._likeElement(data._id);
+    res.then((data) =>{card._handleLikeClick(data);})
+        .catch((err) =>{console.log(`$(err)`);});
+}
+
+
 
 //сохраняем
 function handleSubmitProfile(formValues) {
@@ -132,19 +143,44 @@ function handleSubmitAvatarProfile(formValues) {
     }
     popupEditAvatarProfile.setUserInfoAvatar(userInfoAvatar);
 }
-
+//добавление карточек
 const popupAddCard = new PopupWithForm('.popup_country', handleSubmitCard);
 popupAddCard.setEventListeners();
 
+//открываем попап  карточки валидируем
 function openAddCardPopup() {
     formAddCard.reset();
     formValidatorCard.inputListValidate();
     formValidatorCard.hideInputErrorAll();
     popupAddCard.open();
 }
+//кнопка открытия попапа изменения аватарки
+
+
 
 editButton.addEventListener('click', openEditProfilePopup);
-editFotoButton.addEventListener('click', openEditFotoProfilePopup);
+editAvatarButton.addEventListener('click', openEditAvatarPopup);
 openPopupPlaceButton.addEventListener('click', openAddCardPopup);
 /*popupConfirmDelete.addEventListener('click',openPopupConfirmDelete);*/
+
+
+/*
+//классик
+const api = new Api(config);
+const config = {
+    address: 'https://mesto.nomoreparties.co/v1/cohort-26',
+    token: 'b12ac09d-a522-46ec-9026-b6918737b3ea',
+    authorization: 'b12ac09d-a522-46ec-9026-b6918737b3ea',
+    'Content-Type':'application/json',
+}
+//тянем данные юзера при загрузке страницы
+api.getUserInfo().then(data => {userInfo.setInfo(data);})
+    .catch(err =>{
+        console.log('Что-то криво в добычи информации о позьзователе')
+    })
+//получение инфо о аватарке юзера
+
+
+
+*/
 

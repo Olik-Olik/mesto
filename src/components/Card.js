@@ -38,12 +38,14 @@ export class Card {
     _setEventListeners(newElement, newElementImage) {
         this._likeElement = newElement.querySelector('.elements__like');
         this._likeElement.addEventListener('click', this._handleLikeClick);
+
+
         newElementImage.addEventListener('click', this._handleCardClick);
 
         newElement.querySelector('.elements__trash').addEventListener('click',
             (evt) => {this._handleCardRemove(evt)});
         /*  newElement.querySelector('.elements__trash').addEventListener('click', '.popup_delete-confirm');*/
-    }/**/
+    }
 
 
 

@@ -1,6 +1,6 @@
 //вставляет элемент в разметку
 
-export class Section {
+export  class Section {
     constructor(data, containerSelector) {
         this._items = data.items;
         this._renderer = data.renderer;

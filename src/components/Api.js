@@ -1,10 +1,27 @@
 /*
-export class Api {
+
+class Api {
+  constructor(options) {
     constructor({...arr}) {
         this._address = arr._address;
         this._headers = arr._headers;
         this._groupId = arr._groupId;
-    }
+  }
+
+  getInitialCards() {
+    // ...
+  }
+
+  // другие методы работы с API
+}
+
+const api = new Api({
+  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-26',
+  headers: {
+    authorization: 'b12ac09d-a522-46ec-9026-b6918737b3ea',
+    'Content-Type': 'application/json'
+  }
+});
 
 _checkResponce(response){
     return res.ok ? res.json() : Promise.reject();
@@ -51,6 +68,19 @@ console.log(data);
 
 Promise.all([api.getUserInfo(),
               api.getInitialCards()])
-*!/
-*/
 
+//все ли ок с ответомы
+getInitialCards() {
+    return fetch('https://mesto.nomoreparties.co/v1/cohort-42/cards', {
+        headers: {
+            authorization: 'c56e30dc-2883-4270-a59e-b2f7bae969c6'
+        }
+    })
+        .then(res => {
+            if (res.ok) {
+                return res.json();
+            }
+        });
+}
+
+*/
