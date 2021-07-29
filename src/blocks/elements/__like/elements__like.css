@@ -1,4 +1,4 @@
-.elements__like {
+.elements__like-button {
     background-image: url('../../../images/Vector_heart.svg');
     /*background-image :url(https://code.s3.yandex.net/web-code/dom/heart.svg);*//*стащила из тренажера*/
     width: 22px;
@@ -17,7 +17,7 @@
     padding-left: 7px;
 }
 
-.elements__like:hover {
+.elements__like-button:hover {
     opacity: 0.5;
     cursor: pointer;
     /*   transform: scale(1.03);*/

@@ -66,6 +66,6 @@ export {configs};
 
 export{keyCodeEsc, editButton,
     openPopupPlaceButton,
-    formAddCard,inputUserName,inputUserJob,
-    zoomedImage,imageDescription,initialCards,editAvatarButton,anyAvatar,
+    formAddCard, inputUserName, inputUserJob,
+    zoomedImage, imageDescription, initialCards, editAvatarButton, anyAvatar,
   };

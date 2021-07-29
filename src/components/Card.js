@@ -1,11 +1,12 @@
 import {PopupWithForm} from "./PopupWithForm";
 
 export class Card {
-    constructor(item, cardSelector, handleCardClick) {
-        this._item = item;
-        this._cardSelector = cardSelector;
-        this._handleCardClick = handleCardClick;
-        this._popupConfirmDelete = new PopupWithForm('.popup_delete-confirm', this._handleConfirmDelete);
+    constructor(...arr) {
+        this._item = arr.item;
+        this._cardSelector = arr.cardSelector;
+        this._handleCardClick = arr.handleCardClick;
+        this._popupConfirmDelete = new arr.PopupWithForm('.popup_delete-confirm', this._handleConfirmDelete);
+        this._id = arr._id;
     }
 
 
@@ -21,6 +22,7 @@ export class Card {
     }
 
 
+//новая карточка
     createCard() {
         // Запишем разметку в приватное поле _newElement.
         // Так у других элементов появится доступ к ней.
@@ -32,42 +34,46 @@ export class Card {
         newElement.querySelector('.elements__word').textContent = this._item.name;
         this._setEventListeners(newElement, newElementImage);
         return newElement;
-
     }
 
     _setEventListeners(newElement, newElementImage) {
-        this._likeElement = newElement.querySelector('.elements__like');
-        this._likeElement.addEventListener('click', this._handleLikeClick);
+        //подсчет лайков
+        this._likeCount = newElement.querySelector('.elements__like-count');// его нет пока-есть уже
+        this._likeElement = newElement.querySelector('.elements__like-button');
+        /*this._likeElement.addEventListener('click', () => {
+
+        } this._handleLikeClick
+
+        this._likeElement.addEventListener('click', () => {
 
 
+                });*/
+
+//удаление по подтверждению
         newElementImage.addEventListener('click', this._handleCardClick);
-
-        newElement.querySelector('.elements__trash').addEventListener('click',
-            (evt) => {this._handleCardRemove(evt)});
-        /*  newElement.querySelector('.elements__trash').addEventListener('click', '.popup_delete-confirm');*/
+        newElement.querySelector('.elements__trash').addEventListener('click', (evt) => {
+            evt.preventDefault();//перезагрузка стр
+            this._handleCardRemove(evt);//хотим ли удалить
+            if (newElement.addEventListener('click', this._handleCardRemove)) {
+                this._handleConfirmDelete;
+            } // слышим клик-удаляем
+            evt.target.classList.close();//иначе-закрываем
+        });
     }
 
-
-
-    /* _likeCount(){
-
-     }*/
     _handleLikeClick(evt) {
         evt.target.classList.toggle('elements__like_active');
     }
+
 //проверяет желание удалить
     _handleCardRemove(evt) {
         this._evt = evt;
-        this._popupConfirmDelete.open() ;
+        this._popupConfirmDelete.open();
     }
+
 //удаляет
-    _handleConfirmDelete(evt){
-         this._evt.currentTarget.closest('#template-id').remove();
+    _handleConfirmDelete(evt) {
+        this._evt.currentTarget.closest('#template-id').remove();
     }
 }
-//для 9 работы
-// переделать все карточки
-//созидаем карточку
-
-
 

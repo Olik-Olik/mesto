@@ -17,7 +17,7 @@ import {FormValidator} from '../components/FormValidator.js';
 import {Section} from '../components/Section.js';
 import {PopupWithForm} from '../components/PopupWithForm.js';
 import {PopupWithImage} from '../components/PopupWithImage.js';
-import {UserInfo,UserInfoAvatar} from '../components/UserInfo.js';
+import {UserInfo, UserInfoAvatar} from '../components/UserInfo.js';
 
 
 
@@ -59,8 +59,12 @@ function handleSubmitAvatar(formValuesAvatar) {
         {
             link: formValuesAvatar['popup-input-img']
         };
-    anyAvatar.addItem(cardRenderer(inputElement));
+   /* 000*/
+    anyAvatar.addItem(cardRenderer(inputElement))
+    handleSubmitAvatar.close();
+   /* anyAvatar.addItem(cardRenderer(inputElement));*/
 }
+
 
 //валидация для профиля
 const formElementProfile = document.querySelector('.popup__form[name="resaveProfile"]');
@@ -84,15 +88,18 @@ popupEditProfile.setEventListeners();
 
 //редактирование аватара - новый экземпляр класса PopupWithForm
 const popupEditAvatarProfile = new PopupWithForm('.popup_type_edit-avatar', handleSubmitAvatarProfile);
-popupEditAvatarProfile.setEventListeners();
+popupEditAvatarProfile.setEventListeners(); //закрываем
 
-//аватар const editUserAvatar = new UserAvatar('.popup_type_edit-avatar');
-
-
-
+//
 const profileUserInfo = new UserInfo('.profile__title', '.profile__subtitle');
 
-const popupConfirmDelete = new PopupWithForm('.popup_delete-confirm',)
+//Хрень конечно, но попробую
+const popupConfirmDelete = new PopupWithForm('.popup_delete-confirm');
+popupConfirmDelete.setEventListeners();//закрываем
+
+//новый аватарчик
+const popupEditAvatar = new PopupWithForm('.popup_type_edit-avatar', handleSubmitAvatar);
+//открытие кнопки c попапа с редактированием фотки аватарки
 
 import {Api} from "../components/Api";
 
@@ -104,19 +111,20 @@ function openEditProfilePopup() {
     formValidatorProfile.inputListValidate();
     popupEditProfile.open();
 }
-//новый аватарчик
-const popupEditAvatar = new PopupWithForm('.popup_type_edit-avatar', handleSubmitAvatar);
-//открытие кнопки c попапа с редактированием фотки аватарки
+
 function openEditAvatarPopup() {
         editAvatarButton.addEventListener('click', () => {
         popupEditAvatar.open();
        formValidatorAvatar.enableValidation();
-       /* formValidatorAvatar.inputListValidate();
-        formValidatorAvatar.hideInputErrorAll();*/
+        formValidatorAvatar.inputListValidate();
+        formValidatorAvatar.hideInputErrorAll();
     })
 }
 
 // надо через api // api.openEditAvatarPopup()
+/*const popupEditAvatar = new PopupWithForm('.popup_type_edit-avatar', handleSubmitAvatar);*/
+
+/*const editUserAvatar = new UserAvatar('.popup_type_edit-avatar');*/
 
 
 //добавляем лайки api
@@ -125,10 +133,10 @@ function handleLikeCount(newElementImage, data){
     res.then((data) =>{card._handleLikeClick(data);})
         .catch((err) =>{console.log(`$(err)`);});
 }
+//кнопка открытия попапа изменения аватарки
 
 
-
-//сохраняем
+//сохраняем профиль
 function handleSubmitProfile(formValues) {
     const userInfo = {
         'name': formValues['inputForm_name'],
@@ -139,7 +147,7 @@ function handleSubmitProfile(formValues) {
 //сохраняем аватар
 function handleSubmitAvatarProfile(formValues) {
     const userInfoAvatar = {
-        'img': formValues['popup-input-img-avatar']
+        'img': formValues['inputForm_avatar']
     }
     popupEditAvatarProfile.setUserInfoAvatar(userInfoAvatar);
 }
@@ -154,7 +162,6 @@ function openAddCardPopup() {
     formValidatorCard.hideInputErrorAll();
     popupAddCard.open();
 }
-//кнопка открытия попапа изменения аватарки
 
 
 
@@ -164,23 +171,6 @@ openPopupPlaceButton.addEventListener('click', openAddCardPopup);
 /*popupConfirmDelete.addEventListener('click',openPopupConfirmDelete);*/
 
 
-/*
-//классик
-const api = new Api(config);
-const config = {
-    address: 'https://mesto.nomoreparties.co/v1/cohort-26',
-    token: 'b12ac09d-a522-46ec-9026-b6918737b3ea',
-    authorization: 'b12ac09d-a522-46ec-9026-b6918737b3ea',
-    'Content-Type':'application/json',
-}
-//тянем данные юзера при загрузке страницы
-api.getUserInfo().then(data => {userInfo.setInfo(data);})
-    .catch(err =>{
-        console.log('Что-то криво в добычи информации о позьзователе')
-    })
-//получение инфо о аватарке юзера
 
 
-
-*/
 
