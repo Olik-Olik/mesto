@@ -21,17 +21,23 @@ export class Api {
 
 // если сервер ответит ок- то выдать значение  если нет-отклоняется промис
     _handleResponse(response) {
-        if (response.ok) {
-            Promise.resolve(response.json()).then(value => {return value});
-            /*console.log(response.json());*/
-           /* return new Promise(function(resolve, reject) {
+        if (response.ok){
+            return response.json()}
+           else  return Promise.reject("Вылезла ошибка, УПС, Повезло-то как!");
+
+           /* Promise.resolve(response.json()).then(value => {return value});
+            /!*console.log(response.json());*!/
+           /!* return new Promise(function(resolve, reject) {
                 resolve(response.json());
                 reject(); // ignored
-            });*/
+            });*!/
         }else {
             Promise.reject(response.status, "Вылезла ошибка, УПС, Повезло-то как!")
-        }
+        }*/
     }
+
+
+
 
 //получение карточек с сервера внешний метод
 
@@ -43,12 +49,14 @@ export class Api {
             })
             .then(value => Promise.resolve(value.json()))
 
+           /* .then(response => {if (response.ok) return response.json();
+                else return Promise.reject(response.status, "Ну не повезло!")*/
             /*
                         .then((response) =>
                         {this._handleResponse(response)})
             */
             .catch(err => {
-                console.log('Что-то криво в добыче информации о позьзователе')
+                console.log('Что-то криво в добыче информации о пользователе')
             });
     }
 
