@@ -2,7 +2,7 @@ import {PopupWithForm} from "../src/components/PopupWithForm";
 const anyAvatar = [{
     img: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'},
     { img: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'}];
-const
+/*const
     initialCards = [
         {
             name: 'Архыз',
@@ -28,7 +28,7 @@ const
             name: 'Байкал',
             link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
         }
-    ];
+    ];*/
 const keyCodeEsc = '27';
 const editButton = document.querySelector('.profile__edit-button');
 
@@ -67,5 +67,5 @@ export {configs};
 export{keyCodeEsc, editButton,
     openPopupPlaceButton,
     formAddCard, inputUserName, inputUserJob,
-    zoomedImage, imageDescription, initialCards, editAvatarButton, anyAvatar,
+    zoomedImage, imageDescription, editAvatarButton, anyAvatar,
   };

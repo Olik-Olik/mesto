@@ -1,14 +1,12 @@
-
 import {
+    anyAvatar,
     configs,
+    editAvatarButton,
     editButton,
     formAddCard,
-    initialCards,
     inputUserJob,
     inputUserName,
     openPopupPlaceButton,
-    editAvatarButton,anyAvatar,
-
 } from '../../utils/constants.js';
 
 import './index.css';
@@ -17,8 +15,28 @@ import {FormValidator} from '../components/FormValidator.js';
 import {Section} from '../components/Section.js';
 import {PopupWithForm} from '../components/PopupWithForm.js';
 import {PopupWithImage} from '../components/PopupWithImage.js';
-import {UserInfo, UserInfoAvatar} from '../components/UserInfo.js';
+import {UserInfo} from '../components/UserInfo.js';
+import {Api} from "../components/Api";
 
+const api = new Api({
+    address: 'https://mesto.nomoreparties.co/v1/cohort-26',
+    headers: {
+        authorization: 'b12ac09d-a522-46ec-9026-b6918737b3ea'
+    }
+});
+
+
+api.getInitialCards().then((res) => {
+    const initialCards = res;
+    const cardsList = new Section({
+        items: initialCards,
+        renderer: cardRenderer
+    }, '.elements');
+    cardsList.renderItems();
+})
+
+
+/*{getInitialCards = res}*/
 
 
 function handleCardClick(evt) {
@@ -32,18 +50,21 @@ function handleCardClick(evt) {
 }
 
 function cardRenderer(cardItem) {
-    const card = new Card(cardItem, '.item-template', handleCardClick);
+    const card = new Card(
+        cardItem,
+        '.item-template',
+        handleCardClick,)
+
     const newCard = card.createCard();
     return newCard;
 }
 
-const cardsList = new Section({
-    items: initialCards,
+/*const cardsList = new Section({
+    items: getInitialCards,
     renderer: cardRenderer
-}, '.elements');
+}, '.elements');*/
 
 
-cardsList.renderItems();
 //карточка из input
 function handleSubmitCard(formValues) {
     const inputElement =
@@ -53,16 +74,17 @@ function handleSubmitCard(formValues) {
         };
     cardsList.addItem(cardRenderer(inputElement));
 }
+
 // новая аватарка куда ее  положить
 function handleSubmitAvatar(formValuesAvatar) {
     const inputElement =
         {
             link: formValuesAvatar['popup-input-img']
         };
-   /* 000*/
+    /* 000*/
     anyAvatar.addItem(cardRenderer(inputElement))
     handleSubmitAvatar.close();
-   /* anyAvatar.addItem(cardRenderer(inputElement));*/
+    /* anyAvatar.addItem(cardRenderer(inputElement));*/
 }
 
 
@@ -99,9 +121,7 @@ popupConfirmDelete.setEventListeners();//закрываем
 
 //новый аватарчик
 const popupEditAvatar = new PopupWithForm('.popup_type_edit-avatar', handleSubmitAvatar);
-//открытие кнопки c попапа с редактированием фотки аватарки
 
-import {Api} from "../components/Api";
 
 //открытие попапа с редактированием профиля
 function openEditProfilePopup() {
@@ -113,9 +133,9 @@ function openEditProfilePopup() {
 }
 
 function openEditAvatarPopup() {
-        editAvatarButton.addEventListener('click', () => {
+    editAvatarButton.addEventListener('click', () => {
         popupEditAvatar.open();
-       formValidatorAvatar.enableValidation();
+        formValidatorAvatar.enableValidation();
         formValidatorAvatar.inputListValidate();
         formValidatorAvatar.hideInputErrorAll();
     })
@@ -128,11 +148,16 @@ function openEditAvatarPopup() {
 
 
 //добавляем лайки api
-function handleLikeCount(newElementImage, data){
+function handleLikeCount(newElementImage, data) {
     const res = newElementImage.isLikedCard() ? api.notLikedCard(data._id) : api._likeElement(data._id);
-    res.then((data) =>{card._handleLikeClick(data);})
-        .catch((err) =>{console.log(`$(err)`);});
+    res.then((data) => {
+        card._handleLikeClick(data);
+    })
+        .catch((err) => {
+            console.log(`$(err)`);
+        });
 }
+
 //кнопка открытия попапа изменения аватарки
 
 
@@ -144,6 +169,7 @@ function handleSubmitProfile(formValues) {
     }
     profileUserInfo.setUserInfo(userInfo);
 }
+
 //сохраняем аватар
 function handleSubmitAvatarProfile(formValues) {
     const userInfoAvatar = {
@@ -151,6 +177,7 @@ function handleSubmitAvatarProfile(formValues) {
     }
     popupEditAvatarProfile.setUserInfoAvatar(userInfoAvatar);
 }
+
 //добавление карточек
 const popupAddCard = new PopupWithForm('.popup_country', handleSubmitCard);
 popupAddCard.setEventListeners();
@@ -164,6 +191,11 @@ function openAddCardPopup() {
 }
 
 
+//вообще окончательное удаление
+/*const popupDeleteEndCard = new PopupWithConfirm('.')*/
+/*popupDeleteEndCard.setEventListeners();*/
+
+/*function cardDelete*/
 
 editButton.addEventListener('click', openEditProfilePopup);
 editAvatarButton.addEventListener('click', openEditAvatarPopup);
