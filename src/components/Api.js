@@ -149,17 +149,40 @@ export class Api {
             });
     }
 
-/*
-    handleSubmitAvatar(avatar) {
-        return fetch(this._address + '/cards/me',
+    submitUserInfo(userInfo) {
+        const userUpdate = {
+            'name': userInfo.name,
+            'about':userInfo.about
+        }
+        return fetch(this._address + '/users/me',
             {
-                headers: this._headers,
-                method: 'put',
-                body: JSON.stringify(avatar), // в аватар кладем строку от аватара
-                avatar: avatar
+                headers: {
+                    'authorization': this._headers.authorization,
+                    'Content-Type': 'application/json'
+                },
+                method: 'PATCH',
+                body: JSON.stringify(userUpdate), // в аватар кладем строку от аватара
             })
             .then((response) => this._handleResponse(response))
-            .catch(err => {})}}
-*/
+            .catch(err => {})
+    }
+
+    submitUserAvatar(userInfo) {
+        const avaUpdate = {
+            'avatar': userInfo.avatar
+        }
+        return fetch(this._address + '/users/me/avatar',
+            {
+                headers: {
+                    'authorization': this._headers.authorization,
+                    'Content-Type': 'application/json'
+                },
+                method: 'PATCH',
+                body: JSON.stringify(avaUpdate), // в аватар кладем строку от аватара
+            })
+            .then((response) => this._handleResponse(response))
+            .catch(err => {})
+    }
 
 }
+

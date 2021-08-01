@@ -183,6 +183,7 @@ function handleSubmitAvatarProfile(formValues) {
         'avatar': formValues['input-avatar']
     }
     profileUserInfo.setUserInfo(userAva);
+    api.submitUserAvatar(userAva);
     updateUserInfo();
 }
 
