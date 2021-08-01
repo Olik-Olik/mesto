@@ -37,8 +37,6 @@ export class Api {
     }
 
 
-
-
 //получение карточек с сервера внешний метод
 
     getInitialCards() {
@@ -101,13 +99,13 @@ export class Api {
         })
             .then((response) => this._handleResponse(response))
             .catch(err => {
-                console.log('Что-то криво в добычи информации о позьзователе')
+                console.log('Что-то криво в добычи информации о пользователе')
             })
-    }
+    }}
 
     /*const editFotoButton = document.querySelector('.profile__foto-edit-button');
     editFotoButton.addEventListener('click', () => {
-        console.log('Заменили фотку'); }) */
+        console.log('Заменили фотку'); })
 
     removeCard() { //идентифицируем карточку как ? подумать
         return fetch(this._address +'/cards',{
@@ -124,7 +122,6 @@ export class Api {
         return fetch(this._address + '/cards' + 'id', {
             headers: this._headers,
             method: 'PUT'
-                /* body: ''*/
                 .then((response) => this.handleResponse(response))
                 .catch(err => {
                     console.log('Что-то криво в добычи информации о позьзователе')
@@ -136,7 +133,7 @@ export class Api {
         return fetch(this._address +'/cards' + 'id', {
             headers: this._headers,
             method: 'DELETE'
-                /*   body: ''*/
+                 body: ''
                 .then((response) => this.handleResponse(response))
         })
             .catch(err => {
@@ -147,7 +144,6 @@ export class Api {
 
 // _id — это идентификатор пользователя, в данном случае вашего.
 
-//юзер данные
     getUserInfo() {
         return fetch(this._address + '/cards' + 'me',
             {
@@ -161,7 +157,7 @@ export class Api {
             });
     }
 
-// новая аватарка куда ее  положить????? в card.js
+
     handleSubmitAvatar(avatar) {
         return fetch(this._address + '/cards' + 'me',
             {
@@ -171,10 +167,4 @@ export class Api {
                 avatar: avatar
             })
             .then((response) => this._handleResponse(response))
-            .catch(err => {
-                console.log('Что-то криво в добычи информации о позьзователе')
-            })
-
-    }
-}
-
+            .catch(err => {})}}*/

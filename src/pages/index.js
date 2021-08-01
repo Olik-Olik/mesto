@@ -15,7 +15,7 @@ import {FormValidator} from '../components/FormValidator.js';
 import {Section} from '../components/Section.js';
 import {PopupWithForm} from '../components/PopupWithForm.js';
 import {PopupWithImage} from '../components/PopupWithImage.js';
-import {UserInfo} from '../components/UserInfo.js';
+import {UserInfo, UserInfoAvatar} from '../components/UserInfo.js';
 import {Api} from "../components/Api";
 
 const api = new Api({
@@ -30,13 +30,9 @@ api.getInitialCards().then((res) => {
     const initialCards = res;
     const cardsList = new Section({
         items: initialCards,
-        renderer: cardRenderer
-    }, '.elements');
+        renderer: cardRenderer }, '.elements');
     cardsList.renderItems();
 })
-
-
-/*{getInitialCards = res}*/
 
 
 function handleCardClick(evt) {
@@ -58,7 +54,7 @@ function cardRenderer(cardItem) {
     const newCard = card.createCard();
     return newCard;
 }
-
+//нужно
 /*const cardsList = new Section({
     items: getInitialCards,
     renderer: cardRenderer
@@ -81,10 +77,9 @@ function handleSubmitAvatar(formValuesAvatar) {
         {
             link: formValuesAvatar['popup-input-img']
         };
-    /* 000*/
+
     anyAvatar.addItem(cardRenderer(inputElement))
     handleSubmitAvatar.close();
-    /* anyAvatar.addItem(cardRenderer(inputElement));*/
 }
 
 
@@ -114,6 +109,7 @@ popupEditAvatarProfile.setEventListeners(); //закрываем
 
 //
 const profileUserInfo = new UserInfo('.profile__title', '.profile__subtitle');
+const profileAvatar = new UserInfoAvatar('.profile__avatar');
 
 //Хрень конечно, но попробую
 const popupConfirmDelete = new PopupWithForm('.popup_delete-confirm');
@@ -172,10 +168,10 @@ function handleSubmitProfile(formValues) {
 
 //сохраняем аватар
 function handleSubmitAvatarProfile(formValues) {
-    const userInfoAvatar = {
-        'img': formValues['inputForm_avatar']
+    const userAva = {
+        'img': formValues['input-avatar']
     }
-    popupEditAvatarProfile.setUserInfoAvatar(userInfoAvatar);
+    profileAvatar.setUserInfoAvatar(userAva);
 }
 
 //добавление карточек
