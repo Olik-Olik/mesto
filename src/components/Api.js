@@ -15,25 +15,25 @@ export class Api {
 //тянем данные юзера при загрузке страницы через апи
     promiseAll() {
         Promise.all([this.getUserInfo(),
-                            this.getMovies()])
+            this.getMovies()])
             .then((data) => console.log('Пришел ответ с карточками'));
     }
 
 // если сервер ответит ок- то выдать значение  если нет-отклоняется промис
     _handleResponse(response) {
-        if (response.ok){
-            return response.json()}
-           else  return Promise.reject("Вылезла ошибка, УПС, Повезло-то как!");
+        if (response.ok) {
+            return response.json()
+        } else return Promise.reject("Вылезла ошибка, УПС, Повезло-то как!");
 
-           /* Promise.resolve(response.json()).then(value => {return value});
-            /!*console.log(response.json());*!/
-           /!* return new Promise(function(resolve, reject) {
-                resolve(response.json());
-                reject(); // ignored
-            });*!/
-        }else {
-            Promise.reject(response.status, "Вылезла ошибка, УПС, Повезло-то как!")
-        }*/
+        /* Promise.resolve(response.json()).then(value => {return value});
+         /!*console.log(response.json());*!/
+        /!* return new Promise(function(resolve, reject) {
+             resolve(response.json());
+             reject(); // ignored
+         });*!/
+     }else {
+         Promise.reject(response.status, "Вылезла ошибка, УПС, Повезло-то как!")
+     }*/
     }
 
 
@@ -46,13 +46,6 @@ export class Api {
                 method: 'GET',
             })
             .then(value => Promise.resolve(value.json()))
-
-           /* .then(response => {if (response.ok) return response.json();
-                else return Promise.reject(response.status, "Ну не повезло!")*/
-            /*
-                        .then((response) =>
-                        {this._handleResponse(response)})
-            */
             .catch(err => {
                 console.log('Что-то криво в добыче информации о пользователе')
             });
@@ -101,7 +94,7 @@ export class Api {
             .catch(err => {
                 console.log('Что-то криво в добычи информации о пользователе')
             })
-    }}
+    }
 
     /*const editFotoButton = document.querySelector('.profile__foto-edit-button');
     editFotoButton.addEventListener('click', () => {
@@ -143,23 +136,22 @@ export class Api {
     }
 
 // _id — это идентификатор пользователя, в данном случае вашего.
-
+*/
     getUserInfo() {
-        return fetch(this._address + '/cards' + 'me',
+        return fetch(this._address + '/users/me',
             {
                 headers: this._headers,
                 method: 'GET'
-
             })
-            .then((response) => this._handleResponse(response))
+            .then(value => Promise.resolve(value.json()))
             .catch(err => {
-                console.log('Что-то криво в добычи информации о позьзователе')
+                console.log('Чорный Властелин не пришел.')
             });
     }
 
-
+/*
     handleSubmitAvatar(avatar) {
-        return fetch(this._address + '/cards' + 'me',
+        return fetch(this._address + '/cards/me',
             {
                 headers: this._headers,
                 method: 'put',
@@ -167,4 +159,7 @@ export class Api {
                 avatar: avatar
             })
             .then((response) => this._handleResponse(response))
-            .catch(err => {})}}*/
+            .catch(err => {})}}
+*/
+
+}

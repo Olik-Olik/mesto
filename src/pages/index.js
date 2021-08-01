@@ -108,8 +108,7 @@ const popupEditAvatarProfile = new PopupWithForm('.popup_type_edit-avatar', hand
 popupEditAvatarProfile.setEventListeners(); //закрываем
 
 //
-const profileUserInfo = new UserInfo('.profile__title', '.profile__subtitle');
-const profileAvatar = new UserInfoAvatar('.profile__avatar');
+const profileUserInfo = new UserInfo('.profile__title', '.profile__subtitle', '.profile__avatar');
 
 //Хрень конечно, но попробую
 const popupConfirmDelete = new PopupWithForm('.popup_delete-confirm');
@@ -156,6 +155,18 @@ function handleLikeCount(newElementImage, data) {
 
 //кнопка открытия попапа изменения аватарки
 
+function updateUserInfo() {
+    api.getUserInfo().then((res) => {
+        const userProfileInfo = res;
+        const userInfo = {
+            'name': userProfileInfo.name,
+            'about': userProfileInfo.about,
+            'avatar': userProfileInfo.avatar
+        }
+        profileUserInfo.setUserInfo(userInfo);
+    })
+
+}
 
 //сохраняем профиль
 function handleSubmitProfile(formValues) {
@@ -169,7 +180,7 @@ function handleSubmitProfile(formValues) {
 //сохраняем аватар
 function handleSubmitAvatarProfile(formValues) {
     const userAva = {
-        'img': formValues['input-avatar']
+        'avatar': formValues['input-avatar']
     }
     profileAvatar.setUserInfoAvatar(userAva);
 }
@@ -198,6 +209,7 @@ editAvatarButton.addEventListener('click', openEditAvatarPopup);
 openPopupPlaceButton.addEventListener('click', openAddCardPopup);
 /*popupConfirmDelete.addEventListener('click',openPopupConfirmDelete);*/
 
+updateUserInfo();
 
 
 

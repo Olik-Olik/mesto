@@ -1,31 +1,23 @@
 export class UserInfo {
-    constructor(profileNameSelector, profileJobSelector) {
+    constructor(profileNameSelector, profileJobSelector, avatarSelector) {
         this._profileNameElement = document.querySelector(profileNameSelector);
         this._jobProfileElement = document.querySelector(profileJobSelector);
-      /*  this._avatar = document.querySelector(avatarSelector);*/
+        this._avatar = document.querySelector(avatarSelector);
     }
 
     getUserInfo()// возвращает объект с данными пользователя
     {
         return {
             'name': this._profileNameElement.textContent,
-            'about': this._jobProfileElement.textContent
+            'about': this._jobProfileElement.textContent,
+            'avatar': this._avatar.src
         };
     }
 //закладывает
     setUserInfo(userInfo) {
         this._profileNameElement.textContent = userInfo.name;
         this._jobProfileElement.textContent = userInfo.about;
-    }
-}
-
-export class UserInfoAvatar {
-    constructor(avatarSelector) {
-        this._avatar = document.querySelector(avatarSelector);
-    }
-
-    setUserInfoAvatar(avatar) {
-        this._avatar.src = avatar.img;
+        this._avatar.src = userInfo.avatar;
     }
 }
 
