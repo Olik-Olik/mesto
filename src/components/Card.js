@@ -13,7 +13,6 @@ export class Card {
     }
 
 
-
 //все evt должны работать снаружи класса
     // забираем разметку из HTML и клонируем элемент // вернуть разметку
     _getTemplate() {
@@ -39,7 +38,8 @@ export class Card {
         return newElement;
 
     }
-    _handleDeleteLikeClick(evt){
+
+    _handleDeleteLikeClick(evt) {
 
     }
 
@@ -49,42 +49,48 @@ export class Card {
 
     _setEventListeners(newElement, newElementImage) {
         // лайки
-/*        this._likes = likes;*/
+        /*        this._likes = likes;*/
         this._likeCount = newElement.querySelector('.elements__like-count');
         this._likeElementButton = newElement.querySelector('.elements__like-button');
-/*
-        this._likes.every((item) => {
-            if (item._id === this._userId) {
-                this._likeElementButton.classList.add('elements__like_active');
-            } else {
-                this._likeElementButton.classList.remove('elements__like_active')
-            }
-        })
-*/
+        /*
+                this._likes.every((item) => {
+                    if (item._id === this._userId) {
+                        this._likeElementButton.classList.add('elements__like_active');
+                    } else {
+                        this._likeElementButton.classList.remove('elements__like_active')
+                    }
+                })
+        */
         //считаем
-/*        this._likeCount.textContent = this._likeArr.length;*/
+        /*        this._likeCount.textContent = this._likeArr.length;*/
         /*this._handleLikeClick(evt); //active*/
 
-        if (this._likeElementButton.addEventListener('click', (evt) => {
-
+        this._likeElementButton.addEventListener('click', (evt) => {
             if (this._likeElementButton.classList.contains('elements__like_active')) {
                 this._handleLikeClick(evt);
             } else {
                 this._handleDeleteLikeClick(evt);
-            }}));}}
+            }
+        });
 
-/*
-
-//удаление
         newElementImage.addEventListener('click', this._handleCardClick);
         newElement.querySelector('.elements__trash').addEventListener('click', (evt) => {
-        this._handleCardClick(this._id);})
-        _handleCardRemove(this._id)
-        {
-            this._popupConfirmDelete.open();
-        }
-        //проверяет желание удалить
-        const elementPopupWithConfirm = new PopupWithConfirm({elementPopupWithConfirm: (this._id)=>
+            this._handleCardClick(this._id);
+        })
+
+    }
+}
+
+
+//удаление
+/*
+_handleCardRemove(evt)
+{
+    this._popupConfirmDelete.open();
+}
+*/
+/*        //проверяет желание удалить
+        const element PopupWithConfirm = new PopupWithConfirm({elementPopupWithConfirm: (this._id)=>
         {api.handleCardRemove((this._id)).then(() => {
         return newElement.newElementImage()
         elementPopupWithConfirm.close()

@@ -1,3 +1,4 @@
+/*
 //новый попап для подтверждений
 import {Popup} from './Popup.js';
 
@@ -20,6 +21,10 @@ export class PopupWithConfirm extends Popup {
     }
 
 }
+*/
+
+
+
    /* constructor(submitForm, popupSelector) {
         super(popupSelector);
         this._formConfirm = document.querySelector('.elements__trash');
