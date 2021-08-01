@@ -175,14 +175,15 @@
 </section>
 <!--новый попап полной уверенности  удаления фича 9 работы-->
 <section class="popup popup_delete-confirm  popup_type_edit">
- <!--   <div class="popup__container">-->
+    <div class="popup__container">
         <form action="#" aria-label='Вы уверены, что хотите удалить карточку?' class="popup__form" id="popup-delete-card" name="deleteConfirmCard" novalidate>
             <label class="popup__label"><h2 class="popup__page">Вы уверены?</h2></label>
+            <input type="hidden" class="popup__field" name="cardId" value="">
             <button aria-label='Подтверждение удаления элемента' class="popup__save popup__save-button-confirm popup__save-button-inproc" type="submit">Да</button>
             <button aria-label='Закрыть всплывающее окошко'
                     class="popup__close-button " name="popup__close-button" type="button"></button>
         </form>
-  <!--  </div>-->
+    </div>
 </section>
 <template class="item-template">
     <div class="elements__card" id="template-id">

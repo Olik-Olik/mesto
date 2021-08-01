@@ -92,97 +92,106 @@ export class Api {
         })
             .then((response) => this._handleResponse(response))
             .catch(err => {
-                console.log('Что-то криво в добычи информации о пользователе')
+                console.log('Что-то криво в обновлении информации о пользователе')
             })
     }
 
     /*const editFotoButton = document.querySelector('.profile__foto-edit-button');
     editFotoButton.addEventListener('click', () => {
         console.log('Заменили фотку'); })
+*/
 
-    removeCard() { //идентифицируем карточку как ? подумать
-        return fetch(this._address +'/cards',{
+    submitRemoveCard(cardId) { //идентифицируем карточку как ? подумать
+        return fetch(this._address + '/cards/' + cardId, {
             headers: this._headers,
             method: 'DELETE'
-                .then((response) => this.handleResponse(response))
-                .catch(err => {
-                    console.log('Что-то криво в добычи информации о позьзователе')
-                })
         })
+            .then((response) => this._handleResponse(response))
+            .catch(err => {
+                console.log('Что-то криво в удалении карточки')
+            })
     }
 
-    like() {
-        return fetch(this._address + '/cards' + 'id', {
-            headers: this._headers,
-            method: 'PUT'
-                .then((response) => this.handleResponse(response))
-                .catch(err => {
-                    console.log('Что-то криво в добычи информации о позьзователе')
-                })
-        })
-    }
-
-    likeApsence() {
-        return fetch(this._address +'/cards' + 'id', {
-            headers: this._headers,
-            method: 'DELETE'
-                 body: ''
-                .then((response) => this.handleResponse(response))
-        })
+/*
+like()
+{
+    return fetch(this._address + '/cards' + 'id', {
+        headers: this._headers,
+        method: 'PUT'
+            .then((response) => this.handleResponse(response))
             .catch(err => {
                 console.log('Что-то криво в добычи информации о позьзователе')
-
             })
-    }
+    })
+}
+
+likeApsence()
+{
+    return fetch(this._address + '/cards' + 'id', {
+        headers: this._headers,
+        method: 'DELETE'
+        body: ''
+            .then((response) => this.handleResponse(response))
+    })
+        .catch(err => {
+            console.log('Что-то криво в добычи информации о позьзователе')
+
+        })
+}
+*/
 
 // _id — это идентификатор пользователя, в данном случае вашего.
-*/
-    getUserInfo() {
-        return fetch(this._address + '/users/me',
-            {
-                headers: this._headers,
-                method: 'GET'
-            })
-            .then(value => Promise.resolve(value.json()))
-            .catch(err => {
-                console.log('Чорный Властелин не пришел.')
-            });
-    }
+getUserInfo()
+{
+    return fetch(this._address + '/users/me',
+        {
+            headers: this._headers,
+            method: 'GET'
+        })
+        .then(value => Promise.resolve(value.json()))
+        .catch(err => {
+            console.log('Чорный Властелин не пришел.')
+        });
+}
 
-    submitUserInfo(userInfo) {
-        const userUpdate = {
-            'name': userInfo.name,
-            'about':userInfo.about
-        }
-        return fetch(this._address + '/users/me',
-            {
-                headers: {
-                    'authorization': this._headers.authorization,
-                    'Content-Type': 'application/json'
-                },
-                method: 'PATCH',
-                body: JSON.stringify(userUpdate), // в аватар кладем строку от аватара
-            })
-            .then((response) => this._handleResponse(response))
-            .catch(err => {})
+submitUserInfo(userInfo)
+{
+    const userUpdate = {
+        'name': userInfo.name,
+        'about': userInfo.about
     }
+    return fetch(this._address + '/users/me',
+        {
+            headers: {
+                'authorization': this._headers.authorization,
+                'Content-Type': 'application/json'
+            },
+            method: 'PATCH',
+            body: JSON.stringify(userUpdate), // в аватар кладем строку от аватара
+        })
+        .then((response) => this._handleResponse(response))
+        .catch(err => {
+        })
+}
 
-    submitUserAvatar(userInfo) {
-        const avaUpdate = {
-            'avatar': userInfo.avatar
-        }
-        return fetch(this._address + '/users/me/avatar',
-            {
-                headers: {
-                    'authorization': this._headers.authorization,
-                    'Content-Type': 'application/json'
-                },
-                method: 'PATCH',
-                body: JSON.stringify(avaUpdate), // в аватар кладем строку от аватара
-            })
-            .then((response) => this._handleResponse(response))
-            .catch(err => {})
+submitUserAvatar(userInfo)
+{
+    const avaUpdate = {
+        'avatar': userInfo.avatar
     }
+    return fetch(this._address + '/users/me/avatar',
+        {
+            headers: {
+                'authorization': this._headers.authorization,
+                'Content-Type': 'application/json'
+            },
+            method: 'PATCH',
+            body: JSON.stringify(avaUpdate), // в аватар кладем строку от аватара
+        })
+        .then((response) => this._handleResponse(response))
+        .catch(err => {
+        })
+}
 
 }
 

@@ -47,11 +47,16 @@ function handleCardClick(evt) {
     popupBigImage.open();
 }
 
+function removeCard(cardId){
+    api.submitRemoveCard(cardId);
+    updateAllCards();
+}
+
 function cardRenderer(cardItem) {
     const card = new Card(
         cardItem,
         '.item-template',
-        handleCardClick,)
+        handleCardClick, removeCard);
 
     const newCard = card.createCard();
     return newCard;
@@ -114,9 +119,11 @@ popupEditAvatarProfile.setEventListeners(); //закрываем
 //
 const profileUserInfo = new UserInfo('.profile__title', '.profile__subtitle', '.profile__avatar');
 
+/*
 //Хрень конечно, но попробую
 const popupConfirmDelete = new PopupWithForm('.popup_delete-confirm');
 popupConfirmDelete.setEventListeners();//закрываем
+*/
 
 //новый аватарчик
 const popupEditAvatar = new PopupWithForm('.popup_type_edit-avatar', handleSubmitAvatar);
@@ -216,6 +223,7 @@ editButton.addEventListener('click', openEditProfilePopup);
 editAvatarButton.addEventListener('click', openEditAvatarPopup);
 openPopupPlaceButton.addEventListener('click', openAddCardPopup);
 /*popupConfirmDelete.addEventListener('click',openPopupConfirmDelete);*/
+
 
 updateUserInfo();
 updateAllCards();
