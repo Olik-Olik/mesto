@@ -175,6 +175,8 @@ function handleSubmitProfile(formValues) {
         'about': formValues['inputForm_job']
     }
     profileUserInfo.setUserInfo(userInfo);
+    api.submitUserInfo(userInfo);
+    updateUserInfo();
 }
 
 //сохраняем аватар
