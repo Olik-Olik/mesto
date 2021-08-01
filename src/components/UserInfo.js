@@ -15,9 +15,15 @@ export class UserInfo {
     }
 //закладывает
     setUserInfo(userInfo) {
-        this._profileNameElement.textContent = userInfo.name;
-        this._jobProfileElement.textContent = userInfo.about;
-        this._avatar.src = userInfo.avatar;
+        if ('name' in userInfo) {
+            this._profileNameElement.textContent = userInfo.name;
+        }
+        if ('about' in userInfo) {
+            this._jobProfileElement.textContent = userInfo.about;
+        }
+        if ('avatar' in userInfo) {
+            this._avatar.src = userInfo.avatar;
+        }
     }
 }
 

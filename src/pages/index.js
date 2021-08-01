@@ -182,7 +182,8 @@ function handleSubmitAvatarProfile(formValues) {
     const userAva = {
         'avatar': formValues['input-avatar']
     }
-    profileAvatar.setUserInfoAvatar(userAva);
+    profileUserInfo.setUserInfo(userAva);
+    updateUserInfo();
 }
 
 //добавление карточек
