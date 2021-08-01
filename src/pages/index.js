@@ -25,13 +25,13 @@ const api = new Api({
     }
 });
 
+const cardsList = new Section({
+    items: null,
+    renderer: cardRenderer }, '.elements');
 
 api.getInitialCards().then((res) => {
     const initialCards = res;
-    const cardsList = new Section({
-        items: initialCards,
-        renderer: cardRenderer }, '.elements');
-    cardsList.renderItems();
+    cardsList.renderItems(initialCards);
 })
 
 
