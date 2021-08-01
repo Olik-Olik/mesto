@@ -25,14 +25,16 @@ const api = new Api({
     }
 });
 
-const cardsList = new Section({
-    items: null,
-    renderer: cardRenderer }, '.elements');
 
-api.getInitialCards().then((res) => {
-    const initialCards = res;
-    cardsList.renderItems(initialCards);
-})
+function updateAllCards(){
+    api.getInitialCards().then((res) => {
+        const initialCards = res;
+        const cardsList = new Section({
+            items: initialCards,
+            renderer: cardRenderer }, '.elements');
+        cardsList.renderItems();
+    })
+}
 
 
 function handleCardClick(evt) {
@@ -68,7 +70,9 @@ function handleSubmitCard(formValues) {
             name: formValues['popup-input-place'],
             link: formValues['popup-input-img']
         };
-    cardsList.addItem(cardRenderer(inputElement));
+/*    cardsList.addItem(cardRenderer(inputElement));*/
+    api.submitNewCard(inputElement);
+    updateAllCards();
 }
 
 // новая аватарка куда ее  положить
@@ -214,7 +218,7 @@ openPopupPlaceButton.addEventListener('click', openAddCardPopup);
 /*popupConfirmDelete.addEventListener('click',openPopupConfirmDelete);*/
 
 updateUserInfo();
-
+updateAllCards();
 
 
 

@@ -64,15 +64,15 @@ export class Api {
              return InitialCards;*/
 
 //добавляем карточки
-    formAddCard(inputNameFormCard, inputLinkFormCard) {
+    submitNewCard(cardInfo) {
         return fetch(this._address + '/cards',
             {
-                headers: this._headers,
+                headers: {
+                    'authorization': this._headers.authorization,
+                    'Content-Type': 'application/json'
+                },
                 method: 'POST',      //Роst запрос через body
-                body: JSON.stringify({
-                    name: inputNameFormCard,
-                    link: inputLinkFormCard
-                })
+                body: JSON.stringify(cardInfo)
             })
             .then((response) => this.handleResponse(response))
             .catch(err => {
