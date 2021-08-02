@@ -6,14 +6,13 @@ export class Card {
         this._cardSelector = cardSelector;
         this._handleCardClick = handleCardClick;
         this._removeHandler = handleCardRemove;
-        this._popupConfirmDelete = new PopupWithForm('.popup_delete-confirm', this._handleDoCardRemove);
+        this._popupConfirmDelete = new PopupWithForm('.popup_delete-confirm', (formValues) => {this._handleDoCardRemove(formValues)});
         this._popupConfirmDelete .setEventListeners();//закрываем
-        this._id = id; //карточки id
-        /* this._likeCount = likeArr.length;*/
+        this._id = item._id; //чужие
+        this._likeCount = item.likes.length;
         this._likeArr = likeArr;//массив лайков
         this._userId = userId;
     }
-
 
 //все evt должны работать снаружи класса
     // забираем разметку из HTML и клонируем элемент // вернуть разметку
@@ -25,7 +24,6 @@ export class Card {
             .cloneNode(true);
         return cardElement;
     }
-
 
 //новая карточка
     createCard() {
@@ -41,9 +39,7 @@ export class Card {
 
     }
 
-    _handleDeleteLikeClick(evt) {
 
-    }
 
     _handleLikeClick(evt) {
         evt.target.classList.toggle('elements__like_active');
@@ -54,6 +50,7 @@ export class Card {
         /*        this._likes = likes;*/
         this._likeCount = newElement.querySelector('.elements__like-count');
         this._likeElementButton = newElement.querySelector('.elements__like-button');
+       /* this._handleLikeClick.setEventListeners();*/
         /*
                 this._likes.every((item) => {
                     if (item._id === this._userId) {
@@ -66,6 +63,22 @@ export class Card {
         //считаем
         /*        this._likeCount.textContent = this._likeArr.length;*/
         /*this._handleLikeClick(evt); //active*/
+        /*
+
+        //функция добавления лайков
+        handleLikeClicAdd(card) api
+        {
+            api.likeCount(card.cardId, card.likeNotLike)
+                .then((data) => {
+                    card.like(data)
+                }) //сервер отвечает массивом с обновленными карточками
+                .catch(err => {
+                    console.log('Что-то криво с лайками')
+                })
+        }
+
+        */
+
 
         this._likeElementButton.addEventListener('click', (evt) => {
             if (this._likeElementButton.classList.contains('elements__like_active')) {
@@ -83,8 +96,7 @@ export class Card {
 
     }
 
-    _handleCardRemove(evt)
-    {
+    _handleCardRemove(evt) {
         console.log("AAA");
         this._popupConfirmDelete.open();
     }
@@ -96,10 +108,6 @@ export class Card {
 
 }
 
-
-//удаление
-/*
-*/
 /*        //проверяет желание удалить
         const element PopupWithConfirm = new PopupWithConfirm({elementPopupWithConfirm: (this._id)=>
         {api.handleCardRemove((this._id)).then(() => {
@@ -111,20 +119,3 @@ newElement.setEventListeners(this._id)
 
 */
 
-/*
-
-//функция добавления лайков
-handleLikeClicAdd(card) api
-{
-    api.likeCount(card.cardId, card.likeNotLike)
-        .then((data) => {
-            card.like(data)
-        }) //сервер отвечает массивом с обновленными карточками
-        .catch(err => {
-            console.log('Что-то криво с лайками')
-        })
-}
-
-
-
-*/

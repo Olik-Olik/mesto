@@ -48,8 +48,7 @@ function handleCardClick(evt) {
 }
 
 function removeCard(cardId){
-    api.submitRemoveCard(cardId);
-    updateAllCards();
+    api.submitRemoveCard(cardId).then((res) => {updateAllCards()});
 }
 
 function cardRenderer(cardItem) {
@@ -75,20 +74,8 @@ function handleSubmitCard(formValues) {
             name: formValues['popup-input-place'],
             link: formValues['popup-input-img']
         };
-/*    cardsList.addItem(cardRenderer(inputElement));*/
-    api.submitNewCard(inputElement);
-    updateAllCards();
-}
-
-// новая аватарка куда ее  положить
-function handleSubmitAvatar(formValuesAvatar) {
-    const inputElement =
-        {
-            link: formValuesAvatar['popup-input-img']
-        };
-
-    anyAvatar.addItem(cardRenderer(inputElement))
-    handleSubmitAvatar.close();
+    /*cardsList.addItem(cardRenderer(inputElement));*/
+    api.submitNewCard(inputElement).then((res) => {updateAllCards()});
 }
 
 
@@ -125,7 +112,7 @@ this._popupConfirmDelete .setEventListeners();*///закрываем
 
 
 //новый аватарчик
-const popupEditAvatar = new PopupWithForm('.popup_type_edit-avatar', handleSubmitAvatar);
+//const popupEditAvatar = new PopupWithForm('.popup_type_edit-avatar', handleSubmitAvatar);
 
 
 //открытие попапа с редактированием профиля
@@ -158,13 +145,9 @@ function handleLikeCount(newElementImage, data) {
     res.then((data) => {
         card._handleLikeClick(data);
     })
-        .catch((err) => {
-            console.log(`$(err)`);
-        });
 }
 
-//кнопка открытия попапа изменения аватарки
-
+//изменение аватарки
 function updateUserInfo() {
     api.getUserInfo().then((res) => {
         const userProfileInfo = res;
@@ -211,9 +194,6 @@ function openAddCardPopup() {
     popupAddCard.open();
 }
 
-
-//вообще окончательное удаление
-/*this._handleDoCardRemove.setEventListeners();*/
 
 
 editButton.addEventListener('click', openEditProfilePopup);

@@ -1,7 +1,4 @@
 import {PopupWithForm} from "../src/components/PopupWithForm";
-const anyAvatar = [{
-    img: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'},
-    { img: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'}];
 /*const
     initialCards = [
         {
@@ -67,5 +64,5 @@ export {configs};
 export{keyCodeEsc, editButton,
     openPopupPlaceButton,
     formAddCard, inputUserName, inputUserJob,
-    zoomedImage, imageDescription, editAvatarButton, anyAvatar,
+    zoomedImage, imageDescription, editAvatarButton
   };

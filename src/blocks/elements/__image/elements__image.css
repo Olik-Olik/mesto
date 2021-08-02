@@ -4,7 +4,7 @@
     justify-items: center;
     position: relative;
     height: 282px;
-    width: 282px;
+    width: 280px;/*-1 px слева и -1px справа*/
     list-style-type: none;
     background-size: cover;
 

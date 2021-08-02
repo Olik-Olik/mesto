@@ -23,7 +23,10 @@ export class Api {
     _handleResponse(response) {
         if (response.ok) {
             return response.json()
-        } else return Promise.reject("Вылезла ошибка, УПС, Повезло-то как!");
+        } else {
+            console.log("Вылезла ошибка, УПС, Повезло-то как! " + response.statusText);
+            return Promise.reject("Вылезла ошибка, УПС, Повезло-то как! " + response.status + ":" + response.statusText);
+        }
 
         /* Promise.resolve(response.json()).then(value => {return value});
          /!*console.log(response.json());*!/
@@ -47,21 +50,9 @@ export class Api {
             })
             .then(value => Promise.resolve(value.json()))
             .catch(err => {
-                console.log('Что-то криво в добыче информации о пользователе')
+                console.log('Что-то криво в добыче информации о карточках: ' + err);
             });
     }
-
-//надо ли так подробно    подумать
-    /* const data = getInitCards
-         .then((response) => {
-             const InitialCards = response.map(response =>
-                 [
-                     {
-                         'name': response.name,
-                         'link': response.link,
-                     }
-                 ])
-             return InitialCards;*/
 
 //добавляем карточки
     submitNewCard(cardInfo) {
@@ -76,7 +67,7 @@ export class Api {
             })
             .then((response) => this.handleResponse(response))
             .catch(err => {
-                console.log('Что-то криво в добычи информации о позьзователе')
+                console.log('Что-то криво в создании карточки: ' + err);
             })
     }
 
@@ -96,45 +87,51 @@ export class Api {
             })
     }
 
-    /*const editFotoButton = document.querySelector('.profile__foto-edit-button');
-    editFotoButton.addEventListener('click', () => {
-        console.log('Заменили фотку'); })
-*/
 
-    submitRemoveCard(cardId) { //идентифицируем карточку как ? подумать
+    submitRemoveCard(cardId) { //идентифицируем карточку
         return fetch(this._address + '/cards/' + cardId, {
             headers: this._headers,
             method: 'DELETE'
         })
             .then((response) => this._handleResponse(response))
             .catch(err => {
-                console.log('Что-то криво в удалении карточки')
+                console.log('Что-то криво в удалении карточки:' + err);
             })
     }
 
 /*
 like()
 {
-    return fetch(this._address + '/cards' + 'id', {
-        headers: this._headers,
-        method: 'PUT'
+    return fetch(this._address + '/cards/likes/' + cardId, {
+    headers: {
+                'authorization': this._headers.authorization,
+                'Content-Type': 'application/json'
+            },
+            method: 'PATCH',
+            body: JSON.stringify({
+                name: inputNameUserInfo,
+                about: inputAboutUserInfo
+            })
             .then((response) => this.handleResponse(response))
             .catch(err => {
-                console.log('Что-то криво в добычи информации о позьзователе')
+                console.log('Что-то криво в лайках')
             })
     })
 }
 
-likeApsence()
+likeDelete()
 {
-    return fetch(this._address + '/cards' + 'id', {
-        headers: this._headers,
+    return fetch(this._address + '/cards/likes/' + cardId, {
+        headers: {
+                'authorization': this._headers.authorization,
+                'Content-Type': 'application/json'
+            },
         method: 'DELETE'
-        body: ''
+
             .then((response) => this.handleResponse(response))
     })
         .catch(err => {
-            console.log('Что-то криво в добычи информации о позьзователе')
+            console.log('Что-то криво в удалении лайков')
 
         })
 }

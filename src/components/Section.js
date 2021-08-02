@@ -14,6 +14,7 @@ export  class Section {
     renderItems() {
         while(this._container.firstChild){
             this._container.removeChild(this._container.firstChild);
+
         }
 
         this._items.forEach((item) => {

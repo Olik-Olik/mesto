@@ -19,11 +19,8 @@ export class PopupWithConfirm extends Popup {
             this._submit(this._id, this._card, this)
         });
     }
-
 }
 */
-
-
 
    /* constructor(submitForm, popupSelector) {
         super(popupSelector);
