@@ -119,11 +119,10 @@ popupEditAvatarProfile.setEventListeners(); //закрываем
 //
 const profileUserInfo = new UserInfo('.profile__title', '.profile__subtitle', '.profile__avatar');
 
-/*
-//Хрень конечно, но попробую
-const popupConfirmDelete = new PopupWithForm('.popup_delete-confirm');
-popupConfirmDelete.setEventListeners();//закрываем
-*/
+
+/*const popupConfirmDelete = new PopupWithForm('.popup_delete-confirm');
+this._popupConfirmDelete .setEventListeners();*///закрываем
+
 
 //новый аватарчик
 const popupEditAvatar = new PopupWithForm('.popup_type_edit-avatar', handleSubmitAvatar);
@@ -214,10 +213,8 @@ function openAddCardPopup() {
 
 
 //вообще окончательное удаление
-/*const popupDeleteEndCard = new PopupWithConfirm('.')*/
-/*popupDeleteEndCard.setEventListeners();*/
+/*this._handleDoCardRemove.setEventListeners();*/
 
-/*function cardDelete*/
 
 editButton.addEventListener('click', openEditProfilePopup);
 editAvatarButton.addEventListener('click', openEditAvatarPopup);

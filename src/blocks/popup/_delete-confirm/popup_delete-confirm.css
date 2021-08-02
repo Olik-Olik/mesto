@@ -4,8 +4,6 @@
     align-items: center;
     justify-content: center;
     position: fixed; /*для подложки прячу попап на видимой части сверху*/
-
-  /*  position: absolute;*/
     width: 430px;
     height: 181px;
     left: 425px;

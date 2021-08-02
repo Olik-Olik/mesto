@@ -41,31 +41,31 @@
                 <button aria-label='Закрыть всплывающее окошко'
                         class="popup__close-button  popup_opened"
                         name="popup__close-button" type="button"></button>
-              <!--  <div class="popup__container">-->
-                    <form action="#"
-                          aria-label='смена аватарки'
-                          class="popup__form"
-                          id="popup-mega-id-avatar"
-                          method="POST"
-                          name="resaveProfileAvatar"
-                          novalidate>
-                        <h2 class="popup__page">Обновить аватар</h2>
-                        <label class="popup__label">
-                            <input class="popup__field popup__avatar-link"
-                                   id="popup-avatar-link"
-                                   name="input-avatar"
-                                   placeholder="Ссылка на новую аватарку"
-                                   required
-                                   type="url"
-                                   value=''/>
-                            <span class="popup__input-error" id="popup-avatar-link-error"></span>
-                        </label>
-                        <button aria-label='Кнопка сохраняем аватарку'
-                                class="popup__save popup__save-button_avatar popup__save-button-inproc"
-                                type="submit">Сохранение...
-                        </button>
-                    </form>
-              <!--  </div>-->
+                <!--  <div class="popup__container">-->
+                <form action="#"
+                      aria-label='смена аватарки'
+                      class="popup__form"
+                      id="popup-mega-id-avatar"
+                      method="POST"
+                      name="resaveProfileAvatar"
+                      novalidate>
+                    <h2 class="popup__page">Обновить аватар</h2>
+                    <label class="popup__label">
+                        <input class="popup__field popup__avatar-link"
+                               id="popup-avatar-link"
+                               name="input-avatar"
+                               placeholder="Ссылка на новую аватарку"
+                               required
+                               type="url"
+                               value=''/>
+                        <span class="popup__input-error" id="popup-avatar-link-error"></span>
+                    </label>
+                    <button aria-label='Кнопка сохраняем аватарку'
+                            class="popup__save popup__save-button_avatar popup__save-button-inproc"
+                            type="submit">Сохранение...
+                    </button>
+                </form>
+                <!--  </div>-->
             </div>
         </div>
     </section>
@@ -164,24 +164,27 @@
 <section class="popup popup_type_image">
     <div class="popup__combine-image">
         <div style="alignment: right">
-            <button aria-label='Закрыть всплывающее окошко' class="popup__close-button popup__close-button-no-rel" type="button"></button>
+            <button aria-label='Закрыть всплывающее окошко' class="popup__close-button popup__close-button-no-rel"
+                    type="button"></button>
         </div>
         <div class="popup__combine-word">
-            <div class="popup__container-image"> </div>
+            <div class="popup__container-image"></div>
             <img alt="Картинка " class="popup__image" src="<%=require('./images/Elbrus.jpg')%>">
             <h2 class="popup__image-word"></h2>
         </div>
     </div>
 </section>
 <!--новый попап полной уверенности  удаления фича 9 работы-->
-<section class="popup popup_delete-confirm  popup_type_edit">
-    <div class="popup__container">
-        <form action="#" aria-label='Вы уверены, что хотите удалить карточку?' class="popup__form" id="popup-delete-card" name="deleteConfirmCard" novalidate>
+<section class="popup  popup_delete-confirm">
+
+    <button aria-label='Закрыть всплывающее окошко' class="popup__close-button" type="button"></button>
+
+    <div class="popup__container-delete-confirm">
+        <form action="#" aria-label='Вы уверены, что хотите удалить карточку?' class="popup__form"
+              id="popup-delete-card" name="deleteConfirmCard" novalidate>
             <label class="popup__label"><h2 class="popup__page">Вы уверены?</h2></label>
-            <input type="hidden" class="popup__field" name="cardId" value="">
-            <button aria-label='Подтверждение удаления элемента' class="popup__save popup__save-button-confirm popup__save-button-inproc" type="submit">Да</button>
-            <button aria-label='Закрыть всплывающее окошко'
-                    class="popup__close-button " name="popup__close-button" type="button"></button>
+            <!--  <input class="popup__save" name="cardId" type="hidden" value="">-->
+            <button aria-label='Кнопка уверенности в закрытии' class="popup__save " type="submit">Да</button>
         </form>
     </div>
 </section>
@@ -192,7 +195,7 @@
             <img alt="Картинка" class="elements__image" src="<%=require('./images/Elbrus.jpg')%>"></div>
         <div class="elements__combine">
             <h2 class="elements__word"></h2>
-            <button aria-label='Лайк' class="elements__like-button" type="button"></button>
+            <button aria-label='Лайк' class="elements__like-button elements__like" type="button"></button>
             <p class="elements__like-count"></p>
         </div>
     </div>

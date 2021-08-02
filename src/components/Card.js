@@ -7,6 +7,7 @@ export class Card {
         this._handleCardClick = handleCardClick;
         this._removeHandler = handleCardRemove;
         this._popupConfirmDelete = new PopupWithForm('.popup_delete-confirm', this._handleDoCardRemove);
+        this._popupConfirmDelete .setEventListeners();//закрываем
         this._id = id; //карточки id
         /* this._likeCount = likeArr.length;*/
         this._likeArr = likeArr;//массив лайков
@@ -76,6 +77,7 @@ export class Card {
 
         newElementImage.addEventListener('click', this._handleCardClick);
         newElement.querySelector('.elements__trash').addEventListener('click', (evt) => {
+            console.log("GAF");
             this._handleCardRemove(evt);
         })
 
