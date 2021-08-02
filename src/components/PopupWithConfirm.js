@@ -1,26 +1,30 @@
-/*
-//новый попап для подтверждений
-import {Popup} from './Popup.js';
 
-export class PopupWithConfirm extends Popup {
-    constructor(submitForm, popupSelector) {
-        super(popupSelector);
-        this._acceptButton = this._popup.querySelector('.popup__save-button_delete-accept');
-        this._submit = submitForm;
+//новый попап для подтверждений
+
+import {PopupWithForm} from "./PopupWithForm";
+
+export class PopupWithConfirm extends PopupWithForm {
+    constructor(popupSelector, callbackFormSubmit) {
+        super(popupSelector, callbackFormSubmit);
+        this._submit = null;
     }
-    open(card, cardId) {
-        super.open();
-        this._card = card;
-        this._id = cardId;
+
+    setConfirm(submit) {
+        this._submit = submit;
     }
+
     setEventListeners() {
-        super.setEventListeners();
-        this._acceptButton.addEventListener('click', () => {
-            this._submit(this._id, this._card, this)
-        });
+        //переопределяем в конструкторе главное не потерять контент
+        this._popupForm.addEventListener(
+            'submit',
+            (evt) => {
+                evt.preventDefault();
+                console.log("III");
+                this._submit();
+                this.close();
+            });
     }
 }
-*/
 
    /* constructor(submitForm, popupSelector) {
         super(popupSelector);
@@ -29,8 +33,6 @@ export class PopupWithConfirm extends Popup {
         this.setEventListeners();
     }
 //сохранит колбэк в классе
-    setConfirm(confirm){
-        this._popupConfirmDelete = confirm;}
 
     setEventListeners() {
         this._formConfirm.addEventListener('submit', (evt) => {
