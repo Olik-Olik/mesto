@@ -53,20 +53,25 @@ function removeCard(cardId){
     api.submitRemoveCard(cardId).then((res) => {updateAllCards()});
 }
 
+function handleLikeClick(target, cardId){
+    if (target.classList.contains('elements__like_active')) {
+        api.like(cardId).then((res) => {updateAllCards()});
+    } else {
+        api.dislike(cardId).then((res) => {updateAllCards()});
+    }
+}
+
 function cardRenderer(cardItem) {
     const card = new Card(
         cardItem,
         '.item-template',
-        handleCardClick, removeCard, profileUserInfo.getUserInfo().id);
+        handleCardClick, removeCard, profileUserInfo.getUserInfo().id,
+        handleLikeClick);
 
     const newCard = card.createCard();
     return newCard;
 }
-//нужно
-/*const cardsList = new Section({
-    items: getInitialCards,
-    renderer: cardRenderer
-}, '.elements');*/
+
 
 
 //карточка из input
@@ -108,15 +113,6 @@ popupEditAvatarProfile.setEventListeners(); //закрываем
 //
 const profileUserInfo = new UserInfo('.profile__title', '.profile__subtitle', '.profile__avatar');
 
-
-/*const popupConfirmDelete = new PopupWithForm('.popup_delete-confirm');
-this._popupConfirmDelete .setEventListeners();*///закрываем
-
-
-//новый аватарчик
-//const popupEditAvatar = new PopupWithForm('.popup_type_edit-avatar', handleSubmitAvatar);
-
-
 //открытие попапа с редактированием профиля
 function openEditProfilePopup() {
     const userInfo = profileUserInfo.getUserInfo();
@@ -128,24 +124,10 @@ function openEditProfilePopup() {
 
 function openEditAvatarPopup() {
     editAvatarButton.addEventListener('click', () => {
-        popupEditAvatar.open();
+        popupEditAvatarProfile.open();
         formValidatorAvatar.enableValidation();
         formValidatorAvatar.inputListValidate();
         formValidatorAvatar.hideInputErrorAll();
-    })
-}
-
-// надо через api // api.openEditAvatarPopup()
-/*const popupEditAvatar = new PopupWithForm('.popup_type_edit-avatar', handleSubmitAvatar);*/
-
-/*const editUserAvatar = new UserAvatar('.popup_type_edit-avatar');*/
-
-
-//добавляем лайки api
-function handleLikeCount(newElementImage, data) {
-    const res = newElementImage.isLikedCard() ? api.notLikedCard(data._id) : api._likeElement(data._id);
-    res.then((data) => {
-        card._handleLikeClick(data);
     })
 }
 
@@ -202,7 +184,6 @@ function openAddCardPopup() {
 editButton.addEventListener('click', openEditProfilePopup);
 editAvatarButton.addEventListener('click', openEditAvatarPopup);
 openPopupPlaceButton.addEventListener('click', openAddCardPopup);
-/*popupConfirmDelete.addEventListener('click',openPopupConfirmDelete);*/
 
 
 updateUserInfo();

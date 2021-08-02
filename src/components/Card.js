@@ -5,12 +5,14 @@ const popupConfirmDelete = new PopupWithConfirm('.popup_delete-confirm');
 popupConfirmDelete.setEventListeners();//закрываем
 
 export class Card {
-    constructor(item, cardSelector, handleCardClick, handleCardRemove, selfId) {
+    constructor(item, cardSelector, handleCardClick, handleCardRemove, selfId, handleLikeClick) {
         this._item = item;
         this._cardSelector = cardSelector;
         this._handleCardClick = handleCardClick;
         this._removeHandler = handleCardRemove;
+        this._handleLikeClick = handleLikeClick;
         this._id = item._id; //чужие
+        this._likes = item.likes;
         this._likeCount = item.likes.length;
         this._selfId = selfId;//ЯЯЯЯ
         this._ownerId = item.owner._id;//собственник карточки
@@ -43,6 +45,11 @@ export class Card {
             trashElement.hidden = true;
         }
 
+        if (this._likes.some((element) => {return (this._selfId === element._id)})){
+            const likeElement = newElement.querySelector('.elements__like-button');
+            likeElement.classList.add('elements__like_active');
+        }
+
         this._likeCountElement = newElement.querySelector('.elements__like-count');
         this._likeCountElement.textContent = this._likeCount;
 
@@ -51,71 +58,28 @@ export class Card {
 
     }
 
-
-
-    _handleLikeClick(evt) {
-        evt.target.classList.toggle('elements__like_active');
-    }
-
     _setEventListeners(newElement, newElementImage) {
         // лайки
-        /*        this._likes = likes;*/
+
         this._likeElementButton = newElement.querySelector('.elements__like-button');
-       /* this._handleLikeClick.setEventListeners();*/
-        /*
-                this._likes.every((item) => {
-                    if (item._id === this._userId) {
-                        this._likeElementButton.classList.add('elements__like_active');
-                    } else {
-                        this._likeElementButton.classList.remove('elements__like_active')
-                    }
-                })
-        */
-        //считаем
-
-        /*this._handleLikeClick(evt); //active*/
-        /*
-
-        //функция добавления лайков
-        handleLikeClicAdd(card) api
-        {
-            api.likeCount(card.cardId, card.likeNotLike)
-                .then((data) => {
-                    card.like(data)
-                }) //сервер отвечает массивом с обновленными карточками
-                .catch(err => {
-                    console.log('Что-то криво с лайками')
-                })
-        }
-
-        */
-
 
         this._likeElementButton.addEventListener('click', (evt) => {
-            if (this._likeElementButton.classList.contains('elements__like_active')) {
-                this._handleLikeClick(evt);
-            } else {
-                this._handleDeleteLikeClick(evt);
-            }
+            evt.target.classList.toggle('elements__like_active');
+            this._handleLikeClick(evt.target, this._id);
         });
 
         newElementImage.addEventListener('click', this._handleCardClick);
         newElement.querySelector('.elements__trash').addEventListener('click', (evt) => {
-            console.log("GAF");
             this._handleCardRemove(evt);
         })
-
     }
 
     _handleCardRemove(evt) {
-        console.log("AAA");
-
         popupConfirmDelete.setConfirm(() => {this._handleDoCardRemove()});
         popupConfirmDelete.open();
     }
 
     _handleDoCardRemove(){
-        console.log("FFF");
         this._removeHandler(this._id);
     }
 

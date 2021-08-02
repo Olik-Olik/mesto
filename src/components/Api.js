@@ -99,28 +99,32 @@ export class Api {
             })
     }
 
-/*
-like()
-{
-    return fetch(this._address + '/cards/likes/' + cardId, {
-    headers: {
-                'authorization': this._headers.authorization,
-                'Content-Type': 'application/json'
-            },
-            method: 'PATCH',
-            body: JSON.stringify({
-                name: inputNameUserInfo,
-                about: inputAboutUserInfo
-            })
-            .then((response) => this.handleResponse(response))
+
+    like(cardId) {
+        return fetch(this._address + '/cards/likes/' + cardId, {
+            headers: this._headers,
+            method: 'PUT'
+        })
+            .then((response) => this._handleResponse(response))
             .catch(err => {
                 console.log('Что-то криво в лайках')
             })
-    })
-}
+    }
 
-likeDelete()
-{
+    dislike(cardId) {
+        return fetch(this._address + '/cards/likes/' + cardId, {
+            headers: this._headers,
+            method: 'DELETE'
+        })
+            .then((response) => this._handleResponse(response))
+            .catch(err => {
+                console.log('Что-то криво в disлайках')
+            })
+    }
+
+    /*
+    likeDelete()
+    {
     return fetch(this._address + '/cards/likes/' + cardId, {
         headers: {
                 'authorization': this._headers.authorization,
@@ -134,61 +138,58 @@ likeDelete()
             console.log('Что-то криво в удалении лайков')
 
         })
-}
-*/
+    }
+    */
 
 // _id — это идентификатор пользователя, в данном случае вашего.
-getUserInfo()
-{
-    return fetch(this._address + '/users/me',
-        {
-            headers: this._headers,
-            method: 'GET'
-        })
-        .then(value => Promise.resolve(value.json()))
-        .catch(err => {
-            console.log('Чорный Властелин не пришел.')
-        });
-}
-
-submitUserInfo(userInfo)
-{
-    const userUpdate = {
-        'name': userInfo.name,
-        'about': userInfo.about
+    getUserInfo() {
+        return fetch(this._address + '/users/me',
+            {
+                headers: this._headers,
+                method: 'GET'
+            })
+            .then(value => Promise.resolve(value.json()))
+            .catch(err => {
+                console.log('Чорный Властелин не пришел.')
+            });
     }
-    return fetch(this._address + '/users/me',
-        {
-            headers: {
-                'authorization': this._headers.authorization,
-                'Content-Type': 'application/json'
-            },
-            method: 'PATCH',
-            body: JSON.stringify(userUpdate), // в аватар кладем строку от аватара
-        })
-        .then((response) => this._handleResponse(response))
-        .catch(err => {
-        })
-}
 
-submitUserAvatar(userInfo)
-{
-    const avaUpdate = {
-        'avatar': userInfo.avatar
+    submitUserInfo(userInfo) {
+        const userUpdate = {
+            'name': userInfo.name,
+            'about': userInfo.about
+        }
+        return fetch(this._address + '/users/me',
+            {
+                headers: {
+                    'authorization': this._headers.authorization,
+                    'Content-Type': 'application/json'
+                },
+                method: 'PATCH',
+                body: JSON.stringify(userUpdate), // в аватар кладем строку от аватара
+            })
+            .then((response) => this._handleResponse(response))
+            .catch(err => {
+            })
     }
-    return fetch(this._address + '/users/me/avatar',
-        {
-            headers: {
-                'authorization': this._headers.authorization,
-                'Content-Type': 'application/json'
-            },
-            method: 'PATCH',
-            body: JSON.stringify(avaUpdate), // в аватар кладем строку от аватара
-        })
-        .then((response) => this._handleResponse(response))
-        .catch(err => {
-        })
-}
+
+    submitUserAvatar(userInfo) {
+        const avaUpdate = {
+            'avatar': userInfo.avatar
+        }
+        return fetch(this._address + '/users/me/avatar',
+            {
+                headers: {
+                    'authorization': this._headers.authorization,
+                    'Content-Type': 'application/json'
+                },
+                method: 'PATCH',
+                body: JSON.stringify(avaUpdate), // в аватар кладем строку от аватара
+            })
+            .then((response) => this._handleResponse(response))
+            .catch(err => {
+            })
+    }
 
 }
 
