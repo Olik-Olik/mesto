@@ -5,15 +5,15 @@ const popupConfirmDelete = new PopupWithConfirm('.popup_delete-confirm');
 popupConfirmDelete.setEventListeners();//закрываем
 
 export class Card {
-    constructor(item, cardSelector, handleCardClick, handleCardRemove, id, likeArr, userId) {
+    constructor(item, cardSelector, handleCardClick, handleCardRemove, selfId) {
         this._item = item;
         this._cardSelector = cardSelector;
         this._handleCardClick = handleCardClick;
         this._removeHandler = handleCardRemove;
         this._id = item._id; //чужие
         this._likeCount = item.likes.length;
-        this._likeArr = likeArr;//массив лайков
-        this._userId = userId;
+        this._selfId = selfId;//ЯЯЯЯ
+        this._ownerId = item.owner._id;//собственник карточки
     }
 
 //все evt должны работать снаружи класса
@@ -36,6 +36,16 @@ export class Card {
         newElementImage.src = this._item.link;
         newElementImage.alt = this._item.name;
         newElement.querySelector('.elements__word').textContent = this._item.name;
+
+        if (this._selfId !== this._ownerId){
+            const trashElement = newElement.querySelector('.elements__trash');
+            trashElement.visible = false;
+            trashElement.hidden = true;
+        }
+
+        this._likeCountElement = newElement.querySelector('.elements__like-count');
+        this._likeCountElement.textContent = this._likeCount;
+
         this._setEventListeners(newElement, newElementImage);
         return newElement;
 
@@ -50,7 +60,6 @@ export class Card {
     _setEventListeners(newElement, newElementImage) {
         // лайки
         /*        this._likes = likes;*/
-        this._likeCount = newElement.querySelector('.elements__like-count');
         this._likeElementButton = newElement.querySelector('.elements__like-button');
        /* this._handleLikeClick.setEventListeners();*/
         /*
@@ -63,7 +72,7 @@ export class Card {
                 })
         */
         //считаем
-        /*        this._likeCount.textContent = this._likeArr.length;*/
+
         /*this._handleLikeClick(evt); //active*/
         /*
 
@@ -111,15 +120,3 @@ export class Card {
     }
 
 }
-
-/*        //проверяет желание удалить
-        const element PopupWithConfirm = new PopupWithConfirm({elementPopupWithConfirm: (this._id)=>
-        {api.handleCardRemove((this._id)).then(() => {
-        return newElement.newElementImage()
-        elementPopupWithConfirm.close()
-
-newElement.open()
-newElement.setEventListeners(this._id)
-
-*/
-

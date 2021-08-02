@@ -1,5 +1,4 @@
 import {
-    anyAvatar,
     configs,
     editAvatarButton,
     editButton,
@@ -24,6 +23,9 @@ const api = new Api({
         authorization: 'b12ac09d-a522-46ec-9026-b6918737b3ea'
     }
 });
+
+
+var selfID = null;
 
 
 function updateAllCards(){
@@ -55,7 +57,7 @@ function cardRenderer(cardItem) {
     const card = new Card(
         cardItem,
         '.item-template',
-        handleCardClick, removeCard);
+        handleCardClick, removeCard, profileUserInfo.getUserInfo().id);
 
     const newCard = card.createCard();
     return newCard;
@@ -154,7 +156,8 @@ function updateUserInfo() {
         const userInfo = {
             'name': userProfileInfo.name,
             'about': userProfileInfo.about,
-            'avatar': userProfileInfo.avatar
+            'avatar': userProfileInfo.avatar,
+            'id': userProfileInfo._id
         }
         profileUserInfo.setUserInfo(userInfo);
     })
