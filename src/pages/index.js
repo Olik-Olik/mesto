@@ -34,10 +34,7 @@ function updateAllCards(){
         const cardsList = new Section({
             items: initialCards,
             renderer: cardRenderer }, '.elements');
-
         cardsList.renderItems();
-
-
     })
 }
 

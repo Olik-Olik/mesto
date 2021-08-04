@@ -14,16 +14,20 @@ export class PopupWithConfirm extends PopupWithForm {
     }
 
     setEventListeners() {
+        //перезапись метода
+      /*  super.setEventListeners();*/
+
         //переопределяем в конструкторе главное не потерять контент
         this._popupForm.addEventListener(
             'submit',
             (evt) => {
                 evt.preventDefault();
-              /*  console.log("III");*/
+                console.log("III");
                 this._submit();
                 this.close();
             });
     }
+
 }
 
    /* constructor(submitForm, popupSelector) {

@@ -110,36 +110,36 @@ export class Api {
                 console.log('Что-то криво в лайках')
             })
     }
-
-    dislike(cardId) {
-        return fetch(this._address + '/cards/likes/' + cardId, {
-            headers: this._headers,
-            method: 'DELETE'
-        })
-            .then((response) => this._handleResponse(response))
-            .catch(err => {
-                console.log('Что-то криво в disлайках')
-            })
-    }
-
     /*
-    likeDelete()
-    {
-    return fetch(this._address + '/cards/likes/' + cardId, {
-        headers: {
-                'authorization': this._headers.authorization,
-                'Content-Type': 'application/json'
-            },
-        method: 'DELETE'
+        dislike(cardId) {
+            return fetch(this._address + '/cards/likes/' + cardId, {
+                headers: this._headers,
+                method: 'DELETE'
+            })
+                .then((response) => this._handleResponse(response))
+                .catch(err => {
+                    console.log('Что-то криво в disлайках')
+                })
+        }
 
-            .then((response) => this.handleResponse(response))
-    })
-        .catch(err => {
-            console.log('Что-то криво в удалении лайков')
+        /*
+        likeDelete()
+        {
+        return fetch(this._address + '/cards/likes/' + cardId, {
+            headers: {
+                    'authorization': this._headers.authorization,
+                    'Content-Type': 'application/json'
+                },
+            method: 'DELETE'
 
+                .then((response) => this.handleResponse(response))
         })
-    }
-    */
+            .catch(err => {
+                console.log('Что-то криво в удалении лайков')
+
+            })
+        }
+        */
 
 // _id — это идентификатор пользователя, в данном случае вашего.
     getUserInfo() {
