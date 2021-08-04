@@ -1,4 +1,3 @@
-import {PopupWithForm} from "./PopupWithForm";
 import {PopupWithConfirm} from "./PopupWithConfirm";
 
 const popupConfirmDelete = new PopupWithConfirm('.popup_delete-confirm');

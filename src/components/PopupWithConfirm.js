@@ -19,7 +19,7 @@ export class PopupWithConfirm extends PopupWithForm {
             'submit',
             (evt) => {
                 evt.preventDefault();
-                console.log("III");
+              /*  console.log("III");*/
                 this._submit();
                 this.close();
             });

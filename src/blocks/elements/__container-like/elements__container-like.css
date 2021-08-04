@@ -1,17 +1,14 @@
 .elements__container-like {
-
     font-style: normal;
     font-weight: normal;
     font-size: 13px;
     line-height: 16px;
     text-align: center;
     color: #000000;
-    left: 745px;
-    top: 656px;
     display: flex;
-   /* flex-wrap: wrap;*/
-    /*justify-content: flex-end;*/
     align-content: stretch;
     flex-direction: column;
     align-items: baseline;
+    margin-left: 20px;
+
 }
