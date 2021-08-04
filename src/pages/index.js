@@ -6,7 +6,7 @@ import {
     inputUserJob,
     inputUserName,
     openPopupPlaceButton,
-} from '../../utils/constants.js';
+} from '../utils/constants.js';
 
 import './index.css';
 import {Card} from '../components/Card.js';

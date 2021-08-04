@@ -122,7 +122,7 @@ export class Api {
                 })
         }
 
-        /*
+
         likeDelete()
         {
         return fetch(this._address + '/cards/likes/' + cardId, {

@@ -1,4 +1,4 @@
-import {keyCodeEsc,} from "../../utils/constants";
+import {keyCodeEsc,} from "../utils/constants";
 
 export class Popup {
     constructor(popupSelector) {

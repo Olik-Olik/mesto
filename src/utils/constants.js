@@ -1,4 +1,4 @@
-import {PopupWithForm} from "../src/components/PopupWithForm";
+import {PopupWithForm} from "../components/PopupWithForm";
 /*const
     initialCards = [
         {

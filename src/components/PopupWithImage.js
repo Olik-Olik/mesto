@@ -1,4 +1,4 @@
-import {imageDescription, zoomedImage} from "../../utils/constants";
+import {imageDescription, zoomedImage} from "../utils/constants";
 import {Popup} from "./Popup";
 
 export class PopupWithImage extends Popup {
