@@ -146,7 +146,6 @@ function handleSubmitCard(formValues) {
         })
         .finally(() => {
             popupAddCard.resetButtonText();
-//FIXME!!!
         });
 }
 
@@ -208,14 +207,12 @@ function handleSubmitProfile(formValues) {
         })
         .finally(() => {
             popupEditProfile.resetButtonText();
-//FIXME!!!
         });
 }
 
 //сохраняем аватар
 function handleSubmitAvatarProfile(formValues) {
     const userAva = {'avatar': formValues['input-avatar']}
-    profileUserInfo.setUserInfo(userAva);
     api.submitUserAvatar(userAva).then((res) => {
         profileUserInfo.setUserInfo(res);
         popupAvatar.close();
@@ -223,7 +220,6 @@ function handleSubmitAvatarProfile(formValues) {
         console.log('MAMA!!!: ' + err.toString())
     })
         .finally(() => {
-// FIXME!!!
             popupAvatar.resetButtonText();
         });
 }
