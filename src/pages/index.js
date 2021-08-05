@@ -116,10 +116,10 @@ function removeCard(cardId, cardElement) {
 const popupConfirmDelete = new PopupWithConfirm('.popup_delete-confirm', removeCard);
 popupConfirmDelete.setEventListeners();//закрываем
 
-function handleLikeClick(target, cardId) {
+function handleLikeClick(target, cardId, likeCountElement) {
     if (target.classList.contains('elements__like_active')) {
         api.like(cardId).then((res) => {
-            // FIXME!!!
+            likeCountElement.textContent = res.likes.length;
         }).catch((err) => {
             console.log('MAMA!!!: ' + err.toString())
         })
@@ -129,7 +129,7 @@ function handleLikeClick(target, cardId) {
 
     } else {
         api.dislike(cardId).then((res) => {
-            // FIXME!!!
+            likeCountElement.textContent = res.likes.length;
         }).catch((err) => {
             console.log('MAMA!!!: ' + err.toString())
         })
