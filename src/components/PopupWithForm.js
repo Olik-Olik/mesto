@@ -39,10 +39,14 @@ export class PopupWithForm extends Popup {
             });
     }
 
+    resetButtonText(){
+        this._submitButton.textContent = this._defaultButtonText;
+    }
+
     close() {
         super.close();
         this._popupForm.reset();
-        this._submitButton.textContent = this._defaultButtonText;
+        this.resetButtonText();
     }
 
 }

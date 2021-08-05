@@ -78,14 +78,14 @@ Promise.all([api.getUserInfo, api.getInitialCards])
     })
 // поставить во всех api*/
 
+const popupBigImage = new PopupWithImage('.popup_type_image', zoomedImage, imageDescription);
+popupBigImage.setEventListeners();
 
 function handleCardClick(evt) {
     const data = {
         'name': evt.currentTarget.alt,
         'link': evt.currentTarget.src
     }
-    const popupBigImage = new PopupWithImage('.popup_type_image', zoomedImage, imageDescription);
-    popupBigImage.setEventListeners();
     popupBigImage.open(data);
 }
 
@@ -97,7 +97,7 @@ function removeCard(cardId, cardElement) {
         console.log('MAMA!!!: ' + err.toString())
     })
         .finally(() => {
-//FIXME!!!
+            popupConfirmDelete.resetButtonText();
         });
 }
 
@@ -110,20 +110,13 @@ function handleLikeClick(target, cardId, likeCountElement) {
             likeCountElement.textContent = res.likes.length;
         }).catch((err) => {
             console.log('MAMA!!!: ' + err.toString())
-        })
-            .finally(() => {
-                // FIXME!!!
-            });
-
+        });
     } else {
         api.dislike(cardId).then((res) => {
             likeCountElement.textContent = res.likes.length;
         }).catch((err) => {
             console.log('MAMA!!!: ' + err.toString())
-        })
-            .finally(() => {
-                // FIXME!!!
-            });
+        });
     }
 }
 
@@ -152,6 +145,7 @@ function handleSubmitCard(formValues) {
             console.log('MAMA!!!: ' + err.toString())
         })
         .finally(() => {
+            popupAddCard.resetButtonText();
 //FIXME!!!
         });
 }
@@ -213,17 +207,10 @@ function handleSubmitProfile(formValues) {
             console.log('MAMA!!!: ' + err.toString())
         })
         .finally(() => {
+            popupEditProfile.resetButtonText();
 //FIXME!!!
         });
 }
-
-/*api.метод()
-    .then((res) => `res` - это ответ от сервера при успешном запросе,
-    в котором чаще всего вся нужная информация для изменения DOM.
-    Тут делаем все изменения DOM (лайки, удаления, добавления карточки, закрытия попапов и тд )
-. catch((ошибка) => обязательно ловим возможные ошибки в конце запроса )
-.finally(() => в этом блоке чаще всего изменяют текст кнопки и скрывают эффект загрузки)*/
-
 
 //сохраняем аватар
 function handleSubmitAvatarProfile(formValues) {
@@ -237,6 +224,7 @@ function handleSubmitAvatarProfile(formValues) {
     })
         .finally(() => {
 // FIXME!!!
+            popupAvatar.resetButtonText();
         });
 }
 
