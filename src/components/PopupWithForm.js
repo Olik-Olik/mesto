@@ -5,10 +5,13 @@
 import {Popup} from "./Popup";
 
 export class PopupWithForm extends Popup {
-    constructor(popupSelector, callbackFormSubmit) {
+    constructor(popupSelector, callbackFormSubmit, defaultButtonText) {
         super(popupSelector);
         this._popupForm = this._popup.querySelector('.popup__form');
         this._callbackFormSubmit = callbackFormSubmit;
+        this._defaultButtonText = defaultButtonText;
+        this._submitButton = this._popup.querySelector('.popup__save');
+        this._submitButton.textContent = this._defaultButtonText;
     }
 
     //собирает данные всех полей
@@ -30,6 +33,7 @@ export class PopupWithForm extends Popup {
             'submit',
             (evt) => {
                 evt.preventDefault();
+                this._submitButton.textContent = 'Сохранение...';
                 this._callbackFormSubmit(this._getInputValues());
                 /*this.close();*/
             });
@@ -38,6 +42,7 @@ export class PopupWithForm extends Popup {
     close() {
         super.close();
         this._popupForm.reset();
+        this._submitButton.textContent = this._defaultButtonText;
     }
 
 }

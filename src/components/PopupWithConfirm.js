@@ -4,7 +4,7 @@ import {PopupWithForm} from "./PopupWithForm";
 
 export class PopupWithConfirm extends PopupWithForm {
     constructor(popupSelector, callbackFormSubmit) {
-        super(popupSelector, callbackFormSubmit);
+        super(popupSelector, callbackFormSubmit, 'Да');
         this._submit = null;
     }
 
@@ -18,9 +18,8 @@ export class PopupWithConfirm extends PopupWithForm {
             'submit',
             (evt) => {
                 evt.preventDefault();
-                /*console.log("III");*/
+                this._submitButton.textContent = 'Удаление...';
                 this._submit();
-                /*this.close();*/
             });
     }
 }

@@ -92,11 +92,12 @@ function handleCardClick(evt) {
 function removeCard(cardId, cardElement) {
     api.submitRemoveCard(cardId).then((res) => {
         cardElement.remove();
+        popupConfirmDelete.close();
     }).catch((err) => {
         console.log('MAMA!!!: ' + err.toString())
     })
         .finally(() => {
-            popupConfirmDelete.close();
+//FIXME!!!
         });
 }
 
@@ -145,12 +146,13 @@ function handleSubmitCard(formValues) {
         };
     api.submitNewCard(inputElement).then((res) => {
         cardsSection.addItem(res)
+        popupAddCard.close();
     })
         .catch((err) => {
             console.log('MAMA!!!: ' + err.toString())
         })
         .finally(() => {
-            popupAddCard.close();
+//FIXME!!!
         });
 }
 
@@ -172,11 +174,11 @@ const formValidatorCard = new FormValidator(configs, formElementCard);
 formValidatorCard.enableValidation();
 
 //эл-т  профиля
-const popupEditProfile = new PopupWithForm('.popup_type_edit', handleSubmitProfile);
+const popupEditProfile = new PopupWithForm('.popup_type_edit', handleSubmitProfile, 'Сохранить');
 popupEditProfile.setEventListeners();
 
 //редактирование аватара - новый экземпляр класса PopupWithForm
-const popupAvatar = new PopupWithForm('.popup_type_edit-avatar', handleSubmitAvatarProfile);
+const popupAvatar = new PopupWithForm('.popup_type_edit-avatar', handleSubmitAvatarProfile, 'Сохранить');
 popupAvatar.setEventListeners(); //закрываем
 
 
@@ -206,11 +208,12 @@ function handleSubmitProfile(formValues) {
     }
     api.submitUserInfo(userInfo).then((res) => {
         profileUserInfo.setUserInfo(res);
+        popupEditProfile.close();
     }).catch((err) => {
             console.log('MAMA!!!: ' + err.toString())
         })
         .finally(() => {
-            popupEditProfile.close();
+//FIXME!!!
         });
 }
 
@@ -228,16 +231,17 @@ function handleSubmitAvatarProfile(formValues) {
     profileUserInfo.setUserInfo(userAva);
     api.submitUserAvatar(userAva).then((res) => {
         profileUserInfo.setUserInfo(res);
+        popupAvatar.close();
     }).catch((err) => {
         console.log('MAMA!!!: ' + err.toString())
     })
         .finally(() => {
-            popupAvatar.close();
+// FIXME!!!
         });
 }
 
 //добавление карточек
-const popupAddCard = new PopupWithForm('.popup_country', handleSubmitCard);
+const popupAddCard = new PopupWithForm('.popup_country', handleSubmitCard, 'Сохранить');
 popupAddCard.setEventListeners();
 
 //открываем попап  карточки валидируем

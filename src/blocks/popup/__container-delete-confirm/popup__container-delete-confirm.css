@@ -1,4 +1,4 @@
-.popup__container-delete-confirm { /*Внутри отцентрировала*/
+/*.popup__container-delete-confirm { !*Внутри отцентрировала*!
     display: flex;
     flex-direction: column;
     position: absolute;
@@ -13,13 +13,12 @@
     height: 181px;
     margin: 0 auto;
     z-index: 100;
-    top: 250px;/*костыль из-за другого размера попапа*/
-    /*.popup__close-button*/
+    top: 250px;!*костыль из-за другого размера попапа*!
+    !*.popup__close-button*!
 }
 
 @media screen and (min-width: 320px) and (max-width: 500px) {
    .popup__container-delete-confirm {
        width: 282px;
-
    }
-}
+}*/
