@@ -79,19 +79,6 @@ Promise.all([api.getUserInfo, api.getInitialCards])
 // поставить во всех api*/
 
 
-/*function updateAllCards(){
-    api.getInitialCards().then((res) => {
-        const initialCards = res;
-        const cardsList = new Section({ items: initialCards,renderer: cardRenderer }, '.elements');
-       /!* cardsList.renderItems();*!/
-        cardsList.renderItems(items);
-    })
-}*/
-
-/*const cardsList = new Section(
-    { renderer: (data) => {cardsList.addItem(popupAddCard(data)); }},'.elements');
-cardsList.renderItems(items);*/
-
 function handleCardClick(evt) {
     const data = {
         'name': evt.currentTarget.alt,
@@ -204,24 +191,10 @@ function openEditProfilePopup() {
 
 function openEditAvatarPopup() {
     editAvatarButton.addEventListener('click', () => {
-        popupEditAvatarProfile.open();
+        popupAvatar.open();
         formValidatorAvatar.enableValidation();
         formValidatorAvatar.inputListValidate();
         formValidatorAvatar.hideInputErrorAll();
-    })
-}
-
-//изменение аватарки
-function updateUserInfo() {
-    api.getUserInfo().then((res) => {
-        const userProfileInfo = res;
-        const userInfo = {
-            'name': userProfileInfo.name,
-            'about': userProfileInfo.about,
-            'avatar': userProfileInfo.avatar,
-            'id': userProfileInfo._id
-        }
-        userInfo.setUserInfo(userInfo);
     })
 }
 
@@ -232,9 +205,13 @@ function handleSubmitProfile(formValues) {
         'about': formValues['inputForm_job']
     }
     api.submitUserInfo(userInfo).then((res) => {
-        userInfo.setUserInfo(res);
-
-    });
+        profileUserInfo.setUserInfo(res);
+    }).catch((err) => {
+            console.log('MAMA!!!: ' + err.toString())
+        })
+        .finally(() => {
+            popupEditProfile.close();
+        });
 }
 
 /*api.метод()
@@ -250,8 +227,13 @@ function handleSubmitAvatarProfile(formValues) {
     const userAva = {'avatar': formValues['input-avatar']}
     profileUserInfo.setUserInfo(userAva);
     api.submitUserAvatar(userAva).then((res) => {
-        console.log('FIXME!!!: ' + res.toString());
-    });
+        profileUserInfo.setUserInfo(res);
+    }).catch((err) => {
+        console.log('MAMA!!!: ' + err.toString())
+    })
+        .finally(() => {
+            popupAvatar.close();
+        });
 }
 
 //добавление карточек
@@ -271,11 +253,5 @@ editButton.addEventListener('click', openEditProfilePopup);
 editAvatarButton.addEventListener('click', openEditAvatarPopup);
 openPopupPlaceButton.addEventListener('click', openAddCardPopup);
 
-/*
-
-updateUserInfo();
-updateAllCards();
-
-*/
 
 

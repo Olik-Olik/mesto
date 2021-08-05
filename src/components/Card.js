@@ -42,7 +42,8 @@ export class Card {
             trashElement.hidden = true;
         }
 
-        if (this._likes.some((element) => {this._selfId === element._id})){
+        // Black like
+        if (this._likes.some((element) => {return (this._selfId === element._id)})){
             const likeElement = newElement.querySelector('.elements__like-button');
             likeElement.classList.add('elements__like_active');
         }
