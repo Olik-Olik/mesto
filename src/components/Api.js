@@ -10,14 +10,14 @@ export class Api {
         return fetch(this._address,
             {headers: this._headers})
             .then((response) => console.log(response))
-    }
-
-//тянем данные юзера при загрузке страницы через апи
-    promiseAll() {
-        Promise.all([this.getUserInfo(),
-            this.getMovies()])
-            .then((data) => console.log('Пришел ответ с карточками'));
     }*/
+
+//тянем данные юзера при загрузке страницы через апи в index
+    /*  promiseAll() {
+         Promise.all([this.getUserInfo(),
+             this.getMovies()])
+             .then((data) => console.log('Пришел ответ с карточками'));
+     }*/
 
 // если сервер ответит ок- то выдать значение  если нет-отклоняется промис
     _handleResponse(response) {

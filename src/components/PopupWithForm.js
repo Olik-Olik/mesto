@@ -26,22 +26,18 @@ export class PopupWithForm extends Popup {
         super.setEventListeners();
 
         //переопределяем в конструкторе главное не потерять контент
-        this._popupForm.addEventListener('submit',this._callbackFormSubmit);
-
-        /*this._popupForm.addEventListener(
+        this._popupForm.addEventListener(
             'submit',
             (evt) => {
                 evt.preventDefault();
-                console.log("III");
                 this._callbackFormSubmit(this._getInputValues());
                 this.close();
-            });*/
+            });
     }
 
     close() {
         super.close();
         this._popupForm.reset();
-
     }
 
 }

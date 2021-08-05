@@ -14,7 +14,7 @@ import {FormValidator} from '../components/FormValidator.js';
 import {Section} from '../components/Section.js';
 import {PopupWithForm} from '../components/PopupWithForm.js';
 import {PopupWithImage} from '../components/PopupWithImage.js';
-import {UserInfo, UserInfoAvatar} from '../components/UserInfo.js';
+import {UserInfo} from '../components/UserInfo.js';
 import {Api} from "../components/Api";
 import {PopupWithConfirm} from "../components/PopupWithConfirm";
 
@@ -25,20 +25,70 @@ const api = new Api({
     }
 });
 
-
 var selfID = null;
 
+const profileUserInfo = new UserInfo('.profile__title', '.profile__subtitle', '.profile__avatar');
 
-function updateAllCards(){
-    api.getInitialCards().then((res) => {
-        const initialCards = res;
-        const cardsList = new Section({
-            items: initialCards,
-            renderer: cardRenderer }, '.elements');
-        cardsList.renderItems();
-    })
+const cardsSection = new Section(cardRenderer, '.elements');
+
+function getCardsPromise() {
+    return api.getInitialCards();
 }
 
+function getUserInfoPromise() {
+    return api.getUserInfo();
+}
+
+
+Promise.all([getUserInfoPromise(), getCardsPromise()]).then((values) => {
+    const userProfileInfo = values[0];
+    const initialCards = values[1];
+    const userInfo = {
+        'name': userProfileInfo.name,
+        'about': userProfileInfo.about,
+        'avatar': userProfileInfo.avatar,
+        'id': userProfileInfo._id
+    }
+    profileUserInfo.setUserInfo(userInfo);
+
+    cardsSection.renderItems(initialCards);
+});
+/*//карта
+//промис all
+Promise.all([api.getUserInfo, api.getInitialCards])
+    .then (([user,initialCards]) => {
+        profileUserInfo.setUserInfo({
+            name: user.name,
+            about: user.about,
+            userId: userId
+        });
+        profileUserInfo.setUserInfo({
+            avatar: user.avatar
+        });
+        const initialCardsInfo =  new Section ({
+            renderer: () => {initialCardsInfo.addItem(data); //верно, что форму ? подумать
+            }
+        }, '.elements');
+     /!*   initialCardsInfo.forEach(item => Section.rendered(createCard(item)));*!/
+        initialCardsInfo.forEach(initialCards);})
+    .catch(err => {
+        console.log('Что-то криво ' + err);
+    })
+// поставить во всех api*/
+
+
+
+/*function updateAllCards(){
+    api.getInitialCards().then((res) => {
+        const initialCards = res;
+        const cardsList = new Section({ items: initialCards,renderer: cardRenderer }, '.elements');
+       /!* cardsList.renderItems();*!/
+        cardsList.renderItems(items);
+    })
+}*/
+/*const cardsList = new Section(
+    { renderer: (data) => {cardsList.addItem(popupAddCard(data)); }},'.elements');
+cardsList.renderItems(items);*/
 
 function handleCardClick(evt) {
     const data = {
@@ -54,9 +104,17 @@ function removeCard(cardId){
     api.submitRemoveCard(cardId).then((res) => {updateAllCards()});
 }
 /*5 august перенесла из cards но там оставила, иначе не работает пока*/
+
 const popupConfirmDelete = new PopupWithConfirm('.popup_delete-confirm');
 popupConfirmDelete.setEventListeners();//закрываем
-/*popupConfirmDelete.open();*/
+
+
+
+/*const popupConfirmDelete = new PopupWithConfirm((cardId, card, popup ) =>{
+  api.procCheck(popupConfirmDeleteButton, true); //процесс удаления
+  api.submitRemoveCard(cardId).then(() => {card.remove();
+  popup.close();})
+      .catch((err) => console.log(err);}) '.popup_delete-confirm')*/
 
 
 
@@ -74,12 +132,9 @@ function cardRenderer(cardItem) {
         '.item-template',
         handleCardClick, removeCard, profileUserInfo.getUserInfo().id,
         handleLikeClick);
-
     const newCard = card.createCard();
     return newCard;
 }
-
-
 
 //карточка из input
 function handleSubmitCard(formValues) {
@@ -88,8 +143,8 @@ function handleSubmitCard(formValues) {
             name: formValues['popup-input-place'],
             link: formValues['popup-input-img']
         };
-    /*cardsList.addItem(cardRenderer(inputElement));*/
-    api.submitNewCard(inputElement).then((res) => {updateAllCards()});
+   /* cardsList.addItem(cardRenderer(inputElement));*/
+    api.submitNewCard(inputElement).then((res) => {cardsSection.addItem(res)});
 }
 
 
@@ -114,11 +169,11 @@ const popupEditProfile = new PopupWithForm('.popup_type_edit', handleSubmitProfi
 popupEditProfile.setEventListeners();
 
 //редактирование аватара - новый экземпляр класса PopupWithForm
-const popupEditAvatarProfile = new PopupWithForm('.popup_type_edit-avatar', handleSubmitAvatarProfile);
-popupEditAvatarProfile.setEventListeners(); //закрываем
+const popupAvatar = new PopupWithForm('.popup_type_edit-avatar', handleSubmitAvatarProfile);
+popupAvatar.setEventListeners(); //закрываем
 
-//
-const profileUserInfo = new UserInfo('.profile__title', '.profile__subtitle', '.profile__avatar');
+
+
 
 //открытие попапа с редактированием профиля
 function openEditProfilePopup() {
@@ -148,30 +203,36 @@ function updateUserInfo() {
             'avatar': userProfileInfo.avatar,
             'id': userProfileInfo._id
         }
-        profileUserInfo.setUserInfo(userInfo);
+        userInfo.setUserInfo(userInfo);
     })
-
 }
 
 //сохраняем профиль
 function handleSubmitProfile(formValues) {
     const userInfo = {
         'name': formValues['inputForm_name'],
-        'about': formValues['inputForm_job']
-    }
-    profileUserInfo.setUserInfo(userInfo);
-    api.submitUserInfo(userInfo);
-    updateUserInfo();
+        'about': formValues['inputForm_job'] }
+    api.submitUserInfo(userInfo).then((res) => {
+        userInfo.setUserInfo(res);
+
+    });
 }
+/*api.метод()
+    .then((res) => `res` - это ответ от сервера при успешном запросе,
+    в котором чаще всего вся нужная информация для изменения DOM.
+    Тут делаем все изменения DOM (лайки, удаления, добавления карточки, закрытия попапов и тд )
+. catch((ошибка) => обязательно ловим возможные ошибки в конце запроса )
+.finally(() => в этом блоке чаще всего изменяют текст кнопки и скрывают эффект загрузки)*/
+
+
 
 //сохраняем аватар
 function handleSubmitAvatarProfile(formValues) {
-    const userAva = {
-        'avatar': formValues['input-avatar']
-    }
+    const userAva = {'avatar': formValues['input-avatar']}
     profileUserInfo.setUserInfo(userAva);
-    api.submitUserAvatar(userAva);
-    updateUserInfo();
+    api.submitUserAvatar(userAva).then((res) => {
+        console.log('FIXME!!!: ' + res.toString());
+    });
 }
 
 //добавление карточек
@@ -192,9 +253,11 @@ editButton.addEventListener('click', openEditProfilePopup);
 editAvatarButton.addEventListener('click', openEditAvatarPopup);
 openPopupPlaceButton.addEventListener('click', openAddCardPopup);
 
+/*
 
 updateUserInfo();
 updateAllCards();
 
+*/
 
 
