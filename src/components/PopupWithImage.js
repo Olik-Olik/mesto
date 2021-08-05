@@ -1,20 +1,16 @@
-import {imageDescription, zoomedImage} from "../utils/constants";
 import {Popup} from "./Popup";
 
 export class PopupWithImage extends Popup {
-    constructor(popupSelector) {
+    constructor(popupSelector, zoomedImage, imageDescription) {
         super(popupSelector);
-       /* this._data = data;*/
+        this._zoomedImage = zoomedImage;
+        this._imageDescription = imageDescription;
     }
 
     open(data) {
-        zoomedImage.src = data.link;
-        zoomedImage.alt = data.name;
-        imageDescription.textContent = data.name;
-
-       /* zoomedImage.src = this._data.link;
-        zoomedImage.alt = this._data.name;
-        imageDescription.textContent = this._data.name;*/
+        this._zoomedImage.src = data.link;
+        this._zoomedImage.alt = data.name;
+        this._imageDescription.textContent = data.name;
         super.open();
     }
 }

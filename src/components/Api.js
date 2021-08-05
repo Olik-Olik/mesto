@@ -6,19 +6,6 @@ export class Api {
         this._headers = arr.headers;
     }
 
-    /*getMovies() {
-        return fetch(this._address,
-            {headers: this._headers})
-            .then((response) => console.log(response))
-    }*/
-
-//тянем данные юзера при загрузке страницы через апи в index
-    /*  promiseAll() {
-         Promise.all([this.getUserInfo(),
-             this.getMovies()])
-             .then((data) => console.log('Пришел ответ с карточками'));
-     }*/
-
 // если сервер ответит ок- то выдать значение  если нет-отклоняется промис
     _handleResponse(response) {
         if (response.ok) {
@@ -27,32 +14,16 @@ export class Api {
             console.log("Вылезла ошибка, УПС, Повезло-то как! " + response.statusText);
             return Promise.reject("Вылезла ошибка, УПС, Повезло-то как! " + response.status + ":" + response.statusText);
         }
-
-        /* Promise.resolve(response.json()).then(value => {return value});
-         /!*console.log(response.json());*!/
-        /!* return new Promise(function(resolve, reject) {
-             resolve(response.json());
-             reject(); // ignored
-         });*!/
-     }else {
-         Promise.reject(response.status, "Вылезла ошибка, УПС, Повезло-то как!")
-     }*/
     }
 
-
 //получение карточек с сервера внешний метод
-
     getInitialCards() {
         return fetch(this._address + '/cards',
             {
                 headers: this._headers,
                 method: 'GET',
             })
-        /*    .then(value => Promise.resolve(value.json()))
-            .catch(err => {
-                console.log('Что-то криво в добыче информации о карточках: ' + err);
-            });*/
-    .then((response) => this._handleResponse(response));
+            .then((response) => this._handleResponse(response));
     }
 
 //добавляем карточки
@@ -66,11 +37,7 @@ export class Api {
                 method: 'POST',      //Роst запрос через body
                 body: JSON.stringify(cardInfo)
             })
-    .then((response) => this._handleResponse(response))
-          /*  .then((response) => this.handleResponse(response))
-            .catch(err => {
-                console.log('Что-то криво в создании карточки: ' + err);
-            })*/
+            .then((response) => this._handleResponse(response));
     }
 
 
@@ -83,11 +50,7 @@ export class Api {
                 about: inputAboutUserInfo
             })
         })
-    .then((response) => this._handleResponse(response));
-            /*.then((response) => this._handleResponse(response))
-            .catch(err => {
-                console.log('Что-то криво в обновлении информации о пользователе')
-            })*/
+            .then((response) => this._handleResponse(response));
     }
 
 
@@ -97,10 +60,6 @@ export class Api {
             method: 'DELETE'
         })
             .then((response) => this._handleResponse(response));
-            /*.then((response) => this._handleResponse(response))
-            .catch(err => {
-                console.log('Что-то криво в удалении карточки:' + err);
-            })*/
     }
 
 
@@ -110,38 +69,16 @@ export class Api {
             method: 'PUT'
         })
             .then((response) => this._handleResponse(response));
-            /*.then((response) => this._handleResponse(response))
-            .catch(err => {
-                console.log('Что-то криво в лайках')
-            })*/
     }
-    /*
-        dislike(cardId) {
-            return fetch(this._address + '/cards/likes/' + cardId, {
-                headers: this._headers,
-                method: 'DELETE'
-            })
-                .then((response) => this._handleResponse(response))
-                .catch(err => {
-                    console.log('Что-то криво в disлайках')
-                })
-        }
 
-
-        likeDelete()
-        {
+    dislike(cardId) {
         return fetch(this._address + '/cards/likes/' + cardId, {
-            headers: {
-                    'authorization': this._headers.authorization,
-                    'Content-Type': 'application/json'
-                },
+            headers: this._headers,
             method: 'DELETE'
-
-                .then((response) => this.handleResponse(response))
         })
+            .then((response) => this._handleResponse(response))
+    }
 
-        }
-        */
 
 // _id — это идентификатор пользователя, в данном случае вашего.
     getUserInfo() {
@@ -151,10 +88,6 @@ export class Api {
                 method: 'GET'
             })
             .then((response) => this._handleResponse(response));
-            /*.then(value => Promise.resolve(value.json()))
-            .catch(err => {
-                console.log('Чорный Властелин не пришел.')
-            });*/
     }
 
     submitUserInfo(userInfo) {
@@ -172,9 +105,6 @@ export class Api {
                 body: JSON.stringify(userUpdate), // в аватар кладем строку от аватара
             })
             .then((response) => this._handleResponse(response));
-            /*.then((response) => this._handleResponse(response))
-            .catch(err => {
-            })*/
     }
 
     submitUserAvatar(userInfo) {
@@ -191,9 +121,6 @@ export class Api {
                 body: JSON.stringify(avaUpdate), // в аватар кладем строку от аватара
             })
             .then((response) => this._handleResponse(response));
-            /*.then((response) => this._handleResponse(response))
-            .catch(err => {
-            })*/
     }
 
 }

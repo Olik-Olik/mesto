@@ -3,9 +3,11 @@ import {
     editAvatarButton,
     editButton,
     formAddCard,
+    imageDescription,
     inputUserJob,
     inputUserName,
     openPopupPlaceButton,
+    zoomedImage,
 } from '../utils/constants.js';
 
 import './index.css';
@@ -77,7 +79,6 @@ Promise.all([api.getUserInfo, api.getInitialCards])
 // поставить во всех api*/
 
 
-
 /*function updateAllCards(){
     api.getInitialCards().then((res) => {
         const initialCards = res;
@@ -86,6 +87,7 @@ Promise.all([api.getUserInfo, api.getInitialCards])
         cardsList.renderItems(items);
     })
 }*/
+
 /*const cardsList = new Section(
     { renderer: (data) => {cardsList.addItem(popupAddCard(data)); }},'.elements');
 cardsList.renderItems(items);*/
@@ -95,34 +97,45 @@ function handleCardClick(evt) {
         'name': evt.currentTarget.alt,
         'link': evt.currentTarget.src
     }
-    const popupBigImage = new PopupWithImage('.popup_type_image', data);
+    const popupBigImage = new PopupWithImage('.popup_type_image', zoomedImage, imageDescription);
     popupBigImage.setEventListeners();
-    popupBigImage.open();
+    popupBigImage.open(data);
 }
 
-function removeCard(cardId){
-    api.submitRemoveCard(cardId).then((res) => {updateAllCards()});
+function removeCard(cardId, cardElement) {
+    api.submitRemoveCard(cardId).then((res) => {
+        cardElement.remove();
+    }).catch((err) => {
+        console.log('MAMA!!!: ' + err.toString())
+    })
+        .finally(() => {
+            popupConfirmDelete.close();
+        });
 }
-/*5 august перенесла из cards но там оставила, иначе не работает пока*/
 
-const popupConfirmDelete = new PopupWithConfirm('.popup_delete-confirm');
+const popupConfirmDelete = new PopupWithConfirm('.popup_delete-confirm', removeCard);
 popupConfirmDelete.setEventListeners();//закрываем
 
-
-
-/*const popupConfirmDelete = new PopupWithConfirm((cardId, card, popup ) =>{
-  api.procCheck(popupConfirmDeleteButton, true); //процесс удаления
-  api.submitRemoveCard(cardId).then(() => {card.remove();
-  popup.close();})
-      .catch((err) => console.log(err);}) '.popup_delete-confirm')*/
-
-
-
-function handleLikeClick(target, cardId){
+function handleLikeClick(target, cardId) {
     if (target.classList.contains('elements__like_active')) {
-        api.like(cardId).then((res) => {updateAllCards()});
+        api.like(cardId).then((res) => {
+            // FIXME!!!
+        }).catch((err) => {
+            console.log('MAMA!!!: ' + err.toString())
+        })
+            .finally(() => {
+                // FIXME!!!
+            });
+
     } else {
-        api.dislike(cardId).then((res) => {updateAllCards()});
+        api.dislike(cardId).then((res) => {
+            // FIXME!!!
+        }).catch((err) => {
+            console.log('MAMA!!!: ' + err.toString())
+        })
+            .finally(() => {
+                // FIXME!!!
+            });
     }
 }
 
@@ -131,7 +144,7 @@ function cardRenderer(cardItem) {
         cardItem,
         '.item-template',
         handleCardClick, removeCard, profileUserInfo.getUserInfo().id,
-        handleLikeClick);
+        handleLikeClick, popupConfirmDelete);
     const newCard = card.createCard();
     return newCard;
 }
@@ -143,8 +156,15 @@ function handleSubmitCard(formValues) {
             name: formValues['popup-input-place'],
             link: formValues['popup-input-img']
         };
-   /* cardsList.addItem(cardRenderer(inputElement));*/
-    api.submitNewCard(inputElement).then((res) => {cardsSection.addItem(res)});
+    api.submitNewCard(inputElement).then((res) => {
+        cardsSection.addItem(res)
+    })
+        .catch((err) => {
+            console.log('MAMA!!!: ' + err.toString())
+        })
+        .finally(() => {
+            popupAddCard.close();
+        });
 }
 
 
@@ -171,8 +191,6 @@ popupEditProfile.setEventListeners();
 //редактирование аватара - новый экземпляр класса PopupWithForm
 const popupAvatar = new PopupWithForm('.popup_type_edit-avatar', handleSubmitAvatarProfile);
 popupAvatar.setEventListeners(); //закрываем
-
-
 
 
 //открытие попапа с редактированием профиля
@@ -211,19 +229,20 @@ function updateUserInfo() {
 function handleSubmitProfile(formValues) {
     const userInfo = {
         'name': formValues['inputForm_name'],
-        'about': formValues['inputForm_job'] }
+        'about': formValues['inputForm_job']
+    }
     api.submitUserInfo(userInfo).then((res) => {
         userInfo.setUserInfo(res);
 
     });
 }
+
 /*api.метод()
     .then((res) => `res` - это ответ от сервера при успешном запросе,
     в котором чаще всего вся нужная информация для изменения DOM.
     Тут делаем все изменения DOM (лайки, удаления, добавления карточки, закрытия попапов и тд )
 . catch((ошибка) => обязательно ловим возможные ошибки в конце запроса )
 .finally(() => в этом блоке чаще всего изменяют текст кнопки и скрывают эффект загрузки)*/
-
 
 
 //сохраняем аватар
@@ -246,7 +265,6 @@ function openAddCardPopup() {
     formValidatorCard.hideInputErrorAll();
     popupAddCard.open();
 }
-
 
 
 editButton.addEventListener('click', openEditProfilePopup);

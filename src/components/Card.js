@@ -1,9 +1,3 @@
-import {PopupWithForm} from "./PopupWithForm";
-import {PopupWithConfirm} from "./PopupWithConfirm";
-
-/*const popupConfirmDelete = new PopupWithConfirm('.popup_delete-confirm');*/
-/*this._popupConfirmDelete.setEventListeners();*///закрываем
-
 export class Card {
     constructor(item, cardSelector, handleCardClick, handleCardRemove, selfId, handleLikeClick, popupConfirmDelete) {
         this._item = item;
@@ -57,8 +51,8 @@ export class Card {
         this._likeCountElement.textContent = this._likeCount;
 
         this._setEventListeners(newElement, newElementImage);
+        this._cardElement = newElement;
         return newElement;
-
     }
 
     _setEventListeners(newElement, newElementImage) {
@@ -78,12 +72,12 @@ export class Card {
     }
 
     _handleCardRemove(evt) {
-        popupConfirmDelete.setConfirm(() => {this._handleDoCardRemove()});
-        popupConfirmDelete.open();
+        this._popupConfirmDelete.setConfirm(() => {this._handleDoCardRemove()});
+        this._popupConfirmDelete.open();
     }
 
     _handleDoCardRemove(){
-        this._removeHandler(this._id);
+        this._removeHandler(this._id, this._cardElement);
     }
 
 }
