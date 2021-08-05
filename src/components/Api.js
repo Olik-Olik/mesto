@@ -6,7 +6,7 @@ export class Api {
         this._headers = arr.headers;
     }
 
-    getMovies() {
+    /*getMovies() {
         return fetch(this._address,
             {headers: this._headers})
             .then((response) => console.log(response))
@@ -17,7 +17,7 @@ export class Api {
         Promise.all([this.getUserInfo(),
             this.getMovies()])
             .then((data) => console.log('Пришел ответ с карточками'));
-    }
+    }*/
 
 // если сервер ответит ок- то выдать значение  если нет-отклоняется промис
     _handleResponse(response) {
@@ -48,10 +48,11 @@ export class Api {
                 headers: this._headers,
                 method: 'GET',
             })
-            .then(value => Promise.resolve(value.json()))
+        /*    .then(value => Promise.resolve(value.json()))
             .catch(err => {
                 console.log('Что-то криво в добыче информации о карточках: ' + err);
-            });
+            });*/
+    .then((response) => this._handleResponse(response));
     }
 
 //добавляем карточки
@@ -65,10 +66,11 @@ export class Api {
                 method: 'POST',      //Роst запрос через body
                 body: JSON.stringify(cardInfo)
             })
-            .then((response) => this.handleResponse(response))
+    .then((response) => this._handleResponse(response))
+          /*  .then((response) => this.handleResponse(response))
             .catch(err => {
                 console.log('Что-то криво в создании карточки: ' + err);
-            })
+            })*/
     }
 
 
@@ -81,10 +83,11 @@ export class Api {
                 about: inputAboutUserInfo
             })
         })
-            .then((response) => this._handleResponse(response))
+    .then((response) => this._handleResponse(response));
+            /*.then((response) => this._handleResponse(response))
             .catch(err => {
                 console.log('Что-то криво в обновлении информации о пользователе')
-            })
+            })*/
     }
 
 
@@ -93,10 +96,11 @@ export class Api {
             headers: this._headers,
             method: 'DELETE'
         })
-            .then((response) => this._handleResponse(response))
+            .then((response) => this._handleResponse(response));
+            /*.then((response) => this._handleResponse(response))
             .catch(err => {
                 console.log('Что-то криво в удалении карточки:' + err);
-            })
+            })*/
     }
 
 
@@ -105,10 +109,11 @@ export class Api {
             headers: this._headers,
             method: 'PUT'
         })
-            .then((response) => this._handleResponse(response))
+            .then((response) => this._handleResponse(response));
+            /*.then((response) => this._handleResponse(response))
             .catch(err => {
                 console.log('Что-то криво в лайках')
-            })
+            })*/
     }
     /*
         dislike(cardId) {
@@ -134,10 +139,7 @@ export class Api {
 
                 .then((response) => this.handleResponse(response))
         })
-            .catch(err => {
-                console.log('Что-то криво в удалении лайков')
 
-            })
         }
         */
 
@@ -148,10 +150,11 @@ export class Api {
                 headers: this._headers,
                 method: 'GET'
             })
-            .then(value => Promise.resolve(value.json()))
+            .then((response) => this._handleResponse(response));
+            /*.then(value => Promise.resolve(value.json()))
             .catch(err => {
                 console.log('Чорный Властелин не пришел.')
-            });
+            });*/
     }
 
     submitUserInfo(userInfo) {
@@ -168,9 +171,10 @@ export class Api {
                 method: 'PATCH',
                 body: JSON.stringify(userUpdate), // в аватар кладем строку от аватара
             })
-            .then((response) => this._handleResponse(response))
+            .then((response) => this._handleResponse(response));
+            /*.then((response) => this._handleResponse(response))
             .catch(err => {
-            })
+            })*/
     }
 
     submitUserAvatar(userInfo) {
@@ -186,9 +190,10 @@ export class Api {
                 method: 'PATCH',
                 body: JSON.stringify(avaUpdate), // в аватар кладем строку от аватара
             })
-            .then((response) => this._handleResponse(response))
+            .then((response) => this._handleResponse(response));
+            /*.then((response) => this._handleResponse(response))
             .catch(err => {
-            })
+            })*/
     }
 
 }

@@ -1,10 +1,11 @@
+import {PopupWithForm} from "./PopupWithForm";
 import {PopupWithConfirm} from "./PopupWithConfirm";
 
 const popupConfirmDelete = new PopupWithConfirm('.popup_delete-confirm');
 popupConfirmDelete.setEventListeners();//закрываем
 
 export class Card {
-    constructor(item, cardSelector, handleCardClick, handleCardRemove, selfId, handleLikeClick) {
+    constructor(item, cardSelector, handleCardClick, handleCardRemove, selfId, handleLikeClick, popupConfirmDelete) {
         this._item = item;
         this._cardSelector = cardSelector;
         this._handleCardClick = handleCardClick;
@@ -15,6 +16,7 @@ export class Card {
         this._likeCount = item.likes.length;
         this._selfId = selfId;//ЯЯЯЯ
         this._ownerId = item.owner._id;//собственник карточки
+        this._popupConfirmDelete = item.popupConfirmDelete;
     }
 
 //все evt должны работать снаружи класса

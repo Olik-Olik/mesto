@@ -16,6 +16,7 @@ import {PopupWithForm} from '../components/PopupWithForm.js';
 import {PopupWithImage} from '../components/PopupWithImage.js';
 import {UserInfo, UserInfoAvatar} from '../components/UserInfo.js';
 import {Api} from "../components/Api";
+import {PopupWithConfirm} from "../components/PopupWithConfirm";
 
 const api = new Api({
     address: 'https://mesto.nomoreparties.co/v1/cohort-26',
@@ -52,6 +53,12 @@ function handleCardClick(evt) {
 function removeCard(cardId){
     api.submitRemoveCard(cardId).then((res) => {updateAllCards()});
 }
+/*5 august перенесла из cards но там оставила, иначе не работает пока*/
+const popupConfirmDelete = new PopupWithConfirm('.popup_delete-confirm');
+popupConfirmDelete.setEventListeners();//закрываем
+/*popupConfirmDelete.open();*/
+
+
 
 function handleLikeClick(target, cardId){
     if (target.classList.contains('elements__like_active')) {

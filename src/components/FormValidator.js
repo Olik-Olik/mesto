@@ -13,7 +13,7 @@ export class FormValidator {
         this.inputList.forEach((inputElement) => {
             inputElement.addEventListener('input', () => {
                 this._checkInputValidity(inputElement, this._settings);
-                this._toggleButtonState(this.inputList, this._buttonElement);
+                this._toggleButtonState();
             });
         });
     }
@@ -35,18 +35,18 @@ export class FormValidator {
             evt.preventDefault();
 
         });
-        this._setEventListeners(this._formElement, this._settings);
+        this._setEventListeners(); /*не принимает ничего в вызов*/
     }
 
     _showError = (inputElement, inputElementConfig) => {
-        const errorElement = document.querySelector(`#${inputElement.id}-error`); //#popup-field-name-error
+        const errorElement = this._formElement.querySelector(`#${inputElement.id}-error`); //#popup-field-name-error
         inputElement.classList.add(inputElementConfig.formInputErrorClass);
         errorElement.textContent = inputElement.validationMessage;
         errorElement.classList.add(inputElementConfig.formInputErrorActive);
     };
 
     _hideInputError = (inputElement, inputElementConfig) => {
-        const errorElement = document.querySelector(`#${inputElement.id}-error`);
+        const errorElement =  this._formElement.querySelector(`#${inputElement.id}-error`);
         inputElement.classList.remove(inputElementConfig.formInputErrorClass);
         errorElement.classList.remove(inputElementConfig.formInputErrorActive);
         errorElement.textContent = '';
