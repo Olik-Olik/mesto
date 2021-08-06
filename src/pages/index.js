@@ -54,29 +54,11 @@ Promise.all([getUserInfoPromise(), getCardsPromise()]).then((values) => {
     profileUserInfo.setUserInfo(userInfo);
 
     cardsSection.renderItems(initialCards);
-});
-/*//карта
-//промис all
-Promise.all([api.getUserInfo, api.getInitialCards])
-    .then (([user,initialCards]) => {
-        profileUserInfo.setUserInfo({
-            name: user.name,
-            about: user.about,
-            userId: userId
-        });
-        profileUserInfo.setUserInfo({
-            avatar: user.avatar
-        });
-        const initialCardsInfo =  new Section ({
-            renderer: () => {initialCardsInfo.addItem(data); //верно, что форму ? подумать
-            }
-        }, '.elements');
-     /!*   initialCardsInfo.forEach(item => Section.rendered(createCard(item)));*!/
-        initialCardsInfo.forEach(initialCards);})
-    .catch(err => {
-        console.log('Что-то криво ' + err);
-    })
-// поставить во всех api*/
+})
+    .catch((err) => {
+        console.log('MAMA!!!: ' + err.toString())
+    });
+
 
 const popupBigImage = new PopupWithImage('.popup_type_image', zoomedImage, imageDescription);
 popupBigImage.setEventListeners();
@@ -187,7 +169,6 @@ function openEditProfilePopup() {
 function openEditAvatarPopup() {
     editAvatarButton.addEventListener('click', () => {
         popupAvatar.open();
-        formValidatorAvatar.enableValidation();
         formValidatorAvatar.inputListValidate();
         formValidatorAvatar.hideInputErrorAll();
     })

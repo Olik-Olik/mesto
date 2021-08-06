@@ -1,7 +1,3 @@
-/* this.close();
-закрывать попапы нужно только после удачного ответа от сервера в блоке then, иначе пользователь не поймет, что произошла ошибка, да и инпуты очистятся и придется опять печатать данные для отправки. А еще не будет видно изменение текста кнопки сабмита, если ее делаете.
-Исправьте это везде по коду, пожалуйста*/
-
 import {Popup} from "./Popup";
 
 export class PopupWithForm extends Popup {
@@ -35,7 +31,6 @@ export class PopupWithForm extends Popup {
                 evt.preventDefault();
                 this._submitButton.textContent = 'Сохранение...';
                 this._callbackFormSubmit(this._getInputValues());
-                /*this.close();*/
             });
     }
 
@@ -47,6 +42,6 @@ export class PopupWithForm extends Popup {
         super.close();
         this._popupForm.reset();
         this.resetButtonText();
-    }
 
+    }
 }

@@ -1,5 +1,3 @@
-//все про сервер переписать все под взаимодействие с сервером
-
 export class Api {
     constructor(arr) {
         this._address = arr.address;

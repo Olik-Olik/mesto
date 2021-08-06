@@ -23,7 +23,7 @@ export class FormValidator {
             this._hideInputError(inputElement, this._settings);
         });
     }
-    // в кнопку всовываем инпуты и кнопку
+    //  всовываем инпуты и кнопку
 
     inputListValidate = () => {
         this._inputList.forEach((inputElement) => {
