@@ -5,6 +5,10 @@ export class Popup {
     constructor(popupSelector) {
         this._popup = document.querySelector(popupSelector);
         this._handleEscClose = this._handleEscClose.bind(this);
+        this._submitButton = this._popup.querySelector('.popup__save');
+        if (this._submitButton){
+            this._defaultButtonText = this._submitButton.textContent;
+        }
     }
 
     open() {
@@ -21,6 +25,12 @@ export class Popup {
         this._popup.addEventListener('click', (evt) => {
             this._handleCloseButton(evt)
         });
+    }
+
+    resetButtonText(){
+        if (this._submitButton) {
+            this._submitButton.textContent = this._defaultButtonText;
+        }
     }
 
     _handleCloseButton(evt) {

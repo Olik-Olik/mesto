@@ -1,13 +1,10 @@
 import {Popup} from "./Popup";
 
 export class PopupWithForm extends Popup {
-    constructor(popupSelector, callbackFormSubmit, defaultButtonText) {
+    constructor(popupSelector, callbackFormSubmit) {
         super(popupSelector);
         this._popupForm = this._popup.querySelector('.popup__form');
         this._callbackFormSubmit = callbackFormSubmit;
-        this._defaultButtonText = defaultButtonText;
-        this._submitButton = this._popup.querySelector('.popup__save');
-        this._submitButton.textContent = this._defaultButtonText;
     }
 
     //собирает данные всех полей
@@ -34,14 +31,9 @@ export class PopupWithForm extends Popup {
             });
     }
 
-    resetButtonText(){
-        this._submitButton.textContent = this._defaultButtonText;
-    }
-
     close() {
         super.close();
         this._popupForm.reset();
         this.resetButtonText();
-
     }
 }

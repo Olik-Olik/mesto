@@ -184,8 +184,8 @@ function handleSubmitProfile(formValues) {
         profileUserInfo.setUserInfo(res);
         popupEditProfile.close();
     }).catch((err) => {
-            console.log('MAMA!!!: ' + err.toString())
-        })
+        console.log('MAMA!!!: ' + err.toString())
+    })
         .finally(() => {
             popupEditProfile.resetButtonText();
         });
